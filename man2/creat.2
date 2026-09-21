@@ -36,31 +36,31 @@
 .Dd June 2, 1993
 .Dt CREAT 2
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm creat
-.Nd �������ե�������������
-.Sh �饤�֥��
+.Nd 新しいファイルを作成する
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In fcntl.h
 .Ft int
 .Fn creat "const char *path" "mode_t mode"
-.Sh ����
+.Sh 解説
 .Bf -symbolic
-���Υ��󥿥ե�������
+このインタフェースは
 .Xr open 2
-�ˤ�äƵ켰�Τ�ΤȤʤäƤ��ޤ���
+によって旧式のものとなっています。
 .Ef
 .Pp
 .Fn creat
-�ؿ��ϼ��Τ�Τ�Ʊ���Ǥ���
+関数は次のものと同じです。
 .Bd -literal -offset indent
 open(path, O_CREAT | O_TRUNC | O_WRONLY, mode);
 .Ed
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr open 2
-.Sh ���
+.Sh 歴史
 .Fn creat
-�ؿ���
+関数は
 .At v6
-���о줷�ޤ�����
+で登場しました。

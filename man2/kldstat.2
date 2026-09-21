@@ -29,80 +29,80 @@
 .Dd March 3, 1999
 .Dt KLDSTAT 2
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm kldstat
-.Nd kld �ե�����ξ��֤�����
-.Sh �饤�֥��
+.Nd kld ファイルの状態を得る
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In sys/param.h
 .In sys/linker.h
 .Ft int
 .Fn kldstat "int fileid" "struct kld_file_stat *stat"
-.Sh ����
+.Sh 解説
 .Fn kldstat
-�����ƥॳ����ϡ�
+システムコールは、
 .Fa fileid
-�ˤ�äƻ��Ȥ��줿�ե�����˴ؤ�������
+によって参照されたファイルに関する情報を
 .Fa stat
-�˽���ߤޤ���
+に書込みます。
 .Bd -literal
 struct kld_file_stat {
-	int         version;        /* sizeof(linker_file_stat) ������ */
+	int         version;        /* sizeof(linker_file_stat) に設定 */
 	char        name[MAXPATHLEN];
 	int         refs;
 	int         id;
-	caddr_t     address;        /* �����ɥ��ɥ쥹 */
-	size_t      size;           /* �Х���ñ�̤Υ����� */
+	caddr_t     address;        /* ロードアドレス */
+	size_t      size;           /* バイト単位のサイズ */
 };
 .Ed
 .Pp
 .Bl -tag -width XXXaddress
 .It version
-���Υե�����ɤϡ�
+このフィールドは、
 .Fn kldstat
-���ΤǤϤʤ���
+自体ではなく、
 .Fn kldstat
-��ƤӽФ������ɤ����Ҥ�����¤�ΤΥ����������ꤷ�ޤ���
+を呼び出すコードで前述した構造体のサイズに設定します。
 .It name
 .Fa fileid
-�ˤ�äƻ��Ȥ����ե������̾��
+によって参照されるファイルの名前
 .It refs
 .Fa fileid
-�ˤ�äƻ��Ȥ����⥸�塼��ο�
+によって参照されるモジュールの数
 .It id
 .Fa fileid
-�ǻ��ꤵ�줿�ե������ ID
+で指定されたファイルの ID
 .It address
-kld �ե�����Υ����ɥ��ɥ쥹
+kld ファイルのロードアドレス
 .It size
-�ե�����Υ�����
+ファイルのサイズ
 .El
-.Sh �����
+.Sh 戻り値
 .Rv -std kldstat
-.Sh ���顼
-���ξ�������ơ�
+.Sh エラー
+次の場合を除いて、
 .Fa fileid
-�����Ȥ���ե�����˴ؤ�������
+が参照するファイルに関する情報は
 .Fa stat
-���ؤ���¤�Τ˵�������ޤ�:
+が指す構造体に記入されます:
 .Bl -tag -width Er
 .It Bq Er ENOENT
-�ե����뤬���Ĥ���ޤ���Ǥ��� (�����餯�����ɤ���Ƥ��ʤ��ΤǤ��礦)��
+ファイルが見つかりませんでした (おそらくロードされていないのでしょう)。
 .It Bq Er EINVAL
-stat ��
+stat の
 .Fa version
-�ե�����ɤǻ��ꤵ�줿�С������Ŭ�ڤǤϤ���ޤ���
+フィールドで指定されたバージョンが適切ではありません。
 .Fa version
-�ե�����ɤ�Ŭ�ڤ˵������Ƥ���Τˤ��Υ��顼�����������ϡ�
-���ɡ������ͥ롢�ޤ��ϥ��ץꥱ��������ƹ��ۤ���ɬ�פ�����ޤ���
+フィールドに適切に記入しているのにこのエラーが起きた場合は、
+ワールド、カーネル、またはアプリケーションを再構築する必要があります。
 .It Bq Er EFAULT
 .Xr copyout 9
-�ؿ��ǡ��ե�����ɤ�
+関数で、フィールドを
 .Fa stat
-�˥��ԡ�����ݤ����꤬����ޤ�����
+にコピーする際に問題がありました。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr kldfind 2 ,
 .Xr kldfirstmod 2 ,
 .Xr kldload 2 ,
@@ -115,8 +115,8 @@ stat ��
 .Xr modstat 2 ,
 .Xr kld 4 ,
 .Xr kldstat 8
-.Sh ���
+.Sh 歴史
 .Nm kld
-���󥿥ե�������
+インタフェースは
 .Fx 3.0
-�ǤϤ�����о줷�ޤ�����
+ではじめて登場しました。

@@ -36,15 +36,15 @@
 .Dd June 4, 1993
 .Dt SETUID 2
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm setuid ,
 .Nm seteuid ,
 .Nm setgid ,
 .Nm setegid
-.Nd �桼�� ID �ȥ��롼�� ID �����ꤹ��
-.Sh �饤�֥��
+.Nd ユーザ ID とグループ ID を設定する
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In sys/types.h
 .In unistd.h
 .Ft int
@@ -55,10 +55,10 @@
 .Fn setgid "gid_t gid"
 .Ft int
 .Fn setegid "gid_t egid"
-.Sh ����
+.Sh 解説
 .Fn setuid
-�����ƥॳ����ϡ����ߤΥץ������μ¥桼�� ID �ȼ¸��桼�� ID ��
-����桼�� ID ����ꤷ���ͤ����ꤷ�ޤ���
+システムコールは、現在のプロセスの実ユーザ ID と実効ユーザ ID と
+退避ユーザ ID を指定した値に設定します。
 .\" Comment out next block for !_POSIX_SAVED_IDS
 .\" The real user ID and the saved set-user-ID are changed only if the
 .\" effective user ID is that of the super user.
@@ -69,16 +69,16 @@
 .\" system call if the effective user ID is not that of the super user.
 .\" End of block
 .Fn setuid
-�����ƥॳ���뤬���Ƥ����Τϡ������ ID ���ץ������μ¥桼�� ID
-�ޤ��ϼ¸��桼�� ID ����������硢
-�ޤ��ϼ¸��桼�� ID �������ѥ桼���Τ�Τ����������Ǥ���
+システムコールが許容されるのは、指定の ID がプロセスの実ユーザ ID
+または実効ユーザ ID に等しい場合、
+または実効ユーザ ID がスーパユーザのものと等しい場合です。
 .\" Comment out next line for !_POSIX_SAVED_IDS
 .\" or the saved set-user-ID
 .\" Next line is for Appendix B.4.2.2 case.
 .Pp
 .Fn setgid
-�����ƥॳ����ϡ����ߤΥץ������μ¥��롼�� ID �ȼ¸����롼�� ID ��
-���򥰥롼�� ID ����ꤷ���ͤ����ꤷ�ޤ���
+システムコールは、現在のプロセスの実グループ ID と実効グループ ID と
+退避グループ ID を指定した値に設定します。
 .\" Comment out next block for !_POSIX_SAVED_IDS
 .\" The real group ID and the saved set-group-ID are changed only if the
 .\" effective user ID is that of the super user.
@@ -89,52 +89,52 @@
 .\" system call if the effective user ID is not that of the super user.
 .\" End of block
 .Fn setgid
-�����ƥॳ���뤬���Ƥ����Τϡ������ ID ���ץ������μ¥��롼�� ID
-�ޤ��ϼ¸����롼�� ID ����������硢
-�ޤ��ϼ¸��桼�� ID �������ѥ桼���Τ�Τ����������Ǥ���
+システムコールが許容されるのは、指定の ID がプロセスの実グループ ID
+または実効グループ ID に等しい場合、
+または実効ユーザ ID がスーパユーザのものと等しい場合です。
 .\" Comment out next line for !_POSIX_SAVED_IDS
 .\" or the saved set-group-ID
 .\" Next line is for Appendix B.4.2.2 case.
 .Pp
 .Fn seteuid
-�����ƥॳ����
+システムコール
 .Pq Fn setegid
-�ϡ����ߤΥץ������μ¸��桼�� (���롼�� ID) �����ꤷ�ޤ���
-�¸��桼�� ID �ϼ¥桼�� ID �ޤ�������桼�� ID (
+は、現在のプロセスの実効ユーザ (グループ ID) を設定します。
+実効ユーザ ID は実ユーザ ID または退避ユーザ ID (
 .Xr intro 2
-��
+と
 .Xr execve 2
-�򻲾� ) ���ͤ�����Ǥ��ޤ���
-��������Ѥ����桼�� ID ���ꤵ�줿�¹Բ�ǽ�ե�����μ¸��桼�� ID ��
-�¥桼�� ID ���ڤ��ؤ�����ˡ��桼�� ID ������ͤ���뤳�Ȥǡ�
-���θ��¤����뤳�Ȥ��Ǥ��ޤ���
-Ʊ���褦�ˡ��¸����롼�� ID �ϡ�
-�¥��롼�� ID �ޤ������򥰥롼�� ID ���ͤ�����Ǥ��ޤ���
-.Sh �����
+を参照 ) の値に設定できます。
+これを利用し、ユーザ ID 設定された実行可能ファイルの実効ユーザ ID を
+実ユーザ ID に切り替えた後に、ユーザ ID 設定の値に戻ることで、
+元の権限を得ることができます。
+同じように、実効グループ ID は、
+実グループ ID または退避グループ ID の値に設定できます。
+.Sh 戻り値
 .Rv -std
-.Sh ���顼
-�ܥ����ƥॳ����ϼ��ξ��˼��Ԥ��ޤ�:
+.Sh エラー
+本システムコールは次の場合に失敗します:
 .Bl -tag -width Er
 .It Bq Er EPERM
-�桼���������ѥ桼���Ǥʤ���硢�ޤ��ϻ��ꤵ�줿 uid �����μ� ID��
-�¸� ID���ޤ������� ID �Ǥʤ���硣
+ユーザがスーパユーザでない場合、または指定された uid がその実 ID、
+実効 ID、または退避 ID でない場合。
 .El
-.Sh �������ƥ��˴ؤ���ͻ�
-�ե�����ؤ��ɼ��Ƚ���ߵ��Ĥϡ�
+.Sh セキュリティに関する考察
+ファイルへの読取りと書込み許可は、
 .Xr open 2
-���ƤФ줿����Ƚ�Ǥ���ޤ���
-���٥ե����뵭�һҤ������ץ󤵤��ȡ����¤���Ƥ⤽�Υץ�������
-�ɼ��ޤ��Ͻ���ߵ��Ĥˤϱƶ����ޤ���
-���ꤵ�줿�桼�� ID �ˡ����Υե�����ؤ��ɼ��ޤ��Ͻ���ߵ��Ĥ�
-�ʤ��Ȥ�Ǥ���
-�̾盧���Υե�����ϡ��������ץ������μ¹Ի��˥����ץ󤵤줿�ޤޤȤʤꡢ
-���η�̡��桼�����⤷������������դǤ���ǡ������ɤ���꽤��������
-�Ǥ��Ƥ��ޤ��ޤ���
+が呼ばれた時に判断されます。
+一度ファイル記述子がオープンされると、権限を落してもそのプロセスの
+読取りまたは書込み許可には影響しません。
+指定されたユーザ ID に、そのファイルへの読取りまたは書込み許可が
+なくともです。
+通常これらのファイルは、新しいプロセスの実行時にオープンされたままとなり、
+その結果、ユーザがもしかすると要注意であるデータを読んだり修正したり
+できてしまいます。
 .Pp
-�����Υե����뤬
+これらのファイルが
 .Xr exec 3
-�ƤӽФ��θ�Ǥ⥪���ץ󤵤줿�ޤޤˤ����Τ��ɤ��ˤϡ�
-close-on-exec �ե饰�����ꤹ��褦�ˤ��Ƥ�������:
+呼び出しの後でもオープンされたままにされるのを防ぐには、
+close-on-exec フラグを設定するようにしてください:
 .Bd -literal
 void
 pseudocode(void)
@@ -147,7 +147,7 @@ pseudocode(void)
 		err(1, "open");
 
 	/*
-	 * close-on-exec �ե饰������; ����ʤ����� fcntl(2) �򻲾ȡ�
+	 * close-on-exec フラグの設定; さらなる情報は fcntl(2) を参照。
 	 */
 	if (fcntl(fd, F_SETFD, FD_CLOEXEC) == -1)
 		err(1, "fcntl(F_SETFD)");
@@ -155,35 +155,35 @@ pseudocode(void)
 	execve(path, argv, environ);
 }
 .Ed
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr getgid 2 ,
 .Xr getuid 2 ,
 .Xr issetugid 2 ,
 .Xr setregid 2 ,
 .Xr setreuid 2
-.Sh ����
+.Sh 規格
 .Fn setuid
-�����ƥॳ�����
+システムコールと
 .Fn setgid
-�����ƥॳ�����
+システムコールは
 .St -p1003.1-90
-���ͤȸߴ���������ޤ���
-��������
+仕様と互換性があります。
+ただし、
 .Li _POSIX_SAVED_IDS
 .\" Uncomment next line for !_POSIX_SAVED_IDS
-����Ͽ B.4.2.2 �ε��Ĥ��줿��ĥ���������Ƥ��ޤ���
+は付録 B.4.2.2 の許可された拡張で定義されていません。
 .Fn seteuid
-�����ƥॳ�����
+システムコールと
 .Fn setegid
-�����ƥॳ����ϡ�
+システムコールは、
 .Li _POSIX_SAVED_IDS
-��
+の
 .Tn POSIX
-���󥻥ץȤ���äˤ��Ƴ�ĥ���Ƥ��ꡢ���ʤξ���β����Ѥ���Ƥ���Ƥ��ޤ���
-.Sh ���
+コンセプトを基礎にして拡張してあり、規格の将来の改定用に提案されています。
+.Sh 歴史
 .Fn setuid
-�ؿ���
+関数と
 .Fn setgid
-�ؿ���
+関数は
 .At v7
-���о줷�ޤ�����
+で登場しました。

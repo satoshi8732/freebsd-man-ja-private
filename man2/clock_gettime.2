@@ -37,14 +37,14 @@
 .Dd June 17, 2004
 .Dt CLOCK_GETTIME 2
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm clock_gettime ,
 .Nm clock_settime ,
 .Nm clock_getres
-.Nd ���դȻ���μ���/����/���٤μ����򤹤�
-.Sh �饤�֥��
+.Nd 日付と時刻の取得/設定/精度の取得をする
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In sys/time.h
 .Ft int
 .Fn clock_gettime "clockid_t clock_id" "struct timespec *tp"
@@ -52,79 +52,79 @@
 .Fn clock_settime "clockid_t clock_id" "const struct timespec *tp"
 .Ft int
 .Fn clock_getres "clockid_t clock_id" "struct timespec *tp"
-.Sh ����
+.Sh 解説
 .Fn clock_gettime
-��
+と
 .Fn clock_settime
-��
+は
 .Fa clock_id
-�ǻ��ꤹ�륯���å����ͤ���������ꤷ�ޤ���
+で指定するクロックの値を取得、設定します。
 .Pp
 .Fa clock_id
-�����ˤϡ����� 4 �Ĥ��ͤΤ����� 1 �Ĥ���ꤷ�ޤ���
-CLOCK_REALTIME �����̤λ��פΤ褦�˿ʤ���֡�
-CLOCK_MONOTONIC �� SI ñ�̷Ϥ��äǿʤ���֡�
-CLOCK_VIRTUAL �ϸƤӽФ��ץ������Τ���� CPU ���桼���⡼�ɤ�
-�¹Ԥ���Ƥ���Ȥ��ˤ����ʤ���֡�
-CLOCK_PROF �ϡ�CPU ���桼���⡼�ɤޤ��ϥ����ͥ�⡼�ɤǼ¹Ԥ���Ƥ���
-�Ȥ��˿ʤ���֤Ǥ���
+引数には、次の 4 つの値のうちの 1 つを指定します。
+CLOCK_REALTIME は普通の時計のように進む時間、
+CLOCK_MONOTONIC は SI 単位系の秒で進む時間、
+CLOCK_VIRTUAL は呼び出しプロセスのために CPU がユーザモードで
+実行されているときにだけ進む時間、
+CLOCK_PROF は、CPU がユーザモードまたはカーネルモードで実行されている
+ときに進む時間です。
 .Pp
 .Fa tp
-�ˤ�äƻؤ���빽¤�Τ�
+によって指される構造体は
 .In sys/time.h
-��Ǽ��Τ褦���������Ƥ��ޤ���
+内で次のように定義されています。
 .Pp
 .Bd -literal
 struct timespec {
-	time_t	tv_sec;		/* �� */
-	long	tv_nsec;	/* �ʥ��� */
+	time_t	tv_sec;		/* 秒 */
+	long	tv_nsec;	/* ナノ秒 */
 };
 .Ed
 .Pp
-���������Ǥ���Τϥ����ѥ桼�������Ǥ���
-�����ƥ�ΰ�������٥� (securelevel) �� 1 ����礭�����
+時刻を設定できるのはスーパユーザだけです。
+システムの安全性レベル (securelevel) が 1 より大きい場合
 .Pf ( Xr init 8
-�򻲾�)��
-���֤Ͽʤ�뤳�Ȥ������Ǥ��ޤ���
-�������¤ϡ����դΤ��륹���ѥ桼�����ե������
-Ǥ�դΥ����ॹ����פ����ꤹ��Τ��ɻߤ��뤿��Τ�ΤǤ���
-�������������ƥब�����ʥ⡼�ɤλ��Ǥ⡢
+を参照)、
+時間は進めることだけができます。
+この制限は、悪意のあるスーパユーザがファイルに
+任意のタイムスタンプを設定するのを防止するためのものです。
+しかし、システムが安全なモードの時でも、
 .Xr adjtime 2
-�����ƥॳ�������Ѥ����
-�����ƥ���֤��٤餻�뤳�Ȥ��Ǥ��Ƥ��ޤ��ޤ���
+システムコールを使用すれば
+システム時間を遅らせることができてしまいます。
 .Pp
-�����å������� (�٤���) �ϡ�
+クロックの精度 (細かさ) は、
 .Fn clock_getres
-�����ƥॳ����ˤ�ä��֤���ޤ���
-�����ͤϡ�(�� NULL �ݥ���)
+システムコールによって返されます。
+この値は、(非 NULL ポインタ)
 .Fa *tp
-��˳�Ǽ����ޤ���
-.Sh �����
+内に格納されます。
+.Sh 戻り値
 .Rv -std
-.Sh ���顼
-���Υ��顼�����ɤ�
+.Sh エラー
+次のエラーコードが
 .Va errno
-�����ꤵ��ޤ�:
+に設定されます:
 .Bl -tag -width Er
 .It Bq Er EINVAL
 .Fa clock_id
-������ͭ�����ͤǤϤ���ޤ���Ǥ�����
+引数が有効な値ではありませんでした。
 .It Bq Er EFAULT
 .Fa *tp
-�������ɥ쥹��̵���ʥ���򻲾Ȥ��Ƥ��ޤ���
+引数アドレスが無効なメモリを参照しています。
 .It Bq Er EPERM
-�����ѥ桼���ʳ��Υ桼������������ꤷ�褦�Ȥ��ޤ�����
+スーパユーザ以外のユーザが時刻を設定しようとしました。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr date 1 ,
 .Xr adjtime 2 ,
 .Xr ctime 3 ,
 .Xr timed 8
-.Sh ����
+.Sh 規格
 .Fn clock_gettime ,
 .Fn clock_settime
-�����
+および
 .Fn clock_getres
-�����ƥॳ�����
+システムコールは
 .St -p1003.1b-93
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。
