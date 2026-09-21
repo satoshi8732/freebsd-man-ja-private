@@ -21,177 +21,177 @@
 .Dd October 27, 1996
 .Dt HESINFO 1
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm hesinfo
-.Nd "Hesiod �ǡ����١����˲�����Ǽ����Ƥ��뤫���Ĥ��Ф�"
-.Sh ��
+.Nd "Hesiod データベースに何が格納されているか見つけ出す"
+.Sh 書式
 .Nm
 .Op Fl bl
 .Ar HesiodName HesiodNameType
-.Sh ����
+.Sh 解説
 .Nm
-�桼�ƥ���ƥ��ϡ���褹��̾����
+ユーティリティは、解決する名前と
 .Ar HesiodNameType
-�Ȥ����Τ��Ƥ���ʸ����Ρ�2 �Ĥΰ�������ޤ���
-�����ơ�Hesiod �͡��ॵ���Фˤ�ä��֤��줿�����ɽ�����ޤ���
+として知られている文字列の、2 つの引数を取ります。
+そして、Hesiod ネームサーバによって返された情報を表示します。
 .Pp
 .Nm
-��
+は
 .Ar HesiodNameType
-�����ͤ��֤��ޤ���
+型の値を返します。
 .Pp
-���Υ��ץ�������ѤǤ��ޤ�:
+次のオプションが利用できます:
 .Bl -tag -width indent
 .It Fl l
-Ĺ������ (long format) �����򤹤�
+長い形式 (long format) を選択する
 .It Fl b
-�͡��ॵ���Ф��Ϥ����������������줿 (fully\-qualified) ʸ�����ɽ�����ޤ���
+ネームサーバに渡した、完全修飾された (fully\-qualified) 文字列を表示します。
 .El
-.Ss ͭ���� Hesiod_Name
-���Υ����פμ��̻Ҥ�
+.Ss 有効な Hesiod_Name
+次のタイプの識別子は
 .Nm
-�ؤ�
+への
 .Ar HesiodName
-�����ǻ��ѤǤ��ޤ���
-�������ͤϡ�
+引数で使用できます。
+これらの値は、
 .Xr hesiod 3
-�ǡ����١����˥����������뤳�Ȥˤ���褵��ޤ���
+データベースにアクセスすることにより解決されます。
 .Bl -tag -width indent
 .It Aq Ar username
-�桼���ޤ��ϥ��饹���̤��� 8 ʸ�������ʸ����
-(�㤨�С�joeuser, root, 1.00 �ʤ�)��
+ユーザまたはクラスを識別する 8 文字以内の文字列
+(例えば、joeuser, root, 1.00 など)。
 .Cm passwd ,
 .Cm pobox ,
 .Cm filsys
-�Ȥ��ä�
+といった
 .Ar Hesiod_Name_Type
-�ǻ��Ѥ��ޤ���
+で使用します。
 .It Aq Ar uid
-�桼���˳�����Ƥ�줿 ID �ֹ档
+ユーザに割り当てられた ID 番号。
 .It Aq Ar groupid
-���롼�פ˳�����Ƥ�줿 ID �ֹ档
+グループに割り当てられた ID 番号。
 .It Aq Ar groupname
-��դʥ��롼�פ��̤���̾����
+一意なグループを識別する名前。
 .It Aq Ar file\-system\-name
-Athena �ե����륷���ƥ��̾����
+Athena ファイルシステムの名前。
 .It Xo
 .Ao Ar "rvd\-server" Ac : Ns Aq Ar pack
 .Xc
-������Ƕ��ڤ�줿 rvd �Υ����Фȥѥå���̾����
+コロンで区切られた rvd のサーバとパックの名前。
 .It Xo
 .Ao Ar "nfs\-server" Ac : Ns Aq Ar partition
 .Xc
-������Ƕ��ڤ�줿
+コロンで区切られた
 .Tn NFS
-�����ФȤ��Υѡ��ƥ�������̾����
+サーバとそのパーティションの名前。
 .It Aq Ar workstation\-name
-Athena ������ơ������Υޥ���̾ (�㡢E40\-343\-3)��
+Athena ワークステーションのマシン名 (例、E40\-343\-3)。
 .It Aq Ar service\-name
-Athena �����ӥ���̾�� (�㡢Zephyr)��
+Athena サービスの名前 (例、Zephyr)。
 .It Aq Ar service\-type
 .Ux
-�����ӥ���̾�� (ͭ���ʥ���ȥ��
+サービスの名前 (有効なエントリは
 .Pa /etc/services
-���������ޤ�)��
+で定義されます)。
 .It Aq Ar printer\-name
-�ץ�󥿤�̾����
+プリンタの名前。
 .It Aq Ar printer\-cluster\-name
-Athena �ץ��ȥ��饹����̾����
+Athena プリントクラスタの名前。
 .It Aq Ar foo
-�����Ĥ���
+いくつかの
 .Nm
-�ƤӽФ� (�㤨��
+呼び出し (例えば
 .Cm prclusterlist )
-�������
+は特定の
 .Ar HesiodName
-������ɬ�פȤ��ޤ���
-�������ʤ��顢
+引数を必要としません。
+しかしながら、
 .Nm
-��Ŭ�ڤ�ư�����ˤϥ��ߡ�ʸ���� (�㤨��
+を適切に動作させるにはダミー文字列 (例えば
 .Ql foo )
-��ޤޤ��ʤ���Фʤ�ޤ���
+を含ませなければなりません。
 .El
-.Ss ͭ���� Hesiod_Name_Type
-���Υ���ܥ��
+.Ss 有効な Hesiod_Name_Type
+次のシンボルは
 .Nm
-��
+の
 .Ar HesiodNameType
-�����Ȥ���ͭ���˻��ѤǤ��ޤ���
+引数として有効に使用できます。
 .Bl -tag -width indent
 .It Cm passwd
 .Pa /etc/passwd
-���Ŭ�礹��ʸ������֤��ޤ���
+内で適合する文字列を返します。
 .Aq Ar username
-�Ǹ������ޤ���
+で検索します。
 .It Cm pobox
 .Ar HesiodName
-�ǻ��ꤵ�줿�桼���س�����Ƥ�줿���Ȣ (pobox) �ξ�����֤��ޤ���
+で指定されたユーザへ割り当てられた私書箱 (pobox) の情報を返します。
 .Aq Ar username
-�Ǹ������ޤ���
+で検索します。
 .It Cm uid
 .Pa /etc/passwd
-���Ŭ�礹��ʸ������֤��ޤ���
+内で適合する文字列を返します。
 .Aq Ar uid
-�Ǹ������ޤ���
+で検索します。
 .It Cm gid
 .Pa /etc/group
-���Ŭ�礹��ʸ������֤��ޤ���
+内で適合する文字列を返します。
 .Aq Ar groupid
-�Ǹ������ޤ���
+で検索します。
 .It Cm group
 .Pa /etc/group
-���Ŭ�礹��ʸ������֤��ޤ���
+内で適合する文字列を返します。
 .Aq Ar groupname
-�Ǹ������ޤ���
+で検索します。
 .It Cm grplist
 .Aq Ar groupname
-��������줿�����ѥ��åȤ˴ޤޤ�륵�֥��롼�� (subgroup) ���֤��ޤ���
+で定義されたスーパセットに含まれるサブグループ (subgroup) を返します。
 .It Cm filsys
-�ʲ���ͭ����
+以下の有効な
 .Ar HesiodName
-(�嵭����) ���Ф���ե����륷���ƥॿ���ס��������ݡ��ȥݥ���ȡ�
-�����С��ޥ���ȥ⡼�ɤ���ӥ���ݡ��ȥݥ���Ȥ��֤��ޤ� -
+(上記参照) に対するファイルシステムタイプ、エクスポートポイント、
+サーバ、マウントモードおよびインポートポイントを返します -
 .Aq Ar "file\-system\-name" ,
 .Aq Ar username ,
 .Ao Ar "rvd\-server" Ac : Ns Aq Ar pack ,
 .Ao Ar "nfs\-server" Ac : Ns Aq Ar partition
 .It Cm cluster
 .Aq Ar "workstation\-name"
-�ˤ�äƻ��ꤵ�줿������ơ�������
-�������륯�饹���˴ؤ��������֤��ޤ���
-��������ե�����ȥץ��ȥ����Ф˴ؤ�����󤬴ޤޤ�Ƥ��ޤ���
-���ξ���ϥ֡��Ȼ���
+によって指定されたワークステーションの
+ローカルクラスタに関する情報を返します。
+ローカルファイルとプリントサーバに関する情報が含まれています。
+この情報はブート時に
 .Sy clusterinfo
-�ˤ�äƥ�����������ޤ���
-.\" accesses �� accessed �� typo?
+によってアクセスされます。
+.\" accesses は accessed の typo?
 .It Cm sloc
 .Aq Ar service\-name
-���Ф��륵���ӥ��ۥ��ȤΥͥåȥ��̾���֤��ޤ���
+に対するサービスホストのネットワーク名を返します。
 .It Cm service
 .Aq Ar service\-type
-���Ф��륤�󥿡��ͥåȥץ��ȥ��륿���פȥץ��ȥ��륵���ӥ��ݡ��Ȥ��֤��ޤ���
+に対するインターネットプロトコルタイプとプロトコルサービスポートを返します。
 .It Cm pcap
 .Aq Ar printer\-name
-���Ф���
+に対する
 .Pa /etc/printcap
-�Ǥ�ͭ���ʥ���ȥ���֤��ޤ���
+での有効なエントリを返します。
 .It Cm prcluserlist
-�ץ��ȥ��饹���Υꥹ�Ȥ��֤��ޤ���
+プリントクラスタのリストを返します。
 .It Cm prcluster
 .Aq Ar printer\-cluster\-name
-�ˤ�äƻ��ꤵ�줿���饹���ǤΥץ�󥿤Υꥹ�Ȥ��֤��ޤ���
+によって指定されたクラスタでのプリンタのリストを返します。
 .El
-.Sh ��Ϣ�ե�����
+.Sh 関連ファイル
 .Bl -tag -width /etc/hesiod.conf
 .It Pa /etc/hesiod.conf
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr hesiod 3 ,
 .Xr named 8
 .Rs
 .%T "Hesiod - Project Athena Technical Plan -- Name Service"
 .Re
-.Sh ���
+.Sh 作者
 .An Steve Dyer ,
 IBM/Project Athena
 .Pp
