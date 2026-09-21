@@ -28,15 +28,15 @@
 .Dd March 28, 2005
 .Os
 .Dt MAKE_DEV 9
-.Sh ̾��
+.Sh 名称
 .Nm make_dev ,
 .Nm make_dev_alias ,
 .Nm destroy_dev ,
 .Nm dev_depends
-.Nd �ǥХ����Τ����
+.Nd デバイスのための
 .Vt cdev
-����� DEVFS ��Ͽ�δ���
-.Sh ��
+および DEVFS 登録の管理
+.Sh 書式
 .In sys/param.h
 .In sys/conf.h
 .Ft struct cdev
@@ -47,93 +47,93 @@
 .Fn destroy_dev "struct cdev dev"
 .Ft void
 .Fn dev_depends "struct cdev pdev" "struct cdev cdev"
-.Sh ����
+.Sh 解説
 .Fn make_dev
-�ؿ��Ͽ������ǥХ����Τ����
+関数は新しいデバイスのための
 .Fa cdev
-��¤�Τ�������ޤ���
-DEVFS �����Ѳ�ǽ�ξ��ˤϡ��������ǥХ�����¸�ߤ����Τ���ޤ���
-���ΥǥХ�����
+構造体を作成します。
+DEVFS が利用可能の場合には、新しいデバイスの存在も通知されます。
+そのデバイスは
 .Va uid
-�ˤ�äƽ�ͭ���졢
+によって所有され、
 .Va gid
-�Υ��롼�פ˽�ͭ���졢
+のグループに所有され、
 .Va name
-�ǻ��ꤵ���̾��������ޤ���
+で指定される名前を持ちます。
 .Va perms
-�˻��ꤹ��ե�����Υѡ��ߥå�����
+に指定するファイルのパーミッションは
 .In sys/stat.h
-���������Ƥ��ޤ���
+で定義されています。
 .Pp
 .Bd -literal -offset indent -compact
-#define S_IRWXU 0000700    /* ��ͭ�Ԥ� RWX �ޥ���
-#define S_IRUSR 0000400    /* ��ͭ�Ԥ� R */
-#define S_IWUSR 0000200    /* ��ͭ�Ԥ� W */
-#define S_IXUSR 0000100    /* ��ͭ�Ԥ� X */
+#define S_IRWXU 0000700    /* 所有者の RWX マスク
+#define S_IRUSR 0000400    /* 所有者の R */
+#define S_IWUSR 0000200    /* 所有者の W */
+#define S_IXUSR 0000100    /* 所有者の X */
 
-#define S_IRWXG 0000070    /* ���롼�פ� RWX �ޥ��� */
-#define S_IRGRP 0000040    /* ���롼�פ� R */
-#define S_IWGRP 0000020    /* ���롼�פ� W */
-#define S_IXGRP 0000010    /* ���롼�פ� X */
+#define S_IRWXG 0000070    /* グループの RWX マスク */
+#define S_IRGRP 0000040    /* グループの R */
+#define S_IWGRP 0000020    /* グループの W */
+#define S_IXGRP 0000010    /* グループの X */
 
-#define S_IRWXO 0000007    /* ����¾�� RWX �ޥ��� */
-#define S_IROTH 0000004    /* ����¾�� R */
-#define S_IWOTH 0000002    /* ����¾�� W */
-#define S_IXOTH 0000001    /* ����¾�� X */
+#define S_IRWXO 0000007    /* その他の RWX マスク */
+#define S_IROTH 0000004    /* その他の R */
+#define S_IWOTH 0000002    /* その他の W */
+#define S_IXOTH 0000001    /* その他の X */
 
-#define S_ISUID 0004000    /* �¹Ի��˥桼�� ID ������ */
-#define S_ISGID 0002000    /* �¹Ի��˥��롼�� ID ������ */
-#define S_ISVTX 0001000    /* ���ƥ��å��ӥå� */
+#define S_ISUID 0004000    /* 実行時にユーザ ID を設定 */
+#define S_ISGID 0002000    /* 実行時にグループ ID を設定 */
+#define S_ISVTX 0001000    /* スティッキビット */
 #ifndef _POSIX_SOURCE
 #define S_ISTXT 0001000
 #endif
 .Ed
 .Pp
 .Fn make_dev_alias
-�ؿ���
+関数は
 .Fn make_dev
-�����֤��줿
+から返された
 .Ft cdev
-��Ȥꡢ���ΥǥХ����Τ�����̤�̾�� (��̾) ��������ޤ���
+をとり、このデバイスのための別の名前 (別名) を作成します。
 .Fn make_dev
-�θƽФ�������
+の呼出しの前の
 .Fn make_dev_alias
-�θƽФ��ϡ�����Ǥ���
+の呼出しは、誤りです。
 .Pp
 .Fn destroy_dev
-�ؿ���
+関数は
 .Fn make_dev
-�����֤��줿
+から返された
 .Fa cdev
-��Ȥꡢ���ΥǥХ�������Ͽ�������ޤ���
+をとり、そのデバイスの登録を削除します。
 .Fn make_dev_alias
-�Ǻ������줿�ǥХ�����
+で作成されたデバイスで
 .Fn destroy_dev
-��ƽФ��ʤ��Ǥ���������
+を呼出さないでください。
 .Pp
 .Fn dev_depends
-�ؿ��� 2 �ĤΥǥХ����֤οƻҴط����Ω���ޤ���
-���Υͥåȸ��̤ϡ��ƥǥХ�����
+関数は 2 つのデバイス間の親子関係を確立します。
+このネット効果は、親デバイスの
 .Fn destroy_dev
-�ϡ��⤷����С���̤Ȥ��Ƥ��λҥǥХ������˲��˽����ޤ���
-1 �ĤΥǥХ�����Ʊ���˿Ƥˤ�Ҥˤ�ʤ졢
-���Τ��ᡢ�����ʳ��ع�¤���ۤ��뤳�Ȥ���ǽ�Ǥ���
-.Sh ��Ϣ����
+は、もしあれば、結果としてその子デバイスの破壊に終わります。
+1 つのデバイスは同時に親にも子にもなれ、
+そのため、完全な階層構造を構築することが可能です。
+.Sh 関連項目
 .Xr devfs 5
-.Sh ���
+.Sh 歴史
 .Fn make_dev
-�����
+および
 .Fn destroy_dev
-�ؿ���
+関数は
 .Fx 4.0
-�ǤϤ�����о줷�ޤ�����
-�ؿ�
+ではじめて登場しました。
+関数
 .Fn make_dev_alias
-��
+は
 .Fx 4.1
-�ǤϤ�����о줷�ޤ�����
-�ؿ�
+ではじめて登場しました。
+関数
 .Fn dev_depends
-��
+は
 .Fx 5.0
-�ǤϤ�����о줷�ޤ�����
+ではじめて登場しました。

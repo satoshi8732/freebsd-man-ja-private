@@ -30,10 +30,10 @@
 .Dd January 6, 2005
 .Dt BUF_LOCKINIT 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm BUF_LOCKINIT
-.Nd �Хåե����å��ν����
-.Sh ��
+.Nd バッファロックの初期化
+.Sh 書式
 .In sys/param.h
 .In sys/systm.h
 .In sys/uio.h
@@ -41,23 +41,23 @@
 .In sys/buf.h
 .Ft void
 .Fn BUF_LOCKINIT "struct buf *bp"
-.Sh ����
+.Sh 解説
 .Fn BUF_LOCKINIT
-�ޥ����ϥХåե��Υ��å����������ޤ���
+マクロはバッファのロックを初期化します。
 .Pp
-�����ϰʲ����̤�Ǥ���
+引数は以下の通りです。
 .Bl -tag -width ".Fa bp"
 .It Fa bp
-���å������������٤��Хåե��Ǥ���
+ロックを初期化されるべきバッファです。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr buf 9 ,
 .Xr BUF_LOCK 9 ,
 .Xr BUF_TIMELOCK 9 ,
 .Xr BUF_UNLOCK 9 ,
 .Xr lockinit 9 ,
 .Xr lockmgr 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Chad David Aq davidc@acns.ab.ca
-�ˤ�äƽ񤫤�ޤ�����
+によって書かれました。

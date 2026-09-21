@@ -29,33 +29,33 @@
 .Dd November 15, 2000
 .Os
 .Dt ACCF_DATA 9
-.Sh ̾��
+.Sh 名称
 .Nm accf_data
-.Nd �ǡ�������ޤǤδ֤�������³�Хåե�
-.Sh ��
+.Nd データ到着までの間の入力接続バッファ
+.Sh 書式
 .Nm options INET
 .Nm options ACCEPT_FILTER_DATA
 .Nm kldload accf_data
-.Sh ����
-�����������³�������뤿���
+.Sh 解説
+これは入力接続を受け取るために
 .Fn accept
-�����Ѥ���륽���åȾ�����֤���뤿��Υե��륿�Ǥ���
+が使用されるソケット上に配置されるためのフィルタです。
 .Pp
-�������³��Υǡ�������ޤǤδ֤˥��ץꥱ�������
+これは接続上のデータ到着までの間にアプリケーションが
 .Fn accept
-��𤷤���³���줿���һҤ������뤳�Ȥ��ɻߤ��ޤ���
+を介して接続された記述子を受け取ることを防止します。
 .Pp
-�����ͥ����� INET ���ץ���󤬴��˥���ѥ��뤵��Ƥ�����ˤϡ�
+カーネルの中に INET オプションが既にコンパイルされている場合には、
 .Fa ACCEPT_FILTER_DATA
-�����ͥ륪�ץ�����
+カーネルオプションは
 .Xr kldload 8
-��𤷤Ƽ¹Ի���ͭ�������뤳�Ȥ��Ǥ���⥸�塼��⤢��ޤ���
-.Sh ������
-ACCEPT_FILTER_DATA �������ͥ륳��ե����ե�����˴ޤޤ�Ƥ��뤫��
+を介して実行時に有効化することができるモジュールもあります。
+.Sh 使用例
+ACCEPT_FILTER_DATA がカーネルコンフィグファイルに含まれているか、
 .Nm
-�⥸�塼�뤬�����ɤ���Ƥ���Ȳ��ꤷ�ơ�����ϥ����å�
+モジュールがロードされていると仮定して、これはソケット
 .Fa sok
-��Υǡ��� accept �ե��륿��ͭ�������ޤ���
+上のデータ accept フィルタを有効化します。
 .Bd -literal -offset 0i
 	struct accept_filter_arg afa;
 
@@ -63,15 +63,15 @@ ACCEPT_FILTER_DATA �������ͥ륳��ե����ե�����˴ޤޤ�Ƥ��뤫��
 	strcpy(afa.af_name, "dataready");
 	setsockopt(sok, SOL_SOCKET, SO_ACCEPTFILTER, &afa, sizeof(afa));
 .Ed
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr setsockopt 2 ,
 .Xr accept_filter 9 ,
 .Xr accf_http 9
-.Sh ���
-accept �ե��륿��������� accf_data �ե��륿��
+.Sh 歴史
+accept フィルタ機構および accf_data フィルタは
 .Fx 4.0
-��Ƴ������ޤ�����
-.Sh ���
-���Υޥ˥奢��ڡ�������Ӥ��Υե��륿��
+で導入されました。
+.Sh 作者
+このマニュアルページおよびこのフィルタは
 .An Alfred Perlstein
-���񤭤ޤ�����
+が書きました。

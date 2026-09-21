@@ -32,34 +32,34 @@
 .Dd February 8, 2005
 .Dt DEVICE_FIND_CHILD 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm device_find_child
-.Nd �ǥХ����λҤθ���
-.Sh ��
+.Nd デバイスの子の検索
+.Sh 書式
 .In sys/param.h
 .In sys/bus.h
 .Ft device_t
 .Fn device_find_child "device_t dev" "const char *classname" "int unit"
-.Sh ����
-���δؿ��ϡ�
+.Sh 解説
+この関数は、
 .Dv dev
-�λҤǡ�
+の子で、
 .Fa classname
-�����
+および
 .Fa unit
-����Ĥ�Τ򸡺����ޤ���
+を持つものを検索します。
 .Fa unit
-�� -1 �Ǥ���ʤ顢���פ���
+が -1 であるなら、一致する
 .Fa classname
-��
+で
 .Dv dev
-�κǽ�λҤ��֤��ޤ���
-(���ʤ�����Ǥ��㤤 unit �Ǥ���)
-.Sh �����
-¸�ߤ��Ƥ�����ˤϻҥǥХ������֤��졢�����Ǥʤ����ˤ� NULL ���֤���ޤ���
-.Sh ��Ϣ����
+の最初の子を返します。
+(すなわち、最も低い unit です。)
+.Sh 戻り値
+存在している場合には子デバイスが返され、そうでない場合には NULL が返されます。
+.Sh 関連項目
 .Xr device_add_child 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-�ˤ�äƽ񤫤�ޤ�����
+によって書かれました。

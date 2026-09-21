@@ -32,11 +32,11 @@
 .Dd July 24, 1996
 .Os
 .Dt VOP_RDWR 9
-.Sh ̾��
+.Sh 名称
 .Nm VOP_READ ,
 .Nm VOP_WRITE
-.Nd �ե�������ɤ߹��ߤޤ��Ͻ񤭹���
-.Sh ��
+.Nd ファイルの読み込みまたは書き込み
+.Sh 書式
 .In sys/param.h
 .In sys/vnode.h
 .In sys/uio.h
@@ -44,48 +44,48 @@
 .Fn VOP_READ "struct vnode *vp" "struct uio *uio" "int ioflag" "struct ucred *cred"
 .Ft int
 .Fn VOP_WRITE "struct vnode *vp" "struct uio *uio" "int ioflag" "struct ucred *cred"
-.Sh ����
-�����Υ���ȥ�ݥ���Ȥϡ��ե���������Ƥ��ɤ߹��ߤޤ��Ͻ񤭹��ߤޤ���
+.Sh 解説
+これらのエントリポイントは、ファイルの内容を読み込みまたは書き込みます。
 .Pp
-�����ϰʲ����̤�Ǥ���
+引数は以下の通りです。
 .Bl -tag -width ioflag
 .It Fa vp
-�ե������ vnode��
+ファイルの vnode。
 .It Fa uio
-�ɤ߹��ߤޤ��Ͻ񤭹����оݤΥǡ����ΰ��֡�
+読み込みまたは書き込み対象のデータの位置。
 .It Fa ioflag
-�͡��ʥե饰��
+様々なフラグ。
 .It Fa cnp
-�ƤӽФ�¦�ξ�����
+呼び出し側の証明。
 .El
 .Pp
 .Fa ioflag
-�����ϡ��ե����륷���ƥ���Ф���̿�ᤪ��ӥҥ�Ȥ�Ϳ���뤿��˻��Ѥ���ޤ���
-�ɤ߹��ߤ��ߤ���ˤϡ���̤� 16 �ӥåȤϡ�
-�ե����륷���ƥब��ߤ�٤����ɤߤΥҥ�Ȥ� (�ե����륷���ƥ�֥��å�ñ�̤�)
-�󶡤��뤿��˻��Ѥ���ޤ���
-���̤� 16 �ӥåȤϡ��ʲ��Υե饰��ޤळ�Ȥ��Ǥ���ӥåȥޥ����Ǥ���
+引数は、ファイルシステムに対する命令およびヒントを与えるために使用されます。
+読み込みを試みる時には、上位の 16 ビットは、
+ファイルシステムが試みるべき先読みのヒントを (ファイルシステムブロック単位で)
+提供するために使用されます。
+下位の 16 ビットは、以下のフラグを含むことができるビットマスクです。
 .Bl -tag -width IO_NODELOCKED
 .It Dv IO_UNIT
-�Բ�ʬ�������Ϥ�Ԥʤ��ޤ���
+不可分に入出力を行ないます。
 .It Dv IO_APPEND
-�������ɲý񤭹��ߤ�Ԥʤ��ޤ���
+末尾に追加書き込みを行ないます。
 .It Dv IO_SYNC
-Ʊ��Ū�������Ϥ�Ԥʤ��ޤ���
+同期的に入出力を行ないます。
 .It Dv IO_NODELOCKED
-�����ؤΥΡ��ɤϴ��˥��å�����Ƥ��ޤ���
+下位層のノードは既にロックされています。
 .It Dv IO_NDELAY
-�ե�����ơ��֥��
+ファイルテーブルに
 .Dv FNDELAY
-�ե饰�����ꤷ�ޤ���
+フラグを設定します。
 .It Dv IO_VMIO
-���ۥ��������� (VMIO) �ΰ�˥ǡ��������ˤ���ޤ���
+仮想メモリ入出力 (VMIO) 領域にデータが既にあります。
 .El
-.Sh ���å�
-������ˡ��ե�����ϥ��å�����Ƥ���٤��ǡ���λ���ޤǥ��å�����³���ޤ���
-.Sh �����
-�������ˤ� 0 ���֤��졢�����Ǥʤ����ˤϥ��顼�����ɤ��֤���ޤ���
-.Sh ����������
+.Sh ロック
+入る時に、ファイルはロックされているべきで、終了時までロックされ続けます。
+.Sh 戻り値
+成功時には 0 が返され、そうでない場合にはエラーコードが返されます。
+.Sh 疑似コード
 .Bd -literal
 int
 vop_read(struct vnode *vp, struct uio *uio, int ioflag, struct ucred *cred)
@@ -120,11 +120,11 @@ vop_read(struct vnode *vp, struct uio *uio, int ioflag, struct ucred *cred)
 	}
 
 	/*
-	 * �����ϥ��顼�������ä����ˤ� 0 �Ǥʤ� b_resid �Τ�
-	 * �����ޤ�������Ͼ�� break ������������٤��Ǥ���
-	 * �������ʤ��顢û���ɤ߹��ߤ����顼�򵯤����ʤ��ä�
-	 * ���ˤϡ��ְ�ä��ޤ��Ͻ��������Ƥ��ʤ��ǡ�����
-	 * uiomove ��Ԥʤ�ʤ����Ȥ��ݾڤ�������
+	 * 入出力エラーが起こった時には 0 でない b_resid のみ
+	 * を得ます。これは上で break を引き起こすべきです。
+	 * しかしながら、短い読み込みがエラーを起こさなかった
+	 * 場合には、間違ったまたは初期化されていないデータの
+	 * uiomove を行なわないことを保証したい。
 	 */
 	size -= bp->b_resid;
 	if (size < xfersize) {
@@ -189,7 +189,7 @@ vop_write(struct vnode *vp, struct uio *uio, int ioflag, struct ucred *cred)
 	    set size of file to uio->uio_offset + xfersize;
 
 	error = uiomove((char *)bp->b_data + blkoffset, (int) xfersize, uio);
-	/* XXX ufs �Ϥ����ǥ��顼�����å��򤷤Ƥ��ޤ��󡣲���? */
+	/* XXX ufs はここでエラーチェックをしていません。何故? */
 
 	if (ioflag & IO_VMIO)
 	    bp->b_flags |= B_RELBUF; /* ??? */
@@ -207,34 +207,34 @@ vop_write(struct vnode *vp, struct uio *uio, int ioflag, struct ucred *cred)
 
     if (error) {
 	if (ioflag & IO_UNIT) {
-	    /* �ե�������ڤ�ͤ���Ū�ʥ롼�����ƤӽФ��� */
+	    /* ファイルを切り詰める私的なルーチンを呼び出す。 */
 	    your_truncate(vp, osize, ioflag & IO_SYNC, cred, uio->uio_td);
 	    uio->uio_offset -= resid - uio->uio_resid;
 	    uio->uio_resid = resid;
 	}
     } else if (resid > uio->uio_resid && (ioflag & IO_SYNC)) {
 	struct timeval tv;
-	error = VOP_UPDATE(vp, &tv, &tv, 1); /* XXX ����ϲ��򤷤Ƥ����? */
+	error = VOP_UPDATE(vp, &tv, &tv, 1); /* XXX これは何をしているの? */
     }
 
     return (error);
 }
 .Ed
-.Sh ���顼
+.Sh エラー
 .Bl -tag -width Er
 .It Bq Er EFBIG
-�ץ������Υե����륵������ߥåȤޤ��Ϻ���ե����륵������Ķ����
-�ե���������⤦�Ȥ��ޤ�����
+プロセスのファイルサイズリミットまたは最大ファイルサイズを超える
+ファイルを書込もうとしました。
 .It Bq Er ENOSPC
-�ե����륷���ƥब���դǤ���
+ファイルシステムが一杯です。
 .It Bq Er EPERM
-�ɲäΤߤΥե饰���ե���������ꤵ��Ƥ��ޤ������ƤӽФ�¦�����ߤ�
-�ե����뽪λ���֤�����˽���⤦�Ȥ��ޤ�����
+追加のみのフラグがファイルに設定されていますが、呼び出し側が現在の
+ファイル終了位置より前に書込もうとしました。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr uiomove 9 ,
 .Xr vnode 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

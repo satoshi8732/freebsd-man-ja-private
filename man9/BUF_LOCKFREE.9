@@ -30,10 +30,10 @@
 .Dd July 9, 2001
 .Dt BUF_LOCKFREE 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm BUF_LOCKFREE
-.Nd �Хåե��Υ��å��κ��
-.Sh ��
+.Nd バッファのロックの削除
+.Sh 書式
 .In sys/param.h
 .In sys/systm.h
 .In sys/uio.h
@@ -41,24 +41,24 @@
 .In sys/buf.h
 .Ft void
 .Fn BUF_LOCKFREE "struct buf *bp"
-.Sh ����
+.Sh 解説
 .Fn BUF_LOCKFREE
-�ޥ����ϥХåե��Υ��å����˲����ޤ���
-���Υޥ������ƤӽФ������ˤϡ����å����ݻ�����Ƥ��ʤ���Фʤ�ޤ���
-����ʤ���Хѥ˥å����ޤ���
+マクロはバッファのロックを破壊します。
+このマクロが呼び出される時には、ロックが保持されていなければなりません。
+さもなければパニックします。
 .Pp
-�����ϰʲ����̤�Ǥ���
+引数は以下の通りです。
 .Bl -tag -width ".Fa bp"
 .It Fa bp
-���å����˲������٤��Хåե��Ǥ���
+ロックが破壊されるべきバッファです。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr buf 9 ,
 .Xr BUF_LOCK 9 ,
 .Xr BUF_TIMELOCK 9 ,
 .Xr BUF_UNLOCK 9 ,
 .Xr lockdestroy 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Chad David Aq davidc@acns.ab.ca
-���񤭤ޤ�����
+が書きました。

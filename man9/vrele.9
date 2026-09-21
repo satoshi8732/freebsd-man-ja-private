@@ -32,36 +32,36 @@
 .Dd July 24, 1996
 .Os
 .Dt VRELE 9
-.Sh ̾��
+.Sh 名称
 .Nm vrele
-.Nd vnode �λ��ѥ�����ȤΥǥ������
-.Sh ��
+.Nd vnode の使用カウントのデクリメント
+.Sh 書式
 .In sys/param.h
 .In sys/vnode.h
 .Ft void
 .Fn vrele "struct vnode *vp"
-.Sh ����
-vnode ��
+.Sh 解説
+vnode の
 .Va v_usecount
-�ե�����ɤ�ǥ�����Ȥ��ޤ���
+フィールドをデクリメントします。
 .Bl -tag -width 2n
 .It Fa vp
-�ǥ�����Ȥ���� vnode��
+デクリメントされる vnode。
 .El
 .Pp
-vnode �������Υ����ƥ�������ƤΥ����ɤϡ�
-���� vnode ��Ȥ����������ˤϡ�
+vnode を使用中のシステム中の全てのコードは、
+その vnode を使い終えた時には、
 .Fn vrele
-��ƤӽФ��٤��Ǥ���
-���� vnode ��
+を呼び出すべきです。
+その vnode の
 .Va v_usecount
-�ե�����ɤ� 0 ��ã�������ˤϡ����� vnode �ϥե꡼�ꥹ�Ȥ��֤���ޤ���
-.Sh ��Ϣ����
+フィールドが 0 に達した場合には、その vnode はフリーリストに置かれます。
+.Sh 関連項目
 .Xr vget 9 ,
 .Xr vnode 9 ,
 .Xr vput 9 ,
 .Xr vref 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

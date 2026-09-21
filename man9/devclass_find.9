@@ -32,26 +32,26 @@
 .Dd June 16, 1998
 .Dt DEVCLASS_FIND 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm devclass_find
-.Nd devclass �θ���
-.Sh ��
+.Nd devclass の検索
+.Sh 書式
 .In sys/param.h
 .In sys/bus.h
 .Ft devclass_t
 .Fn devclass_find "const char *classname"
-.Sh ����
-���ꤵ�줿̾����
+.Sh 解説
+指定された名前の
 .Vt devclass
-�򸡺����ޤ���
-.Sh �����
+を検索します。
+.Sh 戻り値
 .Vt devclass
-��¸�ߤ�����ˤϤ��� devclass ���֤��졢�����Ǥʤ����ˤ�
+が存在する場合にはその devclass が返され、そうでない場合には
 .Dv NULL
-���֤���ޤ���
-.Sh ��Ϣ����
+が返されます。
+.Sh 関連項目
 .Xr devclass 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

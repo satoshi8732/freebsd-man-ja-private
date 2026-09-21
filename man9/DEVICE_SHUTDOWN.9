@@ -32,28 +32,28 @@
 .Dd January 6, 2005
 .Dt DEVICE_SHUTDOWN 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm DEVICE_SHUTDOWN
-.Nd �����ƥॷ��åȥ�����δ֤˸ƤФ��
-.Sh ��
+.Nd システムシャットダウンの間に呼ばれる
+.Sh 書式
 .In sys/param.h
 .In sys/bus.h
 .Ft int
 .Fn DEVICE_SHUTDOWN "device_t dev"
-.Sh ����
+.Sh 解説
 .Fn DEVICE_SHUTDOWN
-�᥽�åɤϡ������ƥॷ��åȥ�����δ֤˸ƤӽФ��졢
-�ɥ饤�Ф��ϡ��ɥ������򥳥�ԥ塼������֡��Ȥ��Ƥ⹽��ʤ����֤ˤ��뤳�Ȥ�
-��ǽ�ˤ��ޤ���
-.Sh �����
-�������ˤ� 0 ���֤��졢����ʳ��ξ��ˤϥ��顼���֤���ޤ���
-.Sh ��Ϣ����
+メソッドは、システムシャットダウンの間に呼び出され、
+ドライバがハードウェアをコンピュータがリブートしても構わない状態にすることを
+可能にします。
+.Sh 戻り値
+成功時には 0 が返され、それ以外の場合にはエラーが返されます。
+.Sh 関連項目
 .Xr device 9 ,
 .Xr DEVICE_ATTACH 9 ,
 .Xr DEVICE_DETACH 9 ,
 .Xr DEVICE_IDENTIFY 9 ,
 .Xr DEVICE_PROBE 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-�ˤ�äƽ񤫤�ޤ�����
+によって書かれました。

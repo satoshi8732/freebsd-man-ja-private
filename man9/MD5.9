@@ -34,44 +34,44 @@
 .Dd April 17, 1996
 .Dt MD5 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm MD5 ,
 .Nm MD5Init ,
 .Nm MD5Transform
-.Nd ��å����������������ȥ롼����
-.Sh ��
+.Nd メッセージダイジェストルーチン
+.Sh 書式
 .In sys/types.h
 .In sys/md5.h
 .Ft void
 .Fn MD5Init "MD5_CTX *buf"
 .Ft void
 .Fn MD5Transform "u_int32_t buf[4]" "const unsigned char block[64]"
-.Sh ����
+.Sh 解説
 .Nm
-�⥸�塼��ϡ�RSA Data Security, Inc.\& �� MD5 ��å�����������������
-���르�ꥺ��(MD5)��������Ƥ��ޤ���
-����ϥǡ����� 128 �ӥåȤ� MD5 �����������Ȥ��������ޤ���
+モジュールは、RSA Data Security, Inc.\& の MD5 メッセージダイジェスト
+アルゴリズム(MD5)を実装しています。
+これはデータの 128 ビットの MD5 ダイジェストを生成します。
 .Pp
 .Bl -hang -width MD5Transformxx
 .It Pa MD5Init
-�����������Ȥ��������뤿���
+ダイジェストを生成するために
 .Fn MD5Transform
-����Ѥ���ľ���˸ƤӽФ��ʤ��ƤϤʤ�ޤ���
-����
+を使用する直前に呼び出さなくてはなりません。
+引数
 .Fa buf
-�ϼ���³���ƸƤФ��
+は次に続いて呼ばれる
 .Fn MD5Transform
-�롼����������������������Ȥγ�Ǽ�ΰ�Ǥ���
+ルーチンが生成するダイジェストの格納領域です。
 .It Pa MD5Transform
-MD5 ���르�ꥺ�����ˤǡ�
-����
+MD5 アルゴリズムの中核で、
+引数
 .Fa block
-���Ϥ���� 64 ʸ���ο������ǡ������ɲä�ȿ�Ǥ���褦�ˡ�
+で渡される 64 文字の新しいデータの追加を反映するように、
 .Fa buf
-�˳�Ǽ���Ƥ��� MD5 �ϥå�����ѹ����ޤ���
+に格納してある MD5 ハッシュを変更します。
 .El
-.Sh ���
-MD5 �Ѵ��Υ����ɤϥѥ֥�å��ɥᥤ����֤���Ƥ��� Colin Plumb ��
-�����������Ƥ��ޤ���
-MD5 �Ź沽�����å������ Ronald Rivest ���ͰƤ���
-RFC 1321 "The MD5 Message Digest Algorithm" �˵��Ҥ���Ƥ��ޤ���
+.Sh 著作権
+MD5 変換のコードはパブリックドメインに置かれていた Colin Plumb の
+実装から得ています。
+MD5 暗号化チェックサムは Ronald Rivest が考案し、
+RFC 1321 "The MD5 Message Digest Algorithm" に記述されています。

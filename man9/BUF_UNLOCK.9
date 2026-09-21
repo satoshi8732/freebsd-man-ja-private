@@ -30,10 +30,10 @@
 .Dd July 9, 2001
 .Dt BUF_UNLOCK 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm BUF_UNLOCK
-.Nd ���å����줿�Хåե��Υ��å����
-.Sh ��
+.Nd ロックされたバッファのロック解除
+.Sh 書式
 .In sys/param.h
 .In sys/systm.h
 .In sys/uio.h
@@ -41,26 +41,26 @@
 .In sys/buf.h
 .Ft void
 .Fn BUF_UNLOCK "struct buf *bp"
-.Sh ����
+.Sh 解説
 .Fn BUF_UNLOCK
-�ؿ��ϰ�����
+関数は以前に
 .Fn BUF_LOCK
-�ޤ���
+または
 .Fn BUF_TIMELOCK
-���Ѥ��ƥ��å����줿�Хåե��򡢥��å�������ޤ���
+を用いてロックされたバッファを、ロック解除します。
 .Pp
-�����ϰʲ����̤�Ǥ���
+引数は以下の通りです。
 .Bl -tag -width ".Fa bp"
 .It Fa bp
-���å���������٤��Хåե��Ǥ���
-���ΥХåե��ϴ��˥��å�����Ƥ��ʤ���Фʤ�ޤ���
+ロック解除されるべきバッファです。
+このバッファは既にロックされていなければなりません。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr buf 9 ,
 .Xr BUF_LOCK 9 ,
 .Xr BUF_TIMELOCK 9 ,
 .Xr lockmgr 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Chad David Aq davidc@acns.ab.ca
-���񤭤ޤ�����
+が書きました。
