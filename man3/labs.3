@@ -40,30 +40,30 @@
 .Dd June 4, 1993
 .Dt LABS 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm labs
-.Nd long integer ��������
-.Sh �饤�֥��
+.Nd long integer の絶対値
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .Fd #include <stdlib.h>
 .Ft long
 .Fn labs "long j"
-.Sh ����
+.Sh 解説
 .Fn labs
-�ؿ��ϡ������˻��ꤵ�줿 long integer ���ѿ�
+関数は、引数に指定された long integer の変数
 .Ar j
-�������ͤ��֤��ޤ���
-.Sh ��Ϣ����
+の絶対値を返します。
+.Sh 関連項目
 .Xr abs 3 ,
 .Xr cabs 3 ,
 .Xr floor 3 ,
 .Xr math 3
-.Sh ����
+.Sh 規格
 .Fn labs
-�ؿ���
+関数は
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。
 .Pp
-.Sh �Х�
-��κ����ͤ���������ΤޤޤǤ���
+.Sh バグ
+負の最大値の整数は負のままです。

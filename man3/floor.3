@@ -36,35 +36,35 @@
 .Dd March 10, 1994
 .Dt FLOOR 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm floor ,
 .Nm floorf
-.Nd x �ʲ��κǤ��礭�������ͤؤ��ڼΤ�
-.Sh �饤�֥��
+.Nd x 以下の最も大きな整数値への切捨て
+.Sh ライブラリ
 .Lb libm
-.Sh ��
+.Sh 書式
 .In math.h
 .Ft double
 .Fn floor "double x"
 .Ft float
 .Fn floorf "float x"
-.Sh ����
+.Sh 解説
 .Fn floor
-�����
+および
 .Fn floorf
-�ؿ��ϡ�
-��ư�������Ȥ���ɽ�������
+関数は、
+浮動小数点として表現される
 .Fa x   
-�ʲ��κǤ��礭�������ͤ��֤��ޤ���
-.Sh ��Ϣ����
+以下の最も大きな整数値を返します。
+.Sh 関連項目
 .Xr abs 3 ,
 .Xr ceil 3 ,
 .Xr fabs 3 ,
 .Xr ieee 3 ,
 .Xr math 3 ,
 .Xr rint 3
-.Sh ����
+.Sh 規格
 .Fn floor
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

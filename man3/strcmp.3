@@ -41,62 +41,62 @@
 .Dd October 11, 2001
 .Dt STRCMP 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm strcmp ,
 .Nm strncmp ,
-.Nd ʸ��������
-.Sh �饤�֥��
+.Nd 文字列の比較
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft int
 .Fn strcmp "const char *s1" "const char *s2"
 .Ft int
 .Fn strncmp "const char *s1" "const char *s2" "size_t len"
-.Sh ����
+.Sh 解説
 .Fn strcmp
-�����
+および
 .Fn strncmp
-�ؿ��ϡ��̥�ʸ���ǽ�λ����ʸ����
+関数は、ヌル文字で終了する文字列
 .Fa s1
-�����
+および
 .Fa s2
-�򼭽񼰽������Ӥ��ޤ���
+を辞書式順序で比較します。
 .Pp
 .Fn strncmp
-�ؿ��ϡ�
+関数は、
 .Fa len
-ʸ��ʬ����Ӥ򤷤ޤ���
+文字分の比較をします。
 .Fn strncmp
-�ϡ��Х��ʥ�ǡ������
-ʸ�������ӤΤ�����߷פ���Ƥ���Τǡ�
+は、バイナリデータより
+文字列の比較のために設計されているので、
 .Ql \e0
-ʸ���θ�˸����ʸ�������Ӥ���ޤ���
-.Sh �����
+文字の後に現れる文字列は比較されません。
+.Sh 戻り値
 .Fn strcmp
-�����
+および
 .Fn strncmp
-�ϡ�
+は、
 .Fa s1
-��
+が
 .Fa s2
-�����礭�������������������뤤�Ͼ��������˱����ơ�
-���줾�� 0 �����礭����0 ����������
-���뤤�� 0 ���⾮�����������֤��ޤ�����Ӥϡ�
+よりも大きいか、等しいか、あるいは小さいかに応じて、
+それぞれ 0 よりも大きい、0 に等しい、
+あるいは 0 よりも小さい整数を返します。比較は、
 .Ql \e200
-��
+が
 .Ql \e0
-�����礭���ʤ�褦�ˡ�unsigned char ��ȤäƹԤ��ޤ���
-.Sh ��Ϣ����
+よりも大きくなるように、unsigned char を使って行います。
+.Sh 関連項目
 .Xr bcmp 3 ,
 .Xr memcmp 3 ,
 .Xr strcasecmp 3 ,
 .Xr strcoll 3 ,
 .Xr strxfrm 3
-.Sh ����
+.Sh 規格
 .Fn strcmp
-�����
+および
 .Fn strncmp
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

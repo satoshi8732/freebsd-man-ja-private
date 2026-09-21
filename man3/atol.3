@@ -40,37 +40,37 @@
 .Dd June 4, 1993
 .Dt ATOL 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm atol
 .Nd 
 .Tn ASCII
-ʸ�����Ĺ�������Ѵ�����
-.Sh �饤�֥��
+文字列を長整数に変換する
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In stdlib.h
 .Ft long
 .Fn atol "const char *nptr"
-.Sh ����
+.Sh 解説
 .Fn atol
-�ؿ��ϡ�
+関数は、
 .Ar nptr
-���ؤ�ʸ�������Ƭ��ʬ��
+が指す文字列の先頭部分を
 .Em long integer
-ɽ�����Ѵ����ޤ���
+表現に変換します。
 .Pp
-����ϼ���Ʊ���Ǥ���
+これは次と同等です。
 .Bd -literal -offset indent
 strtol(nptr, (char **)NULL, 10);
 .Ed
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr atof 3 ,
 .Xr atoi 3 ,
 .Xr strtod 3 ,
 .Xr strtol 3 ,
 .Xr strtoul 3
-.Sh ����
+.Sh 規格
 .Fn atol
-�ؿ���
+関数は
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

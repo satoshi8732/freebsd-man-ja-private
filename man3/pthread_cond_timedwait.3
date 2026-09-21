@@ -31,60 +31,60 @@
 .Dd July 28, 1998
 .Dt PTHREAD_COND_TIMEDWAIT 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm pthread_cond_timedwait
-.Nd ���ꤷ�����֤δ֤ξ���ѿ����Ե�
-.Sh �饤�֥��
+.Nd 指定した時間の間の条件変数の待機
+.Sh ライブラリ
 .Lb libc_r
-.Sh ��
+.Sh 書式
 .In pthread.h
 .Ft int
 .Fn pthread_cond_timedwait "pthread_cond_t *cond" "pthread_mutex_t *mutex" "const struct timespec *abstime"
-.Sh ����
+.Sh 解説
 .Fn pthread_cond_timedwait
-�ؿ��ϡ�
+関数は、
 .Fa cond
-�ǻ��ꤵ�줿����ѿ����ԤäƤ��븽�ߤΥ���åɤ��Բ�ʬ�˥֥��å�����
+で指定された条件変数で待っている現在のスレッドを不可分にブロックし、
 .Fa mutex
-�ǻ��ꤵ�줿 mutex �Υ֥��å��������ޤ���
-�ԤäƤ��륹��åɤϡ��̤Υ���åɤ�
+で指定された mutex のブロックを解除します。
+待っているスレッドは、別のスレッドが
 .Xr pthread_cond_signal 3
-�ޤ���
+または
 .Xr pthread_cond_broadcast 3
-��Ʊ������ѿ��ǸƤӽФ����塢�ޤ��ϥ����ƥ���֤�
+を同じ条件変数で呼び出した後、またはシステム時間が
 .Fa abstime
-�˻��ꤵ�줿���֤�ã������硢�ˤΤߥ֥��å���������졢���ߤΥ���åɤ�
+に指定された時間に達した場合、にのみブロックが解除され、現在のスレッドは
 .Fa mutex
-�Υ��å���Ƽ������ޤ���
-.Sh �����
-���꤬�ʤ����ϡ�
+のロックを再取得します。
+.Sh 戻り値
+問題がない場合は、
 .Fn pthread_cond_timedwait
-�ؿ��� 0 ���֤��ޤ���
-���꤬������ϡ����Υ��顼�򼨤�����˥��顼�ֹ椬�֤���ޤ���
-.Sh ���顼
+関数は 0 を返します。
+問題がある場合は、そのエラーを示すためにエラー番号が返されます。
+.Sh エラー
 .Fn pthread_cond_timedwait
-�ϰʲ��ξ��˼��Ԥ��ޤ���
+は以下の場合に失敗します。
 .Bl -tag -width Er
 .It Bq Er EINVAL
 .Fa cond ,
 .Fa mutex
-�ޤ���
+または
 .Fa abstime
-�ˤ�äƻ��ꤵ�줿�ͤ�̵���Ǥ���
+によって指定された値が無効です。
 .It Bq Er ETIMEDOUT
-�����ƥ���֤���
+システム時間が、
 .Fa abstime
-�˻��ꤷ�����֤�ã���ޤ������ޤ��ϡ�Ķ�ᤷ�ޤ�����
+に指定した時間に達しました。または、超過しました。
 .El
 .Pp
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr pthread_cond_broadcast 3 ,
 .Xr pthread_cond_destroy 3 ,
 .Xr pthread_cond_init 3 ,
 .Xr pthread_cond_signal 3 ,
 .Xr pthread_cond_wait 3
-.Sh ����
+.Sh 規格
 .Fn pthread_cond_timedwait
-��
+は
 .St -p1003.1-96
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

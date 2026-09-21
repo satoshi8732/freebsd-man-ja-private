@@ -36,27 +36,27 @@
 .Dd December 11, 1993
 .Dt ISASCII 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm isascii
-.Nd ASCII ʸ���Υƥ���
-.Sh �饤�֥��
+.Nd ASCII 文字のテスト
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In ctype.h
 .Ft int
 .Fn isascii "int c"
-.Sh ����
+.Sh 解説
 .Fn isascii
-�ؿ���
+関数は
 .Tn ASCII
-ʸ���Ǥ��뤫�ɤ�����ƥ��Ȥ��ޤ���
+文字であるかどうかをテストします。
 .Tn ASCII
-ʸ���ϡ�0 ���� 8 �ʿ� 0177 �ޤǤ��ϰϤ�ξü��ޤ��ͤ�Ǥ�դ�ʸ���Ǥ���
-.Sh ��Ϣ����
+文字は、0 から 8 進数 0177 までの範囲で両端を含む値の任意の文字です。
+.Sh 関連項目
 .Xr ctype 3 ,
 .Xr ascii 7
-.Sh ����
+.Sh 規格
 .Fn isascii
-�ؿ���
+関数は
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

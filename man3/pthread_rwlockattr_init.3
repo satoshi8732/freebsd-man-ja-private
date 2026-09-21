@@ -28,42 +28,42 @@
 .Dd August 4, 1998
 .Dt PTHREAD_RWLOCKATTR_INIT 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm pthread_rwlockattr_init
-.Nd �ɼ�� / ����ߥ��å���°���κ���
-.Sh �饤�֥��
+.Nd 読取り / 書込みロックの属性の作成
+.Sh ライブラリ
 .Lb libc_r
-.Sh ��
+.Sh 書式
 .In pthread.h
 .Ft int
 .Fn pthread_rwlockattr_init "pthread_rwlockattr_t *attr"
-.Sh ����
+.Sh 解説
 .Fn pthread_rwlockattr_init
-�ؿ��ϡ��ɼ�� / ����ߥ��å���°�����֥������Ȥ��������뤿��˻��Ѥ���ޤ���
-.Sh �����
-���꤬�ʤ����ϡ�
+関数は、読取り / 書込みロックの属性オブジェクトを初期化するために使用されます。
+.Sh 戻り値
+問題がない場合は、
 .Fn pthread_rwlockattr_init
-�ؿ��� 0 ���֤��ޤ���
-���꤬������ϡ����Υ��顼�򼨤�����˥��顼�ֹ椬�֤���ޤ���
-.Sh ��Ϣ����
+関数は 0 を返します。
+問題がある場合は、そのエラーを示すためにエラー番号が返されます。
+.Sh 関連項目
 .Xr pthread_rwlock_init 3 ,
 .Xr pthread_rwlockattr_destroy 3 ,
 .Xr pthread_rwlockattr_getpshared 3 ,
 .Xr pthread_rwlockattr_setpshared 3
-.Sh ����
+.Sh 規格
 .Fn pthread_rwlockattr_init
-�ؿ��ϡ�
+関数は、
 .St -susv2
-��Ŭ�礷�Ƥ���Ϥ��Ǥ���
-.Sh ���顼
+に適合しているはずです。
+.Sh エラー
 .Fn pthread_rwlockattr_init
-�ϰʲ��ξ��˼��Ԥ��ޤ���
+は以下の場合に失敗します。
 .Bl -tag -width Er
 .It Bq Er ENOMEM
-°�����֥������Ȥ��������뤿��˽�ʬ�ʥ��꤬����ޤ���
+属性オブジェクトを初期化するために十分なメモリがありません。
 .El
-.Sh ���
+.Sh 歴史
 .Fn pthread_rwlockattr_init
-�ؿ��ϡ�
+関数は、
 .Fx 3.0
-�ǤϤ�����о줷�ޤ�����
+ではじめて登場しました。

@@ -35,172 +35,172 @@
 .Dd November 24, 1997
 .Dt MSGCTL 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm msgctl
-.Nd ��å��������楪�ڥ졼�����
-.Sh �饤�֥��
+.Nd メッセージ制御オペレーション
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In sys/types.h
 .In sys/ipc.h
 .In sys/msg.h
 .Ft int
 .Fn msgctl "int msqid" "int cmd" "struct msqid_ds *buf"
-.Sh ����
+.Sh 解説
 .Fn msgctl
-�����ƥॳ����ϡ�
+システムコールは、
 .Fa msqid
-�����ꤹ���å��������塼���Ф������楪�ڥ졼������¹Ԥ��ޤ���
+が指定するメッセージキューに対して制御オペレーションを実行します。
 .Pp
-�ƥ�å��������塼�ˤϡ�����˴�Ϣ�����ǡ�����¤�Τ�����ޤ���
-���ΰ�����
+各メッセージキューには、それに関連したデータ構造体があります。
+その一部は
 .Fn msgctl
-���ѹ��Ǥ��ޤ���
+で変更できます。
 .Fn msgctl
-�Υ������������ǡ�����¤�⤢��ޤ������Υǡ�����¤�Τ�
+のアクションを決めるデータ構造もあります。このデータ構造体は
 .Aq Pa sys/msg.h
-��������졢�ʲ��Τ褦�ʥ��Ф��ޤޤ�Ƥ��ޤ� (����¾�Υ��Ф�
-����ޤ�)��
+で定義され、以下のようなメンバが含まれています (その他のメンバも
+あります)。
 .Bd -literal
 struct msqid_ds {
-        struct  ipc_perm msg_perm; /* ��å��������塼�Υѡ��ߥå����ӥå� */
-        struct  msg *msg_first; /* ���塼�κǽ�Υ�å����� */
-        struct  msg *msg_last; /* ���塼�κǸ�Υ�å����� */
-        u_long  msg_cbytes; /* ���塼�ǻ��Ѥ��Ƥ���Х��ȿ� */
-        u_long  msg_qnum; /* ���塼�ǻ��Ѥ��Ƥ����å������� */
-        u_long  msg_qbytes; /* ���塼�ǻ��Ѥ������Х��ȿ� */
-        pid_t   msg_lspid; /* �Ǹ�� msgsnd �Υץ�����ID  */
-        pid_t   msg_lrpid; /* �Ǹ�� msgrcv �Υץ�����ID  */
-        time_t  msg_stime; /* �Ǹ�� msgsnd �λ���  */
+        struct  ipc_perm msg_perm; /* メッセージキューのパーミッションビット */
+        struct  msg *msg_first; /* キューの最初のメッセージ */
+        struct  msg *msg_last; /* キューの最後のメッセージ */
+        u_long  msg_cbytes; /* キューで使用しているバイト数 */
+        u_long  msg_qnum; /* キューで使用しているメッセージ数 */
+        u_long  msg_qbytes; /* キューで使用する最大バイト数 */
+        pid_t   msg_lspid; /* 最後の msgsnd のプロセスID  */
+        pid_t   msg_lrpid; /* 最後の msgrcv のプロセスID  */
+        time_t  msg_stime; /* 最後の msgsnd の時間  */
         long    msg_pad1;
-        time_t  msg_rtime; /* �Ǹ�� msgrcv �λ���  */
+        time_t  msg_rtime; /* 最後の msgrcv の時間  */
         long    msg_pad2;
-        time_t  msg_ctime; /* �Ǹ�� msgctl �λ���  */
+        time_t  msg_ctime; /* 最後の msgctl の時間  */
         long    msg_pad3;
         long    msg_pad4[4];
     };
 .Ed
 .Pp
 .Vt shmid_ds
-��¤�Τ���ǻ��Ѥ����
+構造体の中で使用される
 .Vt ipc_perm
-��¤�Τϡ�
+構造体は、
 .Aq Pa sys/ipc.h
-�ǰʲ��Τ褦���������Ƥ��ޤ���
+で以下のように定義されています。
 .Bd -literal
 struct ipc_perm {
-        ushort  cuid;   /* �����ԤΥ桼��ID */
-        ushort  cgid;   /* �����ԤΥ��롼��ID */
-        ushort  uid;    /* �桼��ID */
-        ushort  gid;    /* ���롼��ID */
-        ushort  mode;   /* r/w �ѡ��ߥå���� */
-        ushort  seq;    /* ���������ֹ� (��դ��������줿 msg/sem/shm ID) */
-        key_t   key;    /* �桼�������ꤷ�� msg/sem/shm ���� */
+        ushort  cuid;   /* 生成者のユーザID */
+        ushort  cgid;   /* 生成者のグループID */
+        ushort  uid;    /* ユーザID */
+        ushort  gid;    /* グループID */
+        ushort  mode;   /* r/w パーミッション */
+        ushort  seq;    /* シーケンス番号 (一意に生成された msg/sem/shm ID) */
+        key_t   key;    /* ユーザが指定した msg/sem/shm キー */
 };
 .Ed
 .Pp
 .Fn msgctl
-���¹Ԥ��륪�ڥ졼�����ϡ��ʲ��Τ����� 1 �Ĥ�
+が実行するオペレーションは、以下のうちの 1 つで
 .Fa cmd
-�ǻ��ꤵ��ޤ���
+で指定されます。
 .Bl -tag -width IPC_RMIDX
 .It Dv IPC_STAT
-��å��������塼�ξ���򽸤ᡢ
+メッセージキューの情報を集め、
 .Fa buf
-���ؤ���¤�Τ����֤��ޤ���
+が指す構造体に配置します。
 .It Dv IPC_SET
 .Fa msqid
-�˴�Ϣ���빽¤�Τ�
+に関連する構造体の
 .Va msg_perm.uid
-�ե�����ɡ�
+フィールド、
 .Va msg_perm.gid
-�ե�����ɡ�
+フィールド、
 .Va msg_perm.mode
-�ե�����ɡ�
+フィールド、
 .Va msg_qbytes
-�ե�����ɤ��ͤ����ꤷ�ޤ��������ͤϡ�
+フィールドの値を設定します。この値は、
 .Fa buf
-���ؤ���¤�Τ��б�����ե�����ɤ������ޤ������Υ��ڥ졼������
-�¹ԤǤ���Τϡ������ѥ桼�����ޤ��ϥ�å��������塼�˴�Ϣ����
-�ǡ�����¤�Τ�
+が指す構造体で対応するフィールドから取られます。このオペレーションを
+実行できるのは、スーパユーザ、またはメッセージキューに関連する
+データ構造体の
 .Va msg_perm.cuid
-��
+か
 .Va msg_perm.uid
-���������¸��桼�� ID ����ĥץ������ΤߤǤ���
+と等しい実効ユーザ ID を持つプロセスのみです。
 .Va msg_qbytes
-���ͤ����䤻��Τϡ������ѥ桼���ΤߤǤ��������ƥ�����
+の値を増やせるのは、スーパユーザのみです。システム制限
 (
 .Aq Pa sys/msg.h
-�� MSGMNB) ��ۤ���
+の MSGMNB) を越えた
 .Va msg_qbytes
-���ͤϡ��������¤��ڤ�ΤƤ��ޤ���
+の値は、その制限に切り捨てられます。
 .It Dv IPC_RMID
 .Fa msqid
-�����ꤹ���å��������塼��������
+が指定するメッセージキューを削除し、
 .Fa msqid
-�˴�Ϣ����
-�ǡ������˲����ޤ��������ѥ桼�����ޤ��ϡ����塼��
-��Ϣ����ǡ�����¤�Τ�
+に関連する
+データを破壊します。スーパユーザ、または、キューに
+関連するデータ構造体の
 .Va msg_perm.cuid
-�ޤ���
+または
 .Va msg_perm.uid
-���ͤ����¸��桼�� ID ���������ץ������Τߤ��������¹ԤǤ��ޤ���
+の値が、実効ユーザ ID に等しいプロセスのみが、これを実行できます。
 .El
 .Pp
-��å��������塼������ɹ��߸�����å��������塼�ؤν���߸� (
+メッセージキューからの読込み権かメッセージキューへの書込み権 (
 .Xr msgsnd 3
-��
+と
 .Xr msgrcv 3
-����) �ϡ��ե������Ʊ���褦�� (
+参照) は、ファイルと同じように (
 .Xr chmod 2
-����)��
+参照)、
 .Va msg_perm.mode
-�ե�����ɤˤ�äƷ�ޤ�ޤ����¸��桼�� ID �ϡ�
+フィールドによって決まります。実効ユーザ ID は、
 .Va msg_perm.cuid
-�ե�����ɤ�
+フィールドか
 .Va msg_perm.uid
-�ե�����ɤȰ��פ����¸����롼�� ID �ϡ�
+フィールドと一致し、実効グループ ID は、
 .Va msg_perm.cgid
-��
+か
 .Va msg_perm.gid
-�Ȱ��פ��ޤ���
-.Sh �����
+と一致します。
+.Sh 戻り値
 .Rv -std msgctl
-.Sh ���顼
+.Sh エラー
 .Fn msgctl
-�ϡ��ʲ��Τ褦�ʾ��˥��顼�Ȥʤ�ޤ���
+は、以下のような場合にエラーとなります。
 .Bl -tag -width Er
 .It Bq Er EPERM
 .Fa cmd
-�� IPC_SET �� IPC_RMID �����������ƽФ�¦�������ѥ桼���ǤϤʤ���硣
-�ޤ��ϼ¸��桼�� ID ����å��������塼�˴�Ϣ����ǡ�����¤��
+が IPC_SET か IPC_RMID と等しく、呼出し側がスーパユーザではない場合。
+または実効ユーザ ID がメッセージキューに関連するデータ構造の
 .Va msg_perm.uid
-�ե�����ɤ�
+フィールドか
 .Va msg_perm.cuid
-�ե�����ɤȰ��פ��ʤ���硣
+フィールドと一致しない場合。
 .Pp
-IPC_SET ���Ѥ���
+IPC_SET を用いて
 .Va msg_qbytes
-���ͤ�夲�褦�Ȥ��������ƽФ�¦�������ѥ桼���Ǥʤ���硣
+の値を上げようとしたが、呼出し側がスーパユーザでない場合。
 .It Bq Er EACCES
-���ޥ�ɤ� IPC_STAT �Ǥ��뤬�����Υ�å��������塼��
-�ɹ��߸����ƽФ�¦�ˤʤ���硣
+コマンドが IPC_STAT であるが、このメッセージキューの
+読込み権が呼出し側にない場合。
 .It Bq Er EINVAL
 .Fa msqid
-����������å��������塼 ID �Ǥʤ���硣
+が正しいメッセージキュー ID でない場合。
 .Pp
 .Va cmd
-�����������ޥ�ɤǤʤ���硣
+が正しいコマンドでない場合。
 .It Bq Er EFAULT
 .Fa buf
-�����������ɥ쥹����ꤷ�Ƥ��ʤ���硣
+が正しいアドレスを指定していない場合。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr msgget 3 ,
 .Xr msgrcv 3 ,
 .Xr msgsnd 3
-.Sh ���
-��å��������塼�ϡ�
+.Sh 歴史
+メッセージキューは、
 .At V
-�κǽ�Υ�꡼�����ɲä���ޤ�����
+の最初のリリースに追加されました。
 .\"kuma 1999-11-12

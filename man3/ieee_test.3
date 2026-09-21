@@ -36,17 +36,17 @@
 .Dd March 10, 1994
 .Dt IEEE_TEST 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm logb ,
 .Nm logbf ,
 .Nm scalb ,
 .Nm scalbf ,
 .Nm significand ,
 .Nm significandf
-.Nd IEEE �ƥ��ȴؿ�
-.Sh �饤�֥��
+.Nd IEEE テスト関数
+.Sh ライブラリ
 .Ld libm
-.Sh ��
+.Sh 書式
 .In math.h
 .Ft double
 .Fn logb "double x"
@@ -60,55 +60,55 @@
 .Fn significand "double x"
 .Ft float
 .Fn significandf "float x"
-.Sh ����
-�����δؿ��ϡ��桼����
+.Sh 解説
+これらの関数は、ユーザが
 .St -ieee754
-�ؤ�Ŭ���ƥ��Ȥ��뤳�Ȥ��ǽ�ˤ��ޤ���
-����ʳ�����Ū�ǤΤ����λ��ѤϿ侩����ޤ���
+への適合をテストすることを可能にします。
+それ以外の目的でのこれらの使用は推奨されません。
 .Pp
 .Fn logb x
-�����
+および
 .Fn logbf x
-�ϡ�
+は、
 .Fa x
-��
+の
 .Fa n
-����֤��ޤ��������Ǥ�
+乗を返します。ここでの
 .Fa n
-�ϡ�����դ���������������ư���������Ѵ����줿��ΤǤ���
+は、符号付き整数が倍精度浮動小数点に変換されたものです。
 .Fn logb \*(Pm\*(If
 = +\*(If;
 .Fn logb 0
 = -\*(If
-�ǡ�0 �ˤ��������㳰��ȼ���ޤ���
+で、0 による除算の例外を伴います。
 .Pp
 .Fn scalbn x n
-�����
+および
 .Fn scalbnf x n
-�ϡ��ؿ����ˤ��׻����줿
+は、指数操作により計算された
 .Fa x Ns \(**(2** Ns Fa n )
-���֤��ޤ���
+を返します。
 .Pp
 .Fn significand x
-�����
+および
 .Fn significandf x
-�ϡ�1 \(<= 
+は、1 \(<= 
 .Fa sig
-< 2 ���ϰϤ�
+< 2 の範囲で
 .Fa x
 :=
 .Fa sig No \(** 2** Ns Fa n
-�Ȥʤ���Ρ�
+となる時の、
 .Fa sig
-���֤��ޤ���
+を返します。
 .Fn significand x
-�����
+および
 .Fn significandf x
-�ϡ�
+は、
 .Fa x
-�� 0, \*(Pm\*(If, �ޤ��� \*(Na �λ��ˤ��������ޤ���
-.Sh ��Ϣ����
+が 0, \*(Pm\*(If, または \*(Na の時には定義されません。
+.Sh 関連項目
 .Xr ieee 3 ,
 .Xr math 3
-.Sh ����
+.Sh 規格
 .St -ieee754

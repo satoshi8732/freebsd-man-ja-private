@@ -40,35 +40,35 @@
 .Dd June 4, 1993
 .Dt RAISE 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm raise
-.Nd ���ԥץ������˥����ʥ������
-.Sh �饤�֥��
+.Nd 現行プロセスにシグナルを送信
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In signal.h
 .Ft int
 .Fn raise "int sig"
-.Sh ����
+.Sh 解説
 .Fn raise
-�ؿ��ϥ����ʥ�
+関数はシグナル
 .Fa sig
-�򸽹ԥץ��������������ޤ���
-.Sh �����
+を現行プロセスに送信します。
+.Sh 戻り値
 .Rv -std raise
-.Sh ���顼
+.Sh エラー
 .Fn raise
-�ؿ��ϡ����顼��ȯ��������硢�饤�֥��ؿ�
+関数は、エラーが発生した場合、ライブラリ関数
 .Xr getpid 2
-��
+と
 .Xr kill 2
-�Υ��顼��
+のエラーに
 .Va errno
-�����ꤷ�ޤ���
-.Sh ��Ϣ����
+を設定します。
+.Sh 関連項目
 .Xr kill 2
-.Sh ����
+.Sh 規格
 .Fn raise
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

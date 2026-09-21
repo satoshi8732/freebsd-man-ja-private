@@ -40,16 +40,16 @@
 .Dd February 24, 1997
 .Os
 .Dt STRINGLIST 3
-.Sh ̾��
+.Sh 名称
 .Nm stringlist ,
 .Nm sl_init ,
 .Nm sl_add ,
 .Nm sl_free ,
 .Nm sl_find
-.Nd ʸ����ꥹ�����ؿ�
-.Sh �饤�֥��
+.Nd 文字列リスト操作関数
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In stringlist.h
 .Ft StringList *
 .Fn sl_init
@@ -59,13 +59,13 @@
 .Fn sl_free "StringList *sl" "int freeall"
 .Ft char *
 .Fn sl_find "StringList *sl" "char *item"
-.Sh ����
+.Sh 解説
 .Nm
-�ؿ��ϡ�ɬ�פ˱����Ƽ�ưŪ��Ÿ������ʸ����ΰ����Ǥ���
-ʸ����ꥹ�Ȥ����ޤ���
+関数は、必要に応じて自動的に展開する文字列の一覧である
+文字列リストを操作します。
 .Pp
 .Ar StringList
-��¤�ϡ����Τ褦�����������ޤ� :
+構造は、次のような定義を持ちます :
 .Bd -literal -offset indent
 typedef struct _stringlist {
         char    **sl_str;
@@ -76,47 +76,47 @@ typedef struct _stringlist {
 .Pp
 .Bl -tag -width "sl_str" -offset indent
 .It Ar sl_str
-���������äƤ�������δ���ݥ��󥿤Ǥ���
+一覧が入っている配列の基底ポインタです。
 .It Ar sl_max
 .Ar sl_str
-�Υ�������
+のサイズ。
 .It Ar sl_cur
-���ߤ����Ǥ�
+現在の要素の
 .Ar sl_str
-�ˤ����륪�ե��åȡ�
+におけるオフセット。
 .El
 .Pp
-�ʲ��Τ褦��ʸ����ꥹ�����ؿ������ѤǤ��ޤ� :
+以下のような文字列リスト操作関数が使用できます :
 .Bl -tag -width "sl_init()"
 .It Fn sl_init
-ʸ����ꥹ�Ȥ�������ޤ���
+文字列リストを作成します。
 .Ar StringList
-�ؤΥݥ��󥿤�
-�֤��ޤ���
+へのポインタを
+返します。
 .It Fn sl_free
 .Ar sl
-�����
+および
 .Ar sl->sl_str
-������ͭ��������������ޤ���
+配列が占有するメモリを解放します。
 .Ar freeall
-���� 0 �ξ��ϡ�
+が非 0 の場合は、
 .Ar sl->sl_str
-����ι��ܤ��������ޤ���
+の中の項目も解放されます。
 .It Fn sl_add
 .Ar sl->sl_str
-�Υ��������ĥ���ơ�
+のサイズを拡張して、
 .Ar item
-��
+を
 .Ar sl->sl_str
-��
+の
 .Ar sl->sl_cur
-�ΰ��֤��ɲä��ޤ���
+の位置に追加します。
 .It Fn sl_find
 .Ar sl
-�����
+の中の
 .Ar item
-��õ�������Ĥ���ʤ����� NULL ���֤��ޤ���
+を探し、見つからない場合は NULL を返します。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr free 3 ,
 .Xr malloc 3

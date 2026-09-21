@@ -36,51 +36,51 @@
 .Dd January 26, 1999
 .Dt ASSERT 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm assert
-.Nd �����ڥޥ���
-.Sh ��
+.Nd 式検証マクロ
+.Sh 書式
 .In assert.h
 .Fn assert expression
-.Sh ����
+.Sh 解説
 .Fn assert
-�ޥ����ϡ����ꤵ�줿
+マクロは、指定された
 .Ar expression
-���������ξ��ϡ��ƤӽФ����ץ������Ͻ�λ����ޤ���
-���ǥ�å�������
+を試験し、偽の場合は、呼び出し元プロセスは終了されます。
+診断メッセージが
 .Em stderr
-�˽񤭹��ޤ졢�ؿ�
+に書き込まれ、関数
 .Xr abort 3
-���ƤӽФ���ƥץ��������ΨŪ�˽�λ���ޤ���
+が呼び出されてプログラムを効率的に終了します。
 .Pp
 .Ar expression
-�����ξ�硢
+が真の場合、
 .Fn assert
-�ޥ����ϲ��⤷�ޤ���
+マクロは何もしません。
 .Pp
 .Fn assert
-�ޥ����ϥ���ѥ������
+マクロはコンパイル時に
 .Dv NDEBUG
-��ޥ����Ȥ���������뤳�Ȥǽ���Ǥ��ޤ�
-(�㤨��
+をマクロとして定義することで除去できます
+(例えば
 .Xr cc 1
-�Υ��ץ����
+のオプション
 .Fl D Ns Dv NDEBUG
-��Ȥ��ޤ�)��
-.Sh ����
+を使います)。
+.Sh 診断
 .Ar expression
-�����ξ�硢���ο��ǥ�å�������
+が偽の場合、次の診断メッセージが
 .Em stderr
-�˽񤭹��ޤ�ޤ���
+に書き込まれます。
 .Bd -literal -offset indent
 "assertion \e"%s\e" failed: file \e"%s\e", line %d\en", \e
                     "expression", __FILE__, __LINE__);
 .Ed
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr abort 3
 .Pp
-.Sh ���
+.Sh 歴史
 .Nm
-�ޥ�����
+マクロは
 .At v6
-���о줷�ޤ�����
+で登場しました。

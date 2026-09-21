@@ -35,370 +35,370 @@
 .Dd September 10, 1998
 .Dt PTHREAD 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm pthread
-.Nd POSIX ����åɴؿ�
-.Sh ��
+.Nd POSIX スレッド関数
+.Sh 書式
 .In pthread.h
-.Sh ����
-POSIX ����åɤϡ��ץ�������ǥ���å� (thread) �ȸƤФ��
-�����ʣ���Υե������׵᤹�륢�ץꥱ�������򥵥ݡ��Ȥ���ؿ����Ǥ���
-�ޥ������åɤϡ��ץ������Υѥե����ޥ󥹤�������뤿��˻��Ѥ���ޤ���
+.Sh 解説
+POSIX スレッドは、プロセス内でスレッド (thread) と呼ばれる
+制御の複数のフローを要求するアプリケーションをサポートする関数群です。
+マルチスレッドは、プログラムのパフォーマンスを改善するために使用されます。
 .Pp
-���Υ��������Ǥϡ�
-POSIX ����åɴؿ��γ��פˤĤ��ưʲ��Υ��롼�פ�ʬ�����������ޤ���
+このセクションでは、
+POSIX スレッド関数の概要について以下のグループに分けて説明します。
 .Bl -bullet -offset indent
 .It
-����åɥ롼����
+スレッドルーチン
 .It
-°�����֥������ȥ롼����
+属性オブジェクトルーチン
 .It
-mutex �롼����
+mutex ルーチン
 .It
-����ѿ��롼����
+条件変数ルーチン
 .It
-�ɼ�� / ����ߥ��å��롼����
+読取り / 書込みロックルーチン
 .It
-����åɸ�ͭ����ƥ����ȥ롼����
+スレッド固有コンテキストルーチン
 .It
-���꡼�󥢥åץ롼����
+クリーンアップルーチン
 .El
-.Sh ����åɥ롼����
+.Sh スレッドルーチン
 .Bl -tag -width Er
 .It Xo
 .Ft int
 .Fn pthread_create "pthread_t *thread" "const pthread_attr_t *attr" "void *(*start_routine)(void *)" "void *arg"
 .Xc
-�������¹Ԥ��륹��åɤ�������ޤ���
+新しい実行するスレッドを作成します。
 .It Xo
 .Ft int
 .Fn pthread_detach "pthread_t thread"
 .Xc
-����åɤ˺���Τ���ΰ����դ��ޤ���
+スレッドに削除のための印を付けます。
 .It Xo
 .Ft int
 .Fn pthread_equal "pthread_t t1" "pthread_t t2"
 .Xc
-2 �ĤΥ���åɤ� ID ����Ӥ��ޤ���
+2 つのスレッドの ID を比較します。
 .It Xo
 .Ft void
 .Fn pthread_exit "void *value_ptr"
 .Xc
-�ƤӽФ��Ƥ��륹��åɤ�λ���ޤ���
+呼び出しているスレッドを終了します。
 .It Xo
 .Ft int
 .Fn pthread_join "pthread_t thread" "void **value_ptr"
 .Xc
-�ƤӽФ��Ƥ��륹��åɤ������ꤷ������åɤν�λ���ԤĤ褦�ˤ��ޤ���
+呼び出しているスレッドが、指定したスレッドの終了を待つようにします。
 .It Xo
 .Ft int
 .Fn pthread_cancel "pthread_t thread"
 .Xc
-����åɤμ¹Ԥ���ä��ޤ���
+スレッドの実行を取り消します。
 .It Xo
 .Ft int
 .Fn pthread_once "pthread_once_t *once_control" "void (*init_routine)(void)"
 .Xc
-������롼�������٤����ƤӽФ��ޤ���
+初期化ルーチンを一度だけ呼び出します。
 .It Xo
 .Ft pthread_t
 .Fn pthread_self void
 .Xc
-�ƤӽФ��Ƥ��륹��åɤ� ID ���֤��ޤ���
+呼び出しているスレッドの ID を返します。
 .El
-.Sh °�����֥������ȥ롼����
+.Sh 属性オブジェクトルーチン
 .Bl -tag -width Er
 .It Xo
 .Ft int
 .Fn pthread_attr_destroy "pthread_attr_t *attr"
 .Xc
-����åɤ�°�����֥������Ȥ��˲����ޤ���
+スレッドの属性オブジェクトを破壊します。
 .It Xo
 .Ft int
 .Fn pthread_attr_getinheritsched "const pthread_attr_t *attr" "int *inheritsched"
 .Xc
-����åɤ�°�����֥������Ȥ���Ѿ��������塼���°����������ޤ���
+スレッドの属性オブジェクトから継承スケジューリング属性を取得します。
 .It Xo
 .Ft int
 .Fn pthread_attr_getschedparam "const pthread_attr_t *attr" "struct sched_param *param"
 .Xc
-����åɤ�°�����֥������Ȥ��饹�����塼��󥰥ѥ�᡼��°����������ޤ���
+スレッドの属性オブジェクトからスケジューリングパラメータ属性を取得します。
 .It Xo
 .Ft int
 .Fn pthread_attr_getschedpolicy "const pthread_attr_t *attr" "int *policy"
 .Xc
-����åɤ�°�����֥������Ȥ��饹�����塼�������°����������ޤ���
+スレッドの属性オブジェクトからスケジューリング方針属性を取得します。
 .It Xo
 .Ft int
 .Fn pthread_attr_getscope "const pthread_attr_t *attr" "int *contentionscope"
 .Xc
-����åɤ�°�����֥������Ȥ��饳��ƥ󥷥���ϰ�°����������ޤ���
+スレッドの属性オブジェクトからコンテンション範囲属性を取得します。
 .It Xo
 .Ft int
 .Fn pthread_attr_getstacksize "const pthread_attr_t *attr" "size_t *stacksize"
 .Xc
-����åɤ�°�����֥������Ȥ��饹���å�������°����������ޤ���
+スレッドの属性オブジェクトからスタックサイズ属性を取得します。
 .It Xo
 .Ft int
 .Fn pthread_attr_getstackaddr "const pthread_attr_t *attr" "void **stackaddr"
 .Xc
-����åɤ�°�����֥������Ȥ��饹���å����ɥ쥹°����������ޤ���
+スレッドの属性オブジェクトからスタックアドレス属性を取得します。
 .It Xo
 .Ft int
 .Fn pthread_attr_getdetachstate "const pthread_attr_t *attr" "int *detachstate"
 .Xc
-����åɤ�°�����֥������Ȥ���ǥ��å�����°����������ޤ���
+スレッドの属性オブジェクトからデタッチ状態属性を取得します。
 .It Xo
 .Ft int
 .Fn pthread_attr_init "pthread_attr_t *attr"
 .Xc
-����å�°�����֥������Ȥ�ǥե�����ͤǽ�������ޤ���
+スレッド属性オブジェクトをデフォルト値で初期化します。
 .It Xo
 .Ft int
 .Fn pthread_attr_setinheritsched "pthread_attr_t *attr" "int inheritsched"
 .Xc
-����åɤ�°�����֥������Ȥ˷Ѿ��������塼���°�������ꤷ�ޤ���
+スレッドの属性オブジェクトに継承スケジューリング属性を設定します。
 .It Xo
 .Ft int
 .Fn pthread_attr_setschedparam "pthread_attr_t *attr" "const struct sched_param *param"
 .Xc
-����åɤ�°�����֥������Ȥ˥������塼��󥰥ѥ�᡼��°�������ꤷ�ޤ���
+スレッドの属性オブジェクトにスケジューリングパラメータ属性を設定します。
 .It Xo
 .Ft int
 .Fn pthread_attr_setschedpolicy "pthread_attr_t *attr" "int policy"
 .Xc
-����åɤ�°�����֥������Ȥ˥������塼�������°�������ꤷ�ޤ���
+スレッドの属性オブジェクトにスケジューリング方針属性を設定します。
 .It Xo
 .Ft int
 .Fn pthread_attr_setscope "pthread_attr_t *attr" "int contentionscope"
 .Xc
-����åɤ�°�����֥������Ȥ˥���ƥ󥷥���ϰ�°�������ꤷ�ޤ���
+スレッドの属性オブジェクトにコンテンション範囲属性を設定します。
 .It Xo
 .Ft int
 .Fn pthread_attr_setstacksize "pthread_attr_t *attr" "size_t stacksize"
 .Xc
-����åɤ�°�����֥������Ȥ˥����å�������°�������ꤷ�ޤ���
+スレッドの属性オブジェクトにスタックサイズ属性を設定します。
 .It Xo
 .Ft int
 .Fn pthread_attr_setstackaddr "pthread_attr_t *attr" "void *stackaddr"
 .Xc
-����åɤ�°�����֥������Ȥ˥����å����ɥ쥹°�������ꤷ�ޤ���
+スレッドの属性オブジェクトにスタックアドレス属性を設定します。
 .It Xo
 .Ft int
 .Fn pthread_attr_setdetachstate "pthread_attr_t *attr" "int detachstate"
 .Xc
-����åɤ�°�����֥������Ȥ˥ǥ��å�����°�������ꤷ�ޤ���
+スレッドの属性オブジェクトにデタッチ状態属性を設定します。
 .El
-.Sh mutex �롼����
+.Sh mutex ルーチン
 .Bl -tag -width Er
 .It Xo
 .Ft int
 .Fn pthread_mutexattr_destroy "pthread_mutexattr_t *attr"
 .Xc
-mutex ��°�����֥������Ȥ��˲����ޤ���
+mutex の属性オブジェクトを破壊します。
 .It Xo
 .Ft int
 .Fn pthread_mutexattr_init "pthread_mutexattr_t *attr"
 .Xc
-mutex ��°�����֥������Ȥ�ǥե�����ͤǽ�������ޤ���
+mutex の属性オブジェクトをデフォルト値で初期化します。
 .It Xo
 .Ft int
 .Fn pthread_mutex_destroy "pthread_mutex_t *mutex"
 .Xc
-mutex ���˲����ޤ���
+mutex を破壊します。
 .It Xo
 .Ft int
 .Fn pthread_mutex_init "pthread_mutex_t *mutex" "const pthread_mutexattr_t *attr"
 .Xc
-mutex ����ꤵ�줿°���ǽ�������ޤ���
+mutex を指定された属性で初期化します。
 .It Xo
 .Ft int
 .Fn pthread_mutex_lock "pthread_mutex_t *mutex"
 .Xc
-mutex ����å����ơ�mutex �����Ѳ�ǽ�ˤʤ�ޤǥ֥��å����ޤ���
+mutex をロックして、mutex が利用可能になるまでブロックします。
 .It Xo
 .Ft int
 .Fn pthread_mutex_trylock "pthread_mutex_t *mutex"
 .Xc
-mutex ����å����褦�Ȥ��ޤ�����mutex �����ߤΥ���åɤ�ޤ᤿
-�̤Υ���åɤˤ�äƥ��å�����Ƥ�����ˤϡ��֥��å����ޤ���
+mutex をロックしようとしますが、mutex が現在のスレッドを含めた
+別のスレッドによってロックされている場合には、ブロックしません。
 .It Xo
 .Ft int
 .Fn pthread_mutex_unlock "pthread_mutex_t *mutex"
 .Xc
-mutex �Υ��å��������ޤ���
+mutex のロックを解除します。
 .El
-.Sh ����ѿ��롼����
+.Sh 条件変数ルーチン
 .Bl -tag -width Er
 .It Xo
 .Ft int
 .Fn pthread_condattr_init "pthread_condattr_t *attr"
 .Xc
-����ѿ���°�����֥������Ȥ�ǥե�����ͤǽ�������ޤ���
+条件変数の属性オブジェクトをデフォルト値で初期化します。
 .It Xo
 .Ft int
 .Fn pthread_condattr_destroy "pthread_condattr_t *attr"
 .Xc
-����ѿ���°�����֥������Ȥ��˲����ޤ���
+条件変数の属性オブジェクトを破壊します。
 .It Xo
 .Ft int
 .Fn pthread_cond_broadcast "pthread_cond_t *cond"
 .Xc
-���ꤵ�줿����ѿ��Ǹ��ߥ֥��å�����Ƥ���
-���ƤΥ���åɤΥ֥��å��������ޤ���
+指定された条件変数で現在ブロックされている
+全てのスレッドのブロックを解除します。
 .It Xo
 .Ft int
 .Fn pthread_cond_destroy "pthread_cond_t *cond"
 .Xc
-����ѿ����˲����ޤ���
+条件変数を破壊します。
 .It Xo
 .Ft int
 .Fn pthread_cond_init "pthread_cond_t *cond" "const pthread_condattr_t *attr"
 .Xc
-����ѿ�����ꤵ�줿°���ǽ�������ޤ���
+条件変数を指定された属性で初期化します。
 .It Xo
 .Ft int
 .Fn pthread_cond_signal "pthread_cond_t *cond"
 .Xc
-���ꤵ�줿����ѿ��Ǹ��ߥ֥��å�����Ƥ���
-���ʤ��Ȥ� 1 �ĤΥ���åɤΥ֥��å��������ޤ���
+指定された条件変数で現在ブロックされている
+少なくとも 1 つのスレッドのブロックを解除します。
 .It Xo
 .Ft int
 .Fn pthread_cond_timedwait "pthread_cond_t *cond" "pthread_mutex_t *mutex" "const struct timespec *abstime"
 .Xc
-������ꤵ�줿��������Ե��������ꤵ�줿 mutex ����å����ޤ���
+条件を指定された時間内で待機し、指定された mutex をロックします。
 .It Xo
 .Ft int
 .Fn pthread_cond_wait "pthread_cond_t *" "pthread_mutex_t *mutex"
 .Xc
-�����Ե��������ꤵ�줿 mutex ����å����ޤ���
+条件を待機し、指定された mutex をロックします。
 .El
-.Sh �ɼ�� / ����ߥ��å��롼����
+.Sh 読取り / 書込みロックルーチン
 .Bl -tag -width Er
 .It Xo
 .Ft int
 .Fn pthread_rwlock_destroy "pthread_rwlock_t *lock"
 .Xc
-�ɼ�� / ����ߥ��å����֥������Ȥ��˲����ޤ���
+読取り / 書込みロックオブジェクトを破壊します。
 .It Xo
 .Ft int
 .Fn pthread_rwlock_init "pthread_rwlock_t *lock" "const pthread_rwlockattr_t *attr"
 .Xc
-�ɼ�� / ����ߥ��å����֥������Ȥ��������ޤ���
+読取り / 書込みロックオブジェクトを初期化します。
 .It Xo
 .Ft int
 .Fn pthread_rwlock_rdlock "pthread_rwlock_t *lock"
 .Xc
-�ɼ�� / ����ߥ��å����ɼ���Ѥ˥��å�����
-���å�������Ǥ���褦�ˤʤ�ޤǥ֥��å����ޤ���
+読取り / 書込みロックを読取り用にロックし、
+ロックを取得できるようになるまでブロックします。
 .It Xo
 .Ft int
 .Fn pthread_rwlock_tryrdlock "pthread_rwlock_t *lock"
 .Xc
-�ɼ�� / ����ߥ��å����ɼ���Ѥ˥��å����褦�Ȥ��ޤ�����
-���å��Ǥ��ʤ����ˤϥ֥��å����ޤ���
+読取り / 書込みロックを読取り用にロックしようとしますが、
+ロックできない場合にはブロックしません。
 .It Xo
 .Ft int
 .Fn pthread_rwlock_trywrlock "pthread_rwlock_t *lock"
 .Xc
-�ɼ�� / ����ߥ��å��������Ѥ˥��å����褦�Ȥ��ޤ�����
-���å��Ǥ��ʤ����ˤϥ֥��å����ޤ���
+読取り / 書込みロックを書込み用にロックしようとしますが、
+ロックできない場合にはブロックしません。
 .It Xo
 .Ft int
 .Fn pthread_rwlock_unlock "pthread_rwlock_t *lock"
 .Xc
-�ɼ�� / ����ߥ��å��Υ��å��������ޤ���
+読取り / 書込みロックのロックを解除します。
 .It Xo
 .Ft int
 .Fn pthread_rwlock_wrlock "pthread_rwlock_t *lock"
 .Xc
-�ɼ�� / ����ߥ��å��������Ѥ˥��å�����
-���å�������Ǥ���褦�ˤʤ�ޤǥ֥��å����ޤ���
+読取り / 書込みロックを書込み用にロックし、
+ロックを取得できるようになるまでブロックします。
 .It Xo
 .Ft int
 .Fn pthread_rwlockattr_destroy "pthread_rwlockattr_t *attr"
 .Xc
-�ɼ�� / ����ߥ��å���°�����֥������Ȥ��˲����ޤ���
+読取り / 書込みロックの属性オブジェクトを破壊します。
 .It Xo
 .Ft int
 .Fn pthread_rwlockattr_getpshared "const pthread_rwlockattr_t *attr" "int *pshared"
 .Xc
-�ɼ�� / ����ߥ��å���°�����֥������ȤΥץ�������ͭ�����������ޤ���
+読取り / 書込みロックの属性オブジェクトのプロセス共有設定を取得します。
 .It Xo
 .Ft int
 .Fn pthread_rwlockattr_init "pthread_rwlockattr_t *attr"
 .Xc
-�ɼ�� / ����ߥ��å���°�����֥������Ȥ��������ޤ���
+読取り / 書込みロックの属性オブジェクトを初期化します。
 .It Xo
 .Ft int
 .Fn pthread_rwlockattr_setpshared "pthread_rwlockattr_t *attr" "int pshared"
 .Xc
-�ɼ�� / ����ߥ��å���°�����֥������ȤΥץ�������ͭ��������ꤷ�ޤ���
+読取り / 書込みロックの属性オブジェクトのプロセス共有設定を設定します。
 .El
-.Sh ����åɸ�ͭ����ƥ����ȥ롼����
+.Sh スレッド固有コンテキストルーチン
 .Bl -tag -width Er
 .It Xo
 .Ft int
 .Fn pthread_key_create "pthread_key_t *key" "void (*routine)(void *)"
 .Xc
-����åɸ�ͭ�Υǡ���������������ޤ���
+スレッド固有のデータキーを作成します。
 .It Xo
 .Ft int
 .Fn pthread_key_delete "pthread_key_t key"
 .Xc
-����åɸ�ͭ�Υǡ��������������ޤ���
+スレッド固有のデータキーを削除します。
 .It Xo
 .Ft "void *"
 .Fn pthread_getspecific "pthread_key_t key"
 .Xc
-���ꤵ�줿�����Υ���åɸ�ͭ���ͤ�������ޤ���
+指定されたキーのスレッド固有の値を取得します。
 .It Xo
 .Ft int
 .Fn pthread_setspecific "pthread_key_t key" "const void *value_ptr"
 .Xc
-���ꤵ�줿�����Υ���åɸ�ͭ���ͤ����ꤷ�ޤ���
+指定されたキーのスレッド固有の値を設定します。
 .El
-.Sh ���꡼�󥢥åץ롼����
+.Sh クリーンアップルーチン
 .Bl -tag -width Er
 .It Xo
 .Ft void
 .Fn pthread_cleanup_pop "int execute"
 .Xc
-�ƤӽФ��Ƥ��륹��åɤμ��ä����꡼�󥢥åץ����å��κǽ�Υ롼�����
-����������ץ����Ǥ��Υ롼�����¹Ԥ��ޤ���
+呼び出しているスレッドの取り消しクリーンアップスタックの最初のルーチンを
+削除し、オプションでそのルーチンを実行します。
 .It Xo
 .Ft void
 .Fn pthread_cleanup_push "void (*routine)(void *)" "void *routine_arg"
 .Xc
-�ƤӽФ��Ƥ��륹��åɤμ��ä������å��˻��ꤵ�줿���ä����꡼�󥢥å�
-�ϥ�ɥ���Ѥߤޤ���
+呼び出しているスレッドの取り消しスタックに指定された取り消しクリーンアップ
+ハンドラを積みます。
 .El
-.Sh ���󥹥ȥ졼�����
-���ߤ�
+.Sh インストレーション
+現在の
 .Fx
-POSIX ����åɤμ����ϡ�����åɥ����դ� libc �ؿ��ȥ���åɴؿ���ޤ�
-�饤�֥��
+POSIX スレッドの実装は、スレッドセーフな libc 関数とスレッド関数を含む
+ライブラリ
 .Fa libc_r
-�ǹ��ۤ���Ƥ��ޤ������Υ饤�֥��ϥ���åɥ��ץꥱ��������
+で構築されています。このライブラリはスレッドアプリケーションの
 .Fa libc
-���֤������ޤ���
+を置き換えます。
 .Pp
-�ǥե���ȤǤϡ�
+デフォルトでは、
 .Fa libc_r
-�� 'make world' �ΰ����Ȥ��ƹ��ۤ���ޤ������ι��ۤ�̵���ˤ���ˤϡ�
+は 'make world' の一部として構築されます。この構築を無効にするには、
 .Xr make 1
-�� '-DNOLIBC_R' ���ץ�����Ϳ���ʤ���Фʤ�ޤ���
+に '-DNOLIBC_R' オプションを与えなければなりません。
 .Pp
-����åɲ����줿�ץ��������ñ�˥�󥯤��뤿��ˡ�gcc ��
+スレッド化されたプロセスを簡単にリンクするために、gcc に
 .Fx
-��ͭ�Υ��ץ�����ɲä���Ƥ��ޤ���
+固有のオプションが追加されています。
 .Fa gcc -pthread
-�ϥ���åɲ����줿�ץ�������
+はスレッド化されたプロセスに
 .Fa libc
-����ä�
+に代って
 .Fa libc_r
-���󥯤��ޤ���
-.Sh ��Ϣ����
+をリンクします。
+.Sh 関連項目
 .Xr pthread_create 3 ,
 .Xr pthread_detach 3 ,
 .Xr pthread_equal 3 ,
@@ -431,24 +431,24 @@ POSIX ����åɤμ����ϡ�����åɥ����դ� libc �ؿ��ȥ���åɴؿ���ޤ�
 .Xr pthread_setspecific 3 ,
 .Xr pthread_cleanup_pop 3 ,
 .Xr pthread_cleanup_push 3
-.Sh ����
+.Sh 規格
 .Fa pthread_
-��Ƭ�줬�դ���
+接頭語が付き、
 .Fa _np
-������ޤ���
+接尾語または
 .Fa pthread_rwlock
-��Ƭ�줬�դ��Ƥ��ʤ�
+接頭語が付いていない
 .Fa libc_r
-�δؿ��ϡ�
+の関数は、
 .St -p1003.1-96
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。
 .Pp
 .Fa pthread_
-��Ƭ�줪���
+接頭語および
 .Fa _np
-�����줬�դ��� libc_r �δؿ��ϡ�POSIX ����åɤؤ���ݡ����֥��ĥ�Ǥ���
+接尾語が付いた libc_r の関数は、POSIX スレッドへの非ポータブル拡張です。
 .Pp
 .Fa pthread_rwlock
-��Ƭ�줬�դ��� libc_r �δؿ��ϡ�
+接頭語が付いた libc_r の関数は、
 .St -susv2
-�� The Open Group �ˤ�äƺ������줿��ĥ�Ǥ���
+の The Open Group によって作成された拡張です。

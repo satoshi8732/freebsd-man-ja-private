@@ -39,31 +39,31 @@
 .Dd June 4, 1993
 .Dt BZERO 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm bzero
-.Nd �Х���ʸ����� 0 ��񤭹���
-.Sh �饤�֥��
+.Nd バイト文字列に 0 を書き込む
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft void
 .Fn bzero "void *b" "size_t len"
-.Sh ����
+.Sh 解説
 .Fn bzero
-�ؿ��ϡ�
+関数は、
 .Fa len
-�Ĥ� 0 �Х��Ȥ�ʸ����
+個の 0 バイトを文字列
 .Fa b
-�˽񤭹��ߤޤ���
+に書き込みます。
 .Fa len
-�� 0 �ξ�硢
+が 0 の場合、
 .Fn bzero
-�ϲ��⤷�ޤ���
-.Sh ��Ϣ����
+は何もしません。
+.Sh 関連項目
 .Xr memset 3 ,
 .Xr swab 3
-.Sh ���
+.Sh 歴史
 .Fn bzero
-�ؿ���
+関数は
 .Bx 4.3
-���о줷�ޤ�����
+で登場しました。

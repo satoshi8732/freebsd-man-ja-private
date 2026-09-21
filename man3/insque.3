@@ -36,13 +36,13 @@
 .Dd December 11, 1993
 .Dt INSQUE 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm insque ,
 .Nm remque
-.Nd �Ԥ�������Ф������Ǥ�����/�������
-.Sh �饤�֥��
+.Nd 待ち行列に対して要素を挿入/削除する
+.Sh ライブラリ
 .Lb libcompat
-.Sh ��
+.Sh 書式
 .Bd -literal
 struct qelem {
 	struct	qelem *q_forw;
@@ -55,35 +55,35 @@ struct qelem {
 .Fn insque "struct qelem *elem" "struct qelem *pred"
 .Ft void
 .Fn remque "struct qelem *elem"
-.Sh ����
+.Sh 解説
 .Bf -symbolic
-insque �� remque �ؿ��ϻ����٤�δؿ��Ǥ���
+insque と remque 関数は時代遅れの関数です。
 .Ef
 .Pp
 .Fn insque
-��
+と
 .Fn remque
-�ؿ��ϡ���ť�󥯤Υꥹ�Ȥ�����줿�Ԥ������
-���ޤ����Ԥ�������γ����Ǥ�
+関数は、二重リンクのリストから作られた待ち行列を
+操作します。待ち行列中の各要素は
 .Dq Li struct qelem
-������Ȥ�ɬ�פ�����ޤ���
+形式をとる必要があります。
 .Fn insque
-�ؿ����Ԥ��������
+関数は待ち行列中の
 .Fa pred
-��ľ���
+の直後に
 .Fa elem
-���������ޤ���
+を挿入します。
 .Fn remque
-���Ԥ����󤫤�����
+は待ち行列から要素
 .Fa elem
-�������ޤ���
-.Sh ��Ϣ����
+を削除します。
+.Sh 関連項目
 .%T "VAX Architecture Handbook" ,
 pp. 228-235.
-.Sh ���
+.Sh 歴史
 .Fn insque
-��
+と
 .Fn remque
-�ؿ���
+関数は
 .Bx 4.2
-�����о줷�ޤ�����
+から登場しました。

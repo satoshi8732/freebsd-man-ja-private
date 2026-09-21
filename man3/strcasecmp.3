@@ -38,59 +38,59 @@
 .Dd June 9, 1993
 .Dt STRCASECMP 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm strcasecmp ,
 .Nm strncasecmp
-.Nd ��ʸ����ʸ����̵�뤷��ʸ��������
-.Sh �饤�֥��
+.Nd 大文字小文字を無視した文字列の比較
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft int
 .Fn strcasecmp "const char *s1" "const char *s2"
 .Ft int
 .Fn strncasecmp "const char *s1" "const char *s2" "size_t len"
-.Sh ����
+.Sh 解説
 .Fn strcasecmp
-�����
+および
 .Fn strncasecmp
-�ؿ��ϡ��̥�ʸ���ǽ�λ����ʸ����
+関数は、ヌル文字で終了する文字列
 .Fa s1
-�����
+および
 .Fa s2
-����Ӥ��ޤ���
+を比較します。
 .Pp
 .Fn strncasecmp
-�ϡ������
+は、最大で
 .Fa len
-�Ĥ�ʸ������Ӥ��ޤ���
-.Sh �����
+個の文字を比較します。
+.Sh 戻り値
 .Fn strcasecmp
-�����
+および
 .Fn strncasecmp
-�ϡ����줾���ʸ����ʸ�����Ѵ��������
+は、それぞれの文字を小文字に変換した後に
 .Fa s1
-��
+が
 .Fa s2
-���⼭�񼰽�����礭�������������������뤤�Ͼ��������˱����ơ�
-���줾�졢0 ����礭����0 ����������
-���뤤�� 0 ��꾮�����������֤��ޤ���
-ʸ�����ΤϽ�������ޤ�����Ӥϡ�
+よりも辞書式順序で大きいか、等しいか、あるいは小さいかに応じて、
+それぞれ、0 より大きい、0 に等しい、
+あるいは 0 より小さい整数を返します。
+文字列自体は修正されません。比較は、
 .Sq Li \e200
-��
+が
 .Ql \e0
-�����礭���ʤ�褦�ˡ�unsigned char ��ȤäƹԤ��ޤ���
-.Sh ��Ϣ����
+よりも大きくなるように、unsigned char を使って行います。
+.Sh 関連項目
 .Xr bcmp 3 ,
 .Xr memcmp 3 ,
 .Xr strcmp 3 ,
 .Xr strcoll 3 ,
 .Xr strxfrm 3 ,
 .Xr tolower 3
-.Sh ���
+.Sh 歴史
 .Fn strcasecmp
-�����
+および
 .Fn strncasecmp
-�ؿ��ϡ�
+関数は、
 .Bx 4.4
-�ǤϤ�����о줷�ޤ�����
+ではじめて登場しました。

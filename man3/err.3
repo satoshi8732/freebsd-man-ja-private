@@ -36,7 +36,7 @@
 .Dd March 6, 1999
 .Dt ERR 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm err ,
 .Nm verr ,
 .Nm errc ,
@@ -51,10 +51,10 @@
 .Nm vwarnx ,
 .Nm err_set_exit ,
 .Nm err_set_file
-.Nd �ե����ޥåȤ��줿���顼��å�����
-.Sh �饤�֥��
+.Nd フォーマットされたエラーメッセージ
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In err.h
 .Ft void
 .Fn err "int eval" "const char *fmt" "..."
@@ -85,21 +85,21 @@
 .Fn vwarnc "int code" "const char *fmt" "va_list args"
 .Ft void
 .Fn vwarnx "const char *fmt" "va_list args"
-.Sh ����
+.Sh 解説
 .Fn err
-�ؿ���
+関数と
 .Fn warn
-�ؿ��Υե��ߥ�ϡ�ɸ�२�顼���ϡ��ޤ���
+関数のファミリは、標準エラー出力、または
 .Fn err_set_file
-�ؿ�����Ѥ��ƻ��ꤷ���̤Υե������˥ե����ޥåȺѤߤ�
-���顼��å�������ɽ�����ޤ���
-���٤Ƥξ��ˡ��ץ������̾�κǸ�Υ���ݡ��ͥ�ȡ������󥭥�饯����
-����ӥ��ڡ��������Ϥ���ޤ���
+関数を使用して指定した別のファイル上にフォーマット済みの
+エラーメッセージを表示します。
+すべての場合に、プログラム名の最後のコンポーネント、コロンキャラクタ、
+およびスペースが出力されます。
 .Fa fmt
-������ NULL �Ǥʤ���硢
+引数が NULL でない場合、
 .Xr printf 3
-�Τ褦�ʥե����ޥåȺѤߤΥ��顼��å����������Ϥ���ޤ���
-���ϤκǸ�ˤϲ���ʸ�����դ��ޤ���
+のようなフォーマット済みのエラーメッセージが出力されます。
+出力の最後には改行文字が付きます。
 .Pp
 .Fn err ,
 .Fn errc ,
@@ -109,66 +109,66 @@
 .Fn warnc ,
 .Fn vwarn ,
 .Fn vwarnc
-�δؿ��ϡ�code �ޤ�������ѿ�
+の関数は、code または大域変数
 .Va errno
-�˴𤯥��顼��å����������˥�����ȶ�����դ��ơ��ղä��ޤ���
-��������
+に基くエラーメッセージを、前にコロンと空白を付けて、付加します。
+ただし、
 .Fa fmt
-������
+引数が
 .Dv NULL
-�ξ����㳰�Ǥ���
+の場合は例外です。
 .Pp
 .Fn errc ,
 .Fn verrc ,
 .Fn warnc ,
-�����
+および
 .Fn vwarnc
-�γƴؿ��ξ�硢
+の各関数の場合、
 .Va code
-���������顼��å������θ����˻��Ѥ���ޤ���
+引数がエラーメッセージの検索に使用されます。
 .Pp
 .Fn err ,
 .Fn verr ,
 .Fn warn ,
-�����
+および
 .Fn vwarn
-�γƴؿ��ϡ�
-�������Х��ѿ�
+の各関数は、
+グローバル変数
 .Va errno
-����Ѥ��ƥ��顼��å������򸡺����ޤ���
+を使用してエラーメッセージを検索します。
 .Pp
 .Fn errx
-�ؿ������
+関数および
 .Fn warnx
-�ؿ��ϡ����顼��å��������ɲä��ޤ���
+関数は、エラーメッセージを追加しません。
 .Pp
 .Fn err ,
 .Fn verr ,
 .Fn errc ,
 .Fn verrc ,
 .Fn errx ,
-�����
+および
 .Fn verrx
-�γƴؿ��ϡ�
-���ޤ��󤬡�����
+の各関数は、
+戻りませんが、引数
 .Fa eval
-���ͤǽ�λ���ޤ���
+の値で終了します。
 .Fn err_set_exit
-�ؿ�����Ѥ��ơ�
+関数を使用して、
 .Xr exit 3
-�����˸ƤӽФ����ؿ�����ꤷ�ơ�ɬ�פʥ��꡼�󥢥åפ�
-�¹ԤǤ��ޤ���
+の前に呼び出される関数を指定して、必要なクリーンアップを
+実行できます。
 .Va exitf
-�Ѥ� NULL �ؿ��ݥ��󥿤������Ƥ�ȡ��եå���
-���⤷�ʤ��褦�˥ꥻ�åȤ���ޤ���
-�ؿ��ϡ�¾�δؿ������Ѥ�����ϥ��ȥ꡼������ꤷ�ޤ���
+用に NULL 関数ポインタを割り当てると、フックが
+何もしないようにリセットされます。
+関数は、他の関数が使用する出力ストリームを設定します。
 .Fa vfp
-�����ϡ������Ƥ��륹�ȥ꡼��
-(���� void * ���Ѵ�����Ƥ��뤫�⤷��ޤ���)
-����NULL �ݥ��󥿤Ǥ�
-(���ξ����ϥ��ȥ꡼���ɸ�२�顼�����ꤵ��ޤ�)��
-.Sh ��
-���ߤ� errno �����ɽ������λ���ޤ���
+引数は、開いているストリーム
+(既に void * に変換されているかもしれません)
+か、NULL ポインタです
+(この場合出力ストリームは標準エラーに設定されます)。
+.Sh 例
+現在の errno 情報を表示し終了します。
 .Bd -literal -offset indent
 if ((p = malloc(size)) == NULL)
 	err(1, NULL);
@@ -176,13 +176,13 @@ if ((fd = open(file_name, O_RDONLY, 0)) == -1)
 	err(1, "%s", file_name);
 .Ed
 .Pp
-���顼��å�������ɽ�����ƽ�λ���ޤ���
+エラーメッセージを表示して終了します。
 .Bd -literal -offset indent
 if (tm.tm_hour < START_TIME)
 	errx(1, "too early, wait until %s", start_time_string);
 .Ed
 .Pp
-���顼�ηٹ�
+エラーの警告
 .Bd -literal -offset indent
 if ((fd = open(raw_device, O_RDONLY, 0)) == -1)
 	warnx("%s: %s: trying the block device",
@@ -191,35 +191,35 @@ if ((fd = open(block_device, O_RDONLY, 0)) == -1)
 	err(1, "%s", block_device);
 .Ed
 .Pp
-�������Х��ѿ�
+グローバル変数
 .Va  errno
-����Ѥ��ʤ����顼�ηٹ�
+を使用しないエラーの警告
 .Bd -literal -offset indent
 error = my_function();	/* returns a value from <errno.h> */
 if (error != 0)
 	warnc(error, "my_function");
 .Ed
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr exit 3 ,
 .Xr printf 3 ,
 .Xr strerror 3
 .Pp
-.Sh ���
+.Sh 歴史
 .Fn err
-�ؿ���
+関数と
 .Fn warn
-�ؿ��Ϻǽ��
+関数は最初に
 .Bx 4.4
-�Ǹ���ޤ�����
+で現れました。
 .Fn err_set_exit
-�ؿ�
+関数
 .Fn err_set_file
-�ؿ��Ϻǽ��
+関数は最初に
 .Fx 2.1
-�Ǹ���ޤ�����
+で現れました。
 .Fn errc
-�ؿ���
+関数と
 .Fn warnc
-�ؿ��Ϻǽ��
+関数は最初に
 .Fx 3.0
-�Ǹ���ޤ�����
+で現れました。

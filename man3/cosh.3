@@ -36,38 +36,38 @@
 .Dd May 2, 1991
 .Dt COSH 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm cosh ,
 .Nm coshf
-.Nd �ж�;���ؿ�
-.Sh �饤�֥��
+.Nd 双曲余弦関数
+.Sh ライブラリ
 .Lb libm
-.Sh ��
+.Sh 書式
 .In math.h
 .Ft double
 .Fn cosh "double x"
 .Ft float
 .Fn coshf "float x"
-.Sh ����
+.Sh 解説
 .Fn cosh
-�����
+および
 .Fn coshf
-�ؿ��ϡ�
+関数は、
 .Fa x
-���ж�;����׻����ޤ���
-.Sh �����
+の双曲余弦を計算します。
+.Sh 戻り値
 .Fn cosh
-�����
+および
 .Fn coshf
-�ؿ��ϡ�
+関数は、
 .Fa x
-���礭�����礭��������ʳ��ϡ��ж�;�����֤��ޤ���
-�礭��������ϡ��������Х��ѿ�
+の大きさが大きすぎる場合以外は、双曲余弦を返します。
+大きすぎる場合は、グローバル変数
 .Va errno
-��
+が
 .Er ERANGE
-�����ꤵ��ޤ���
-.Sh ��Ϣ����
+に設定されます。
+.Sh 関連項目
 .Xr acos 3 ,
 .Xr asin 3 ,
 .Xr atan 3 ,
@@ -78,8 +78,8 @@
 .Xr sinh 3 ,
 .Xr tan 3 ,
 .Xr tanh 3
-.Sh ����
+.Sh 規格
 .Fn cosh
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

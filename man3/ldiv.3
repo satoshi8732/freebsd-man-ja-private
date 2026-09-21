@@ -40,36 +40,36 @@
 .Dd June 4, 1993
 .Dt LDIV 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm ldiv
-.Nd ��껻�Ǥξ���;����֤�
-.Sh �饤�֥��
+.Nd 割り算での商と余りを返す
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .Fd #include <stdlib.h>
 .Ft ldiv_t
 .Fn ldiv "long num" "long denom"
-.Sh ����
+.Sh 解説
 .Fn ldiv
-�ؿ��ϡ�����
+関数は、引数
 .Ar num ,
 .Ar denom
-�ˤĤ��ơ�
+について、
 .Ar num/denom
-�η׻���¹Ԥ�������;����֤��ޤ���
-����ͤ�
+の計算を実行し、商と余りを返します。
+戻り値は
 .Em long integer
-�ѿ���
+変数の
 .Ar quot ,
 .Ar rem
-����ʤ�
+からなる
 .Ar ldiv-t
-�ι�¤�Τη����֤���ޤ���
-.Sh ��Ϣ����
+の構造体の形で返されます。
+.Sh 関連項目
 .Xr div 3 ,
 .Xr math 3
-.Sh ����
+.Sh 規格
 .Fn ldiv
-�ؿ���
+関数は
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

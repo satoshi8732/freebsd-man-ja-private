@@ -40,31 +40,31 @@
 .Dd June 4, 1993
 .Dt MEMSET 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm memset
-.Nd �Х���ʸ����˥Х��Ȥ�񤭹���
-.Sh �饤�֥��
-.Sh ��
+.Nd バイト文字列にバイトを書き込む
+.Sh ライブラリ
+.Sh 書式
 .In string.h
 .Ft void *
 .Fn memset "void *b" "int c" "size_t len"
-.Sh ����
+.Sh 解説
 .Fn memset
-�ؿ��ϡ���
+関数は、値
 .Fa c
-(unsigned char ���Ѵ�) ��
+(unsigned char に変換) の
 .Fa len
-�Х��Ȥ�ʸ����
+バイトを文字列
 .Fa b
-�˽񤭹��ߤޤ���
-.Sh �����
+に書き込みます。
+.Sh 戻り値
 .Fn memset
-�ؿ��ϡ��ǽ�ΰ������ᤷ�ޤ���
-.Sh ��Ϣ����
+関数は、最初の引数を戻します。
+.Sh 関連項目
 .Xr bzero 3 ,
 .Xr swab 3
-.Sh ����
+.Sh 規格
 .Fn memset
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

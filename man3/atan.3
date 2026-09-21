@@ -36,38 +36,38 @@
 .Dd May 2, 1991
 .Dt ATAN 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm atan ,
 .Nm atanf
-.Nd 1 �ѿ��ε����ܴؿ�
-.Sh �饤�֥��
+.Nd 1 変数の逆正接関数
+.Sh ライブラリ
 .Lb libm
-.Sh ��
+.Sh 書式
 .In math.h
 .Ft double
 .Fn atan "double x"
 .Ft float
 .Fn atanf "float x"
-.Sh ����
+.Sh 解説
 .Fn atan
-�����
+および
 .Fn atanf
-�ؿ��ϡ�
+関数は、
 .Fa x
-�ε����ܤμ��ͤ�׻����ޤ���
-�ݤ�ˤ������ε����ϡ�
+の逆正接の主値を計算します。
+丸めによる誤差の議論は、
 .Xr math 3
-�򻲾Ȥ��Ƥ���������
-.Sh �����
+を参照してください。
+.Sh 戻り値
 .Fn atan
-�����
+および
 .Fn atanf
-�ؿ��ϡ�
+関数は、
 .Bk -words
 .Bq -\*(Pi/2 , +\*(Pi/2
 .Ek
-�饸����ζ�֤ε����ܤ��֤��ޤ���
-.Sh ��Ϣ����
+ラジアンの区間の逆正接を返します。
+.Sh 関連項目
 .Xr acos 3 ,
 .Xr asin 3 ,
 .Xr atan2 3 ,
@@ -78,8 +78,8 @@
 .Xr sinh 3 ,
 .Xr tan 3 ,
 .Xr tanh 3
-.Sh ����
+.Sh 規格
 .Fn atan
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

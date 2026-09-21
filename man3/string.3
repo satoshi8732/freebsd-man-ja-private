@@ -39,7 +39,7 @@
 .Dd December 11, 1993
 .Dt STRING 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm strcat ,
 .Nm strncat ,
 .Nm strchr ,
@@ -60,10 +60,10 @@
 .Nm strtok ,
 .Nm index ,
 .Nm rindex
-.Nd ʸ�������ͭ�δؿ�
-.Sh �饤�֥��
+.Nd 文字列に特有の関数
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft char *
 .Fn strcat "char *s" "const char * append"
@@ -105,18 +105,18 @@
 .Fn index "const char *s" "int c"
 .Ft char *
 .Fn rindex "const char *s" "int c"
-.Sh ����
-������ʸ����ؿ��ϡ��̥�Х��Ȥǽ�λ����ʸ��������ޤ���
+.Sh 解説
+これらの文字列関数は、ヌルバイトで終了する文字列を操作します。
 .Pp
-�ܤ����ϡ��ġ��δؿ��ˤĤ��ƤΥޥ˥奢��ڡ����򻲾Ȥ��Ƥ���������
-����Ĺ�����ѥ��֥������Ȥ� (�̥�Х��ȤΥ����å��ʤ���) �Х�����
-�Ȥ������뤳�ȤˤĤ��Ƥϡ�
+詳しくは、個々の関数についてのマニュアルページを参照してください。
+可変長の汎用オブジェクトを (ヌルバイトのチェックなしの) バイト列
+として操作することについては、
 .Xr bstring 3
-�򻲾Ȥ��Ƥ���������
+を参照してください。
 .Pp
-�ġ��Υޥ˥奢��ڡ����˵����줿��Τ�����Ƥϡ�
-ʸ����ؿ��ϥ����������¤ˤĤ��Ƥθ����ϹԤ��ޤ���
-.Sh ��Ϣ����
+個々のマニュアルページに記されたものを除いては、
+文字列関数はサイズの制限についての検査は行いません。
+.Sh 関連項目
 .Xr bstring 3 ,
 .Xr index 3 ,
 .Xr rindex 3 ,
@@ -134,7 +134,7 @@
 .Xr strspn 3 ,
 .Xr strstr 3 ,
 .Xr strtok 3
-.Sh ����
+.Sh 規格
 .Fn strcat ,
 .Fn strncat ,
 .Fn strchr ,
@@ -150,8 +150,8 @@
 .Fn strspn ,
 .Fn strcspn ,
 .Fn strstr ,
-�����
+および
 .Fn strtok
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

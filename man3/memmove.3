@@ -40,39 +40,39 @@
 .Dd June 4, 1993
 .Dt MEMMOVE 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm memmove
-.Nd �Х���ʸ����򥳥ԡ����ޤ���
-.Sh �饤�֥��
+.Nd バイト文字列をコピーします。
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft void *
 .Fn memmove "void *dst" "const void *src" "size_t len"
-.Sh ����
+.Sh 解説
 .Fn memmove
-�ؿ��ϡ�ʸ����
+関数は、文字列
 .Fa src
-����ʸ����
+から文字列
 .Fa dst
-��
+に
 .Fa len
-�Х��Ȥ�
-���ԡ����ޤ���
-2 �Ĥ�ʸ���󤬥����Х�åפ��뤳�Ȥ�����ޤ�����
-���ԡ��Ͼ���˲�����ʤ���ˡ�ǹԤ��ޤ���
-.Sh �����
+バイトを
+コピーします。
+2 つの文字列がオーバラップすることがありますが、
+コピーは常に破壊されない方法で行われます。
+.Sh 戻り値
 .Fn memmove
-�ؿ��ϡ�
+関数は、
 .Fa dst
-�Υ��ꥸ�ʥ���ͤ��ᤷ�ޤ���
-.Sh ��Ϣ����
+のオリジナルの値を戻します。
+.Sh 関連項目
 .Xr bcopy 3 ,
 .Xr memccpy 3 ,
 .Xr memcpy 3 ,
 .Xr strcpy 3
-.Sh ����
+.Sh 規格
 .Fn memmove
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

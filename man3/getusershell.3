@@ -36,14 +36,14 @@
 .Dd June 4, 1993
 .Dt GETUSERSHELL 3
 .Os 
-.Sh ̾��
+.Sh 名称
 .Nm getusershell ,
 .Nm setusershell ,
 .Nm endusershell
-.Nd �����桼������������
-.Sh �饤�֥��
+.Nd 正規ユーザシェルを取得
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In unistd.h
 .Ft char *
 .Fn getusershell void
@@ -51,48 +51,48 @@
 .Fn setusershell void
 .Ft void
 .Fn endusershell void
-.Sh ����
+.Sh 解説
 .Fn getusershell
-�ؿ��ϡ������ƥ�����Ԥ��ե�����
+関数は、システム管理者がファイル
 .Pa /etc/shells
-��������Ƥ��������桼��������Υݥ��󥿤��֤��ޤ���
+に定義している正規ユーザシェルのポインタを返します。
 .Pa /etc/shells
-���ɤ߹���ʤ����ޤ���¸�ߤ��ʤ���硢
+が読み込めないかまたは存在しない場合、
 .Fn getusershell
-�ϡ���������
+は、あたかも
 .Pa /bin/sh
-�����
+および
 .Pa /bin/csh
-���ե�����˥ꥹ�Ȥ���Ƥ������Τ褦�˵�ư���ޤ���
+がファイルにリストされていたかのように挙動します。
 .Pp
 .Fn getusershell
-�ؿ���
-(ɬ�פʤ�Хե�����򥪡��ץ󤷤�)
-���ιԤ��ɤ߹��ߤޤ���
+関数は
+(必要ならばファイルをオープンして)
+次の行を読み込みます。
 .Fn setusershell
-�ؿ��ϥե��������Ƭ�ޤ���ꡢ
+関数はファイルの先頭まで戻り、
 .Fn endusershell
-�ؿ��ϥե�����򥯥��������ޤ���
-.Sh ��Ϣ�ե�����
+関数はファイルをクローズします。
+.Sh 関連ファイル
 .Bl -tag -width /etc/shells -compact
 .It Pa /etc/shells
 .El
-.Sh ����
+.Sh 診断
 .Fn getusershell
-�롼����ϡ�
+ルーチンは、
 .Dv EOF
-��
-�̥�ݥ��� (0) ���֤��ޤ���
-.Sh ��Ϣ����
+で
+ヌルポインタ (0) を返します。
+.Sh 関連項目
 .Xr shells 5
-.Sh ���
+.Sh 歴史
 .Fn getusershell
-�ؿ���
+関数は
 .Bx 4.3
-�ǤϤ�����о줷�ޤ�����
-.Sh �Х�
+ではじめて登場しました。
+.Sh バグ
 .Fn getusershell
-�ؿ��ϡ�������̤���������Ū���֥������Ȥ˻Ĥ�������
-���֥������ȤΥݥ��󥿤��֤��ޤ����ʸ�
+関数は、処理結果を内部の静的オブジェクトに残し、その
+オブジェクトのポインタを返します。以後
 .Fn getusershell
-��ƤӽФ��ȡ�Ʊ�����֥������Ȥ��ѹ����ޤ���
+を呼び出すと、同じオブジェクトを変更します。

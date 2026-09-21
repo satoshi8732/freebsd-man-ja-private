@@ -40,69 +40,69 @@
 .Dd June 4, 1993
 .Dt FPUTS 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm fputs ,
 .Nm puts
-.Nd �Ԥ򥹥ȥ꡼��˽��Ϥ���
-.Sh �饤�֥��
+.Nd 行をストリームに出力する
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In stdio.h
 .Ft int
 .Fn fputs "const char *str" "FILE *stream"
 .Ft int
 .Fn puts "const char *str"
-.Sh ����
+.Sh 解説
 .Fn fputs
-�ؿ��ϡ�
+関数は、
 .Fa str
-���ؤ�ʸ�����
+が指す文字列を
 .Fa stream
-���ؤ����ȥ꡼��˽񤭹��ߤޤ���
+が指すストリームに書き込みます。
 .\" The terminating
 .\" .Dv NUL
 .\" character is not written.
 .Pp
 .Fn puts
-�ؿ��ϡ�ʸ����
+関数は、文字列
 .Fa str
-�����ʸ����ü�Ѥβ���ʸ���򥹥ȥ꡼��
+および文字列終端用の改行文字をストリーム
 .Em stdout
-�˽񤭹��ߤޤ���
-.Sh �����
+に書き込みます。
+.Sh 戻り値
 .Fn fputs
-�ؿ��ϡ���������� 0 ���ᤷ�����顼��ȯ����������
+関数は、成功すれば 0 を戻し、エラーが発生した場合は
 .Dv EOF
-���ᤷ�ޤ���
+を戻します。
 .Fn puts
-�ϡ������������Ǥʤ��������ᤷ�����顼��ȯ����������
+は、成功すれば負でない整数を戻し、エラーが発生した場合は
 .Dv EOF
-���ᤷ�ޤ���
-.Sh ���顼
+を戻します。
+.Sh エラー
 .Bl -tag -width Er
 .It Bq Er EBADF
-���ꤵ�줿
+指定された
 .Fa stream
-��������߲�ǽ�ʥ��ȥ꡼��ǤϤ���ޤ���
+が、書込み可能なストリームではありません。
 .El
 .Pp
 .Fn fputs
-�ؿ���
+関数と
 .Fn puts
-�ؿ��Ͻ����˼��Ԥ���
-�롼����
+関数は処理に失敗し、
+ルーチン
 .Xr write 2
-�ǻ��ꤵ�줿���顼�Τ����줫��
+で指定されたエラーのいずれかが
 .Va errno
-�����ꤵ��뤳�Ȥ�����ޤ���
-.Sh ��Ϣ����
+に設定されることがあります。
+.Sh 関連項目
 .Xr ferror 3 ,
 .Xr putc 3 ,
 .Xr stdio 3
-.Sh ����
+.Sh 規格
 .Fn fputs
-�ؿ���
+関数と
 .Fn puts
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

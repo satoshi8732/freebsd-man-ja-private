@@ -36,7 +36,7 @@
 .Dd June 4, 1993
 .Dt CTYPE 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm isalnum ,
 .Nm isalpha ,
 .Nm isascii ,
@@ -58,10 +58,10 @@
 .Nm toascii ,
 .Nm tolower ,
 .Nm toupper
-.Nd ʸ��ʬ��ޥ���
-.Sh �饤�֥��
+.Nd 文字分類マクロ
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .Fd #include <ctype.h>
 .Ft int
 .Fn isalnum "int c"
@@ -105,16 +105,16 @@
 .Fn tolower "int c"
 .Ft int
 .Fn toupper "int c"
-.Sh ����
-�嵭�δؿ��ϡ�����
+.Sh 解説
+上記の関数は、整数
 .Ar c
-�ˤĤ���ʸ���ƥ��Ȥ��Ѵ���¹Ԥ��ޤ��������ϡ�
-���󥯥롼�ɥե�����
+について文字テストと変換を実行します。これらは、
+インクルードファイル
 .Aq Pa ctype.h
-��������줿�ޥ������ޤ��� C �饤�֥�����
-���δؿ��Ȥ������ѤǤ��ޤ����ܺ٤ˤĤ��Ƥϡ����ѤΥޥ˥奢��ڡ�����
-���Ȥ��Ƥ���������
-.Sh ��Ϣ����
+に定義されたマクロ、または C ライブラリ内の
+真の関数として利用できます。詳細については、専用のマニュアルページを
+参照してください。
+.Sh 関連項目
 .Xr isalnum 3 ,
 .Xr isalpha 3 ,
 .Xr isascii 3 ,
@@ -132,8 +132,8 @@
 .Xr tolower 3 ,
 .Xr toupper 3 ,
 .Xr ascii 7
-.Sh ����
-�����δؿ��ϡ�
+.Sh 規格
+これらの関数は、
 .Fn digittoint ,
 .Fn isascii ,
 .Fn isblank ,
@@ -143,9 +143,9 @@
 .Fn isphonogram ,
 .Fn isrune ,
 .Fn isspecial
-�����
+および
 .Fn toascii
-��
-�����ơ�
+を
+除いて、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

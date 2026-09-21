@@ -36,15 +36,15 @@
 .Dd April 20, 1991
 .Dt ERF 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm erf ,
 .Nm erff ,
 .Nm erfc ,
 .Nm erfcf
-.Nd �����ؿ��α黻��
-.Sh �饤�֥��
+.Nd 誤差関数の演算子
+.Sh ライブラリ
 .Lb libm
-.Sh ��
+.Sh 書式
 .In math.h
 .Ft double
 .Fn erf "double x"
@@ -54,15 +54,15 @@
 .Fn erfc "double x"
 .Ft float
 .Fn erfcf "float x"
-.Sh ����
-�����δؿ���
+.Sh 解説
+これらの関数は
 .Fa x
-�θ����ؿ���׻����ޤ���
+の誤差関数を計算します。
 .Pp
 .Fn erf
-�ؿ���
+関数と
 .Fn erff
-�ؿ��ϡ����Τ褦�ˡ�x �θ����ؿ� (error function) ��׻����ޤ���
+関数は、次のように、x の誤差関数 (error function) を計算します。
 .Bd -ragged -offset indent
 .if n \{\
 erf(x) = 2/sqrt(pi)\(**\|integral from 0 to x of exp(\-t\(**t) dt \}
@@ -72,24 +72,24 @@ erf\|(x) :=
 .Ed
 .Pp
 .Fn erfc
-�ؿ���
+関数と
 .Fn erfcf
-�ؿ���
+関数は
 .Fa x
-����������ؿ� (complementary error function) ��׻����ޤ������ʤ����
+の相補誤差関数 (complementary error function) を計算します。すなわち、
 .Fn erfc
-�� 1.0 ��������ؿ�
+は 1.0 から誤差関数
 .Fn erf x
-�η�̤򸺻����ޤ���
-�礭��
+の結果を減算します。
+大きな
 .Fa x
-���Ф��ƤϷ夬�����Ƥ��ޤ����ᡢ���δؿ���ͭ�ѤǤ���
-.Sh ��Ϣ����
+に対しては桁が失われてしまうため、この関数が有用です。
+.Sh 関連項目
 .Xr math 3
-.Sh ���
+.Sh 歴史
 .Fn erf
-��
+と
 .Fn erfc
-�ؿ���
+関数は
 .Bx 4.3
-���о줷�ޤ�����
+で登場しました。

@@ -29,14 +29,14 @@
 .Dd October 7, 1998
 .Os
 .Dt PROPERTIES 3
-.Sh ̾��
+.Sh 名称
 .Nm properties_read ,
 .Nm propery_find ,
 .Nm properties_free
-.Nd ñ��ʥץ��ѥƥ��ꥹ�Ȥ� ASCII �����������ؿ�
-.Sh �饤�֥��
+.Nd 単純なプロパティリストを ASCII から作成する関数
+.Sh ライブラリ
 .Lb libutil
-.Sh ��
+.Sh 書式
 .In sys/types.h
 .In libutil.h
 .Ft properties
@@ -45,7 +45,7 @@
 .Fn property_find "properties list" "const char *name"
 .Ft void
 .Fn properties_free "properties list"
-.Sh ����
+.Sh 解説
 .Bd -literal
 typedef struct _properties {
 	struct _properties *next;
@@ -54,44 +54,44 @@ typedef struct _properties {
 } *properties;
 .Ed
 .Pp
-�ؿ�
+関数
 .Fn properties_read
-�ϡ�
+は、
 .Fa fd
-���Ϥ��줿�ե����뵭�һҤ���̾�����ͤΥڥ����ɤ߹��ߡ�
-�ե���������Ƥ�Ŭ�ڤ�ʬ�Ϥ��줿��ΤȤ��ƿ�����
-�ץ��ѥƥ��ꥹ�ȤΥإåɤ��ᤷ�ޤ������顼��ȯ����������
-NULL ���֤���ޤ���
-�֤�����ͤϡ�����Ĺ
+で渡されたファイル記述子から名前と値のペアを読み込み、
+ファイルの内容が適切に分析されたものとして新しい
+プロパティリストのヘッドを戻します。エラーが発生した場合は
+NULL が返されます。
+返される値は、最大長
 .Dv PROPERTY_MAX_VALUE
-�Х��ȤޤǤǤ���
+バイトまでです。
 .Pp
 .Fn property_find
-�ϡ�
+は、
 .Fa name
-�Ȥ���̾���Υץ��ѥƥ��δ�Ϣ�ͥ��ȥ�󥰤�
-�ᤷ�ޤ������Υץ��ѥƥ������Ĥ���ʤ�����
-NULL ���ᤷ�ޤ���
+という名前のプロパティの関連値ストリングを
+戻します。このプロパティが見つからない場合は
+NULL を戻します。
 .Pp
 .Fn properties_free
-�ϡ�
+は、
 .Fn properties_read
-���ᤷ����¤�Τ�ɬ�פʤ��ʤä�
-���ˤ����������ޤ���
-.Sh �ե��������
-�ե�����γƥץ��ѥƥ��ϡ�
+が戻した構造体が必要なくなった
+場合にそれを解放します。
+.Sh ファイル形式
+ファイルの各プロパティは、
 .Fa name = value
-�Ȥ����ե����ޥåȤˤʤäƤ����
-���ꤵ��ޤ���
+というフォーマットになっていると
+想定されます。
 .Fa name
-�ϱѿ���ʸ���� (����� `=' �ʳ����ü�ʸ��) �Ǥ���
+は英数字文字列 (および `=' 以外の特殊文字) です。
 .Fa value
-�ϡ�����ʸ���ǽ���롢�ƥ����Ȥ�Ǥ�դΥ��ȥ�󥰤Ǥ������Ԥ���
-���ϡ������Τ� { } �ǰϤ�ɬ�פ�����ޤ���# �� ; �ǻϤޤ�Ԥ�
-�����ȤȤߤʤ����̵�뤵��ޤ���
-.Sh ��Ϣ����
+は、改行文字で終わる、テキストの任意のストリングです。改行する
+場合は、値全体を { } で囲む必要があります。# か ; で始まる行は
+コメントとみなされて無視されます。
+.Sh 関連項目
 .Xr auth_getval 3
-.Sh �Х�
-ñ��Ǥ���
-.Sh ���
+.Sh バグ
+単純です。
+.Sh 作者
 .An Jordan Hubbard

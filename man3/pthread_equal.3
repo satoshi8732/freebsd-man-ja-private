@@ -34,38 +34,38 @@
 .Dd April 4, 1996
 .Dt PTHREAD_EQUAL 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm pthread_equal
-.Nd ����å� ID �����
-.Sh �饤�֥��
+.Nd スレッド ID の比較
+.Sh ライブラリ
 .Lb libc_r
-.Sh ��
+.Sh 書式
 .In pthread.h
 .Ft int
 .Fn pthread_equal "pthread_t t1" "pthread_t t2"
-.Sh ����
+.Sh 解説
 .Fn pthread_equal
-�ؿ��ϡ�
+関数は、
 .Fa t1
-�����
+および
 .Fa t2
-�Υ���å� ID ����Ӥ��ޤ���
-.Sh �����
+のスレッド ID を比較します。
+.Sh 戻り値
 .Fn pthread_equal
-�ؿ��ϡ�
+関数は、
 .Fa t1
-�����
+および
 .Fa t2
-�Υ���å� ID ��Ʊ������åɤ�����������ˤ��� 0 ���֤���
-�����Ǥʤ����ˤ� 0 ���֤��ޤ���
-.Sh ���顼
-����ޤ���
+のスレッド ID が同じスレッドに相当する場合には非 0 を返し、
+そうでない場合には 0 を返します。
+.Sh エラー
+ありません。
 .Pp
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr pthread_create 3 ,
 .Xr pthread_exit 3
-.Sh ����
+.Sh 規格
 .Fn pthread_equal
-��
+は
 .St -p1003.1-96
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

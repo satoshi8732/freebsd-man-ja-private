@@ -34,29 +34,29 @@
 .Dd April 4, 1996
 .Dt PTHREAD_SELF 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm pthread_self
-.Nd �ƤӽФ��Ƥ��륹��åɤ� ID �μ���
-.Sh �饤�֥��
+.Nd 呼び出しているスレッドの ID の取得
+.Sh ライブラリ
 .Lb libc_r
-.Sh ��
+.Sh 書式
 .In pthread.h
 .Ft pthread_t
 .Fn pthread_self "void"
-.Sh ����
+.Sh 解説
 .Fn pthread_self
-�ؿ��ϡ��ƤӽФ��Ƥ��륹��åɤΥ���å� ID ���֤��ޤ���
-.Sh �����
+関数は、呼び出しているスレッドのスレッド ID を返します。
+.Sh 戻り値
 .Fn pthread_self
-�ؿ��ϡ��ƤӽФ��Ƥ��륹��åɤΥ���å� ID ���֤��ޤ���
-.Sh ���顼
-����ޤ���
+関数は、呼び出しているスレッドのスレッド ID を返します。
+.Sh エラー
+ありません。
 .Pp
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr pthread_create 3 ,
 .Xr pthread_equal 3
-.Sh ����
+.Sh 規格
 .Fn pthread_self
-��
+は
 .St -p1003.1-96
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

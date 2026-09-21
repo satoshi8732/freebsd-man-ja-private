@@ -40,39 +40,39 @@
 .Dd June 4, 1993
 .Dt STRRCHR 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm strrchr
-.Nd ʸ������Ǥ�ʸ���ΰ��֤�õ��
-.Sh �饤�֥��
+.Nd 文字列中での文字の位置を探す
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft char *
 .Fn strrchr "const char *s" "int c"
-.Sh ����
+.Sh 解説
 .Fn strrchr
-�ؿ��ϡ�ʸ����
+関数は、文字列
 .Fa s
-��� (char ���Ѵ����줿)
+中の (char に変換された)
 .Fa c
-���Ǹ�˽и�������֤�õ���ޤ���
+が最後に出現する位置を探します。
 .Fa c
-��
+が
 .Ql \e0
-�ΤȤ���
+のときは
 .Fn strrchr
-�Ͻ�ü��
+は終端の
 .Ql \e0
-�ΰ��֤򼨤��ޤ���
-.Sh �����
+の位置を示します。
+.Sh 戻り値
 .Fn strrchr
-�ؿ��ϳ�������ʸ���ؤΥݥ��󥿤��֤��ޤ���
-�ޤ���
+関数は該当する文字へのポインタを返します。
+また、
 .Fa s
-��Τɤ��ˤ�
+中のどこにも
 .Fa c
-���и����ʤ����� NULL �ݥ��󥿤��֤��ޤ���
-.Sh ��Ϣ����
+が出現しない場合は NULL ポインタを返します。
+.Sh 関連項目
 .Xr memchr 3 ,
 .Xr strchr 3 ,
 .Xr strcspn 3 ,
@@ -81,8 +81,8 @@
 .Xr strspn 3 ,
 .Xr strstr 3 ,
 .Xr strtok 3
-.Sh ����
+.Sh 規格
 .Fn strrchr
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

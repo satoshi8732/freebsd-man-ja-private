@@ -36,16 +36,16 @@
 .Dd June 4, 1993
 .Dt GETPROTOENT 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm getprotoent ,
 .Nm getprotobynumber ,
 .Nm getprotobyname ,
 .Nm setprotoent ,
 .Nm endprotoent
-.Nd �ץ��ȥ��륨��ȥ�μ���
-.Sh �饤�֥��
+.Nd プロトコルエントリの取得
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In netdb.h
 .Ft struct protoent *
 .Fn getprotoent void
@@ -57,82 +57,82 @@
 .Fn setprotoent "int stayopen"
 .Ft void
 .Fn endprotoent void
-.Sh ����
+.Sh 解説
 .Fn getprotoent ,
 .Fn getprotobyname ,
-�����
+および
 .Fn getprotobynumber
-�ؿ��Ϥ��줾�졢���˼�����¤����ĥ��֥������ȤؤΥݥ��󥿤��֤��ޤ���
-��¤�Τˤϡ��ͥåȥ���ץ��ȥ���ǡ����١���
+関数はそれぞれ、次に示す構造を持つオブジェクトへのポインタを返します。
+構造体には、ネットワークプロトコルデータベース
 .Pa /etc/protocols
-�ˤ���Ԥ������ե�����ɤ��ޤޤ�ޤ���
+にある行の内訳フィールドが含まれます。
 .Bd -literal -offset indent
 .Pp
 struct  protoent {
-        char    *p_name;        /* �ץ��ȥ���Υ��ե������̾ */
-        char    **p_aliases;    /* �����ꥢ���ꥹ�� */
-        int     p_proto;        /* �ץ��ȥ����ֹ� */
+        char    *p_name;        /* プロトコルのオフィシャル名 */
+        char    **p_aliases;    /* エイリアスリスト */
+        int     p_proto;        /* プロトコル番号 */
 };
 .Ed
 .Pp
-���ι�¤�ΤΥ��Фϼ��ΤȤ���Ǥ���
+この構造体のメンバは次のとおりです。
 .Bl -tag -width p_aliases
 .It Fa p_name
-�ץ��ȥ���Υ��ե������̾��
+プロトコルのオフィシャル名。
 .It Fa p_aliases
-�ץ��ȥ������̾ (�����ꥢ��) �� 0 �ǽ����ꥹ�ȡ�
+プロトコルの別名 (エイリアス) の 0 で終わるリスト。
 .It Fa p_proto
-�ץ��ȥ����ֹ档
+プロトコル番号。
 .El
 .Pp
 .Fn getprotoent
-�ؿ��ϡ��ե�����μ��ιԤ��ɤ߹��ߤޤ���
-���κݡ�ɬ�פʤ�Хե�����򥪡��ץ󤷤ޤ���
+関数は、ファイルの次の行を読み込みます。
+この際、必要ならばファイルをオープンします。
 .Pp
 .Fn setprotoent
-�ؿ��ϡ��ե�����򥪡��ץ󤷤ƥ�磻��ɤ��ޤ���
+関数は、ファイルをオープンしてリワインドします。
 .Fa stayopen
-�ե饰�� 0 �Ǥʤ���С�
+フラグが 0 でなければ、
 .Fn getprotobyname
-�ޤ���
+または
 .Fn getprotobynumber
-�Τ��줾��θƤӽФ��θ�Ǥ⡢�ͥåȥǡ����١����ϥ�����������ޤ���
+のそれぞれの呼び出しの後でも、ネットデータベースはクローズされません。
 .Pp
 .Fn endprotoent
-�ؿ��ϥե�����򥯥��������ޤ���
+関数はファイルをクローズします。
 .Pp
 .Fn getprotobyname
-�����
+および
 .Fn getprotobynumber
-�ؿ��ϡ�Ŭ�礹��ץ��ȥ���̾�ޤ��ϥץ��ȥ����ֹ椬���Ĥ��뤫���ޤ���
+関数は、適合するプロトコル名またはプロトコル番号が見つかるか、または
 .Dv EOF
-��ã����ޤǡ��ե������ǽ餫��缡�������ޤ���
-.Sh �����
+に達するまで、ファイルを最初から順次検索します。
+.Sh 戻り値
 .Dv EOF
-�ޤ��ϥ��顼��
+またはエラーで
 Null
-�ݥ���
+ポインタ
 (0)
-���֤�ޤ���
-.Sh ��Ϣ�ե�����
+が返ります。
+.Sh 関連ファイル
 .Bl -tag -width /etc/protocols -compact
 .It Pa /etc/protocols
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr protocols 5
-.Sh ���
+.Sh 歴史
 .Fn getprotoent ,
 .Fn getprotobynumber ,
 .Fn getprotobyname ,
 .Fn setprotoent
-�����
+および
 .Fn endprotoent
-�ؿ���
+関数は
 .Bx 4.2
-���о줷�ޤ�����
-.Sh �Х�
-�����δؿ�����Ū�ǡ������֤���Ѥ��ޤ���
-��Ǥ��Υǡ�������Ѥ���ɬ�פ�����С��ʸ�Τ����δؿ��θƤӽФ���
-�ǡ�������񤭤�������ˡ����ԡ�������¸����ɬ�פ�����ޤ���
-�ʤ����ץ��ȥ���ǡ����Ȥ��Ƽ��������Τϸ��ߡ�
-���󥿡��ͥåȥץ��ȥ�������Ǥ���
+で登場しました。
+.Sh バグ
+これらの関数は静的データ空間を使用します。
+後でこのデータを使用する必要があれば、以後のこれらの関数の呼び出しで
+データが上書きされる前に、コピーして保存する必要があります。
+なお、プロトコルデータとして受け入れるのは現在、
+インターネットプロトコルだけです。
