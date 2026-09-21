@@ -16,32 +16,32 @@
 .\"
 .\" $FreeBSD$
 .TH "NAMED.CONF" "5" "Aug 13, 2004" "BIND9" ""
-.SH Ì¾¾Î
-named.conf \- named ÍÑÀßÄê¥Õ¥¡¥¤¥ë
-.SH ½ñ¼°
+.SH åç§°
+named.conf \- named ç”¨è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«
+.SH æ›¸å¼
 .sp
 \fBnamed.conf\fR
-.SH "²òÀâ"
+.SH "è§£èª¬"
 .PP
-\fInamed.conf\fR ¤Ï
+\fInamed.conf\fR ã¯
 \fBnamed\fR
-ÍÑ¤ÎÀßÄê¥Õ¥¡¥¤¥ë¤Ç¤¹¡£
-¥¹¥Æ¡¼¥È¥á¥ó¥È¤Ï¥Ö¥ì¡¼¥¹¤Ç°Ï¤Ş¤ì¡¢¥»¥ß¥³¥í¥ó¤Ç½ª¤ï¤ê¤Ş¤¹¡£
-¥¹¥Æ¡¼¥È¥á¥ó¥ÈÆâ¤ÇÀá¤ò¤È¤ë¾ì¹ç¤â¥»¥ß¥³¥í¥ó½ªÃ¼¤Ç¤¹¡£
-ÄÌ¾ï¤Î¥³¥á¥ó¥È¥¹¥¿¥¤¥ë¤¬¥µ¥İ¡¼¥È¤µ¤ì¤Æ¤¤¤Ş¤¹:
+ç”¨ã®è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ã€‚
+ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã¯ãƒ–ãƒ¬ãƒ¼ã‚¹ã§å›²ã¾ã‚Œã€ã‚»ãƒŸã‚³ãƒ­ãƒ³ã§çµ‚ã‚ã‚Šã¾ã™ã€‚
+ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆå†…ã§ç¯€ã‚’ã¨ã‚‹å ´åˆã‚‚ã‚»ãƒŸã‚³ãƒ­ãƒ³çµ‚ç«¯ã§ã™ã€‚
+é€šå¸¸ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«ãŒã‚µãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ã¾ã™:
 .PP
-C ¥¹¥¿¥¤¥ë: /* */
+C ã‚¹ã‚¿ã‚¤ãƒ«: /* */
 .PP
-C++ ¥¹¥¿¥¤¥ë: // ¹ÔËö¤Ş¤Ç¥³¥á¥ó¥È
+C++ ã‚¹ã‚¿ã‚¤ãƒ«: // è¡Œæœ«ã¾ã§ã‚³ãƒ¡ãƒ³ãƒˆ
 .PP
-Unix ¥¹¥¿¥¤¥ë: # ¹ÔËö¤Ş¤Ç¥³¥á¥ó¥È
-.SH "ACL ¥¹¥Æ¡¼¥È¥á¥ó¥È"
+Unix ã‚¹ã‚¿ã‚¤ãƒ«: # è¡Œæœ«ã¾ã§ã‚³ãƒ¡ãƒ³ãƒˆ
+.SH "ACL ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ"
 .sp
 .nf
 acl \fIstring\fR { \fIaddress_match_element\fR; ... };
 .sp
 .fi
-.SH "KEY ¥¹¥Æ¡¼¥È¥á¥ó¥È"
+.SH "KEY ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ"
 .sp
 .nf
 key \fIdomain_name\fR {
@@ -50,7 +50,7 @@ key \fIdomain_name\fR {
 };
 .sp
 .fi
-.SH "MASTERS ¥¹¥Æ¡¼¥È¥á¥ó¥È"
+.SH "MASTERS ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ"
 .sp
 .nf
 masters \fIstring\fR [ port \fIinteger\fR ] {
@@ -59,7 +59,7 @@ masters \fIstring\fR [ port \fIinteger\fR ] {
 };
 .sp
 .fi
-.SH "SERVER ¥¹¥Æ¡¼¥È¥á¥ó¥È"
+.SH "SERVER ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ"
 .sp
 .nf
 server ( \fIipv4_address\fR | \fIipv6_address\fR ) {
@@ -75,11 +75,11 @@ server ( \fIipv4_address\fR | \fIipv6_address\fR ) {
 	transfer-source-v6 ( \fIipv6_address\fR | * )
 		[ port ( \fIinteger\fR | * ) ];
 
-	support-ixfr \fIboolean\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
+	support-ixfr \fIboolean\fR; // å¤ã„æŒ‡å®šã§ã™
 };
 .sp
 .fi
-.SH "TRUSTED-KEYS ¥¹¥Æ¡¼¥È¥á¥ó¥È"
+.SH "TRUSTED-KEYS ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ"
 .sp
 .nf
 trusted-keys {
@@ -87,7 +87,7 @@ trusted-keys {
 };
 .sp
 .fi
-.SH "CONTROLS ¥¹¥Æ¡¼¥È¥á¥ó¥È"
+.SH "CONTROLS ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ"
 .sp
 .nf
 controls {
@@ -95,11 +95,11 @@ controls {
 		[ port ( \fIinteger\fR | * ) ]
 		allow { \fIaddress_match_element\fR; ... }
 		[ keys { \fIstring\fR; ... } ];
-	unix \fIunsupported\fR; // ¼ÂÁõ¤µ¤ì¤Ş¤»¤ó
+	unix \fIunsupported\fR; // å®Ÿè£…ã•ã‚Œã¾ã›ã‚“
 };
 .sp
 .fi
-.SH "LOGGING ¥¹¥Æ¡¼¥È¥á¥ó¥È"
+.SH "LOGGING ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ"
 .sp
 .nf
 logging {
@@ -117,7 +117,7 @@ logging {
 };
 .sp
 .fi
-.SH "LWRES ¥¹¥Æ¡¼¥È¥á¥ó¥È"
+.SH "LWRES ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ"
 .sp
 .nf
 lwres {
@@ -130,7 +130,7 @@ lwres {
 };
 .sp
 .fi
-.SH "OPTIONS ¥¹¥Æ¡¼¥È¥á¥ó¥È"
+.SH "OPTIONS ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ"
 .sp
 .nf
 options {
@@ -143,8 +143,8 @@ options {
 	dump-file \fIquoted_string\fR;
 	files \fIsize\fR;
 	heartbeat-interval \fIinteger\fR;
-	host-statistics \fIboolean\fR; // ¼ÂÁõ¤µ¤ì¤Ş¤»¤ó
-	host-statistics-max \fInumber\fR; // ¼ÂÁõ¤µ¤ì¤Ş¤»¤ó
+	host-statistics \fIboolean\fR; // å®Ÿè£…ã•ã‚Œã¾ã›ã‚“
+	host-statistics-max \fInumber\fR; // å®Ÿè£…ã•ã‚Œã¾ã›ã‚“
 	hostname ( \fIquoted_string\fR | none );
 	interface-interval \fIinteger\fR;
 	listen-on [ port \fIinteger\fR ] { \fIaddress_match_element\fR; ... };
@@ -161,7 +161,7 @@ options {
 	server-id ( \fIquoted_string\fR | none |;
 	stacksize \fIsize\fR;
 	statistics-file \fIquoted_string\fR;
-	statistics-interval \fIinteger\fR; // Ì¤¼ÂÁõ¤Ç¤¹
+	statistics-interval \fIinteger\fR; // æœªå®Ÿè£…ã§ã™
 	tcp-clients \fIinteger\fR;
 	tcp-listen-queue \fIinteger\fR;
 	tkey-dhkey \fIquoted_string\fR \fIinteger\fR;
@@ -174,8 +174,8 @@ options {
 	version ( \fIquoted_string\fR | none );
 	allow-recursion { \fIaddress_match_element\fR; ... };
 	sortlist { \fIaddress_match_element\fR; ... };
-	topology { \fIaddress_match_element\fR; ... }; // ¼ÂÁõ¤µ¤ì¤Ş¤»¤ó
-	auth-nxdomain \fIboolean\fR; // ¥Ç¥Õ¥©¥ë¥È¤¬ÊÑ¹¹¤µ¤ì¤Ş¤·¤¿
+	topology { \fIaddress_match_element\fR; ... }; // å®Ÿè£…ã•ã‚Œã¾ã›ã‚“
+	auth-nxdomain \fIboolean\fR; // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãŒå¤‰æ›´ã•ã‚Œã¾ã—ãŸ
 	minimal-responses \fIboolean\fR;
 	recursion \fIboolean\fR;
 	rrset-order {
@@ -184,13 +184,13 @@ options {
 	};
 	provide-ixfr \fIboolean\fR;
 	request-ixfr \fIboolean\fR;
-	rfc2308-type1 \fIboolean\fR; // Ì¤¼ÂÁõ¤Ç¤¹
+	rfc2308-type1 \fIboolean\fR; // æœªå®Ÿè£…ã§ã™
 	additional-from-auth \fIboolean\fR;
 	additional-from-cache \fIboolean\fR;
 	query-source \fIquerysource4\fR;
 	query-source-v6 \fIquerysource6\fR;
 	cleaning-interval \fIinteger\fR;
-	min-roots \fIinteger\fR; // ¼ÂÁõ¤µ¤ì¤Ş¤»¤ó
+	min-roots \fIinteger\fR; // å®Ÿè£…ã•ã‚Œã¾ã›ã‚“
 	lame-ttl \fIinteger\fR;
 	max-ncache-ttl \fIinteger\fR;
 	max-cache-ttl \fIinteger\fR;
@@ -199,7 +199,7 @@ options {
 	check-names ( master | slave | response )
 		( fail | warn | ignore );
 	cache-file \fIquoted_string\fR;
-	suppress-initial-notify \fIboolean\fR; // Ì¤¼ÂÁõ¤Ç¤¹
+	suppress-initial-notify \fIboolean\fR; // æœªå®Ÿè£…ã§ã™
 	preferred-glue \fIstring\fR;
 	dual-stack-servers [ port \fIinteger\fR ] {
 		( \fIquoted_string\fR [port \fIinteger\fR] |
@@ -258,22 +258,22 @@ options {
 	zone-statistics \fIboolean\fR;
 	key-directory \fIquoted_string\fR;
 
-	allow-v6-synthesis { \fIaddress_match_element\fR; ... }; // ¸Å¤¤»ØÄê¤Ç¤¹
-	deallocate-on-exit \fIboolean\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	fake-iquery \fIboolean\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	fetch-glue \fIboolean\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	has-old-clients \fIboolean\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	maintain-ixfr-base \fIboolean\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	max-ixfr-log-size \fIsize\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	multiple-cnames \fIboolean\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	named-xfer \fIquoted_string\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	serial-queries \fIinteger\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	treat-cr-as-space \fIboolean\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	use-id-pool \fIboolean\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
+	allow-v6-synthesis { \fIaddress_match_element\fR; ... }; // å¤ã„æŒ‡å®šã§ã™
+	deallocate-on-exit \fIboolean\fR; // å¤ã„æŒ‡å®šã§ã™
+	fake-iquery \fIboolean\fR; // å¤ã„æŒ‡å®šã§ã™
+	fetch-glue \fIboolean\fR; // å¤ã„æŒ‡å®šã§ã™
+	has-old-clients \fIboolean\fR; // å¤ã„æŒ‡å®šã§ã™
+	maintain-ixfr-base \fIboolean\fR; // å¤ã„æŒ‡å®šã§ã™
+	max-ixfr-log-size \fIsize\fR; // å¤ã„æŒ‡å®šã§ã™
+	multiple-cnames \fIboolean\fR; // å¤ã„æŒ‡å®šã§ã™
+	named-xfer \fIquoted_string\fR; // å¤ã„æŒ‡å®šã§ã™
+	serial-queries \fIinteger\fR; // å¤ã„æŒ‡å®šã§ã™
+	treat-cr-as-space \fIboolean\fR; // å¤ã„æŒ‡å®šã§ã™
+	use-id-pool \fIboolean\fR; // å¤ã„æŒ‡å®šã§ã™
 };
 .sp
 .fi
-.SH "VIEW ¥¹¥Æ¡¼¥È¥á¥ó¥È"
+.SH "VIEW ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ"
 .sp
 .nf
 view \fIstring\fR \fIoptional_class\fR {
@@ -300,8 +300,8 @@ view \fIstring\fR \fIoptional_class\fR {
 
 	allow-recursion { \fIaddress_match_element\fR; ... };
 	sortlist { \fIaddress_match_element\fR; ... };
-	topology { \fIaddress_match_element\fR; ... }; // ¼ÂÁõ¤µ¤ì¤Ş¤»¤ó
-	auth-nxdomain \fIboolean\fR; // ¥Ç¥Õ¥©¥ë¥È¤¬ÊÑ¹¹¤µ¤ì¤Ş¤·¤¿
+	topology { \fIaddress_match_element\fR; ... }; // å®Ÿè£…ã•ã‚Œã¾ã›ã‚“
+	auth-nxdomain \fIboolean\fR; // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãŒå¤‰æ›´ã•ã‚Œã¾ã—ãŸ
 	minimal-responses \fIboolean\fR;
 	recursion \fIboolean\fR;
 	rrset-order {
@@ -310,13 +310,13 @@ view \fIstring\fR \fIoptional_class\fR {
 	};
 	provide-ixfr \fIboolean\fR;
 	request-ixfr \fIboolean\fR;
-	rfc2308-type1 \fIboolean\fR; // Ì¤¼ÂÁõ¤Ç¤¹
+	rfc2308-type1 \fIboolean\fR; // æœªå®Ÿè£…ã§ã™
 	additional-from-auth \fIboolean\fR;
 	additional-from-cache \fIboolean\fR;
 	query-source \fIquerysource4\fR;
 	query-source-v6 \fIquerysource6\fR;
 	cleaning-interval \fIinteger\fR;
-	min-roots \fIinteger\fR; // ¼ÂÁõ¤µ¤ì¤Ş¤»¤ó
+	min-roots \fIinteger\fR; // å®Ÿè£…ã•ã‚Œã¾ã›ã‚“
 	lame-ttl \fIinteger\fR;
 	max-ncache-ttl \fIinteger\fR;
 	max-cache-ttl \fIinteger\fR;
@@ -325,7 +325,7 @@ view \fIstring\fR \fIoptional_class\fR {
 	check-names ( master | slave | response )
 		( fail | warn | ignore );
 	cache-file \fIquoted_string\fR;
-	suppress-initial-notify \fIboolean\fR; // Ì¤¼ÂÁõ¤Ç¤¹
+	suppress-initial-notify \fIboolean\fR; // æœªå®Ÿè£…ã§ã™
 	preferred-glue \fIstring\fR;
 	dual-stack-servers [ port \fIinteger\fR ] {
 		( \fIquoted_string\fR [port \fIinteger\fR] |
@@ -384,14 +384,14 @@ view \fIstring\fR \fIoptional_class\fR {
 	zone-statistics \fIboolean\fR;
 	key-directory \fIquoted_string\fR;
 
-	allow-v6-synthesis { \fIaddress_match_element\fR; ... }; // ¸Å¤¤»ØÄê¤Ç¤¹
-	fetch-glue \fIboolean\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	maintain-ixfr-base \fIboolean\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	max-ixfr-log-size \fIsize\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
+	allow-v6-synthesis { \fIaddress_match_element\fR; ... }; // å¤ã„æŒ‡å®šã§ã™
+	fetch-glue \fIboolean\fR; // å¤ã„æŒ‡å®šã§ã™
+	maintain-ixfr-base \fIboolean\fR; // å¤ã„æŒ‡å®šã§ã™
+	max-ixfr-log-size \fIsize\fR; // å¤ã„æŒ‡å®šã§ã™
 };
 .sp
 .fi
-.SH "ZONE ¥¹¥Æ¡¼¥È¥á¥ó¥È"
+.SH "ZONE ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ"
 .sp
 .nf
 zone \fIstring\fR \fIoptional_class\fR {
@@ -459,19 +459,19 @@ zone \fIstring\fR \fIoptional_class\fR {
 	zone-statistics \fIboolean\fR;
 	key-directory \fIquoted_string\fR;
 
-	ixfr-base \fIquoted_string\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	ixfr-tmp-file \fIquoted_string\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	maintain-ixfr-base \fIboolean\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	max-ixfr-log-size \fIsize\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
-	pubkey \fIinteger\fR \fIinteger\fR \fIinteger\fR \fIquoted_string\fR; // ¸Å¤¤»ØÄê¤Ç¤¹
+	ixfr-base \fIquoted_string\fR; // å¤ã„æŒ‡å®šã§ã™
+	ixfr-tmp-file \fIquoted_string\fR; // å¤ã„æŒ‡å®šã§ã™
+	maintain-ixfr-base \fIboolean\fR; // å¤ã„æŒ‡å®šã§ã™
+	max-ixfr-log-size \fIsize\fR; // å¤ã„æŒ‡å®šã§ã™
+	pubkey \fIinteger\fR \fIinteger\fR \fIinteger\fR \fIquoted_string\fR; // å¤ã„æŒ‡å®šã§ã™
 };
 .sp
 .fi
-.SH "´ØÏ¢¥Õ¥¡¥¤¥ë"
+.SH "é–¢é€£ãƒ•ã‚¡ã‚¤ãƒ«"
 .PP
 \fI/etc/named.conf\fR
-.SH "´ØÏ¢¹àÌÜ"
+.SH "é–¢é€£é …ç›®"
 .PP
 \fBnamed\fR(8),
 \fBrndc\fR(8),
-\fBBIND 9 ´ÉÍı¼Ô¥ê¥Õ¥¡¥ì¥ó¥¹¥Ş¥Ë¥å¥¢¥ë\fR
+\fBBIND 9 ç®¡ç†è€…ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«\fR

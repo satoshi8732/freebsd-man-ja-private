@@ -37,112 +37,112 @@
 .TH TERMINFO 5 "" "" "File Formats"
 .ds n 5
 .ds d /usr/share/misc/terminfo
-.SH ̾��
-terminfo \- ü�������ѥӥ�ƥ��Υǡ����١���
-.SH ��
+.SH 名称
+terminfo \- 端末ケーパビリティのデータベース
+.SH 書式
 \*d/*/*
-.SH ����
+.SH 解説
 .I terminfo
-��ü���������򵭽Ҥ���ǡ����١����Ǥ��ꡢ
+は端末の特性を記述するデータベースであり、
 \fBnvi\fR(1),
 \fBrogue\fR(1)
-�ʤɤβ��̤���Ѥ����ץ�������
+などの画面を活用したプログラムや
 \fBcurses\fR(3X)
-�ʤɤΥ饤�֥��ˤ�äƻ��Ѥ���ޤ���
+などのライブラリによって使用されます。
 .I terminfo
-�ϡ�ü�������ĥ����ѥӥ�ƥ��ν����Ϳ������������ɤΤ褦�ˤ��ƹԤ�����
-���ꤷ��ɬ�פʥѥǥ��󥰤������������󥹤���ꤹ�뤳�Ȥǡ�ü����������
-���Ҥ��ޤ���
+は、端末が持つケーパビリティの集合を与え、画面操作をどのようにして行うかを
+指定し、必要なパディングや初期化シーケンスを指定することで、端末の特性を
+記述します。
 .PP
 .I terminfo
-�Υ���ȥ�ϡ�`,' �Ƕ��ڤ�줿�ե�����ɤ��󤫤�ʤ�ޤ� (�ե���������
-����ޤϥХå�����å���ǥ��������פ��뤫��\e072 �Ƚ񤭤ޤ�)��
-`,' ���ѥ졼���θ�ζ����̵�뤵��ޤ���
-��ü����ɽ���ǽ�Υ���ȥ�ϡ�ü����ɽ����ΤȤ����Τ��Ƥ���̾����
-���ꤷ�ޤ���̾����ʣ�����ꤹ��Ȥ��� `|' �Ƕ��ڤ�ޤ���
-�ǽ��̾���ϡ�����ü���Τ�ΤȤ��ƺǤ�褯�Τ�줿��ά����Ϳ���ޤ���
-�Ǹ��̾���ˤϡ�����ü�����̤Ǥ��������Ĺ��̾������ꤹ��٤��Ǥ���
-�����ʳ���̾���ϡ�Ʊ��ü����ؤ���̾�ȸ��ʤ���ޤ���
-�Ǹ�Τ�ΰʳ���̾���ϡ����٤ƱѾ�ʸ������ʤꡢ���򤬴ޤޤ�Ƥ��Ƥ�
-�����ޤ���
-�Ǹ��̾���ˤϡ��ɤߤ䤹�����뤿�����ʸ��������ޤ�Ƥ⹽���ޤ���
+のエントリは、`,' で区切られたフィールドの列からなります (フィールド内の
+コンマはバックスラッシュでエスケープするか、\e072 と書きます)。
+`,' セパレータの後の空白は無視されます。
+各端末を表す最初のエントリは、端末を表すものとして知られている名前を
+指定します。名前を複数指定するときは `|' で区切ります。
+最初の名前は、その端末のものとして最もよく知られた省略形を与えます。
+最後の名前には、その端末を識別できるだけの長い名前を指定するべきです。
+それら以外の名前は、同じ端末を指す別名と見なされます。
+最後のもの以外の名前は、すべて英小文字からなり、空白が含まれていては
+いけません。
+最後の名前には、読みやすくするために大文字や空白を含めても構いません。
 .PP
-ü��̾ (�Ǹ�ξ�Ĺ�ʤ�ΤϽ���) �ϡ��ʲ�����«�ˤ������ä��դ��Ƥ���������
-̾���δ�����ʬ��ü����������ϡ��ɥ���������ħŪ��ʬ����̾�դ��ޤ�
-(``hp2621'' �Τ褦��)��
-����̾���ˤϥϥ��ե��ޤ�ƤϤ����ޤ���
-�⡼�ɤ䡢�桼�������꤬�������ʬ�ˤĤ��Ƥϡ�����̾�θ�ˡ�
-�ϥ��ե�ȥ⡼�ɤ��������Ĥ���ɽ���Ƥ���������
-�㤨�С�vt100 �� 132 ��⡼�ɤ� vt100-w �Τ褦�ˤʤ�ޤ���
-�Ȥ���Ȥ���������С��ʲ�����������ȤäƤ���������
+端末名 (最後の冗長なものは除く) は、以下の約束にしたがって付けてください。
+名前の基本部分を、端末を構成するハードウェアの特徴的部分から名付けます
+(``hp2621'' のように)。
+この名前にはハイフンを含めてはいけません。
+モードや、ユーザの設定が現れる部分については、基本名の後に、
+ハイフンとモードの接尾辞つけて表してください。
+例えば、vt100 の 132 桁モードは vt100-w のようになります。
+使えるところがあれば、以下の接尾辞を使ってください。
 .PP
 .TS
 center ;
 l c l
 l l l.
-\fB������	��̣	��\fP
--\fInn\fP	���̤ιԿ�	aaa-60
--\fIn\fPp	���̵����ڡ�����	c100-4p
--am	��ư�ޡ������� (�̾盧�줬�ǥե����)	vt100-am
--m	����⡼��; ��������            	ansi-m
--mc	��ˡ�Υ��å���; �ϥ��饤�ȤΤȤ��ζ���	wy30-mc
--na	�������̵�� (�ɽ�Ū�ˤȤɤ��) 	c100-na
--nam	��ư�ޡ�����̵��                	vt100-nam
--nl	���ơ�������̵��                  	att4415-nl
--ns	���ơ�������̵��                  	hp2626-ns
--rv	ȿžɽ��                        	c100-rv
--s	���ơ�������ͭ��                	vt100-s
--vb	�ӡ��פ�����˲Ļ�٥�����  	wy370-vb
--w	�����⡼�� (> 80 �塢�̾� 132 ��)	vt100-w
+\fB接尾辞	意味	例\fP
+-\fInn\fP	画面の行数	aaa-60
+-\fIn\fPp	画面記憶ページ数	c100-4p
+-am	自動マージン付 (通常これがデフォルト)	vt100-am
+-m	白黒モード; 色を抑制            	ansi-m
+-mc	魔法のクッキー; ハイライトのときの空白	wy30-mc
+-na	矢印キー無し (局所的にとどめる) 	c100-na
+-nam	自動マージン無し                	vt100-nam
+-nl	ステータス行無し                  	att4415-nl
+-ns	ステータス行無し                  	hp2626-ns
+-rv	反転表示                        	c100-rv
+-s	ステータス行有り                	vt100-s
+-vb	ビープの代わりに可視ベルを使用  	wy370-vb
+-w	幅広モード (> 80 桁、通常 132 桁)	vt100-w
 .TE
 .PP
-ü����̿̾��§�ˤĤ��Ƥ�����Τꤿ���Ȥ��� \fBterm(7)\fR �Υޥ˥奢���
-���Ȥ��Ƥ���������
-.SS �����ѥӥ�ƥ�
+端末の命名規則についてさらに知りたいときは \fBterm(7)\fR のマニュアルを
+参照してください。
+.SS ケーパビリティ
 .\" Head of terminfo man page ends here
 .ps -1
-�ʲ��� terminfo �ε��ҥ֥��å��˴ޤޤ졢terminfo ��Ȥ������ɤ����ѤǤ���
-�����ѥӥ�ƥ��δ�����ɽ�Ǥ���ɽ�γƹԤΰ�̣�ϼ����̤�Ǥ���
+以下は terminfo の記述ブロックに含まれ、terminfo を使うコードが使用できる
+ケーパビリティの完全な表です。表の各行の意味は次の通りです。
 
-\fBvariable\fR �� (terminfo ��٥��) �ץ�����ޤ������ѥӥ�ƥ���
-���Ѥ���Ȥ����Ѥ���̾���Ǥ���
+\fBvariable\fR は (terminfo レベルの) プログラマがケーパビリティを
+使用するときに用いる名前です。
 
-\fBcapname\fR �ϡ��ǡ����١����Υƥ����Ȥ�����Ѥ���û��̾�ǡ�
-�ǡ����١����򹹿�����ʹ֤��Ѥ���̾���Ǥ���
-��ǽ�ʾ��Ͼ�ˡ�capname �� ANSI X3.64-1979 ɸ�൬�� (���� ECMA-48 ��
-��ä������Ƥ��ޤ����������Ǥ�Ʊ��Τ⤷���������ɤ�����̾����
-�ȤäƤ��ޤ�) ��Ʊ��⤷��������Τ�Τ�����Ǥ���ޤ������ΰ�̣�⡢
-���ε��ʤǤε���˹��פ���褦�ˤ��Ƥ���ޤ���
+\fBcapname\fR は、データベースのテキストの中で用いる短縮名で、
+データベースを更新する人間が用いる名前です。
+可能な場合は常に、capname は ANSI X3.64-1979 標準規格 (現在 ECMA-48 に
+取って代わられていますが、そこでも同一のもしくは非常に良く似た名前を
+使っています) と同一もしくは類似のものを選んであります。その意味も、
+その規格での規定に合致するようにしてあります。
 
-termcap code �ϸ�ŵŪ��
+termcap code は古典的な
 .B termcap
-�����ѥӥ�ƥ���̾���Ǥ� (�����Ĥ��Υ����ѥӥ�ƥ��Ͽ�������Τǡ�
-����̾���� termcap ��ͳ�褷�ޤ���)��
+ケーパビリティの名前です (いくつかのケーパビリティは新しいもので、
+その名前は termcap に由来しません)。
 .P
-�����ѥӥ�ƥ���̾����Ĺ���ˤϡ���ޤä���¤Ϥ���ޤ��󡣤�������̾����
-û�������������ե�����˥��֤�Ȥä�
+ケーパビリティの名前の長さには、決まった上限はありません。ただし、名前を
+短くし、ソースファイルにタブを使って
 .B cap
-�򤭤줤���¤٤���褦�ˡ�������ʤ����� 5 ʸ�������¤�����
-���Ѥ���Ƥ��ޤ���
+をきれいに並べられるように、非公式ながら上限 5 文字の制限が既に
+採用されています。
 
-�Ǹ�ˡ������Ǥϥ����ѥӥ�ƥ��ΰ�̣�������褦�Ȥ��ޤ�����������ˤ�
-�ʲ��Τ褦�ʥ����ɤ������礬����ޤ���
+最後に、説明ではケーパビリティの意味を伝えようとします。説明の中には
+以下のようなコードがある場合があります。
 .TP
 (P)
-�ѥǥ��󥰤������ǽ�Ǥ��뤳�Ȥ�ɽ���ޤ���
+パディングが指定可能であることを表します。
 .TP
 #[1-9]
-��������Ǥϡ�ʸ���� (#\fIi\fP) �Ȥ���Ϳ����������Ȥ���
-tparm ��𤷤��Ϥ���뤳�Ȥ򼨤��ޤ���
+説明の中では、文字列が (#\fIi\fP) として与えられる引数として
+tparm を介して渡されることを示します。
 .TP
 (P*)
-�ƶ��������Կ��˥ѥǥ��󥰤����㤹�뤳�Ȥ�ɽ���ޤ���
+影響を受ける行数にパディングが比例することを表します。
 .TP
 (#\d\fIi\fP\u)
-�� \fIi\fP ���ܤΥѥ�᡼����ɽ���ޤ���
+第 \fIi\fP 番目のパラメータを表します。
 
 .PP
-�ʲ��ϥ֡����ͥ����ѥӥ�ƥ��Ǥ� :
+以下はブール値ケーパビリティです :
 
 .na
 .TS H
@@ -150,123 +150,123 @@ center expand;
 c l l c
 c l l c
 lw25 lw6 lw2 lw20.
-\fBvariable	cap-	TCap	����\fR
-\fB�֡�����	name	Code\fR
+\fBvariable	cap-	TCap	説明\fR
+\fBブール値	name	Code\fR
 auto_left_margin	bw	bw	T{
-cub1 �Ϸ� 0 ����Ǹ�η�˲�����
+cub1 は桁 0 から最後の桁に回り込む
 T}
 auto_right_margin	am	am	T{
-��ư�ޡ�����ǽ�����
+自動マージン機能を持つ
 T}
 back_color_erase	bce	ut	T{
-���̤��طʿ��Ǿõ��
+画面を背景色で消去する
 T}
 can_change	ccc	cc	T{
-��¸�ο���������ǽ
+既存の色を再定義可能
 T}
 ceol_standout_glitch	xhp	xs	T{
-��Ĵ���ϤϾ�񤭤Ǿõ��ʤ� (hp)
+強調出力は上書きで消去されない (hp)
 T}
 col_addr_glitch	xhpa	YA	T{
-hpa/mhpa �Ǥ��������Τ߰�ư��ǽ
+hpa/mhpa では正方向のみ移動可能
 T}
 cpi_changes_res	cpix	YF	T{
-ʸ���ԥå����Ѥ���Ȳ����٤��Ѥ��
+文字ピッチを変えると解像度が変わる
 T}
 cr_cancels_micro_mode	crxm	YB	T{
-cr ����Ѥ���ȥޥ������⡼�ɤ����դˤʤ�
+cr を使用するとマイクロモードがオフになる
 T}
 dest_tabs_magic_smso	xt	xt	T{
-���֤��˲�Ū����Ĵʸ����ư���̯ (t1061)
+タブは破壊的、強調文字の動作が奇妙 (t1061)
 T}
 eat_newline_glitch	xenl	xn	T{
-80 �����β��Ԥ�̵�뤵��� (concept)
+80 桁より後の改行は無視される (concept)
 T}
 erase_overstrike	eo	eo	T{
-����νŤ��Ǥ��Ǿõ��ǽ
+空白の重ね打ちで消去可能
 T}
 generic_type	gn	gn	T{
-����Ū�ʲ���������
+一般的な回線タイプ
 T}
 hard_copy	hc	hc	T{
-�ϡ��ɥ��ԡ�ü��
+ハードコピー端末
 T}
 hard_cursor	chts	HC	T{
-�������뤬���ˤ���
+カーソルが見にくい
 T}
 has_meta_key	km	km	T{
-�᥿��������� (�������� 8 �ӥåȤ����åȤ����)
+メタキーを持つ (押すと第 8 ビットがセットされる)
 T}
 has_print_wheel	daisy	YC	T{
-ʸ�����åȤ��ѹ�����Τ˿ͼ꤬ɬ�פʥץ��
+文字セットを変更するのに人手が必要なプリンタ
 T}
 has_status_line	hs	hs	T{
-���̤ʥ��ơ������Ԥ����
+特別なステータス行を持つ
 T}
 hue_lightness_saturation	hls	hl	T{
-ü���� HLS ��ɽ���Τ߻��� (Tektronix)
+端末は HLS 色表記のみ使用 (Tektronix)
 T}
 insert_null_glitch	in	in	T{
-�����⡼�ɤǥ̥�ʸ������̤���
+挿入モードでヌル文字を区別する
 T}
 lpi_changes_res	lpix	YG	T{
-�ԥԥå����Ѥ���Ȳ����٤��Ѥ��
+行ピッチを変えると解像度が変わる
 T}
 memory_above	da	da	T{
-���̤�������褬�ݻ������
+画面より上の描画が保持される
 T}
 memory_below	db	db	T{
-���̤�겼�����褬�ݻ������
+画面より下の描画が保持される
 T}
 move_insert_mode	mir	mi	T{
-�����⡼�ɤǰ����˥��������ư��ǽ
+挿入モードで安全にカーソル移動可能
 T}
 move_standout_mode	msgr	ms	T{
-��Ĵ�⡼�ɤǰ����˥��������ư��ǽ
+強調モードで安全にカーソル移動可能
 T}
 needs_xon_xoff	nxon	nx	T{
-�ѥǥ��󥰵�ǽ��Ư���ʤ���xon/xoff ���椬ɬ��
+パディング機能が働かない。xon/xoff 制御が必要
 T}
 no_esc_ctlc	xsb	xb	T{
-beehive ü�� (f1=escape, f2=ctrl C)
+beehive 端末 (f1=escape, f2=ctrl C)
 T}
 no_pad_char	npc	NP	T{
-�ѥǥ���ʸ����¸�ߤ��ʤ�
+パディング文字が存在しない
 T}
 non_dest_scroll_region	ndscr	ND	T{
-�����������ΰ褬���˲�Ū
+スクロール領域が非破壊的
 T}
 non_rev_rmcup	nrrmc	NR	T{
-smcup �� rmcup ��ư���ȿž���ʤ�
+smcup は rmcup の動作を反転しない
 T}
 over_strike	os	os	T{
-ü���ϽŤ��Ǥ���ǽ
+端末は重ね打ち可能
 T}
 prtr_silent	mc5i	5i	T{
-�ץ�󥿽��Ϥϲ��̤˥��������ʤ�
+プリンタ出力は画面にエコーしない
 T}
 row_addr_glitch	xvpa	YD	T{
-vpa/mvpa �Ǥ��������ˤΤ߰�ư��ǽ
+vpa/mvpa では正方向にのみ移動可能
 T}
 semi_auto_right_margin	sam	YE	T{
-�ǽ���ǽ��Ϥ���� cr ư��򤹤�
+最終桁で出力すると cr 動作をする
 T}
 status_line_esc_ok	eslok	es	T{
-���ơ������Ծ�ǥ��������ײ�ǽ
+ステータス行上でエスケープ可能
 T}
 tilde_glitch	hz	hz	T{
-~ ɽ���Բ� (hazeltine ü��)
+~ 表示不可 (hazeltine 端末)
 T}
 transparent_underline	ul	ul	T{
-������ʸ���Ͼ�񤭤���
+下線付文字は上書きする
 T}
 xon_xoff	xon	xo	T{
-ü���� xon/xoff �ϥ�ɥ���������Ԥ�
+端末は xon/xoff ハンドシェークを行う
 T}
 .TE
 .ad
 
-�ʲ��Ͽ��ͥ����ѥӥ�ƥ��Ǥ� :
+以下は数値ケーパビリティです :
 
 .na
 .TS H
@@ -274,62 +274,62 @@ center expand;
 c l l c
 c l l c
 lw25 lw6 lw2 lw20.
-\fBvariable	cap-	TCap	����\fR
-\fB���� 	name	Code\fR
+\fBvariable	cap-	TCap	説明\fR
+\fB数値 	name	Code\fR
 columns	cols	co	T{
-1 �Ԥη��
+1 行の桁数
 T}
 init_tabs	it	it	T{
-���֤ν������� # �Ĥζ�����
+タブの初期設定は # 個の空白毎
 T}
 label_height	lh	lh	T{
-��٥� 1 �ĤιԿ�
+ラベル 1 つの行数
 T}
 label_width	lw	lw	T{
-��٥� 1 �Ĥη��
+ラベル 1 つの桁数
 T}
 lines	lines	li	T{
-���̤ޤ��ϥڡ����ιԿ�
+画面またはページの行数
 T}
 lines_of_memory	lm	lm	T{
-lines ���Ͱʾ�ξ�����ιԿ���0 �ϹԿ������ѤǤ��뤳�Ȥ�ɽ��
+lines の値以上の場合メモリの行数。0 は行数が可変であることを表す
 T}
 magic_cookie_glitch	xmc	sg	T{
-smso �� rmso �ǲ��̤˻Ĥ�����
+smso や rmso で画面に残る空白数
 T}
 max_attributes	ma	ma	T{
-ü�����Ȥ߹�碌�ƽ����Ǥ���°�����κ�����
+端末が組み合わせて処理できる属性数の最大値
 T}
 max_colors	colors	Co	T{
-���̾�κ��翧��
+画面上の最大色数
 T}
 max_pairs	pairs	pa	T{
-���̾�ο��ڥ��κ�����
+画面上の色ペアの最大値
 T}
 maximum_windows	wnum	MW	T{
-�����ǽ�ʥ�����ɥ����κ�����
+定義可能なウィンドウ数の最大値
 T}
 no_color_video	ncv	NC	T{
-���դ��Ǥϻ��ѤǤ��ʤ��ӥǥ�°��
+色付きでは使用できないビデオ属性
 T}
 num_labels	nlab	Nl	T{
-���̾�Υ�٥��
+画面上のラベル数
 T}
 padding_baud_rate	pb	pb	T{
-�ѥǥ��󥰤�ɬ�פʺ���ܡ��졼��
+パディングが必要な最低ボーレート
 T}
 virtual_terminal	vt	vt	T{
-���۲����ֹ� (CB/unix)
+仮想画面番号 (CB/unix)
 T}
 width_status_line	wsl	ws	T{
-���ơ������Ԥη��
+ステータス行の桁数
 T}
 .TE
 .ad
 
-�ʲ��ο��ͥ����ѥӥ�ƥ��ϡ�SVr4.0 �� term ��¤�Τ�¸�ߤ��Ƥ��ޤ�����
-�ޥ˥奢��ˤ�̤��������������ޤ���
-SVr4 �ǥץ�󥿤��б����뤿��˺Τ�������ޤ�����
+以下の数値ケーパビリティは、SVr4.0 の term 構造体に存在していますが、
+マニュアルには未だに説明がありません。
+SVr4 でプリンタに対応するために採り入れられました。
 
 .na
 .TS H
@@ -337,63 +337,63 @@ center expand;
 c l l c
 c l l c
 lw25 lw6 lw2 lw20.
-\fBvariable	cap-	TCap	����\fR
-\fB���� 	name	Code\fR
+\fBvariable	cap-	TCap	説明\fR
+\fB数値 	name	Code\fR
 bit_image_entwining	bitwin	Yo	T{
-�ƥӥåȥ��᡼���Ԥ��Ф���ѥ��ο�
+各ビットイメージ行に対するパスの数
 T}
 bit_image_type	bitype	Yp	T{
-�ӥåȥ��᡼���ǥХ����Υ�����
+ビットイメージデバイスのタイプ
 T}
 buffer_capacity	bufsz	Ya	T{
-�������˥Хåե���󥰲�ǽ�ʥХ��ȿ�
+印字前にバッファリング可能なバイト数
 T}
 buttons	btns	BT	T{
-�ޥ����Υܥ����
+マウスのボタン数
 T}
 dot_horz_spacing	spinh	Yc	T{
-1 �����������Υɥåȿ��Ǥο�ʿ�����Υɥåȴֳ�
+1 インチあたりのドット数での水平方向のドット間隔
 T}
 dot_vert_spacing	spinv	Yb	T{
-1 �����������Υԥ���Ǥο�ľ�����Υԥ�ֳ�
+1 インチあたりのピン数での垂直方向のピン間隔
 T}
 max_micro_address	maddr	Yd	T{
-micro_..._address �Ǥκ�����
+micro_..._address での最大値
 T}
 max_micro_jump	mjump	Ye	T{
-parm_..._micro �Ǥκ�����
+parm_..._micro での最大値
 T}
 micro_col_size	mcs	Yf	T{
-�ޥ������⡼�ɤǤ�ʸ�����ƥåץ�����
+マイクロモードでの文字ステップサイズ
 T}
 micro_line_size	mls	Yg	T{
-�ޥ������⡼�ɤǤιԥ��ƥåץ�����
+マイクロモードでの行ステップサイズ
 T}
 number_of_pins	npins	Yh	T{
-�ץ��ȥإåɤΥԥ��
+プリントヘッドのピン数
 T}
 output_res_char	orc	Yi	T{
-1 �Ԥ�����Υ�˥åȿ��Ǥο�ʿ������
+1 行あたりのユニット数での水平解像度
 T}
 output_res_horz_inch	orhi	Yk	T{
-1 �����������Υ�˥åȿ��Ǥο�ʿ������
+1 インチあたりのユニット数での水平解像度
 T}
 output_res_line	orl	Yj	T{
-1 �Ԥ�����Υ�˥åȿ��Ǥο�ľ������
+1 行あたりのユニット数での垂直解像度
 T}
 output_res_vert_inch	orvi	Yl	T{
-1 �����������Υ�˥åȿ��Ǥο�ľ������
+1 インチあたりのユニット数での垂直解像度
 T}
 print_rate	cps	Ym	T{
-1 �ä������ʸ�����Ǥΰ���®��
+1 秒あたりの文字数での印字速度
 T}
 wide_char_size	widcs	Yn	T{
-�����⡼�ɤǤ�ʸ�����ƥåץ�����
+倍幅モードでの文字ステップサイズ
 T}
 .TE
 .ad
 
-�ʲ���ʸ���󥱡��ѥӥ�ƥ��Ǥ� :
+以下は文字列ケーパビリティです :
 
 .na
 .TS H
@@ -401,1079 +401,1079 @@ center expand;
 c l l c
 c l l c
 lw25 lw6 lw2 lw20.
-\fBvariable	cap-	TCap	����\fR
-\fBʸ����	name	Code\fR
+\fBvariable	cap-	TCap	説明\fR
+\fB文字列	name	Code\fR
 acs_chars	acsc	ac	T{
-�޷�ʸ�����åȤ��ȡ�vt100 �˴�Ť�
+図形文字セットの組、vt100 に基づく
 T}
 back_tab	cbt	bt	T{
-���ॿ�� (P)
+後退タブ (P)
 T}
 bell	bel	bl	T{
-��İ�����ʥ� (�٥�) (P)
+可聴シグナル (ベル) (P)
 T}
 carriage_return	cr	cr	T{
-����ʸ�� (P*) (P*)
+復帰文字 (P*) (P*)
 T}
 change_char_pitch	cpi	ZA	T{
-1 ������������ʸ������ # 1 ���ѹ�
+1 インチあたりの文字数を # 1 に変更
 T}
 change_line_pitch	lpi	ZB	T{
-1 �����������ιԿ��� #1 ���ѹ�
+1 インチあたりの行数を #1 に変更
 T}
 change_res_horz	chr	ZC	T{
-��ʿ�����٤� #1 ���ѹ�
+水平解像度を #1 に変更
 T}
 change_res_vert	cvr	ZD	T{
-��ľ�����٤� #1 ���ѹ�
+垂直解像度を #1 に変更
 T}
 change_scroll_region	csr	cs	T{
-�ΰ��� #1 ����� #2 �ޤǤ��ѹ� (P)
+領域を行 #1 から行 #2 までに変更 (P)
 T}
 char_padding	rmp	rP	T{
-ip ��Ʊ�ͤ��������⡼�ɰʳ��ǻ���
-.\" ��� If padding is necessary between characters typed while not
+ip と同様だが挿入モード以外で使用
+.\" 後で If padding is necessary between characters typed while not
 .\" in  insert  mode,  give  this  as a number of milliseconds
-.\" padding in rmp. �Ȥ������Ҥ�����
+.\" padding in rmp. という記述がある
 T}
 clear_all_tabs	tbc	ct	T{
-��������򤹤٤ƥ��ꥢ (P)
+タブ設定をすべてクリア (P)
 T}
 clear_margins	mgc	MC	T{
-�����Υ��եȥޡ�����򥯥ꥢ
+左右のソフトマージンをクリア
 T}
 clear_screen	clear	cl	T{
-���̤򥯥ꥢ�������������ۡ���˰�ư (P*)
+画面をクリアし、カーソルをホームに移動 (P*)
 T}
 clr_bol	el1	cb	T{
-����Ƭ�ޤǥ��ꥢ
+行先頭までクリア
 T}
 clr_eol	el	ce	T{
-�����ޤǥ��ꥢ (P)
+行末までクリア (P)
 T}
 clr_eos	ed	cd	T{
-�������ޤǥ��ꥢ (P*)
+画面末までクリア (P*)
 T}
 column_address	hpa	ch	T{
-��ʿ���а��� #1 (P)
+水平絶対位置 #1 (P)
 T}
 command_character	cmdch	CC	T{
-ü�����ץ��ȥ����פ������ǽ�ʥ��ޥ��ʸ�� !?
+端末がプロトタイプで設定可能なコマンド文字 !?
 T}
 create_window	cwin	CW	T{
-������ɥ� #1 �� #2,#3 ���� #4,#5 �ޤǤ����
+ウィンドウ #1 を #2,#3 から #4,#5 までと定義
 T}
 cursor_address	cup	cm	T{
-�� #1 �� #2 �˰�ư
+行 #1 桁 #2 に移動
 T}
 cursor_down	cud1	do	T{
-1 �Բ��˰�ư
+1 行下に移動
 T}
 cursor_home	home	ho	T{
-���������ۡ���˰�ư (cup ���ʤ����)
+カーソルをホームに移動 (cup がない場合)
 T}
 cursor_invisible	civis	vi	T{
-��������򸫤��ʤ�����
+カーソルを見えなくする
 T}
 cursor_left	cub1	le	T{
-��������� 1 ����ʬ���˰�ư
+カーソルを 1 空白分左に移動
 T}
 cursor_mem_address	mrcup	CM	T{
-�������ФΥ���������ֻ���Ǥ��ꡢ�� #1 �� #2 �ذ�ư
+メモリ相対のカーソル位置指定であり、行 #1 列 #2 へ移動
 T}
 cursor_normal	cnorm	ve	T{
-����������̾�ɽ���ˤ��� (civis/cvvis �򸵤��᤹)
+カーソルを通常表示にする (civis/cvvis を元に戻す)
 T}
 cursor_right	cuf1	nd	T{
-���˲����� (1 ����ʬ���˰�ư)
+非破壊空白 (1 空白分右に移動)
 T}
 cursor_to_ll	ll	ll	T{
-�ǽ��Ԥκǽ�η� (cup ���ʤ����)
+最終行の最初の桁 (cup がない場合)
 T}
 cursor_up	cuu1	up	T{
-1 �Ծ��
+1 行上へ
 T}
 cursor_visible	cvvis	vs	T{
-����������긫����褦�ˤ���
+カーソルをより見えるようにする
 T}
 define_char	defc	ZE	T{
-ʸ�� #1 ���� #2 �ɥåȡ��ǥ������ #3 ���������
+文字 #1 を幅 #2 ドット、ディセンダ #3 で定義する
 T}
 delete_character	dch1	dc	T{
-ʸ������ (P*)
+文字を削除 (P*)
 T}
 delete_line	dl1	dl	T{
-�Ԥ��� (P*)
+行を削除 (P*)
 T}
 dial_phone	dial	DI	T{
-�ֹ� #1 �˥������뤹��
+番号 #1 にダイアルする
 T}
 dis_status_line	dsl	ds	T{
-���ơ������Ԥ�̵���ˤ���
+ステータス行を無効にする
 T}
 display_clock	dclk	DK	T{
-���פ�ɽ������
+時計を表示する
 T}
 down_half_line	hd	hd	T{
-Ⱦ�Բ���
+半行下へ
 T}
 ena_acs	enacs	eA	T{
-�̤�ʸ�����åȤ�ͭ���ˤ���
+別の文字セットを有効にする
 T}
 enter_alt_charset_mode	smacs	as	T{
-�̤�ʸ�����åȤ򳫻� (P)
+別の文字セットを開始 (P)
 T}
 enter_am_mode	smam	SA	T{
-��ư�ޡ����󥪥�
+自動マージンオン
 T}
 enter_blink_mode	blink	mb	T{
-���ǥ⡼�ɥ���
+点滅モードオン
 T}
 enter_bold_mode	bold	md	T{
-���� (�������뤤) �⡼�ɥ���
+太字 (更に明るい) モードオン
 T}
 enter_ca_mode	smcup	ti	T{
-cup ���Ѥ����ץ������򳫻Ϥ���ʸ����
+cup を用いたプログラムを開始する文字列
 T}
 enter_delete_mode	smdc	dm	T{
-����⡼�ɳ���
+削除モード開始
 T}
 enter_dim_mode	dim	mh	T{
-Ⱦ���٥⡼�ɳ���
+半輝度モード開始
 T}
 enter_doublewide_mode	swidm	ZF	T{
-�����⡼�ɳ���
+倍幅モード開始
 T}
 enter_draft_quality	sdrfq	ZG	T{
-�ɥ�եȰ����⡼�ɳ���
+ドラフト印字モード開始
 T}
 enter_insert_mode	smir	im	T{
-�����⡼�ɳ���
+挿入モード開始
 T}
 enter_italics_mode	sitm	ZH	T{
-���Υ⡼�ɳ���
+斜体モード開始
 T}
 enter_leftward_mode	slm	ZI	T{
-��������ư�⡼�ɳ���
+左向き移動モード開始
 T}
 enter_micro_mode	smicm	ZJ	T{
-�ޥ�������ư�⡼�ɳ���
+マイクロ移動モード開始
 T}
 enter_near_letter_quality	snlq	ZK	T{
-NLQ �����⡼�ɳ���
+NLQ 印字モード開始
 T}
 enter_normal_quality	snrmq	ZL	T{
-�̾��ʼ������⡼�ɳ���
+通常品質印字モード開始
 T}
 enter_protected_mode	prot	mp	T{
-�ݸ�⡼�ɥ���
+保護モードオン
 T}
 enter_reverse_mode	rev	mr	T{
-ȿžɽ���⡼�ɥ���
+反転表示モードオン
 T}
 enter_secure_mode	invis	mk	T{
-�֥�󥯥⡼�ɥ��� (ʸ���������ʤ�)
+ブランクモードオン (文字が見えない)
 T}
 enter_shadow_mode	sshm	ZM	T{
-����ɥ��ץ��ȥ⡼�ɳ���
+シャドウプリントモード開始
 T}
 enter_standout_mode	smso	so	T{
-��Ĵ�⡼�ɳ���
+強調モード開始
 T}
 enter_subscript_mode	ssubm	ZN	T{
-���դ�ʸ���⡼�ɳ���
+下付き文字モード開始
 T}
 enter_superscript_mode	ssupm	ZO	T{
-���դ�ʸ���⡼�ɳ���
+上付き文字モード開始
 T}
 enter_underline_mode	smul	us	T{
-�����⡼�ɳ���
+下線モード開始
 T}
 enter_upward_mode	sum	ZP	T{
-�������ư�⡼�ɳ���
+上向き移動モード開始
 T}
 enter_xon_mode	smxon	SX	T{
-xon/xoff �ϥ�ɥ�����������
+xon/xoff ハンドシェークオン
 T}
 erase_chars	ech	ec	T{
-#1 �Ĥ�ʸ����õ� (P)
+#1 個の文字を消去 (P)
 T}
 exit_alt_charset_mode	rmacs	ae	T{
-�̤�ʸ�����åȽ�λ (P)
+別の文字セット終了 (P)
 T}
 exit_am_mode	rmam	RA	T{
-��ư�ޡ����󥪥�
+自動マージンオフ
 T}
 exit_attribute_mode	sgr0	me	T{
-��°������
+全属性オフ
 T}
 exit_ca_mode	rmcup	te	T{
-cup ���Ѥ����ץ�������λ����ʸ����
+cup を用いたプログラムを終了する文字列
 T}
 exit_delete_mode	rmdc	ed	T{
-����⡼�ɽ�λ
+削除モード終了
 T}
 exit_doublewide_mode	rwidm	ZQ	T{
-�����⡼�ɽ�λ
+倍幅モード終了
 T}
 exit_insert_mode	rmir	ei	T{
-�����⡼�ɽ�λ
+挿入モード終了
 T}
 exit_italics_mode	ritm	ZR	T{
-���Υ⡼�ɽ�λ
+斜体モード終了
 T}
 exit_leftward_mode	rlm	ZS	T{
-��������ư�⡼�ɽ�λ
+左向き移動モード終了
 T}
 exit_micro_mode	rmicm	ZT	T{
-�ޥ�������ư�⡼�ɽ�λ
+マイクロ移動モード終了
 T}
 exit_shadow_mode	rshm	ZU	T{
-����ɥ��ץ��ȥ⡼�ɽ�λ
+シャドウプリントモード終了
 T}
 exit_standout_mode	rmso	se	T{
-��Ĵ�⡼�ɽ�λ
+強調モード終了
 T}
 exit_subscript_mode	rsubm	ZV	T{
-���դ�ʸ���⡼�ɽ�λ
+下付き文字モード終了
 T}
 exit_superscript_mode	rsupm	ZW	T{
-���դ�ʸ���⡼�ɽ�λ
+上付き文字モード終了
 T}
 exit_underline_mode	rmul	ue	T{
-�����⡼�ɽ�λ
+下線モード終了
 T}
 exit_upward_mode	rum	ZX	T{
- �ո�����ư�⡼�ɽ�λ
+ 逆向き移動モード終了
 T}
 exit_xon_mode	rmxon	RX	T{
-xon/xoff �ϥ�ɥ�����������
+xon/xoff ハンドシェークオフ
 T}
 fixed_pause	pause	PA	T{
-2-3 ���Ԥ�
+2-3 秒待つ
 T}
 flash_hook	hook	fh	T{
-�����å��եå���ե�å���
+スイッチフックをフラッシュ
 T}
 flash_screen	flash	vb	T{
-�Ļ�٥� (��������ϰ�ư���ʤ�)
+可視ベル (カーソルは移動しない)
 T}
 form_feed	ff	ff	T{
-�ϡ��ɥ��ԡ�ü���ǤΥڡ����ӽ� (P*)
+ハードコピー端末でのページ排出 (P*)
 T}
 from_status_line	fsl	fs	T{
-���ơ������Ԥ��������
+ステータス行からの復帰
 T}
 goto_window	wingo	WG	T{
-������ɥ� #1 �˰�ư
+ウィンドウ #1 に移動
 T}
 hangup	hup	HU	T{
-���ä��ڤ�
+電話を切る
 T}
 init_1string	is1	i1	T{
-�����ʸ����
+初期化文字列
 T}
 init_2string	is2	is	T{
-�����ʸ����
+初期化文字列
 T}
 init_3string	is3	i3	T{
-�����ʸ����
+初期化文字列
 T}
 init_file	if	if	T{
-������ե������̾��
+初期化ファイルの名前
 T}
 init_prog	iprog	iP	T{
-������ץ������Υѥ�̾
+初期化プログラムのパス名
 T}
 initialize_color	initc	Ic	T{
-�� #1 �� (#2,#3,#4) �˽����
+色 #1 を (#2,#3,#4) に初期化
 T}
 initialize_pair	initp	Ip	T{
-���ڥ� #1 �� fg=(#2,#3,#4), bg=(#5,#6,#7) �˽����
+色ペア #1 を fg=(#2,#3,#4), bg=(#5,#6,#7) に初期化
 T}
 insert_character	ich1	ic	T{
-ʸ�������� (P)
+文字の挿入 (P)
 T}
 insert_line	il1	al	T{
-�Ԥ����� (P*)
+行の挿入 (P*)
 T}
 insert_padding	ip	ip	T{
-ʸ�������θ�˥ѥǥ��󥰤�����
+文字挿入の後にパディングを挿入
 T}
 key_a1	ka1	K1	T{
-�����ѥåɤκ��奭��
+キーパッドの左上キー
 T}
 key_a3	ka3	K3	T{
-�����ѥåɤα��奭��
+キーパッドの右上キー
 T}
 key_b2	kb2	K2	T{
-�����ѥåɤ��������
+キーパッドの中央キー
 T}
 key_backspace	kbs	kb	T{
-backspace ����
+backspace キー
 T}
 key_beg	kbeg	@1	T{
-begin ����
+begin キー
 T}
 key_btab	kcbt	kB	T{
-back-tab ����
+back-tab キー
 T}
 key_c1	kc1	K4	T{
-�����ѥåɤκ�������
+キーパッドの左下キー
 T}
 key_c3	kc3	K5	T{
-�����ѥåɤα�������
+キーパッドの右下キー
 T}
 key_cancel	kcan	@2	T{
-cancel ����
+cancel キー
 T}
 key_catab	ktbc	ka	T{
-clear-all-tabs ����
+clear-all-tabs キー
 T}
 key_clear	kclr	kC	T{
-clear-screen �������ޤ��� erase ����
+clear-screen キー、または erase キー
 T}
 key_close	kclo	@3	T{
-close ����
+close キー
 T}
 key_command	kcmd	@4	T{
-command ����
+command キー
 T}
 key_copy	kcpy	@5	T{
-copy ����
+copy キー
 T}
 key_create	kcrt	@6	T{
-create ����
+create キー
 T}
 key_ctab	kctab	kt	T{
-clear-tab ����
+clear-tab キー
 T}
 key_dc	kdch1	kD	T{
-delete-character ����
+delete-character キー
 T}
 key_dl	kdl1	kL	T{
-delete-line ����
+delete-line キー
 T}
 key_down	kcud1	kd	T{
-down-arrow ����
+down-arrow キー
 T}
 key_eic	krmir	kM	T{
-�����⡼�ɤ� rmir �� smir �����Ф���ǡ���
+挿入モードで rmir や smir が送出するデータ
 T}
 key_end	kend	@7	T{
-end ����
+end キー
 T}
 key_enter	kent	@8	T{
-enter/send ����
+enter/send キー
 T}
 key_eol	kel	kE	T{
-clear-to-end-of-line ����
+clear-to-end-of-line キー
 T}
 key_eos	ked	kS	T{
-clear-to-end-of-screen ����
+clear-to-end-of-screen キー
 T}
 key_exit	kext	@9	T{
-exit ����
+exit キー
 T}
 key_f0	kf0	k0	T{
-F0  �ե��󥯥���󥭡�
+F0  ファンクションキー
 T}
 key_f1	kf1	k1	T{
-F1  �ե��󥯥���󥭡�
+F1  ファンクションキー
 T}
 key_f10	kf10	k;	T{
-F10 �ե��󥯥���󥭡�
+F10 ファンクションキー
 T}
 key_f11	kf11	F1	T{
-F11 �ե��󥯥���󥭡�
+F11 ファンクションキー
 T}
 key_f12	kf12	F2	T{
-F12 �ե��󥯥���󥭡�
+F12 ファンクションキー
 T}
 key_f13	kf13	F3	T{
-F13 �ե��󥯥���󥭡�
+F13 ファンクションキー
 T}
 key_f14	kf14	F4	T{
-F14 �ե��󥯥���󥭡�
+F14 ファンクションキー
 T}
 key_f15	kf15	F5	T{
-F15 �ե��󥯥���󥭡�
+F15 ファンクションキー
 T}
 key_f16	kf16	F6	T{
-F16 �ե��󥯥���󥭡�
+F16 ファンクションキー
 T}
 key_f17	kf17	F7	T{
-F17 �ե��󥯥���󥭡�
+F17 ファンクションキー
 T}
 key_f18	kf18	F8	T{
-F18 �ե��󥯥���󥭡�
+F18 ファンクションキー
 T}
 key_f19	kf19	F9	T{
-F19 �ե��󥯥���󥭡�
+F19 ファンクションキー
 T}
 key_f2	kf2	k2	T{
-F2  �ե��󥯥���󥭡�
+F2  ファンクションキー
 T}
 key_f20	kf20	FA	T{
-F20 �ե��󥯥���󥭡�
+F20 ファンクションキー
 T}
 key_f21	kf21	FB	T{
-F21 �ե��󥯥���󥭡�
+F21 ファンクションキー
 T}
 key_f22	kf22	FC	T{
-F22 �ե��󥯥���󥭡�
+F22 ファンクションキー
 T}
 key_f23	kf23	FD	T{
-F23 �ե��󥯥���󥭡�
+F23 ファンクションキー
 T}
 key_f24	kf24	FE	T{
-F24 �ե��󥯥���󥭡�
+F24 ファンクションキー
 T}
 key_f25	kf25	FF	T{
-F25 �ե��󥯥���󥭡�
+F25 ファンクションキー
 T}
 key_f26	kf26	FG	T{
-F26 �ե��󥯥���󥭡�
+F26 ファンクションキー
 T}
 key_f27	kf27	FH	T{
-F27 �ե��󥯥���󥭡�
+F27 ファンクションキー
 T}
 key_f28	kf28	FI	T{
-F28 �ե��󥯥���󥭡�
+F28 ファンクションキー
 T}
 key_f29	kf29	FJ	T{
-F29 �ե��󥯥���󥭡�
+F29 ファンクションキー
 T}
 key_f3	kf3	k3	T{
-F3  �ե��󥯥���󥭡�
+F3  ファンクションキー
 T}
 key_f30	kf30	FK	T{
-F30 �ե��󥯥���󥭡�
+F30 ファンクションキー
 T}
 key_f31	kf31	FL	T{
-F31 �ե��󥯥���󥭡�
+F31 ファンクションキー
 T}
 key_f32	kf32	FM	T{
-F32 �ե��󥯥���󥭡�
+F32 ファンクションキー
 T}
 key_f33	kf33	FN	T{
-F33 �ե��󥯥���󥭡�
+F33 ファンクションキー
 T}
 key_f34	kf34	FO	T{
-F34 �ե��󥯥���󥭡�
+F34 ファンクションキー
 T}
 key_f35	kf35	FP	T{
-F35 �ե��󥯥���󥭡�
+F35 ファンクションキー
 T}
 key_f36	kf36	FQ	T{
-F36 �ե��󥯥���󥭡�
+F36 ファンクションキー
 T}
 key_f37	kf37	FR	T{
-F37 �ե��󥯥���󥭡�
+F37 ファンクションキー
 T}
 key_f38	kf38	FS	T{
-F38 �ե��󥯥���󥭡�
+F38 ファンクションキー
 T}
 key_f39	kf39	FT	T{
-F39 �ե��󥯥���󥭡�
+F39 ファンクションキー
 T}
 key_f4	kf4	k4	T{
-F4  �ե��󥯥���󥭡�
+F4  ファンクションキー
 T}
 key_f40	kf40	FU	T{
-F40 �ե��󥯥���󥭡�
+F40 ファンクションキー
 T}
 key_f41	kf41	FV	T{
-F41 �ե��󥯥���󥭡�
+F41 ファンクションキー
 T}
 key_f42	kf42	FW	T{
-F42 �ե��󥯥���󥭡�
+F42 ファンクションキー
 T}
 key_f43	kf43	FX	T{
-F43 �ե��󥯥���󥭡�
+F43 ファンクションキー
 T}
 key_f44	kf44	FY	T{
-F44 �ե��󥯥���󥭡�
+F44 ファンクションキー
 T}
 key_f45	kf45	FZ	T{
-F45 �ե��󥯥���󥭡�
+F45 ファンクションキー
 T}
 key_f46	kf46	Fa	T{
-F46 �ե��󥯥���󥭡�
+F46 ファンクションキー
 T}
 key_f47	kf47	Fb	T{
-F47 �ե��󥯥���󥭡�
+F47 ファンクションキー
 T}
 key_f48	kf48	Fc	T{
-F48 �ե��󥯥���󥭡�
+F48 ファンクションキー
 T}
 key_f49	kf49	Fd	T{
-F49 �ե��󥯥���󥭡�
+F49 ファンクションキー
 T}
 key_f5	kf5	k5	T{
-F5  �ե��󥯥���󥭡�
+F5  ファンクションキー
 T}
 key_f50	kf50	Fe	T{
-F50 �ե��󥯥���󥭡�
+F50 ファンクションキー
 T}
 key_f51	kf51	Ff	T{
-F51 �ե��󥯥���󥭡�
+F51 ファンクションキー
 T}
 key_f52	kf52	Fg	T{
-F52 �ե��󥯥���󥭡�
+F52 ファンクションキー
 T}
 key_f53	kf53	Fh	T{
-F53 �ե��󥯥���󥭡�
+F53 ファンクションキー
 T}
 key_f54	kf54	Fi	T{
-F54 �ե��󥯥���󥭡�
+F54 ファンクションキー
 T}
 key_f55	kf55	Fj	T{
-F55 �ե��󥯥���󥭡�
+F55 ファンクションキー
 T}
 key_f56	kf56	Fk	T{
-F56 �ե��󥯥���󥭡�
+F56 ファンクションキー
 T}
 key_f57	kf57	Fl	T{
-F57 �ե��󥯥���󥭡�
+F57 ファンクションキー
 T}
 key_f58	kf58	Fm	T{
-F58 �ե��󥯥���󥭡�
+F58 ファンクションキー
 T}
 key_f59	kf59	Fn	T{
-F59 �ե��󥯥���󥭡�
+F59 ファンクションキー
 T}
 key_f6	kf6	k6	T{
-F6  �ե��󥯥���󥭡�
+F6  ファンクションキー
 T}
 key_f60	kf60	Fo	T{
-F60 �ե��󥯥���󥭡�
+F60 ファンクションキー
 T}
 key_f61	kf61	Fp	T{
-F61 �ե��󥯥���󥭡�
+F61 ファンクションキー
 T}
 key_f62	kf62	Fq	T{
-F62 �ե��󥯥���󥭡�
+F62 ファンクションキー
 T}
 key_f63	kf63	Fr	T{
-F63 �ե��󥯥���󥭡�
+F63 ファンクションキー
 T}
 key_f7	kf7	k7	T{
-F7  �ե��󥯥���󥭡�
+F7  ファンクションキー
 T}
 key_f8	kf8	k8	T{
-F8  �ե��󥯥���󥭡�
+F8  ファンクションキー
 T}
 key_f9	kf9	k9	T{
-F9  �ե��󥯥���󥭡�
+F9  ファンクションキー
 T}
 key_find	kfnd	@0	T{
-find ����
+find キー
 T}
 key_help	khlp	%1	T{
-help ����
+help キー
 T}
 key_home	khome	kh	T{
-home ����
+home キー
 T}
 key_ic	kich1	kI	T{
-insert-character ����
+insert-character キー
 T}
 key_il	kil1	kA	T{
-insert-line ����
+insert-line キー
 T}
 key_left	kcub1	kl	T{
-left-arrow ����
+left-arrow キー
 T}
 key_ll	kll	kH	T{
-lower-left ���� (home down)
+lower-left キー (home down)
 T}
 key_mark	kmrk	%2	T{
-mark ����
+mark キー
 T}
 key_message	kmsg	%3	T{
-message ����
+message キー
 T}
 key_move	kmov	%4	T{
-move ����
+move キー
 T}
 key_next	knxt	%5	T{
-next ����
+next キー
 T}
 key_npage	knp	kN	T{
-next-page ����
+next-page キー
 T}
 key_open	kopn	%6	T{
-open ����
+open キー
 T}
 key_options	kopt	%7	T{
-options ����
+options キー
 T}
 key_ppage	kpp	kP	T{
-previous-page ����
+previous-page キー
 T}
 key_previous	kprv	%8	T{
-previous ����
+previous キー
 T}
 key_print	kprt	%9	T{
-print ����
+print キー
 T}
 key_redo	krdo	%0	T{
-redo ����
+redo キー
 T}
 key_reference	kref	&1	T{
-reference ����
+reference キー
 T}
 key_refresh	krfr	&2	T{
-refresh ����
+refresh キー
 T}
 key_replace	krpl	&3	T{
-replace ����
+replace キー
 T}
 key_restart	krst	&4	T{
-restart ����
+restart キー
 T}
 key_resume	kres	&5	T{
-resume ����
+resume キー
 T}
 key_right	kcuf1	kr	T{
-right-arrow ����
+right-arrow キー
 T}
 key_save	ksav	&6	T{
-save ����
+save キー
 T}
 key_sbeg	kBEG	&9	T{
-���եȾ��֤� begin ����
+シフト状態の begin キー
 T}
 key_scancel	kCAN	&0	T{
-���եȾ��֤� cancel ����
+シフト状態の cancel キー
 T}
 key_scommand	kCMD	*1	T{
-���եȾ��֤� command ����
+シフト状態の command キー
 T}
 key_scopy	kCPY	*2	T{
-���եȾ��֤� copy ����
+シフト状態の copy キー
 T}
 key_screate	kCRT	*3	T{
-���եȾ��֤� create ����
+シフト状態の create キー
 T}
 key_sdc	kDC	*4	T{
-���եȾ��֤� delete-character ����
+シフト状態の delete-character キー
 T}
 key_sdl	kDL	*5	T{
-���եȾ��֤� delete-line ����
+シフト状態の delete-line キー
 T}
 key_select	kslt	*6	T{
-select ����
+select キー
 T}
 key_send	kEND	*7	T{
-���եȾ��֤� end ����
+シフト状態の end キー
 T}
 key_seol	kEOL	*8	T{
-���եȾ��֤� clear-to-end-of-line ����
+シフト状態の clear-to-end-of-line キー
 T}
 key_sexit	kEXT	*9	T{
-���եȾ��֤� exit ����
+シフト状態の exit キー
 T}
 key_sf	kind	kF	T{
-scroll-forward ����
+scroll-forward キー
 T}
 key_sfind	kFND	*0	T{
-���եȾ��֤� find ����
+シフト状態の find キー
 T}
 key_shelp	kHLP	#1	T{
-���եȾ��֤� help ����
+シフト状態の help キー
 T}
 key_shome	kHOM	#2	T{
-���եȾ��֤� home ����
+シフト状態の home キー
 T}
 key_sic	kIC	#3	T{
-���եȾ��֤� insert-character ����
+シフト状態の insert-character キー
 T}
 key_sleft	kLFT	#4	T{
-���եȾ��֤� left-arrow ����
+シフト状態の left-arrow キー
 T}
 key_smessage	kMSG	%a	T{
-���եȾ��֤� message ����
+シフト状態の message キー
 T}
 key_smove	kMOV	%b	T{
-���եȾ��֤� move ����
+シフト状態の move キー
 T}
 key_snext	kNXT	%c	T{
-���եȾ��֤� next ����
+シフト状態の next キー
 T}
 key_soptions	kOPT	%d	T{
-���եȾ��֤� options ����
+シフト状態の options キー
 T}
 key_sprevious	kPRV	%e	T{
-���եȾ��֤� previous ����
+シフト状態の previous キー
 T}
 key_sprint	kPRT	%f	T{
-���եȾ��֤� print ����
+シフト状態の print キー
 T}
 key_sr	kri	kR	T{
-scroll-backward ����
+scroll-backward キー
 T}
 key_sredo	kRDO	%g	T{
-���եȾ��֤� redo ����
+シフト状態の redo キー
 T}
 key_sreplace	kRPL	%h	T{
-���եȾ��֤� replace ����
+シフト状態の replace キー
 T}
 key_sright	kRIT	%i	T{
-���եȾ��֤� right-arrow ����
+シフト状態の right-arrow キー
 T}
 key_srsume	kRES	%j	T{
-���եȾ��֤� resume ����
+シフト状態の resume キー
 T}
 key_ssave	kSAV	!1	T{
-���եȾ��֤� save ����
+シフト状態の save キー
 T}
 key_ssuspend	kSPD	!2	T{
-���եȾ��֤� suspend ����
+シフト状態の suspend キー
 T}
 key_stab	khts	kT	T{
-set-tab ����
+set-tab キー
 T}
 key_sundo	kUND	!3	T{
-���եȾ��֤� undo ����
+シフト状態の undo キー
 T}
 key_suspend	kspd	&7	T{
-suspend ����
+suspend キー
 T}
 key_undo	kund	&8	T{
-undo ����
+undo キー
 T}
 key_up	kcuu1	ku	T{
-up-arrow ����
+up-arrow キー
 T}
 keypad_local	rmkx	ke	T{
-\&'keyboard_transmit' �⡼�ɤ���ȴ����
+\&'keyboard_transmit' モードから抜ける
 T}
 keypad_xmit	smkx	ks	T{
-\&'keyboard_transmit' �⡼�ɤ�����
+\&'keyboard_transmit' モードに入る
 T}
 lab_f0	lf0	l0	T{
-f0 �Ǥʤ���硢�ե��󥯥���󥭡� f0 �Υ�٥�
+f0 でない場合、ファンクションキー f0 のラベル
 T}
 lab_f1	lf1	l1	T{
-f1 �Ǥʤ���硢�ե��󥯥���󥭡� f1 �Υ�٥�
+f1 でない場合、ファンクションキー f1 のラベル
 T}
 lab_f10	lf10	la	T{
-f10 �Ǥʤ���硢�ե��󥯥���󥭡� f10 �Υ�٥�
+f10 でない場合、ファンクションキー f10 のラベル
 T}
 lab_f2	lf2	l2	T{
-f2 �Ǥʤ���硢�ե��󥯥���󥭡� f2 �Υ�٥�
+f2 でない場合、ファンクションキー f2 のラベル
 T}
 lab_f3	lf3	l3	T{
-f3 �Ǥʤ���硢�ե��󥯥���󥭡� f3 �Υ�٥�
+f3 でない場合、ファンクションキー f3 のラベル
 T}
 lab_f4	lf4	l4	T{
-f4 �Ǥʤ���硢�ե��󥯥���󥭡� f4 �Υ�٥�
+f4 でない場合、ファンクションキー f4 のラベル
 T}
 lab_f5	lf5	l5	T{
-f5 �Ǥʤ���硢�ե��󥯥���󥭡� f5 �Υ�٥�
+f5 でない場合、ファンクションキー f5 のラベル
 T}
 lab_f6	lf6	l6	T{
-f6 �Ǥʤ���硢�ե��󥯥���󥭡� f6 �Υ�٥�
+f6 でない場合、ファンクションキー f6 のラベル
 T}
 lab_f7	lf7	l7	T{
-f7 �Ǥʤ���硢�ե��󥯥���󥭡� f7 �Υ�٥�
+f7 でない場合、ファンクションキー f7 のラベル
 T}
 lab_f8	lf8	l8	T{
-f8 �Ǥʤ���硢�ե��󥯥���󥭡� f8 �Υ�٥�
+f8 でない場合、ファンクションキー f8 のラベル
 T}
 lab_f9	lf9	l9	T{
-f9 �Ǥʤ���硢�ե��󥯥���󥭡� f9 �Υ�٥�
+f9 でない場合、ファンクションキー f9 のラベル
 T}
 label_format	fln	Lf	T{
-��٥�ե����ޥå�
+ラベルフォーマット
 T}
 label_off	rmln	LF	T{
-���եȥ�٥륪��
+ソフトラベルオフ
 T}
 label_on	smln	LO	T{
-���եȥ�٥륪��
+ソフトラベルオン
 T}
 meta_off	rmm	mo	T{
-�᥿�⡼�ɥ���
+メタモードオフ
 T}
 meta_on	smm	mm	T{
-�᥿�⡼�ɥ��� (8 ���ܤΥӥåȥ���)
+メタモードオン (8 番目のビットオン)
 T}
 micro_column_address	mhpa	ZY	T{
-�ޥ������⡼�ɤ� column_address
+マイクロモードの column_address
 T}
 micro_down	mcud1	ZZ	T{
-�ޥ������⡼�ɤ� cursor_down
+マイクロモードの cursor_down
 T}
 micro_left	mcub1	Za	T{
-�ޥ������⡼�ɤ� cursor_left
+マイクロモードの cursor_left
 T}
 micro_right	mcuf1	Zb	T{
-�ޥ������⡼�ɤ� cursor_right
+マイクロモードの cursor_right
 T}
 micro_row_address	mvpa	Zc	T{
-�ޥ������⡼�ɤ� row_address #1
+マイクロモードの row_address #1
 T}
 micro_up	mcuu1	Zd	T{
-�ޥ������⡼�ɤ� cursor_up
+マイクロモードの cursor_up
 T}
 newline	nel	nw	T{
-���� (cr �θ�� lf �����)
+改行 (cr の後に lf が来る)
 T}
 order_of_pins	porder	Ze	T{
-���եȥ������ӥåȤ�����إåɥԥ�˰��פ�����
+ソフトウェアビットを印字ヘッドピンに一致させる
 T}
 orig_colors	oc	oc	T{
-���٤Ƥο��ڥ�������Τ�Τˤ���
+すべての色ペアを本来のものにする
 T}
 orig_pair	op	op	T{
-�ǥե���ȤΥڥ���������ͤˤ���
+デフォルトのペアを本来の値にする
 T}
 pad_char	pad	pc	T{
-�ѥǥ���ʸ�� (�̥�ʳ�)
+パディング文字 (ヌル以外)
 T}
 parm_dch	dch	DC	T{
-#1 ʸ������ (P*)
+#1 文字を削除 (P*)
 T}
 parm_delete_line	dl	DL	T{
-#1 �Ԥ��� (P*)
+#1 行を削除 (P*)
 T}
 parm_down_cursor	cud	DO	T{
-#1 �Բ��� (P*)
+#1 行下へ (P*)
 T}
 parm_down_micro	mcud	Zf	T{
-�ޥ������⡼�ɤ� parm_down_cursor
+マイクロモードの parm_down_cursor
 T}
 parm_ich	ich	IC	T{
-#1 ʸ�������� (P*)
+#1 文字を挿入 (P*)
 T}
 parm_index	indn	SF	T{
-#1 �Ԥ����ʥ��������� (P)
+#1 行の前進スクロール (P)
 T}
 parm_insert_line	il	AL	T{
-#1 �Ԥ����� (P*)
+#1 行を挿入 (P*)
 T}
 parm_left_cursor	cub	LE	T{
-���� #1 ʸ��ʬ��ư (P)
+左へ #1 文字分移動 (P)
 T}
 parm_left_micro	mcub	Zg	T{
-�ޥ������⡼�ɤ� parm_left_cursor
+マイクロモードの parm_left_cursor
 T}
 parm_right_cursor	cuf	RI	T{
-���� #1 ʸ��ʬ��ư (P*)
+右へ #1 文字分移動 (P*)
 T}
 parm_right_micro	mcuf	Zh	T{
-�ޥ������⡼�ɤ� parm_right_cursor
+マイクロモードの parm_right_cursor
 T}
 parm_rindex	rin	SR	T{
-#1 �Ԥθ��ॹ�������� (P)
+#1 行の後退スクロール (P)
 T}
 parm_up_cursor	cuu	UP	T{
-#1 �Ծ�� (P*)
+#1 行上へ (P*)
 T}
 parm_up_micro	mcuu	Zi	T{
-�ޥ������⡼�ɤ� parm_up_cursor
+マイクロモードの parm_up_cursor
 T}
 pkey_key	pfkey	pk	T{
-�ե��󥯥���󥭡� #1 ���Ǹ�ʸ����� #2 �ˤ���
+ファンクションキー #1 の打鍵文字列を #2 にする
 T}
 pkey_local	pfloc	pl	T{
-�ե��󥯥���󥭡� #1 �μ¹�ʸ����� #2 �ˤ���
+ファンクションキー #1 の実行文字列を #2 にする
 T}
 pkey_xmit	pfx	px	T{
-�ե��󥯥���󥭡� #1 ������ʸ����� #2 �ˤ���
+ファンクションキー #1 の送信文字列を #2 にする
 T}
 plab_norm	pln	pn	T{
-��٥� #1 ��ʸ���� #2 ��ɽ��
+ラベル #1 に文字列 #2 を表示
 T}
 print_screen	mc0	ps	T{
-���̤����Ƥ��������
+画面の内容を印字する
 T}
 prtr_non	mc5p	pO	T{
-#1 �Х��Ȥ����ץ�󥿤򥪥�ˤ���
+#1 バイトだけプリンタをオンにする
 T}
 prtr_off	mc4	pf	T{
-�ץ�󥿤򥪥դˤ���
+プリンタをオフにする
 T}
 prtr_on	mc5	po	T{
-�ץ�󥿤򥪥�ˤ���
+プリンタをオンにする
 T}
 pulse	pulse	PU	T{
-�ѥ륹�������������
+パルスダイアルを選択
 T}
 quick_dial	qdial	QD	T{
-��ǧ�ʤ��������ֹ� #1 �˥������뤹��
+確認なしで電話番号 #1 にダイアルする
 T}
 remove_clock	rmclk	RC	T{
-���פ���
+時計を削除
 T}
 repeat_char	rep	rp	T{
-ʸ�� #1 �� #2 �󷫤��֤� (P*)
+文字 #1 を #2 回繰り返す (P*)
 T}
 req_for_input	rfi	RF	T{
-(pty �Ѥ�) ��������ʸ��������
+(pty 用に) 次の入力文字を送る
 T}
 reset_1string	rs1	r1	T{
-�ꥻ�å�ʸ����
+リセット文字列
 T}
 reset_2string	rs2	r2	T{
-�ꥻ�å�ʸ����
+リセット文字列
 T}
 reset_3string	rs3	r3	T{
-�ꥻ�å�ʸ����
+リセット文字列
 T}
 reset_file	rf	rf	T{
-�ꥻ�åȥե������̾��
+リセットファイルの名前
 T}
 restore_cursor	rc	rc	T{
-�Ǹ�� save_cursor �ΰ��֤˥���������᤹
+最後の save_cursor の位置にカーソルを戻す
 T}
 row_address	vpa	cv	T{
-��ľ���а��� #1 (P)
+垂直絶対位置 #1 (P)
 T}
 save_cursor	sc	sc	T{
-���ߤΥ���������֤���¸ (P)
+現在のカーソル位置を保存 (P)
 T}
 scroll_forward	ind	sf	T{
-�ƥ����Ȥ��˥��������� (P)
+テキストを上にスクロール (P)
 T}
 scroll_reverse	ri	sr	T{
-�ƥ����Ȥ򲼤˥��������� (P)
+テキストを下にスクロール (P)
 T}
 select_char_set	scs	Zj	T{
-ʸ�����å� #1 ������
+文字セット #1 の選択
 T}
 set_attributes	sgr	sa	T{
-�ӥǥ�°���� #1-#9 ����� (PG9)
+ビデオ属性を #1-#9 に定義 (PG9)
 T}
 set_background	setb	Sb	T{
-�طʿ��� #1 ������
+背景色を #1 に設定
 T}
 set_bottom_margin	smgb	Zk	T{
-���ޡ�����򸽺߹Ԥ�����
+下マージンを現在行に設定
 T}
 set_bottom_margin_parm	smgbp	Zl	T{
-���ޡ������ #1 ���ܤ� (smgtp ��Ϳ�����Ƥ��ʤ����) ������ #2 ���ܤˤ���
+下マージンを #1 行目か (smgtp が与えられていなければ) 下から #2 行目にする
 .\" Set bottom margin at line #1 or (if smgtp is not given) #2 lines from bottom
 T}
 set_clock	sclk	SC	T{
-���פ� #1 �� #2 ʬ #3 �ä�����
+時計を #1 時 #2 分 #3 秒に設定
 T}
 set_color_pair	scp	sp	T{
-���ߤο��ڥ��� #1 ������
+現在の色ペアを #1 に設定
 T}
 set_foreground	setf	Sf	T{
-���ʿ��� #1 ������
+前景色を #1 に設定
 T}
 set_left_margin	smgl	ML	T{
-�����եȥޡ�����򸽺߷������  smgl �򻲾� (ML �� BSD �� termcap �Ȥϰ㤤�ޤ�)
+左ソフトマージンを現在桁に設定  smgl を参照 (ML は BSD の termcap とは違います)
 T}
 set_left_margin_parm	smglp	Zm	T{
-�� (��) �ޡ������� #1 ������
+左 (右) マージンを桁 #1 に設定
 T}
 set_right_margin	smgr	MR	T{
-�����եȥޡ�����򸽺߷������
+右ソフトマージンを現在桁に設定
 T}
 set_right_margin_parm	smgrp	Zn	T{
-���ޡ������� #1 ������
+右マージンを桁 #1 に設定
 T}
 set_tab	hts	st	T{
-���ԤΥ��֤򸽺ߤη������
+全行のタブを現在の桁に設定
 T}
 set_top_margin	smgt	Zo	T{
-��ޡ�����򸽺߹Ԥ�����
+上マージンを現在行に設定
 T}
 set_top_margin_parm	smgtp	Zp	T{
-�� (��) �ޡ������� #1 ������
+上 (下) マージンを行 #1 に設定
 T}
 set_window	wind	wi	T{
-���ߤΥ�����ɥ���� #1-#2���� #3-#4 �Ȥ���
+現在のウィンドウを行 #1-#2、桁 #3-#4 とする
 T}
 start_bit_image	sbim	Zq	T{
-�ӥåȥ��᡼������ե��å������γ���
+ビットイメージグラフィック印字の開始
 T}
 start_char_set_def	scsd	Zr	T{
-#2 �Ĥ�ʸ������ʤ�ʸ�����å� #1 ������γ���
+#2 個の文字からなる文字セット #1 の定義の開始
 T}
 stop_bit_image	rbim	Zs	T{
-�ӥåȥ��᡼������ե��å������ν�λ
+ビットイメージグラフィック印字の終了
 T}
 stop_char_set_def	rcsd	Zt	T{
-ʸ�����å� #1 ������ν�λ
+文字セット #1 の定義の終了
 T}
 subscript_characters	subcs	Zu	T{
-���դ�ʸ���Ȥʤꤦ��ʸ���Υꥹ��
+下付き文字となりうる文字のリスト
 T}
 superscript_characters	supcs	Zv	T{
-���դ�ʸ���Ȥʤꤦ��ʸ���Υꥹ��
+上付き文字となりうる文字のリスト
 T}
 tab	ht	ta	T{
-���� 8 ʸ��ʬ�Υϡ��ɥ��������֥��ȥåפؤΥ���ʸ��
+次の 8 文字分のハードウェアタブストップへのタブ文字
 T}
 these_cause_cr	docr	Zw	T{
-������ʸ���Τ����Τ����줫�ΰ����� CR �����������
+これらの文字のうちのいずれかの印字は CR を引き起こす
 T}
 to_status_line	tsl	ts	T{
-���ơ������Ԥ��� #1 �˰�ư
+ステータス行の列 #1 に移動
 T}
 tone	tone	TO	T{
-���å��ȡ���������������
+タッチトーンダイアルを選択
 T}
 underline_char	uc	uc	T{
-ʸ�� 1 �Ĥ˲������դ�������ʸ���˰�ư
+文字 1 つに下線を付け、次の文字に移動
 T}
 up_half_line	hu	hu	T{
-Ⱦ�Ծ��
+半行上へ
 T}
 user0	u0	u0	T{
-�桼��ʸ���� #0
+ユーザ文字列 #0
 T}
 user1	u1	u1	T{
-�桼��ʸ���� #1
+ユーザ文字列 #1
 T}
 user2	u2	u2	T{
-�桼��ʸ���� #2
+ユーザ文字列 #2
 T}
 user3	u3	u3	T{
-�桼��ʸ���� #3
+ユーザ文字列 #3
 T}
 user4	u4	u4	T{
-�桼��ʸ���� #4
+ユーザ文字列 #4
 T}
 user5	u5	u5	T{
-�桼��ʸ���� #5
+ユーザ文字列 #5
 T}
 user6	u6	u6	T{
-�桼��ʸ���� #6
+ユーザ文字列 #6
 T}
 user7	u7	u7	T{
-�桼��ʸ���� #7
+ユーザ文字列 #7
 T}
 user8	u8	u8	T{
-�桼��ʸ���� #8
+ユーザ文字列 #8
 T}
 user9	u9	u9	T{
-�桼��ʸ���� #9
+ユーザ文字列 #9
 T}
 wait_tone	wait	WA	T{
-��������ȡ�����Ԥ�
+ダイアルトーンを待つ
 T}
 xoff_character	xoffc	XF	T{
-XOFF ʸ��
+XOFF 文字
 T}
 xon_character	xonc	XN	T{
-XON ʸ��
+XON 文字
 T}
 zero_motion	zerom	Zx	T{
-����ʸ��ɽ�����ư̵���ǹԤ�
+次の文字表示を移動無しで行う
 T}
 .TE
 .ad
 
-�ʲ���ʸ���󥱡��ѥӥ�ƥ��ϡ�SVr4.0 �� term ��¤�Τ�¸�ߤ��Ƥ��ޤ�����
-�ޥ˥奢���̤�����������ʤ���Ƥ��ޤ���
+以下の文字列ケーパビリティは、SVr4.0 の term 構造体に存在していますが、
+マニュアルで未だに説明がなされていません。
 
 .na
 .TS H
@@ -1481,116 +1481,116 @@ center expand;
 c l l c
 c l l c
 lw25 lw6 lw2 lw18.
-\fBvariable	cap-	TCap	����\fR
-\fBʸ����	name	Code\fR
+\fBvariable	cap-	TCap	説明\fR
+\fB文字列	name	Code\fR
 alt_scancode_esc	scesa	S8	T{
-������󥳡��ɥ��ߥ�졼�����Τ�����̤Υ���������ʸ��
+スキャンコードエミュレーションのための別のエスケープ文字
 T}
 bit_image_carriage_return	bicr	Yv	T{
-Ʊ��Ԥ���Ƭ�ذ�ư
+同一行の先頭へ移動
 T}
 bit_image_newline	binel	Zz	T{
-�ӥåȥ��᡼���μ��ιԤ˰�ư
+ビットイメージの次の行に移動
 T}
 bit_image_repeat	birep	Xy	T{
-�ӥåȥ��᡼������ #1 �� #2 �󷫤��֤�
+ビットイメージセル #1 を #2 回繰り返す
 T}
 char_set_names	csnm	Zy	T{
-ʸ�����åȤ�̾�Υꥹ�Ȥ��� #1 ���ܤ� item ����������
+文字セットの名のリストから #1 番目の item を生成する
 T}
-.\" 2002/12/24 oh:item �ΰ�̣���� : Produce #1'th item from list of character set names
+.\" 2002/12/24 oh:item の意味不明 : Produce #1'th item from list of character set names
 code_set_init	csin	ci	T{
-ʣ�������ɥ��åȤν������������
+複数コードセットの初期化シーケンス
 T}
 color_names	colornm	Yw	T{
-�� #1 ��̾����Ϳ����
+色 #1 に名前を与える
 T}
 define_bit_image_region	defbi	Yx	T{
-����Υӥåȥ��᡼���ΰ�����
+矩形のビットイメージ領域を定義
 T}
 device_type	devt	dv	T{
-����/�����ɥ��åȥ��ݡ��Ȥλ���
+言語/コードセットサポートの指定
 T}
 display_pc_char	dispc	S1	T{
-PC ʸ�� #1 ��ɽ��
+PC 文字 #1 を表示
 T}
 end_bit_image_region	endbi	Yy	T{
-�ӥåȥ��᡼���ΰ�ν�λ
+ビットイメージ領域の終了
 T}
 enter_pc_charset_mode	smpch	S2	T{
-PC ʸ��ɽ���⡼�ɳ���
+PC 文字表示モード開始
 T}
 enter_scancode_mode	smsc	S4	T{
-PC ������󥳡��ɥ⡼�ɳ���
+PC スキャンコードモード開始
 T}
 exit_pc_charset_mode	rmpch	S3	T{
-PC ʸ��ɽ���⡼�ɽ�λ
+PC 文字表示モード終了
 T}
 exit_scancode_mode	rmsc	S5	T{
-PC ������󥳡��ɥ⡼�ɽ�λ
+PC スキャンコードモード終了
 T}
 get_mouse	getm	Gm	T{
-curses ���ܥ��󥤥٥�Ȥ�������٤����ѥ�᡼�� #1 ��ʸ�񲽤���Ƥ��ʤ�
+curses がボタンイベントを取得すべき。パラメータ #1 は文書化されていない
 T}
 key_mouse	kmous	Km	T{
-�ޥ������٥�Ȥ�������
+マウスイベントが起きた
 T}
 mouse_info	minfo	Mi	T{
-�ޥ������֤ξ���
+マウス状態の情報
 T}
 pc_term_options	pctrm	S6	T{
-PC ü�����ץ����
+PC 端末オプション
 T}
 pkey_plab	pfxl	xl	T{
-�ե��󥯥���󥭡� #1 ��ʸ���� #2 ����������ʸ���� #3 ��ɽ��������
+ファンクションキー #1 に文字列 #2 を送信させ文字列 #3 を表示させる
 T}
 req_mouse_pos	reqmp	RQ	T{
-�ޥ������֤��׵�
+マウス位置の要求
 T}
 scancode_escape	scesc	S7	T{
-������󥳡��ɥ��ߥ�졼�����Τ���Υ���������
+スキャンコードエミュレーションのためのエスケープ
 T}
 set0_des_seq	s0ds	s0	T{
-�����ɥ��å� 0 �˥��ե� (EUC ���å� 0��ASCII)
+コードセット 0 にシフト (EUC セット 0、ASCII)
 T}
 set1_des_seq	s1ds	s1	T{
-�����ɥ��å� 1 �˥��ե�
+コードセット 1 にシフト
 T}
 set2_des_seq	s2ds	s2	T{
-�����ɥ��å� 2 �˥��ե�
+コードセット 2 にシフト
 T}
 set3_des_seq	s3ds	s3	T{
-�����ɥ��å� 3 �˥��ե�
+コードセット 3 にシフト
 T}
 set_a_background	setab	AB	T{
-ANSI ���������ץ������󥹤�Ȥä��طʿ��� #1 ������
+ANSI エスケープシーケンスを使って背景色を #1 に設定
 T}
 set_a_foreground	setaf	AF	T{
-ANSI ���������ץ������󥹤�Ȥä����ʿ��� #1 ������
+ANSI エスケープシーケンスを使って前景色を #1 に設定
 T}
 set_color_band	setcolor	Yz	T{
-��ܥ�ο��� #1 ���ѹ�
+リボンの色を #1 に変更
 T}
 set_lr_margin	smglr	ML	T{
-����ξ�ޡ������ #1��#2 �����ꡢ(ML �� BSD �� termcap �Τ�ΤȰ㤤�ޤ�)
+左右両マージンを #1、#2 に設定、(ML は BSD の termcap のものと違います)
 T}
 set_page_length	slines	YZ	T{
-�ڡ���Ĺ�� #1 �Ԥ�����
+ページ長を #1 行に設定
 T}
 set_tb_margin	smgtb	MT	T{
-�岼ξ�ޡ������ #1��#2 ������
+上下両マージンを #1、#2 に設定
 T}
 .TE
 .ad
 
 .in .8i
-XSI Curses ���ʤǤϰʲ��Τ�Τ��ɲä���Ƥ��ޤ��� �����ϡ��㤨�С�
-Solaris 2.5 �� IRIX 6.x �ʤɡ�4.1 �ʹߤΥС������� System V �Ρ�
-curses �Τ�ΤǤ���
-������ \fBncurses\fR termcap ̾�ϤǤä������ޤ�����XSI Curses ���ʤ˽����ȡ�
-termcap ̾�Ϥ���ޤ��󡣥���ѥ��뤵�줿 terminfo ����ȥ꤬������
-�ȤäƤ���С�SVr4.1 �ʹߤ� System V terminfo ����ȥ�Ȥ�
-�Х��ʥ�ߴ��ǤϤʤ������Τ�ޤ����ѿ����Ƥ�������!
+XSI Curses 規格では以下のものが追加されています。 それらは、例えば、
+Solaris 2.5 や IRIX 6.x など、4.1 以降のバージョンの System V の、
+curses のものです。
+それらの \fBncurses\fR termcap 名はでっちあげました。XSI Curses 規格に従うと、
+termcap 名はありません。コンパイルされた terminfo エントリがこれらを
+使っていれば、SVr4.1 以降の System V terminfo エントリとは
+バイナリ互換ではないかも知れません。用心してください!
 
 .na
 .TS H
@@ -1598,31 +1598,31 @@ center expand;
 c l l c
 c l l c
 lw25 lw6 lw2 lw20.
-\fBvariable	cap-	TCap	����\fR
-\fBʸ����	name	Code\fR
+\fBvariable	cap-	TCap	説明\fR
+\fB文字列	name	Code\fR
 enter_horizontal_hl_mode	ehhlm	Xh	T{
-��ʿ�ϥ��饤�ȥ⡼�ɤ�����
+水平ハイライトモードに入る
 T}
 enter_left_hl_mode	elhlm	Xl	T{
-���ϥ��饤�ȥ⡼�ɤ�����
+左ハイライトモードに入る
 T}
 enter_low_hl_mode	elohlm	Xo	T{
-���ϥ��饤�ȥ⡼�ɤ�����
+下ハイライトモードに入る
 T}
 enter_right_hl_mode	erhlm	Xr	T{
-���ϥ��饤�ȥ⡼�ɤ�����
+右ハイライトモードに入る
 T}
 enter_top_hl_mode	ethlm	Xt	T{
-��ϥ��饤�ȥ⡼�ɤ�����
+上ハイライトモードに入る
 T}
 enter_vertical_hl_mode	evhlm	Xv	T{
-��ľ�ϥ��饤�ȥ⡼�ɤ�����
+垂直ハイライトモードに入る
 T}
 set_a_attributes	sgr1	sA	T{
-�ӥǥ�°���� 2 ���ܤ��Ȥ� #1-#6 �����
+ビデオ属性の 2 番目の組を #1-#6 と定義
 T}
 set_pglen_inch  	slength	sL	T{
-�ڡ���Ĺ�� 100ʬ�� #1 �����������
+ページ長を 100分の #1 インチに設定
 T}
 .TE
 .ad
@@ -1630,10 +1630,10 @@ T}
 .\" Beginning of terminfo.tail file
 .ps +1
 .PP
-.SS ����ȥ����
+.SS エントリの例
 .PP
-�ʲ��Υ���ȥ�ϡ�ANSI ����ü���򵭽Ҥ�����ΤǤ���������Ū��ü����
-\fBterminfo\fR ����ȥ꤬ŵ��Ū�ˤϤɤΤ褦�Ǥ��뤫��ɽ���Ƥ��ޤ���
+以下のエントリは、ANSI 規格端末を記述したものですが、現代的な端末の
+\fBterminfo\fR エントリが典型的にはどのようであるかを表しています。
 .PP
 .nf
 .in -2
@@ -1663,219 +1663,219 @@ T}
 .fi
 .ft R
 .PP
-2 ���ܰʸ�ι���Ƭ�˶�����ʸ�����֤����Ȥǡ�
-����ȥ��ʣ���Ԥ�ʬ���Ʒ�³���ƽ񤯤��Ȥ��Ǥ��ޤ���
-����Ƭ�� ``#'' ���֤����Ȥǥ����Ȥ�ޤ�뤳�Ȥ��Ǥ��ޤ���
+2 行目以後の行先頭に空白類文字を置くことで、
+エントリを複数行に分けて継続して書くことができます。
+行先頭に ``#'' を置くことでコメントを含めることができます。
 .I terminfo
-�Υ����ѥӥ�ƥ��ˤϡ�3 �Ĥη�������ޤ���
-�֡����ͥ����ѥӥ�ƥ��ϡ�����ü��������������ͭ���Ƥ��뤫�ɤ�����ɽ���ޤ���
-���ͥ����ѥӥ�ƥ��ϡ�����ü�����礭���䡢�ٱ���礭������ꤷ�ޤ���
-ʸ���󥱡��ѥӥ�ƥ��ϡ�ü���Τ��뵡ǽ��¹Ԥ�����ݤ��Ѥ��륷�����󥹤�
-���ꤷ�ޤ���
+のケーパビリティには、3 つの型があります。
+ブール値ケーパビリティは、その端末がある特性を有しているかどうかを表します。
+数値ケーパビリティは、その端末の大きさや、遅延の大きさを指定します。
+文字列ケーパビリティは、端末のある機能を実行させる際に用いるシーケンスを
+指定します。
 .PP
-.SS �����ѥӥ�ƥ��η�
+.SS ケーパビリティの型
 .PP
-���٤ƤΥ����ѥӥ�ƥ��ˤ�̾��������ޤ����㤨�С�ANSI ɸ��ü����
-.I "��ư�ޡ�����"
-(�Ĥޤꡢ�Ԥ�ü����ã����м�ưŪ���������Ԥ��ʤ���뤳��) ��ͭ���뤳�Ȥ�
-�����ѥӥ�ƥ� \fBam\fR ��ɽ����ޤ���
-��ä� ansi �ε��Ҥ� \fBam\fR ��ޤߤޤ���
-���ͥ����ѥӥ�ƥ��θ�ˤ�ʸ�� `#' ��³���������������ͤ�³���ޤ���
-\fBcols\fR �ϡ�����ü���η����ɽ���Ƥ��ꡢansi �Ǥϡ�
-�����ͤ� `80' �Ǥ��뤳�Ȥ򼨤��ޤ���
-���ͥ����ѥӥ�ƥ����ͤϡ��ץ�����ߥ󥰸��� C �ε����Ȥä� 10 �ʿ���
-8 �ʿ���16 �ʿ���Ϳ���뤳�Ȥ��Ǥ��ޤ� (�㤨�С�255��0377��0xff��0xFF)��
+すべてのケーパビリティには名前があります。例えば、ANSI 標準端末が
+.I "自動マージン"
+(つまり、行の端に到達すれば自動的に復帰改行がなされること) を有することは
+ケーパビリティ \fBam\fR で表されます。
+よって ansi の記述は \fBam\fR を含みます。
+数値ケーパビリティの後には文字 `#' が続き、そして正の値が続きます。
+\fBcols\fR は、その端末の桁数を表しており、ansi では、
+この値は `80' であることを示します。
+数値ケーパビリティの値は、プログラミング言語 C の規約を使って 10 進数、
+8 進数、16 進数で与えることができます (例えば、255、0377、0xff、0xFF)。
 .PP
-�Ǹ�ˡ�ʸ���󥱡��ѥӥ�ƥ��ϡ�\fBel\fR (�����ޤǾõ�륷������) �ʤɤ�
-�褦�ˡ�2 ʸ���Υ����ɤȡ�`=' �ȡ�������� `,' �ޤǤδ֤�ʸ����Ȥ�
-ɽ����ޤ���
+最後に、文字列ケーパビリティは、\fBel\fR (行末まで消去するシーケンス) などの
+ように、2 文字のコードと、`=' と、その先の `,' までの間の文字列とで
+表されます。
 .PP
-ʸ���󥱡��ѥӥ�ƥ�����ǡ�ʸ���Υ��󥳡��ɤ��ñ�ˤ��뤿��ˡ�
-�����Ĥ��Υ��������ץ������󥹤����ѤǤ��ޤ���
-\fB\eE\fR �� \fB\ee\fR �ϤȤ�ˡ�\s-1ESCAPE\s0 ʸ���˥ޥåפ���ޤ���
-\fB^x\fR ��Ǥ�դ�Ŭ�ڤ� x �˴ؤ��� control-x �˥ޥåפ���ޤ���
-\fB\en \el \er \et \eb \ef \es\fR �Ϥ��줾�졢���ԡ��饤��ե����ɡ�������
-���֡��Хå����ڡ������ե�����ե����ɡ�����˥ޥåפ���ޤ���
-����¾�ˡ�\fB\e^\fR �� \fB^\fR �ˡ�
-\fB\e\e\fR �� \fB\e\fR �ˡ�
-\fB\e\fR, �ϥ���ޤˡ�
-\fB\e:\fR �� \fB:\fR �ˡ�
-\fB\e0\fR �ϥ̥�ʸ���˥ޥåפ���ޤ���
-(\fB\e0\fR �� \e200 ���������ޤ��������ʸ�����ü���ޤ��󤬡�
-�ۤȤ�ɤ�ü���Ǥ� CS7 �����ꤵ��Ƥ���Τǡ��̥�ʸ����Ʊ�ͤε�ư��
-��������Ǥ���stty(1) �򻲾Ȥ��Ƥ�������)
-�Ǹ�ˡ�\fB\e\fR �θ�� 8 �� 3 ��ο�����ꤷ��ʸ����ɽ�����Ȥ�Ǥ��ޤ���
+文字列ケーパビリティの中で、文字のエンコードを簡単にするために、
+いくつかのエスケープシーケンスが利用できます。
+\fB\eE\fR と \fB\ee\fR はともに、\s-1ESCAPE\s0 文字にマップされます。
+\fB^x\fR は任意の適切な x に関して control-x にマップされます。
+\fB\en \el \er \et \eb \ef \es\fR はそれぞれ、改行、ラインフィード、復帰、
+タブ、バックスペース、フォームフィード、空白にマップされます。
+その他に、\fB\e^\fR は \fB^\fR に、
+\fB\e\e\fR は \fB\e\fR に、
+\fB\e\fR, はコンマに、
+\fB\e:\fR は \fB:\fR に、
+\fB\e0\fR はヌル文字にマップされます。
+(\fB\e0\fR は \e200 を生成します。これは文字列を終端しませんが、
+ほとんどの端末では CS7 が指定されているので、ヌル文字と同様の挙動を
+示すからです。stty(1) を参照してください)
+最後に、\fB\e\fR の後に 8 進 3 桁の数を指定して文字を表すこともできます。
 .PP
-�ߥ���ñ�̤��ٱ�ϡ�\fBel\fP=\eEK$<5> �Τ褦�ˡ�ʸ���󥱡��ѥӥ�ƥ���
-�ɤξ��Ǥ� $<..> �Υ֥饱�åȤǰϤ���֤����Ȥ��Ǥ��ޤ���
-�����ٱ��Ϳ���뤿��Υѥǥ��󥰤ϡ��ؿ�
+ミリ秒単位の遅延は、\fBel\fP=\eEK$<5> のように、文字列ケーパビリティの
+どの場所でも $<..> のブラケットで囲んで置くことができます。
+この遅延を与えるためのパディングは、関数
 .I tputs
-���Ԥ��ޤ����ٱ�� 1/10 �����٤ο��Ǥ���ɬ�פ�����ޤ��������� `*'��'/'
-�ޤ��Ϥ���ξ�����Ĥ��Ƥ��뤫�⤷��ޤ���`*' �ϥѥǥ��󥰤򤽤ν�����
-�ƶ��������ԤιԿ������㤵����ɬ�פ����뤳�ȡ������Ƥ������פ�
-�ƶ�������� 1 ñ�̤������ɬ�ץѥǥ��󥰤ˤ���ޤ뤳�Ȥ�ɽ���ޤ���
-(ʸ�������ξ�硢����ϱƶ��������
-.IR ��
-�ο��Ǥ�) �̾�ǥХ����� \fBxon\fR �����ѥӥ�ƥ�������С��ѥǥ��󥰤�
-����Ū�ʤ�ΤǤ��������ȷ׻��ˤϻȤ��ޤ����ٱ������������ޤ���
-`/' �������ϥѥǥ��󥰤�ɬ�ܤΤ�ΤǤ��뤳�Ȥ򼨤����ե�������򼨤�
-\fBxon\fR ������ǥХ������Ф��Ƥ���ꤵ�줿�ߥ���ñ�̤��ٱ�������ޤ���
+が行います。遅延は 1/10 の精度の数である必要があります。接尾辞 `*'、'/'
+またはその両方がついているかもしれません。`*' はパディングをその処理で
+影響を受ける行の行数に比例させる必要があること、そしてその総計は
+影響を受ける 1 単位あたりの必要パディングにより決まることを表します。
+(文字挿入の場合、乗数は影響を受ける
+.IR 行
+の数です) 通常、デバイスに \fBxon\fR ケーパビリティがあれば、パディングは
+勧告的なものです。コスト計算には使われますが遅延を引き起こしません。
+`/' 接尾辞はパディングが必須のものであることを示し、フロー制御を示す
+\fBxon\fR があるデバイスに対しても指定されたミリ秒単位の遅延を強制します。
 .PP
-���륱���ѥӥ�ƥ��򥳥��ȥ����Ȥ��ͤФʤ�ʤ���礬����ޤ���
-�����������ϡ������ѥӥ�ƥ�̾�����˥ԥꥪ�ɤ��֤��Ƥ���������
-������ 2 ���ܤ�
+あるケーパビリティをコメントアウトせねばならない場合があります。
+そういう場合は、ケーパビリティ名の前にピリオドを置いてください。
+上の例の 2 番目の
 .B ind
-��������Ǥ���
+がその例です。
 .br
 .ne 5
 .PP
-.SS ����ѥ��뤵�줿���Ҥ��ɤ߹���
+.SS コンパイルされた記述の読み込み
 .PP
-�Ķ��ѿ� TERMINFO �����ꤵ��Ƥ���С�����Ϻ����ε��Ҥ�
-����ѥ��뤷����Τ�ޤ�ǥ��쥯�ȥ�Υѥ�̾�Ȳ�ᤵ��ޤ���
-���Υǥ��쥯�ȥ������õ���ޤ���
+環境変数 TERMINFO が設定されていれば、それは作業中の記述を
+コンパイルしたものを含むディレクトリのパス名と解釈されます。
+そのディレクトリだけを探します。
 .PP
-TERMINFO �����ꤵ��Ƥ��ʤ���С�\fBncurses\fR �Ǥ� terminfo �ɤ߹��ߥ����ɤ�
-��������˥ǥ��쥯�ȥ� \fB$HOME/.terminfo\fR ���饳��ѥ��뤵�줿���Ҥ�
-õ���ޤ���
-�����Ǹ��Ĥ���Τ˼��Ԥ����Ķ��ѿ� TERMINFO_DIRS �����ꤵ��Ƥ���С�
-�ѿ������Ƥ򥳥���Ƕ��ڤ�줿õ���٤��ǥ��쥯�ȥ�Υꥹ�ȤȲ�ᤷ�ޤ�
-(���Υ���ȥ�� \fI\*d\fR ��õ�����ޥ�ɤȤ��Ʋ�ᤵ��ޤ�)��
-TERMINFO_DIRS �ǥ��쥯�ȥ�Τ�����ˤ⵭�Ҥ����Ĥ���ʤ���С��ɤ߹��ߤ�
-���Ԥ��ޤ���
+TERMINFO が設定されていなければ、\fBncurses\fR 版の terminfo 読み込みコードは
+その代わりにディレクトリ \fB$HOME/.terminfo\fR からコンパイルされた記述を
+探します。
+そこで見つけるのに失敗し、環境変数 TERMINFO_DIRS が設定されていれば、
+変数の内容をコロンで区切られた探すべきディレクトリのリストと解釈します
+(空のエントリは \fI\*d\fR を探すコマンドとして解釈されます)。
+TERMINFO_DIRS ディレクトリのいずれにも記述が見つからなければ、読み込みは
+失敗します。
 .PP
-TERMINFO �� TERMINFO_DIRS �����ꤵ��Ƥ��ʤ���С��Ǹ�˻�ߤ������
-�����ƥ�� terminfo �ǥ��쥯�ȥ� \fI\*d\fR �Ǥ���
+TERMINFO も TERMINFO_DIRS も設定されていなければ、最後に試みられる場所は
+システムの terminfo ディレクトリ \fI\*d\fR です。
 .PP
-(\fB$HOME/.terminfo\fR õ���� TERMINFO_DIRS ��ĥ��
-ɸ��� System V terminfo/curses �Ǥϥ��ݡ��Ȥ���Ƥ��ޤ���)
+(\fB$HOME/.terminfo\fR 探索も TERMINFO_DIRS 拡張も
+標準の System V terminfo/curses ではサポートされていません。)
 .PP
-.SS ü�����Ҥν���
+.SS 端末記述の準備
 .PP
-�����Ǥϡ��ɤΤ褦�ˤ���ü���ε��Ҥ�������뤫�γ�ά���������ޤ���
-��äȤ��ΨŪ�ʤ�����ϡ�
+ここでは、どのようにして端末の記述を準備するかの概略を説明します。
+もっとも効率的なやり方は、
 .I terminfo
-����ˤ��������ü���ε��Ҥ�ޤͤƺ������뤳�ȤǤ���
+の中にある類似の端末の記述をまねて作成することです。
 .I vi
-�ʤɤΥ����꡼�󥨥ǥ����˽񤭳ݤ��ε��Ҥ�Ȥ碌�Ƥߤơ����ε��Ҥ�
-���������ɤ���������å����ʤ��顢���Ҥ�����˺��夲�Ƥ椯���ȤǤ���
-�̾�Τ�ΤȤ��ޤ�ˤ⤫��Υ�줿ü���ξ�硢
+などのスクリーンエディタに書き掛けの記述を使わせてみて、その記述が
+正しいかどうかをチェックしながら、記述を徐々に作り上げてゆくことです。
+通常のものとあまりにもかけ離れた端末の場合、
 .I terminfo
-�ե�����ε���ǽ�Ϥη�١��⤷���ϥƥ��ȥץ������β������Υ����ɤ�
-�Х������餫�ˤʤ뤫���Τ�ʤ��Τǡ�����ˤ����դ��Ƥ���������
+ファイルの記述能力の欠陥、もしくはテストプログラムの画面操作のコードの
+バグが明らかになるかも知れないので、それには注意してください。
 .PP
-(ü���᡼����ʸ��˽񤤤Ƥ���Ƥ��ʤ�����) �Ԥα������κݤΥѥǥ��󥰤�
-����ˤϡ��礭�ʥե������ 9600 �ܡ����Խ��������̤���ۤɤ� 16 �����٤�
-������Ƥ��顢 `u' ��������٤��Ф䤯Ϣ�Ǥ���Ȥ����������ƥ��Ȥ��
-���Ȥ褤�Ǥ��礦��
-ü���������㤰����ˤʤ�Τʤ顢���̤ϡ��⤦�����ѥǥ��󥰤�ɬ�פ���
-�������ȤǤ���ʸ�������ˤĤ��Ƥ�����褦�ʥƥ��Ȥ�Ԥ����Ȥ��Ǥ��ޤ���
+(端末メーカが文書に書いてくれていない場合に) 行の右挿入の際のパディングを
+得るには、大きなファイルを 9600 ボーで編集し、画面の中ほどで 16 行程度を
+削除してから、 `u' キーを数度すばやく連打するという厳しいテストを行
+うとよいでしょう。
+端末がぐちゃぐちゃになるのなら、普通は、もう少しパディングが必要だと
+いうことです。文字挿入についても似たようなテストを行うことができます。
 .PP
-.SS ����Ū�ʥ����ѥӥ�ƥ�
+.SS 基本的なケーパビリティ
 .PP
-ü���γƹԤη���Ͽ��ͷ������ѥӥ�ƥ� \fBcols\fR �ǻ��ꤷ�ޤ���
-ü���� \s-1CRT\s0 �ξ�硢���̤ιԿ��ϥ����ѥӥ�ƥ� \fBlines\fR ��
-���ꤷ�ޤ���
-�������뤬���ޡ������ã�����Ȥ��˼��ιԤκ�ü�˲������硢
-�����ѥӥ�ƥ� \fBam\fR ����ꤹ��ɬ�פ�����ޤ���
-ü���������̾õ�奫�������ۡ���ݥ������ˤ�äƤ椯���Ȥ��Ǥ����硢
-���ε�ǽ��ʸ���󥱡��ѥӥ�ƥ� \fBclear\fR �ǻ��ꤷ�ޤ���
-ü���� (����ʸ�����˽��Ϥ������ˤ��ξ���õ��ΤǤϤʤ�)
-�Ť��Ǥ������硢�����ѥӥ�ƥ� \fBos\fR ����ꤹ��ɬ�פ�����ޤ���
-����ü���ǡ����եȥ��ԡ����֤�����ʤ���硢
+端末の各行の桁数は数値型ケーパビリティ \fBcols\fR で指定します。
+端末が \s-1CRT\s0 の場合、画面の行数はケーパビリティ \fBlines\fR で
+指定します。
+カーソルが右マージンに達したときに次の行の左端に回り込む場合、
+ケーパビリティ \fBam\fR を指定する必要があります。
+端末が、画面消去後カーソルをホームポジションにもってゆくことができる場合、
+その機能は文字列ケーパビリティ \fBclear\fR で指定します。
+端末が (ある文字を上に出力した時にその場所を消去するのではなく)
+重ね打ちする場合、ケーパビリティ \fBos\fR を指定する必要があります。
+印字端末で、ソフトコピー装置を持たない場合、
 .B hc
-��
+と
 .BR os
-�Ȥ���ꤷ�ޤ���
+とを指定します。
 .RB ( os
-�ϡ��ϡ��ɥ��ԡ�ü���䡢APL ü�������Ǥʤ���\s-1TEKTRONIX\s+1 4010
-���꡼���Τ褦�ʥ��ȥ졼���������״�ü���ˤ�Ŭ�Ѥ���ޤ���)
-���ߤιԤκ�ü�˥���������ư�����륳���ɤ�¸�ߤ����硢�����
+は、ハードコピー端末や、APL 端末だけでなく、\s-1TEKTRONIX\s+1 4010
+シリーズのようなストレージスコープ管端末にも適用されます。)
+現在の行の左端にカーソルを移動させるコードが存在する場合、それを
 .BR cr
-�ǻ��ꤷ�ޤ���
-(�̾���������ʸ�����Ĥޤ� control M �ˤʤ�ޤ���)
-��İ�����ʥ� (�٥롢�ӡ��ײ��ʤ�) ���������륳���ɤ������硢�����
+で指定します。
+(通常、これは復帰文字、つまり control M になります。)
+可聴シグナル (ベル、ビープ音など) を生成するコードがある場合、それを
 .BR bel
-�ǻ��ꤷ�ޤ���
+で指定します。
 .PP
-��������� (�Хå����ڡ����Τ褦��) 1 �ݥ������������ذ�ư������
-�����ɤ������硢�����
+カーソルを (バックスペースのように) 1 ポジションだけ左へ移動させる
+コードがある場合、それは
 .BR cub1
-�ǻ��ꤷ�ޤ���
-Ʊ�ͤˡ����ؤΰ�ư����ؤΰ�ư�����ؤΰ�ư�Ϥ��줾�졢
+で指定します。
+同様に、右への移動、上への移動、下への移動はそれぞれ、
 .BR cuf1 ,
 .BR cuu1 ,
 .BR cud1
-�ǻ��ꤷ�ޤ���
-�����ζɽ�Ū���������ư��ǽ�ϡ��̲᤹����Υƥ����Ȥ��ѹ������Τ�
-���äƤϤʤ�ޤ��󡣤��Ȥ��С�����ʸ���Ϥ��β��Υƥ����Ȥ�õ�Ƥ��ޤ�
-���ᡢ���̤� `\fBcuf1\fP=\ ' �Ȥϻ��ꤷ�ޤ���
+で指定します。
+これらの局所的カーソル移動機能は、通過する場所のテキストを変更するもので
+あってはなりません。たとえば、空白文字はその下のテキストを消去してしまう
+ため、普通は `\fBcuf1\fP=\ ' とは指定しません。
 .PP
-�����Ƕˤ�ƽ��פʤ��ȤȤ��ơ�
+ここで極めて重要なこととして、
 .I terminfo
-�˥��󥳡��ɤ��줿�ɽ�Ū���������ư�ϡ�\s-1CRT\s0 ü���κ�ü�����
-��ü�Ǥ��������ʤ��Ȥ������ȤǤ���
-�ץ������ϡ�
+にエンコードされた局所的カーソル移動は、\s-1CRT\s0 端末の左端および
+上端では定義されないということです。
+プログラムは、
 .B bw
-�λ��꤬�ʤ��¤ꡢ��ü�ǥХå����ڡ�������Ϥ��褦�Ȥ��ƤϤ����ޤ���
-�ޤ������̾�ü�ǡ���˰�ư���褦�Ȥ��ƤϤ����ޤ���
-�ƥ����Ȥ��˥��������뤹�뤿��ˤϡ��ץ������ϲ��̺������˥��������
-��ư�����ơ�
+の指定がない限り、左端でバックスペースを出力しようとしてはいけません。
+また、画面上端で、上に移動しようとしてはいけません。
+テキストを上にスクロールするためには、プログラムは画面左下隅にカーソルを
+移動させて、
 .B ind
-(index) ʸ��������Ф��Ƥ���������
+(index) 文字列を送出してください。
 .PP
-�ƥ����Ȥ򲼤˥��������뤹��ˤϡ��ץ������ϲ��̺�����˥��������
-��ư�����ơ�
+テキストを下にスクロールするには、プログラムは画面左上隅にカーソルを
+移動させて、
 .B ri
-(reverse index) ʸ��������Ф��Ƥ���������
-ʸ����
+(reverse index) 文字列を送出してください。
+文字列
 .B ind
-��
+と
 .B ri
-�ε�ư�ϡ����줾����˽Ҥ٤����̶��˥������뤬�ʤ����ˤ�
-�������Ƥ��ޤ���
+の挙動は、それぞれ先に述べた画面隅にカーソルがない場合には
+定義されていません。
 .PP
-���������륷�����󥹤Υѥ�᡼���դ��С������ϡ�
+スクロールシーケンスのパラメータ付きバージョンは、
 .B indn
-��
+と
 .B rin
-�ǡ������ϡ����������뤹��Կ�����ꤹ��ѥ�᡼���� 1 �ļ�뤳�Ȥ�����Ƥ�
+で、これらは、スクロールする行数を指定するパラメータを 1 つ取ることを除いては
 .B ind
-��
+や
 .B ri
-�ȡ�Ʊ����ư�򼨤��ޤ���
-�����⡢�������뤬Ŭ�ڤʲ���ü��¸�ߤ��ʤ����ε�ư���������ޤ���
+と、同じ挙動を示します。
+これらも、カーソルが適切な画面端に存在しない場合の挙動は定義されません。
 .PP
-�����ѥӥ�ƥ� \fBam\fR �ϡ���ü�ǥƥ����Ȥ����Ϥ���Ƥ⥫�����뤬
-��ü��α�ޤ�³���뤫�ɤ����򼨤��ޤ��������������ε�ư�Ϻǽ���Ǥ�
+ケーパビリティ \fBam\fR は、右端でテキストが出力されてもカーソルが
+右端に留まり続けるかどうかを示します。ただし、この挙動は最終桁での
 .B cuf1
-�ε�ư�ˤ�ɬ������Ŭ�Ѥ���ޤ���
-��ü����ζɽ�Ū��ư��������줿��Τϡ�
+の挙動には必ずしも適用されません。
+左端からの局所的移動で定義されたものは、
 .B bw
-�����ꤵ��Ƥ�����ˡ���ü�����
+が指定されている場合に、左端からの
 .B cub1
-�� 1 �����ιԤα�ü�˰�ư����Ȥ������Ȥ����Ǥ���
+が 1 つ前の行の右端に移動するということだけです。
 .B bw
-�����ꤵ��Ƥ��ʤ���硢���θ��̤��������ޤ���
-����ϡ��㤨�С����̤�ü�˱�ä�Ȣ�������Ȥ��������ʤ�ΤǤ���
-ü������ư�ޡ�����ǽ���ڤ��ؤ���ǽ�ʾ�硢
+が指定されていない場合、この効果は定義されません。
+これは、例えば、画面の端に沿って箱を描くときに便利なものです。
+端末が自動マージン機能を切り替え可能な場合、
 .I terminfo
-�ե�����Ǥϡ��̾�Ϥ��ε�ǽ�ϥ�����֡��Ĥޤ� \fBam\fR �Ǥ�������ꤷ�ޤ���
-ü�������ιԤ���Ƭ��˰�ư���륳�ޥ�ɤ���ľ�硢���Υ��ޥ�ɤ�
+ファイルでは、通常はその機能はオン状態、つまり \fBam\fR であると想定します。
+端末が次の行の先頭桁に移動するコマンドを持つ場合、そのコマンドを
 .B nel
-(newline) �ǻ��ꤹ�뤳�Ȥ��Ǥ��ޤ���
-���Υ��ޥ�ɤ������߹ԤλĤ����ʬ��õ�뤫�ɤ����ϴط�����ޤ���
-�Ǥ����顢ü������
+(newline) で指定することができます。
+このコマンドが、現在行の残りの部分を消去するかどうかは関係ありません。
+ですから、端末が、
 .B cr
-��
+や
 .B lf
-������ʤ����Ǥ⡢ư���
+を持たない場合でも、動作する
 .B nel
-���뤳�Ȥϲ�ǽ�Ǥ��礦��
+を作ることは可能でしょう。
 .PP
-����ޤǾҲ𤷤������ѥӥ�ƥ��ǡ��ϡ��ɥ��ԡ�ü���䡢\*(lq���饹�� tty\*(rq
-ü���򵭽Ҥ���ˤϽ�ʬ�Ǥ���
-�����ǡ�model 33 teletype �ϡ�
+これまで紹介したケーパビリティで、ハードコピー端末や、\*(lqガラスの tty\*(rq
+端末を記述するには十分です。
+ここで、model 33 teletype は、
 .PP
 .DT
 .nf
@@ -1886,7 +1886,7 @@ TERMINFO �� TERMINFO_DIRS �����ꤵ��Ƥ��ʤ���С��Ǹ�˻�ߤ������
 .in +7
 .ft R
 .PP
-�ȵ��Ҥ���ޤ���������Lear Siegler �Ҥ� \s-1ADM\-3\s0 �ϡ�
+と記述されます。一方、Lear Siegler 社の \s-1ADM\-3\s0 は、
 .PP
 .DT
 .nf
@@ -1899,758 +1899,758 @@ TERMINFO �� TERMINFO_DIRS �����ꤵ��Ƥ��ʤ���С��Ǹ�˻�ߤ������
 .ft R
 .fi
 .PP
-�ȵ��Ҥ���ޤ���
+と記述されます。
 .PP
-.SS �ѥ�᡼�������줿ʸ����
+.SS パラメータ化された文字列
 .PP
-���������������ʤɡ��ѥ�᡼����ɬ�פȤ���ʸ����ϡ�
+カーソル位置設定など、パラメータを必要とする文字列は、
 .IR printf (3S)
-���Υ��������� \fB%x\fR ��ޤ�ѥ�᡼����ʸ���󥱡��ѥӥ�ƥ����Ѥ���
-���Ҥ��ޤ���
-�㤨�С�����������֤���ꤹ��
+風のエスケープ \fB%x\fR を含むパラメータ化文字列ケーパビリティを用いて
+記述します。
+例えば、カーソル位置を指定する
 .B cup
-�����ѥӥ�ƥ��ϡ���ư��ιԤȷ����ꤹ�� 2 �ĤΥѥ�᡼����Ϳ����ɬ�פ�
-����ޤ���
-(�Ԥȷ�� 0 ����������桼���˸�����ʪ�����̤򻲾Ȥ��ޤ����ܤ˸����ʤ�
-������ʬ�ϻ��Ȥ��ޤ���)
-ü�����������ФΥ���������ֻ��굡ǽ����ľ�硢�����
+ケーパビリティは、移動先の行と桁を指定する 2 つのパラメータを与える必要が
+あります。
+(行と桁は 0 から数え、ユーザに見える物理画面を参照します。目に見えない
+メモリ部分は参照しません。)
+端末がメモリ相対のカーソル位置指定機能を持つ場合、これは
 .BR mrcup
-��ɽ���ޤ���
+で表します。
 .PP
-�ѥ�᡼���Ϥ������Ǥϡ������å��ȡ�������������̤� \fB%\fP �����ɤ�
-�Ѥ��ޤ����̾�ϡ��������󥹤ϥѥ�᡼���� 1 �ĥ����å��˥ץå��夷��
-����򤢤�����ǽ��Ϥ��ޤ���
-��ä�ʣ������ɬ�פʤ��Ȥ⤷�Ф��Ф���ޤ���
+パラメータ渡し機構では、スタックと、それを操作する特別の \fB%\fP コードを
+用います。通常は、シーケンスはパラメータを 1 つスタックにプッシュし、
+それをある形式で出力します。
+もっと複雑な操作が必要なこともしばしばあります。
 .PP
-\fB%\fR �����ɤˤϰʲ��ΰ�̣������ޤ���
+\fB%\fR コードには以下の意味があります。
 .PP
 .DT
 .nf
 .ta .5i 1.5i
-	\s-1%%	`%' ����Ϥ���
+	\s-1%%	`%' を出力する
 	%\fI[[\fP:\fI]flags][width[.precision]][\fPdoxXs\fI]\fP
-		\fBprintf\fP �ǤΤ褦�ˡ��ե饰�� [-+#] �ȥ��ڡ���
-	%c	printf() �� %c �Τ褦�ˡ�pop() ��ɽ������
-	%s	printf() �� %s �Τ褦�ˡ�pop() ��ɽ������
+		\fBprintf\fP でのように、フラグは [-+#] とスペース
+	%c	printf() の %c のように、pop() を表示する
+	%s	printf() の %s のように、pop() を表示する
 
-	%p[1-9]	\fIi\fP ���ܤΥѥ�᡼����ץå��夹��
-	%P[a-z]	pop() ��ưŪ�ѿ� [a-z] �����ꤹ��
-	%g[a-z]	ưŪ�ѿ� [a-z] ��ץå��夹��
-	%P[A-Z]	pop() ����Ū�ѿ� [a-z] �����ꤹ��
-	%g[A-Z]	��Ū�ѿ� [a-z] ��ץå��夹��
-	%'\fIc\fP'	ʸ����� \fIc\fP
-	%{\fInn\fP}	������� \fInn\fP
-	%l	strlen(pop) ��ץå��夹��
+	%p[1-9]	\fIi\fP 番目のパラメータをプッシュする
+	%P[a-z]	pop() を動的変数 [a-z] に設定する
+	%g[a-z]	動的変数 [a-z] をプッシュする
+	%P[A-Z]	pop() を静的変数 [a-z] に設定する
+	%g[A-Z]	静的変数 [a-z] をプッシュする
+	%'\fIc\fP'	文字定数 \fIc\fP
+	%{\fInn\fP}	整数定数 \fInn\fP
+	%l	strlen(pop) をプッシュする
 
 	%+ %- %* %/ %m
-		���ѱ黻 (%m �Ͼ�;): push(pop() op pop())
-	%& %| %^	�ӥåȱ黻: push(pop() op pop())
-	%= %> %<	�����黻: push(pop() op pop())
-	%A, %O	���� and �������� or ��� (�������)
-	%! %~	ñ��黻 push(op pop())
-	%i	�ǽ�� 2 �ѥ�᡼���� 1 ��­�� (ANSI ü����)
+		算術演算 (%m は剰余): push(pop() op pop())
+	%& %| %^	ビット演算: push(pop() op pop())
+	%= %> %<	論理演算: push(pop() op pop())
+	%A, %O	論理 and 操作と論理 or 操作 (条件節用)
+	%! %~	単項演算 push(op pop())
+	%i	最初の 2 パラメータに 1 を足す (ANSI 端末用)
 
 	%? expr %t thenpart %e elsepart %;
-		if-then-else, %e elsepart �ϥ��ץ����
-		else-if �� Algol 68 ���˻����ǽ:
+		if-then-else, %e elsepart はオプション。
+		else-if は Algol 68 風に指定可能:
 		%? c\d1\u %t b\d1\u %e c\d2\u %t b\d2\u %e c\d3\u %t b\d3\u %e c\d4\u %t b\d4\u %e %;
-\s+1		c\di\u �Ͼ���ᡢb\di\u �����Ρ�
+\s+1		c\di\u は条件節、b\di\u は本体。
 .fi
 .PP
-���黻�ϡ��̾�ν�����¤٤����ڥ��ɤ��Ф��Ƹ��ַ����ǻ��ꤷ�ޤ���
-�㤨�С�x-5 ������ˤϡ�"%gx%{5}%-" ����ꤷ�ޤ���
-���������פ��줿ʸ�����ɾ������� %P �ѿ��� %g �ѿ���¸³���ޤ���
+二項演算は、通常の順序で並べたオペランドに対して後置形式で指定します。
+例えば、x-5 を得るには、"%gx%{5}%-" を指定します。
+エスケープされた文字列を評価する間 %P 変数と %g 変数は存続します。
 .PP
-HP2645 �����ͤ��Ƥߤޤ��礦������� 3 �� 12 ��˰�ư������ˤϡ�
-\eE&a12c03Y �� 6 �ߥ��äΥѥǥ��󥰤����Ф���ɬ�פ�����ޤ���
-�����ǹԤȷ�Ȥ��դˤʤäƤ��뤳�Ȥȡ�
-�ԡ���Ȥ� 2 ��ǽ��Ϥ���Ƥ��뤳�Ȥ����դ��Ƥ���������
-����ü���� \fBcup\fR �����ѥӥ�ƥ��ϡ�\*(lqcup=6\eE&%p2%2dc%p1%2dY\*(rq
-�Ȥʤ�ޤ���
+HP2645 の例を考えてみましょう。これで 3 行 12 桁に移動させるには、
+\eE&a12c03Y に 6 ミリ秒のパディングを送出する必要があります。
+ここで行と桁とが逆になっていることと、
+行、桁とも 2 桁で出力されていることに注意してください。
+この端末の \fBcup\fR ケーパビリティは、\*(lqcup=6\eE&%p2%2dc%p1%2dY\*(rq
+となります。
 .PP
-Microterm \s-1ACT-IV\s0 �ϡ�\fB^T\fR �θ�˸��ߤιԤȷ��
-�ɤ����ñ�˥Х��ʥ��ͤ�����ɬ�פ�����ޤ�����
-\*(lqcup=^T%p1%c%p2%c\*(rq �Ȥʤ�ޤ���
-\*(lq%c\*(rq ��Ȥ�ü���ϡ�����������������᤹���� (\fBcub1\fR) ��
-���̾�� 1 �Ծ�˥���������ư�����뤳�� (\fBcuu1\fR) ���Ǥ���ɬ�פ�����ޤ���
-����ϡ������ƥब�ѹ������갮��Ĥ֤����ꤹ���ǽ�������뤿�ᡢ
-\fB\en\fR, \fB^D\fR, \fB\er\fR ��μ¤������Ǥ���Ȥϸ¤�ʤ�����Ǥ���
-(terminfo �򰷤��饤�֥��롼����ϡ����֤��褷��Ÿ������ʤ��褦��
-ü���⡼�ɤ����ꤷ�ޤ����Ǥ����� \et �ϳμ¤������Ǥ��ޤ���
-����� Ann Arbor 4080 �ǤϽ��פʤ��Ȥ�ʬ�äƤ��ޤ���)
+Microterm \s-1ACT-IV\s0 は、\fB^T\fR の後に現在の行と桁を、
+どちらも単にバイナリ値で送る必要がありますが、
+\*(lqcup=^T%p1%c%p2%c\*(rq となります。
+\*(lq%c\*(rq を使う端末は、カーソルを前方に戻すこと (\fBcub1\fR) と
+画面上で 1 行上にカーソルを移動させること (\fBcuu1\fR) ができる必要があります。
+これは、システムが変更したり握りつぶしたりする可能性があるため、
+\fB\en\fR, \fB^D\fR, \fB\er\fR を確実に送信できるとは限らないからです。
+(terminfo を扱うライブラリルーチンは、タブが決して展開されないように
+端末モードを設定します。ですから \et は確実に送信できます。
+これは Ann Arbor 4080 では重要なことが分っています。)
 .PP
-�Ǹ����� \s-1LSI ADM\s0-3a �Ǥ�������ϹԤȷ�����ʸ������Υ��ե��åȤ�
-ɽ���ޤ����Ǥ����顢\*(lqcup=\eE=%p1%' '%+%c%p2%' '%+%c\*(rq �Ȥʤ�ޤ���
-`\eE=' �����Ф����塢�ǽ�Υѥ�᡼����ץå��夷������ʸ���� ASCII �� (32) ��
-�ץå��夷��������ä��� (������ 2 �Ĥ��ͤ�����ˤ����¤򥹥��å���
-�ץå��夷) �����ͤ�ʸ���Ȥ��ƽ��Ϥ��ޤ���
-���θ塢2 ���ܤΥѥ�᡼���ˤĤ��Ƥ�Ʊ�ͤν�����Ԥ��ޤ���
-�����å���Ȥ����Ȥǡ������ʣ���ʷ׻����ǽ�Ǥ���
+最後の例は \s-1LSI ADM\s0-3a です。これは行と桁を空白文字からのオフセットで
+表します。ですから、\*(lqcup=\eE=%p1%' '%+%c%p2%' '%+%c\*(rq となります。
+`\eE=' を送出した後、最初のパラメータをプッシュし、空白文字の ASCII 値 (32) を
+プッシュし、それらを加えて (以前の 2 つの値の代わりにその和をスタックに
+プッシュし) 得た値を文字として出力します。
+その後、2 番目のパラメータについても同様の処理を行います。
+スタックを使うことで、さらに複雑な計算も可能です。
 .PP
-.SS ���������ư
+.SS カーソル移動
 .PP
-����������®�˥ۡ���ݥ������ (���̤κ����) �˰�ư��������ˡ�����
-ü���ξ�硢����� \fBhome\fR �ǻ��ꤹ�뤳�Ȥ��Ǥ��ޤ���Ʊ�ͤˡ���®��
-�������˰�ư��������ˡ����ľ��� \fBll\fR �ǻ��ꤹ�뤳�Ȥ��Ǥ��ޤ���
-ü���ˤ�äƤϡ��ۡ���ݥ�����󤫤� \fBcuu1\fR ��Ȥäƾ�˰�ư����
-���ȤǤ���ư���ǽ�ʾ��⤢��ޤ�����
-�ץ������� (\fBll\fR�Ǥ������ꤷ�ʤ��¤�) ��ʬ���餽�����Ƥ�
-�ʤ�ʤ����ȤˤʤäƤ��ޤ�������ϡ��ۡ���ݥ�����󤫤��˰�ư����
-����ư��ˤĤ��ơ��ץ������ϰ�������Ǥ��ʤ�����Ǥ���
-�ۡ���ݥ������ϰ��ֻ��� (0,0)���Ĥޤꡢ����ǤϤʤ������̤κ������
-���������Ȥ����դ��Ƥ���������
-(�Ǥ����顢HP ü���� \eEH �Υ������󥹤�
+カーソルを高速にホームポジション (画面の左上隅) に移動させる方法を持つ
+端末の場合、これを \fBhome\fR で指定することができます。同様に、高速に
+左下隅に移動させる方法を持つ場合も \fBll\fR で指定することができます。
+端末によっては、ホームポジションから \fBcuu1\fR を使って上に移動する
+ことでこの動作が可能な場合もありますが、
+プログラムは (\fBll\fRでそう指定しない限り) 自分からそうしては
+ならないことになっています。これは、ホームポジションから上に移動した
+場合の動作について、プログラムは一切想定できないからです。
+ホームポジションは位置指定 (0,0)、つまり、メモリではなく、画面の左上隅と
+等しいことに注意してください。
+(ですから、HP 端末の \eEH のシーケンスは
 .BR home
-�Ȥ��ƻ��ѤǤ��ޤ���)
+として使用できません。)
 .PP
-ü�����Ԥ������Х���������ֻ��굡ǽ����ľ�硢ñ��ѥ�᡼������
-�����ѥӥ�ƥ�
+端末が行や桁の絶対カーソル位置指定機能を持つ場合、単一パラメータを取る
+ケーパビリティ
 .B hpa
-(��ʿ���а���) ��
+(水平絶対位置) と
 .B vpa
-(��ľ���а���) �ǻ��ꤷ�ޤ���
-(hp2645 �Τ褦��) ����Ū�� 2 �ѥ�᡼���Υ������󥹤��⤳��������
-û���ʤ��礬�Ȥ��ɤ����ꡢ���ξ�硢
+(垂直絶対位置) で指定します。
+(hp2645 のような) 一般的な 2 パラメータのシーケンスよりもこれらの方が
+短くなる場合がときどきあり、その場合、
 .BR cup
-���⤽����Ȥ���ǽ��������ޤ���
-�ѥ�᡼�������줿�ɽ��ư��ǽ (�㤨�С�
+よりもそれらを使う可能性があります。
+パラメータ化された局所移動機能 (例えば、
 .I n
-�屦�ذ�ư����) ��¸�ߤ����硢�����ϡ������İ�ư���뤫����ꤹ��
-�ѥ�᡼���� 1 �Ļ���
+桁右へ移動する) が存在する場合、これらは、いくつ移動するかを指定する
+パラメータを 1 つ持つ
 .BR cud ,
 .BR cub ,
 .BR cuf ,
 .BR cuu
-��Ȥäƻ��ꤹ�뤳�Ȥ��Ǥ��ޤ���
-�����ϼ�ˡ�\s-1TEKTRONIX\s+1 4025 �Τ褦��ü����
+を使って指定することができます。
+これらは主に、\s-1TEKTRONIX\s+1 4025 のように端末が
 .BR cup
-������ʤ�����ͭ�פǤ���
+を持たない場合に有益です。
 .PP
-�����Υ����ѥӥ�ƥ�����Ѥ���ץ�������¹Ԥ���ݤˡ�ü����
-�ü�ʥ⡼�ɤˤ���ɬ�פ������硢���Υ⡼�ɤ����륳���ɤȽФ륳���ɤ򤽤줾��
-\fBsmcup\fR �� \fBrmcup\fR �ǻ��ꤹ�뤳�Ȥ��Ǥ��ޤ���
-�����������֤���������Ȥ��ơ��㤨�� Concept �Τ褦�ˡ�ʣ���ڡ�����
-��������ü��������ޤ���
-�������л������������������ФΥ���������ֻ��굡ǽ���������ʤ�
-����ü���ξ�硢���̤��礭���Υ�����ɥ� 1 ���ü���˸���ǳ���դ���
-����������ֻ����Ŭ�ڤˤǤ���褦�ˤ��ʤ���Фʤ�ޤ���
-���Υ����ѥӥ�ƥ��� \s-1TEKTRONIX\s+1 4025 �Ǥ���Ѥ���Ƥ��ޤ���
-������Ǥϡ�
+これらのケーパビリティを使用するプログラムを実行する際に、端末を
+特殊なモードにする必要がある場合、このモードに入るコードと出るコードをそれぞれ
+\fBsmcup\fR と \fBrmcup\fR で指定することができます。
+こういう事態が生じる場合として、例えば Concept のように、複数ページの
+メモリを持つ端末があります。
+画面相対指定を持たず、メモリ相対のカーソル位置指定機能しか持たない
+この端末の場合、画面の大きさのウィンドウ 1 枚を端末に固定で割り付け、
+カーソル位置指定を適切にできるようにしなければなりません。
+このケーパビリティは \s-1TEKTRONIX\s+1 4025 でも使用されています。
+こちらでは、
 .B smcup
-�ǡ�terminfo �ǻ��Ѥ��륳�ޥ��ʸ�������ꤷ�Ƥ��ޤ���
-\fBrmcup\fP �������� �����Ϥ��줿��ˡ�\fBsmcup\fP �������󥹤����̤�
-(\fBrmcup\fP ����Ϥ������ξ��֤�) �������ʤ��ʤ�С�\fBnrrmc\fP ��
-���ꤷ�Ƥ���������
+で、terminfo で使用するコマンド文字を設定しています。
+\fBrmcup\fP シーケンス が出力された後に、\fBsmcup\fP シーケンスが画面を
+(\fBrmcup\fP を出力する前の状態に) 回復しないならば、\fBnrrmc\fP を
+指定してください。
 .PP
-.SS �ΰ�õ�
+.SS 領域消去
 .PP
-ü�������������ư�������ˡ����߰��֤���Ԥ���ü�ޤǾõ��ǽ�Ǥ����硢
-����� \fBel\fR �ǻ��ꤹ�٤��Ǥ���
-ü�������������ư�������ˡ��Ԥ���Ƭ���鸽�߰��֤�ޤ�Ƹ��߰��֤ޤ�
-�õ��ǽ�Ǥ����硢����� \fBel1\fP �ǻ��ꤹ�٤��Ǥ���
-ü�������߰��֤�����̤ν���ޤǤ�õ��ǽ�ʾ�硢����� \fBed\fR ��
-���ꤹ�٤��Ǥ���
-\fBed\fR �ϹԤ��� 1 �夫��Ԥ����Τ��������ޤ���
-(�Ǥ����顢�ޤȤ��
+端末がカーソルを動かさずに、現在位置から行の末端まで消去可能である場合、
+これを \fBel\fR で指定すべきです。
+端末がカーソルを動かさずに、行の先頭から現在位置を含めて現在位置まで
+消去可能である場合、これを \fBel1\fP で指定すべきです。
+端末が現在位置から画面の終りまでを消去可能な場合、これを \fBed\fR で
+指定すべきです。
+\fBed\fR は行の第 1 桁から行う場合のみ定義されます。
+(ですから、まともな
 .B ed
-�����ѤǤ��ʤ����Ǥ⡢���̤ιԺ���ꥯ�����Ȥ�Ȥäƥ��ߥ�졼�Ȳ�ǽ�Ǥ���)
+が利用できない場合でも、大量の行削除リクエストを使ってシミュレート可能です。)
 .PP
-.SS �Ԥ�����/����ȿ�ľ��ư
+.SS 行の挿入/削除と垂直移動
 .PP
-��������Τ���Ԥ����˶���Ԥ򿷵��ˤĤ��뤳�Ȥ��Ǥ���ü���ξ�硢
-����� \fBil1\fR �ǻ��ꤹ�٤��Ǥ�������ϡ��Ԥ���Ƭ���֤ǤΤ߹Ԥ��ޤ���
-�����塢��������Ͽ������Ǥ�������Ԥ��֤����ɬ�פ�����ޤ���
-ü������������Τ���Ԥ����Ǥ����硢����� \fBdl1\fR �ǻ��ꤹ�٤��Ǥ���
-���ε�ǽ�Ϻ�������Ԥ���Ƭ�ǤΤ߹Ԥ��ޤ���
+カーソルのある行の前に空白行を新規につくることができる端末の場合、
+これを \fBil1\fR で指定すべきです。これは、行の先頭位置でのみ行われます。
+作成後、カーソルは新しくできた空白行に置かれる必要があります。
+端末がカーソルのある行を削除できる場合、これを \fBdl1\fR で指定すべきです。
+この機能は削除される行の先頭でのみ行われます。
 .B il1
-��
+と
 .B dl1
-���Ѽ�ǡ�����/�������Կ���ɽ���ѥ�᡼���� 1 �ļ���Τϡ�
+の変種で、挿入/削除する行数を表すパラメータを 1 つ取るものは、
 .B il
-��
+と
 .BR dl
-�Ȥǻ���Ǥ��ޤ���
+とで指定できます。
 .PP
-(vt100 �Τ褦��) �����������ΰ�������ǽ��ü���ξ�硢
-�ΰ����ꥳ�ޥ�ɤ�
+(vt100 のように) スクロール領域を設定可能な端末の場合、
+領域設定コマンドを
 .B csr
-�����ѥӥ�ƥ����Ѥ��ƻ����ǽ�Ǥ������Υ����ѥӥ�ƥ��� 2 �ĤΥѥ�᡼����
-�����������ΰ����Ƭ�ԤȺǽ��ԡ�����ޤ���
-���ä����Ȥˡ����Υ��ޥ�ɼ¹Ը�Υ���������֤��������ޤ���
+ケーパビリティを用いて指定可能です。このケーパビリティは 2 つのパラメータ、
+スクロール領域の先頭行と最終行、を取ります。
+困ったことに、このコマンド実行後のカーソル位置は定義されません。
 .PP
-Ŭ�ڤ��ΰ��
+適切な領域に
 .B csr
-���Ѥ��뤳�ȤǹԤ�����/����θ��̤����뤳�Ȥ���ǽ�Ǥ���
+を用いることで行の挿入/削除の効果を得ることが可能です。
 .B sc
-��
+と
 .B rc
-(�����������¸�Ȳ���) ���ޥ�ɤϡ�������������/���ʸ���󤬥��������
-ư�����ʤ����Ȥ��ݾڤ���ˤ�ͭ�ѤǤ��礦��
-(\fBncurses\fR(3X) �饤�֥��ϼ�ưŪ�ˤ��ι�����Ԥ��Τǡ�
-\fBcsr\fR ������/���ʸ����򥨥�ȥ��ѤˤĤ���ɬ�פϤʤ����Ȥ�
-���դ��Ƥ���������)
+(カーソルの保存と回復) コマンドは、合成した挿入/削除文字列がカーソルを
+動かさないことを保証するには有用でしょう。
+(\fBncurses\fR(3X) ライブラリは自動的にこの合成を行うので、
+\fBcsr\fR で挿入/削除文字列をエントリ用につくる必要はないことに
+注意してください。)
 .PP
-�����Ⱥ����������⤦ 1 �Ĥ���ˡ�ϡ�(HP-700/90 ���꡼���ˤ�����/�����
-����ޤ��������Υ��꡼���Τ褦��) �����Ĥ���ü���ˤ��������å���ǽ��
-index ���Ȥ߹�碌�ƻȤ����ȤǤ���
+挿入と削除を構成するもう 1 つの方法は、(HP-700/90 シリーズには挿入/削除は
+ありますが、このシリーズのような) いくつかの端末にあるメモリロック機能と
+index を組み合わせて使うことです。
 .PP
-�ޤȤ�ʹ�����/������ޥ�ɤ�����ʤ�ü���ǡ����̤κǾ�ü�⤷����
-�ǲ�ü�ǹԤ����������硢
+まともな行挿入/削除コマンドを持たない端末で、画面の最上端もしくは
+最下端で行を挿入する場合、
 .B ri
-�⤷����
+もしくは
 .B ind
-��ȤäƹԤ����Ȥ�Ǥ��ޤ����ޤȤ�ʹ�����/������ޥ�ɤ���ľ��Ǥ⡢
-������Ȥ�����®����礬¿���Ǥ���
+を使って行うこともできます。まともな行挿入/削除コマンドを持つ場合でも、
+これらを使う方が速い場合が多いです。
 .PP
-���������뤹��ƥ�����ɥ����¼�Ū�˲�����Υ����Х���Υӥ塼�ݡ��Ȥ�
-����ʤ顢�֡����� \fBnon_dest_scroll_region\fR �����ꤹ�٤��Ǥ���
-���Υ����ѥӥ�ƥ���ƥ��Ȥ��뤿��ˤϡ����̤�����˥����������ΰ��Ĥ��ꡢ
-�ǲ��Ԥ˲�����񤭡��ΰ�ΰ��־�˥��������ư������\fBri\fR ��Ԥä���
-\fBdl1\fR �� \fBind\fR ��ԤäƤ���������
-\fBri\fR ���ΰ�β��ؤȥ��������뤷�ƾä����ǡ�������
-�ƤӸ����ʤ顢��������������˲�Ū�Ǥ���System V Curses ��
-XSI Curses �� \fBind\fR, \fBri\fR, \fBindn\fR, \fBrin\fR ���˲�Ū�����������
-���ߥ�졼����󤹤뤳�Ȥ���Ԥ��ޤ���
-���줬�����Ǥʤ��¤� \fBcsr\fR ��������ʤ��褦�ˤ�ʸ��ˤ����ս񤭤�����ޤ���
-���� \fBcurses\fR �μ����Ϥ�괲��ǡ�\fBndstr\fR ���������Ƥ����
-����������θ������Ū�˾õ��Ԥ��ޤ���
+スクロールする各ウィンドウが実質的に画面大のキャンバス上のビューポートで
+あるなら、ブール値 \fBnon_dest_scroll_region\fR を設定すべきです。
+このケーパビリティをテストするためには、画面の中央にスクロール領域をつくり、
+最下行に何かを書き、領域の一番上にカーソルを動かし、\fBri\fR を行った後
+\fBdl1\fR か \fBind\fR を行ってください。
+\fBri\fR で領域の下へとスクロールして消えたデータが、
+再び現れるなら、スクロールは非破壊的です。System V Curses と
+XSI Curses は \fBind\fR, \fBri\fR, \fBindn\fR, \fBrin\fR が破壊的スクロールを
+シミュレーションすることを期待します。
+これが本当でない限り \fBcsr\fR を定義しないようにと文書には注意書きがあります。
+この \fBcurses\fR の実装はより寛大で、\fBndstr\fR が定義されていれば
+スクロールの後に明示的に消去を行います。
 .PP
-����ΰ����ˡ����٤ƤΥ��ޥ�ɤ��ƶ����륦����ɥ���������뤳�Ȥ�
-�Ǥ���ü���ξ�硢����ϡ��ѥ�᡼����ʸ����
+メモリの一部に、すべてのコマンドが影響するウィンドウを定義することが
+できる端末の場合、それは、パラメータ化文字列
 .BR wind
-�ǻ��ꤹ�٤��Ǥ���
-������Ǥγ��Ϲԡ���λ�ԡ����Ϸ塢��λ���ɽ�� 4 �ѥ�᡼���ϡ�
-���ν��֤�Ϳ���ޤ���
+で指定すべきです。
+メモリ中での開始行、終了行、開始桁、終了桁を表す 4 パラメータは、
+この順番で与えます。
 .PP
-��¦��ɽ��������ݻ��Ǥ���ü���ξ�硢\fBda\fR �����ѥӥ�ƥ���
-���ꤹ�٤��Ǥ�����¦��ɽ��������ݻ��Ǥ����硢\fBdb\fR ����ꤹ�٤��Ǥ���
-�����ϡ��Ժ���䥹��������ˤ�ꡢ���̺ǲ�ü�������Ԥ��夬�äƤ��뤳�ȡ�
-����ӡ�\fBri\fR �ˤ��ե���������ˤ�������Ԥ������äƤ��뤳�Ȥ�ɽ���ޤ���
+上側の表示メモリを保持できる端末の場合、\fBda\fR ケーパビリティを
+指定すべきです。下側の表示メモリを保持できる場合、\fBdb\fR を指定すべきです。
+これらは、行削除やスクロールにより、画面最下端に非空白行が上がってくること、
+および、\fBri\fR による逆スクロールにより非空白行が下がってくることを表します。
 .PP
-.SS ʸ��������/���
+.SS 文字の挿入/削除
 .PP
 .I terminfo
-�ǵ��Ҳ�ǽ��ʸ��������/����˴ؤ��ơ�����Ū�ˤ� 2 �����
-����ƥꥸ�����ü��������ޤ���
-��äȤ�ɸ��Ū��ʸ������/�����ǽ�ϡ����߹Ԥ�ʸ���Τߤ��ƶ��������
-���եȤ���ʸ���ϰ��ΤȤʤäư�ư����ü�Ǿä��ƹԤ���ΤǤ���
-����¾��ü�����㤨�� Concept 100 �� Perkin Elmer Owl �Τ褦�ʤ�Τξ�硢
-ɽ�����Ϥ��줿����Ȥ����Ǥʤ�����Ȥδ֤˶��̤�����ޤ�������/�����
-�Ȥ�ʤ����եȤϲ��̾��ɽ�����Ϥ���Ƥ��ʤ�������Ф��ƤΤ�Ŭ�Ѥ��졢
-���줾�����ξ��ǡ��⤷����ɽ�����Ϥ���Ƥ��ʤ����� 2 �Ĥˤʤ�ޤ�����ʬ��
-���äƤ���ü�����ɤ���Υ����פ���Ĵ�٤�ˤϡ����̤�õ�Ƥ��顢��������
-��ư���Ѥ��ƥƥ����Ȥ� 2 �ս��ʬ���ƽ��Ϥ��ޤ���\*(lqabc\*(rq ��
-\*(lqdef\*(rq �δ֤� (����ʸ���Ǥʤ�) �ɽ�Ū���������ư���Ѥ���
-\*(lqabc\ \ \ \ def\*(rq ����Ϥ��Ƥ���������
-���θ塢��������� \*(lqabc\*(rq �����˰�ư������ü���������⡼�ɤˤ��ޤ���
-ʸ�����Ǥ�����ȡ��ԤλĤ꤬���ΤȤʤäƥ��եȤ��ƹԤ�ü��ʸ�������ܤ�
-�����Ƥ椯�ʤ�С�����ü����ɽ�����Ϥ��줿����Ȥ����Ǥʤ��������̤��ޤ���
-\*(lqabc\*(rq �����եȤ��� \*(lqdef\*(rq �����ꤽ�θ�Ϥ���餬����
-�Ԥ�ü�ޤǿʤߡ����ιԤޤǿʤ�ʤ�С�����ü���� 2 ���ܤΥ����פΤ�Τ�
-\*(lqinsert null\*(rq ��ɽ�������ѥӥ�ƥ� \fBin\fR ����ꤹ�٤��Ǥ���
-����Ū�ˤϡ��������̤�°�� (�����⡼�ɤ� 1 �Ԥ�ʣ���Ԥ�������ӡ�
-ɽ�����Ϥ���Ƥ��ʤ���������̰������뤫�ݤ�) �Ǥ����������⡼�ɤ�
-����°�� 1 �Ĥǵ��ҤǤ��ʤ�ü���ˡ����ޤǤ��ܤˤ����ä����ȤϤ���ޤ���
+で記述可能な文字の挿入/削除に関して、基本的には 2 種類の
+インテリジェント端末があります。
+もっとも標準的な文字挿入/削除機能は、現在行の文字のみが影響を受け、
+シフトした文字は一体となって移動し行端で消えて行くものです。
+その他の端末、例えば Concept 100 や Perkin Elmer Owl のようなものの場合、
+表示出力された空白とそうでない空白との間に区別があります。挿入/削除に
+ともなうシフトは画面上の表示出力されていない空白に対してのみ適用され、
+それぞれ空白の消滅、もしくは表示出力されていない空白 2 つになります。自分が
+持っている端末がどちらのタイプかを調べるには、画面を消去してから、カーソル
+移動を用いてテキストを 2 箇所に分けて出力します。\*(lqabc\*(rq と
+\*(lqdef\*(rq の間に (空白文字でなく) 局所的カーソル移動を用いて
+\*(lqabc\ \ \ \ def\*(rq を出力してください。
+その後、カーソルを \*(lqabc\*(rq の前に移動させ、端末を挿入モードにします。
+文字を打ち込むと、行の残りが一体となってシフトして行の端で文字がこぼれ
+おちてゆくならば、この端末は表示出力された空白とそうでない空白を区別しません。
+\*(lqabc\*(rq がシフトして \*(lqdef\*(rq に当りその後はそれらが一緒に
+行の端まで進み、次の行まで進むならば、この端末は 2 番目のタイプのもので
+\*(lqinsert null\*(rq を表すケーパビリティ \fBin\fR を指定すべきです。
+論理的には、これらは別の属性 (挿入モードが 1 行か複数行か、および、
+表示出力されていない空白を特別扱いするか否か) ですが、挿入モードを
+この属性 1 つで記述できない端末に、今までお目にかかったことはありません。
 .PP
-terminfo �Ǥϡ������⡼�ɤ����ü���⡢���߹Ԥξ�Ǿ��������û��
-�������󥹤�����ü���⡢ξ���Ȥ⵭�Ҥ��뤳�Ȥ��Ǥ��ޤ���
-�����⡼�ɤ����륷�����󥹤� \fBsmir\fR �ǻ��ꤷ�Ƥ���������
-�����⡼�ɤ���Ф륷�����󥹤� \fBrmir\fR �ǻ��ꤷ�Ƥ���������
-����������ʸ����ľ���ˡ����륷�����󥹤����Ф���ɬ�פ��������
-\fBich1\fR �ǻ��ꤷ�Ƥ����������ޤȤ�������⡼�ɤ����ü���ΤۤȤ�ɤǤϡ�
-\fBich1\fR ����ꤹ�뤳�ȤϤʤ��Ǥ��礦��
-���������̾�Ǿ�������륷�����󥹤�����ü���ξ��ϡ�
-\fBich1\fR ����ꤹ�٤��Ǥ���
+terminfo では、挿入モードを持つ端末も、現在行の上で場所を空ける短い
+シーケンスを送る端末も、両方とも記述することができます。
+挿入モードに入るシーケンスは \fBsmir\fR で指定してください。
+挿入モードから出るシーケンスは \fBrmir\fR で指定してください。
+挿入したい文字の直前に、あるシーケンスを送出する必要がある場合は
+\fBich1\fR で指定してください。まともな挿入モードを持つ端末のほとんどでは、
+\fBich1\fR を指定することはないでしょう。
+一方、画面上で場所を空けるシーケンスを送る端末の場合は、
+\fBich1\fR を指定すべきです。
 .PP
-ξ������ü���ξ�硢�̾�� \fBich1\fR ���������⡼�ɤ�����˾�ޤ����Ǥ��礦��
-����Ū�ˤϡ��ºݤ�ξ�����Ȥ߹�碌�ƻ��Ѥ���ɬ�פ�������ʳ��ϡ�ξ��Ʊ����
-���ꤹ�٤��ǤϤ���ޤ��󡣤�äơ�ξ������� curses ��Ȥ�ʤ�
-���ץꥱ����������ˤϺ��𤹤��Τ�����ޤ������������ϡ�������Ȥä�
-�����λ���ʸ������Ťˤʤ뤳�ȤǤ��������׵�ϸ��ߤǤϵ��Ǥ����ۤȤ�ɤ�
-\fBich\fR �������󥹤Ϥ������� smir ��ɬ�פȤϤ�����
-�ۤȤ�ɤ� smir �����⡼�ɤϳ�ʸ�������� \fBich1\fR ��ɬ�פȤϤ��ޤ���
-��äơ������� \fBcurses\fR �ϼºݤˤ��줬���¤��Ȳ��ꤷ��
-\fBrmir\fR/\fBsmir\fR �� \fBich\fR/\fBich1\fR �Τɤ��餫���� (ξ���Ǥ�
-����ޤ���) ��Ŭ�ڤʤ�ΤȤߤʤ������Ѥ��ޤ����⤷��ξ����ɬ�פȤ���ۤ�
-�Ť�ü���Υ���ȥ�򡢿����� curses �ǻȤ�����˽�ɬ�פ�����ʤ顢
-\fBich1\fR �� \fBrmir\fR/\fBsmir\fR �������󥹤�ޤ�Ƥ���������
+両方持つ端末の場合、通常は \fBich1\fR よりも挿入モードの方が望ましいでしょう。
+技術的には、実際に両方を組み合わせて使用する必要がある場合以外は、両方同時に
+指定すべきではありません。よって、両方あると curses を使わない
+アプリケーションの中には混乱するものがあります。その兆候は、挿入を使った
+更新の時に文字が二重になることです。この要求は現在では稀です。ほとんどの
+\fBich\fR シーケンスはその前に smir を必要とはせず、
+ほとんどの smir 挿入モードは各文字の前に \fBich1\fR を必要とはしません。
+よって、新しい \fBcurses\fR は実際にこれが真実だと仮定し、
+\fBrmir\fR/\fBsmir\fR か \fBich\fR/\fBich1\fR のどちらか一方 (両方では
+ありません) を適切なものとみなして利用します。もし、両方を必要とするほど
+古い端末のエントリを、新しい curses で使うために書く必要があるなら、
+\fBich1\fR に \fBrmir\fR/\fBsmir\fR シーケンスを含めてください。
 .PP
-������Υѥǥ��󥰤�ɬ�פʾ�硢\fBip\fR (ʸ���󥪥ץ����) ��ɬ�פʥߥ��ä�
-������ꤷ�Ƥ�������������¾�Υ������󥹤�ʸ�� 1 ʸ��������������Ф���
-ɬ�פΤ����Τ򡢤��ä���� \fBip\fR �ǻ��ꤹ�뤳�Ȥ�Ǥ��ޤ���
-�������⡼�ɡפ����ꡢ������������ʸ�����Ȥˤ��륳���ɤ��դ���
-���Ф���ɬ�פΤ���ü���ξ�硢
+挿入後のパディングが必要な場合、\fBip\fR (文字列オプション) に必要なミリ秒の
+数を指定してください。その他のシーケンスで文字 1 文字を挿入後に送出する
+必要のあるものを、いっしょに \fBip\fR で指定することもできます。
+「挿入モード」に入り、かつ挿入する文字ごとにあるコードを付けて
+送出する必要のある端末の場合、
 .BR smir / rmir
-��
+と
 .B ich1
-�Ȥ�ξ���Ȥ���ꤷ�Ƥ����������������뤳�Ȥǡ�����餬�Ȥ���褦�ˤʤ�ޤ���
+とを両方とも指定してください。そうすることで、それらが使われるようになります。
 .B ich
-�����ѥӥ�ƥ��ϥѥ�᡼��
+ケーパビリティはパラメータ
 .IR n
-1 �Ĥ�Ȥꡢ�����
+1 つをとり、これは
 .B ich1
-��ư���
+の動作を
 .I n
-�󷫤��֤��ޤ���
+回繰り返します。
 .PP
-�����⡼�ɤǤʤ��Ȥ���ʸ�����Ϥδ֤˥ѥǥ��󥰤�ɬ�פʤ顢\fBrmp\fP ��
-�ߥ��äΥѥǥ��󥰤ο�����ꤷ�Ƥ���������
+挿入モードでないとき、文字入力の間にパディングが必要なら、\fBrmp\fP に
+ミリ秒のパディングの数を指定してください。
 .PP
-�����⡼�ɤ������Ʊ���Ԥ�ʸ���������뤿��ˡ����������ư����ɬ�פ�����
-��礬����ޤ� (�㤨�С��������֤θ�˥��֤�������)�������⡼�ɤ�
-���ä��ޤޤǥ���������ư�����뤳�Ȥ��Ǥ����硢���Τ褦�ʾ���������
-��®�˹Ԥ�����ˡ������ѥӥ�ƥ� \fBmir\fR ����ꤹ�뤳�Ȥ��Ǥ��ޤ���
-\fBmir\fR ���ά���Ƥ⡢�ƶ��������Τ�®�٤ΤߤǤ���
-ü���ˤ�äƤ� (ͭ̾�� Datamedia �Υ���Ȥ�) �����⡼�ɤ�
-ư����ˡ�ΰ㤤�ˤ�� \fBmir\fR ����ꤷ�ƤϤ����ʤ���Τ�����ޤ���
+挿入モードの途中で同じ行の文字を削除するために、カーソルを動かす必要がある
+場合があります (例えば、挿入位置の後にタブがある場合)。挿入モードに
+入ったままでカーソルを移動させることができる場合、このような場合の挿入を
+高速に行うために、ケーパビリティ \fBmir\fR を指定することができます。
+\fBmir\fR を省略しても、影響を受けるのは速度のみです。
+端末によっては (有名な Datamedia のアレとか) 挿入モードの
+動作方法の違いにより \fBmir\fR を指定してはいけないものがあります。
 .PP
-�Ǹ�ˡ�ʸ�� 1 ʸ���κ���ѤȤ���
+最後に、文字 1 文字の削除用として
 .B dch1
-��
-.I n ʸ��
-����ѤȤ��ƥѥ�᡼��
+を、
+.I n 文字
+削除用としてパラメータ
 .IR n
-1 �Ĥ�Ȥ�
+1 つをとる
 .B dch
-�򡢤����� \fBsmdc\fR �� \fBrmdc\fR �򤽤줾�����⡼�ɤ�����
-�������󥹤Ȥ�������Ф륷�����󥹤Ȥ���Ϳ���뤳�Ȥ�
-����⡼�� (
+を、そして \fBsmdc\fR と \fBrmdc\fR をそれぞれ削除モードに入る
+シーケンスとそこから出るシーケンスとして与えることで
+削除モード (
 .B dch1
-��ư��뤿��ˡ�ü�������äƤ��ʤ���Фʤ�ʤ��⡼��) ����ꤹ�뤳�Ȥ�
-�Ǥ��ޤ���
+が動作するために、端末が入っていなければならないモード) を指定することが
+できます。
 .PP
 .I n
-ʸ���������� (����������ư�������˶����
+文字を削除する (カーソルを移動させずに空白を
 .I n
-�Ľ��Ϥ��뤳�Ȥ�Ʊ���ν���) ����Υ��ޥ�ɤϡ��ѥ�᡼���� 1 �ĤȤ�
+個出力することと同等の処理) ためのコマンドは、パラメータを 1 つとる
 .B ech
-��Ȥäƻ��ꤹ�뤳�Ȥ��Ǥ��ޤ���
+を使って指定することができます。
 .PP
-.SS "�ϥ��饤�ȡ��������Ļ�٥�"
+.SS "ハイライト・下線・可視ベル"
 .PP
-ü���� 1 �Ĥޤ��Ϥ���ʾ��ɽ��°������ľ�硢������ɽ����ˡ�Ȥ��ưۤʤä�
-������������Ĥ�����ޤ���
-���顼��å�������¾�μ�������դ������å�������Ŭ��������ʬ����ȥ饹�Ȥ�
-�⤯��Ω�ķ������� 1 �ġ�\f2��Ĵ�⡼��\fR �����򤹤٤��Ǥ���
-(���֤ʤ顢ȿžɽ����Ⱦ���٤�ä�����Ρ��⤷����ñ��ȿž�Τߤ��褤�Ǥ��礦��)
-��Ĵ�⡼�ɤ����륷�����󥹡��Ф륷�����󥹤Ϥ��줾�� \fBsmso\fR ��
-\fBrmso\fR �ǻ��ꤷ�ޤ���
-TVI 912 �� Teleray 1061 �Τ褦�ˡ���Ĵ�⡼�ɤؤν�����ˤ����̤˶���
-1 �� 2 �ĻĤ��硢\fBxmc\fR ����ꤷ�ƶ��򤬤����ĻĤ뤫�򶵤���٤��Ǥ���
+端末が 1 つまたはそれ以上の表示属性を持つ場合、これらを表す方法として異なった
+やり方がいくつかあります。
+エラーメッセージや他の種類の注意を引くメッセージに適した、十分コントラストが
+高く目立つ形式から 1 つ、\f2強調モード\fR を選択すべきです。
+(選ぶなら、反転表示に半輝度を加えたもの、もしくは単に反転のみがよいでしょう。)
+強調モードに入るシーケンス、出るシーケンスはそれぞれ \fBsmso\fR と
+\fBrmso\fR で指定します。
+TVI 912 や Teleray 1061 のように、強調モードへの出入りにより画面に空白が
+1 つ 2 つ残る場合、\fBxmc\fR を指定して空白がいくつ残るかを教えるべきです。
 .PP
-���������򳫻Ϥ��륳���ɡ���λ���륳���ɤϡ����줾�� \fBsmul\fR ��
-\fBrmul\fR �ǻ��ꤷ�ޤ���
-Microterm Mime �Τ褦�ˡ����߰��֤�ʸ���˲�������������� 1 ��ʬ
-��������򱦤˰�ư���륳���ɤ����ü���ξ�硢���Υ����ɤ� \fBuc\fR ��
-���ꤹ�뤳�Ȥ��Ǥ��ޤ���
+下線引きを開始するコード、終了するコードは、それぞれ \fBsmul\fR と
+\fBrmul\fR で指定します。
+Microterm Mime のように、現在位置の文字に下線を引き、空白 1 つ分
+カーソルを右に移動するコードを持つ端末の場合、そのコードを \fBuc\fR で
+指定することができます。
 .PP
-����¾�������ζ�Ĵ�⡼�ɤ����륱���ѥӥ�ƥ��ˤϡ�
+その他もろもろの強調モードに入るケーパビリティには、
 .B blink
-(����)
+(点滅)
 .B bold
-(�����⤷���Ϲ������뤤)
+(太字もしくは更に明るい)
 .B dim
-(�Ť��⤷����Ⱦ����)
+(暗いもしくは半輝度)
 .B invis
-(����⤷���ϸ����ʤ��ƥ�����)
+(空白もしくは見えないテキスト)
 .B prot
-(�ݸ����)
+(保護状態)
 .B rev
-(ȿžɽ��)
+(反転表示)
 .B sgr0
 (
-.I ���٤Ƥ�
-°���⡼�ɤ򥪥դˤ���)
+.I すべての
+属性モードをオフにする)
 .B smacs
-(�̤�ʸ�����åȥ⡼�ɤ�����)
+(別の文字セットモードに入る)
 and
 .B rmacs
-(�̤�ʸ�����åȥ⡼�ɤ���Ф�) ���ޤޤ�ޤ���
-�����Υ⡼�ɤΤɤ줫 1 �Ĥ򥪥�ˤ������ˡ�¾�Υ⡼�ɤ����դˤʤ����
-����ޤ������ʤ�ʤ����⤢��ޤ���
+(別の文字セットモードから出る) が含まれます。
+これらのモードのどれか 1 つをオンにした場合に、他のモードがオフになる場合も
+ありますし、ならない場合もあります。
 .PP
-�⡼�ɤ�Ǥ�դ��Ȥ߹�碌�����ꤹ�륷�����󥹤�¸�ߤ����硢�����
-9 �ĤΥѥ�᡼�������
+モードの任意の組み合わせを設定するシーケンスが存在する場合、それを
+9 つのパラメータを持つ
 .B sgr
-(°��������) �ǻ��ꤷ�ޤ���
-�ѥ�᡼���Τ��줾��ϡ�0 ���� 0 ���ͤ��ꡢ�б�����°�������󤫥��դ���
-ɽ���ޤ���
-9 �ĤΥѥ�᡼���Ȥϡ���ˡ���Ĵ��������ȿžɽ�������ǡ��Ť�ɽ����������
-�����ݸ�̤�ʸ�����åȤǤ���
-ɬ�����⤹�٤ƤΥ⡼�ɤ�
+(属性の設定) で指定します。
+パラメータのそれぞれは、0 か非 0 の値を取り、対応する属性がオンかオフかを
+表します。
+9 つのパラメータとは、順に、強調、下線、反転表示、点滅、暗い表示、太字、
+空白、保護、別の文字セットです。
+必ずしもすべてのモードが
 .BR sgr
-�ˤ�äƥ��ݡ��Ȥ���Ƥ���ɬ�פϤ���ޤ���
-��Ω����°�����ޥ�ɤ�¸�ߤ����Τ����ǹ����ޤ���
+によってサポートされている必要はありません。
+独立した属性コマンドが存在するものだけで構いません。
 .PP
-�㤨�С�DEC vt220 �ϰʲ��Υ⡼�ɤΤۤȤ�ɤ򥵥ݡ��Ȥ��ޤ���
-.PP
-.TS
-center;
-l c c
-l c c
-lw28 lw6 lw2 lw20.
-\fBtparm �ѥ�᡼��	°��	���������ץ�������\fP
-
-none	�ʤ�	\\E[0m
-p1	��Ĵ	\\E[0;1;7m
-p2	����	\\E[0;4m
-p3	ȿžɽ��	\\E[0;7m
-p4	����	\\E[0;5m
-p5	�Ť�ɽ��	���ѤǤ��ޤ���
-p6	����	\\E[0;1m
-p7	�ԲĻ�	\\E[0;8m
-p8	�ݸ�	�Ȥ��Ƥ��ޤ���
-p9	�̤�ʸ�����å�	^O (����) ^N (����)
-.TE
-.PP
-�ƥ⡼�ɤ�ư���椫�ɤ��������᤯������ˡ���ʤ��Τǡ�
-���������ץ������󥹤�ư����Υ⡼�ɤ򤹤٤ƥ��դˤ����ΤǻϤ�ޤ���
-��Ĵ��ȿž���������ȹ礻�ǤǤ��Ƥ��ޤ���
-�ݸ�⡼�ɤϥۥ��Ȥξõ����̤�ʸ�����ݸ��Τǡ�sgr �Ǥ����̤�
-�Ȥ��ޤ��󤬡�vt220 ü���ˤ��ݸ�⡼�ɤ�����ޤ���
-�̤�ʸ�����åȥ⡼�ɤϡ����դ����󤫤ˤ�ä� ^O �ޤ��� ^N �Ǥ���Ȥ�������
-�ۤʤ�ޤ���
-���⡼�ɤ򥪥�ˤ��륷�����󥹤� \\E[0;1;4;5;7;8m^N �Ǥ���
-.PP
-�����Ĥ��Υ������󥹤ϰۤʤ�⡼�ɤ˶��̤Ǥ���
-�㤨�С�;7 �ϡ�p1 �� p3 �����Ǥ���Ȥ������ʤ����Ĵ��ȿž�⡼�ɤ�����ΤȤ���
-���Ϥ���ޤ���
-.PP
-��Υ������󥹤��¸�ط��Ȥ��碌��;���Ȥ����ʤ��񤯤ȼ��Τ褦�ˤʤ�ޤ���
+例えば、DEC vt220 は以下のモードのほとんどをサポートします。
 .PP
 .TS
 center;
 l c c
 l c c
 lw28 lw6 lw2 lw20.
-\fB��������	���Ϥ������	terminfo �ؤ�����\fP
+\fBtparm パラメータ	属性	エスケープシーエンス\fP
 
-\\E[0	���	\\E[0
-;1	p1 �ޤ��� p6 �ΤȤ�	%?%p1%p6%|%t;1%;
-;4	p2 �ΤȤ�	%?%p2%|%t;4%;
-;5	p4 �ΤȤ�	%?%p4%|%t;5%;
-;7	p1 �ޤ��� p3 �ΤȤ�	%?%p1%p3%|%t;7%;
-;8	p7 �ΤȤ�	%?%p7%|%t;8%;
-m	���	m
-^N �ޤ��� ^O	p9 �����ʤ� ^N �����Ǥʤ���� ^O	%?%p9%t^N%e^O%;
+none	なし	\\E[0m
+p1	強調	\\E[0;1;7m
+p2	下線	\\E[0;4m
+p3	反転表示	\\E[0;7m
+p4	点滅	\\E[0;5m
+p5	暗い表示	利用できません
+p6	太字	\\E[0;1m
+p7	不可視	\\E[0;8m
+p8	保護	使われていません
+p9	別の文字セット	^O (オフ) ^N (オン)
 .TE
 .PP
-����򤹤٤ư��� sgr �������󥹤˵ͤ����ȼ��Τ褦�ˤʤ�ޤ���
+各モードが動作中かどうかを素早く決める方法がないので、
+エスケープシーケンスを動作中のモードをすべてオフにするもので始めます。
+強調は反転と太字の組合せでできています。
+保護モードはホストの消去から画面の文字を保護するので、sgr では普通は
+使われませんが、vt220 端末には保護モードがあります。
+別の文字セットモードは、オフかオンかによって ^O または ^N であるという点で
+異なります。
+全モードをオンにするシーケンスは \\E[0;1;4;5;7;8m^N です。
+.PP
+いくつかのシーケンスは異なるモードに共通です。
+例えば、;7 は、p1 か p3 が真であるとき、すなわち強調か反転モードがオンのときに
+出力されます。
+.PP
+上のシーケンスを依存関係とあわせて余すところなく書くと次のようになります。
+.PP
+.TS
+center;
+l c c
+l c c
+lw28 lw6 lw2 lw20.
+\fBシーケンス	出力される場合	terminfo への翻訳\fP
+
+\\E[0	常に	\\E[0
+;1	p1 または p6 のとき	%?%p1%p6%|%t;1%;
+;4	p2 のとき	%?%p2%|%t;4%;
+;5	p4 のとき	%?%p4%|%t;5%;
+;7	p1 または p3 のとき	%?%p1%p3%|%t;7%;
+;8	p7 のとき	%?%p7%|%t;8%;
+m	常に	m
+^N または ^O	p9 が真なら ^N そうでなければ ^O	%?%p9%t^N%e^O%;
+.TE
+.PP
+これをすべて一緒に sgr シーケンスに詰め込むと次のようになります。
 .PP
 .nf
     sgr=\\E[0%?%p1%p6%|%t;1%;%?%p2%t;4%;%?%p1%p3%|%t;7%;
         %?%p4%t;5%;%?%p7%t;8%;m%?%p9%t\\016%e\\017%;,
 .fi
 .PP
-sgr �����ꤷ���顢sgr0 �����ꤹ��ɬ�פ����뤳�Ȥ�˺��ʤ��Ǥ���������
+sgr を設定したら、sgr0 も設定する必要があることを忘れないでください。
 .PP
-����ˡ�Υ��å��� (magic cookie)��
+「魔法のクッキー (magic cookie)」
 .RB ( xmc )
-�����ü���Ǥϡ��⡼�����ꥷ�����󥹤����������ü�ʡ֥��å����פȤǤ�
-�Ƥ֤٤����ߤ���̤˻Ĥ��ޤ�������ü���Ǥϡ��⡼�����ꥷ�����󥹤ϡ�
-��ʸ����;ʬ�ʥӥåȤ��������ΤǤϤʤ���ɽ�����르�ꥺ�ऽ�Τ�Τ�
-�ƶ���Ϳ���ޤ���
-HP 2621 �ʤɤΤ褦��ü���Ǥϡ����ιԤذ�ư�����ꡢ��������ΰ��ֻ����
-�����ݤ˶�Ĵ�⡼�ɤ��龡���ȴ���ФƤ��ޤ��ޤ���
-��Ĵ�⡼�ɤ��Ѥ���ץ������ϡ���Ĵ�⡼�ɤǤΰ�ư�������Ǥ��뤳�Ȥ򼨤�
+を持つ端末では、モード設定シーケンスを受信すると特殊な「クッキー」とでも
+呼ぶべきゴミを画面に残します。この端末では、モード設定シーケンスは、
+各文字に余分なビットを持たせるのではなく、表示アルゴリズムそのものに
+影響を与えます。
+HP 2621 などのような端末では、次の行へ移動したり、カーソルの位置指定を
+した際に強調モードから勝手に抜け出てしまいます。
+強調モードを用いるプログラムは、強調モードでの移動が安全であることを示す
 .B msgr
-�����ѥӥ�ƥ��λ��̵꤬�����ˤϡ�����������ư�����������ʸ����
-���Ф������˶�Ĵ�⡼�ɤ���æ�Ф��٤��Ǥ���
+ケーパビリティの指定が無い場合には、カーソルを移動させたり改行文字を
+送出する前に強調モードから脱出すべきです。
 .PP
-���顼ȯ����̵���� (�٥�������) ���Τ��뤿�ᡢ���̤�ե�å��夵����
-��ˡ���󶡤���Ƥ���ü���ξ�硢����� \fBflash\fR �ǻ���Ǥ��ޤ��������
-����������ư�����ƤϤʤ�ޤ���
+エラー発生を無音で (ベルの代わりに) 通知するため、画面をフラッシュさせる
+方法が提供されている端末の場合、それを \fBflash\fR で指定できます。これは
+カーソルを移動させてはなりません。
 .PP
-�������뤬�ǲ��Ԥˤʤ��Ȥ����̾�ξ��ְʾ�˸��פ�����  (�㤨�С����Ǥ��ʤ�
-������������򡢤�긫�Ĥ��䤹���֥��å�������������ǲ�����������ˤ���)
-ɬ�פ������硢���Υ������󥹤�
+カーソルが最下行にないときに通常の状態以上に見易くする  (例えば、点滅しない
+下線カーソルを、より見つけやすいブロックカーソルや点滅下線カーソルにする)
+必要がある場合、そのシーケンスを
 .BR cvvis
-�ǻ��ꤷ�Ƥ���������
-������������˸����ʤ��褦�ˤ�����ˡ�������硢�����
+で指定してください。
+カーソルを完全に見えないようにする方法がある場合、それを
 .BR civis
-�ǻ��ꤷ�Ƥ���������
-�����Υ⡼�ɤθ��̤��Ǥ��ä��������󥹤Ȥ��ơ������ѥӥ�ƥ�
+で指定してください。
+これらのモードの効果を打ち消すシーケンスとして、ケーパビリティ
 .BR cnorm
-����ꤹ�٤��Ǥ���
+を指定すべきです。
 .PP
-���Ȥ��Ť��Ǥ��Ǥʤ��Ȥ��Ƥ⡢(�ü�ʥ����ɤʤ���) ����ʸ����������
-�����Ǥ���ü���ξ�硢�����ѥӥ�ƥ� \fBul\fR ����ꤹ�٤��Ǥ���
-ʸ�����̤�ʸ���˽Ť��Ǥ������ξ����ʸ�������̤˻Ĥ�ʤ顢�����ѥӥ�ƥ�
-\fBos\fP ����ꤷ�Ƥ���������
-�Ť��Ǥ�������ʸ���Ǿõ��ǽ�ʾ�硢\fBeo\fR ����ꤷ�Ƥ��Τ��Ȥ����餫��
-���Ƥ����٤��Ǥ���
+たとえ重ね打ちでないとしても、(特殊なコードなしで) 下線文字を正しく
+生成できる端末の場合、ケーパビリティ \fBul\fR を指定すべきです。
+文字を別の文字に重ね打ちすると両方の文字が画面に残るなら、ケーパビリティ
+\fBos\fP を指定してください。
+重ね打ちが空白文字で消去可能な場合、\fBeo\fR を指定してそのことを明らかに
+しておくべきです。
 .PP
-.SS �����ѥåɤȥե��󥯥���󥭡�
+.SS キーパッドとファンクションキー
 .PP
-�����򲡤��ȥ����ɤ����Ф��륭���ѥåɤ���ľ�硢
-���Υ����ѥåɤ˴ؤ���������ꤹ�뤳�Ȥ��Ǥ��ޤ���
-���դ��٤����Ȥ��ơ������ѥåɤ��ɽ�⡼�ɤǤ���ư��ʤ�ü��
-(�㤨�С����եȾ��֤Ǥʤ� HP 2621 �Υ���������˳������ޤ�)
-�򰷤����ȤϤǤ��ʤ����Ȥ�����ޤ���
-�������֤����������֤�������Ǥ��륭���ѥåɤξ�硢�����Τ���Υ����ɤ�
-\fBsmkx\fR �� \fBrmkx\fR �Ȥǻ��ꤹ�뤳�Ȥ��Ǥ��ޤ���
-�����λ��꤬�ʤ���硢�����ѥåɤϾ���������֤Ȥ��ư����ޤ���
-��������������������������������home ���������Ф��륳���ɤϡ����줾��
-\fBkcub1, kcuf1, kcuu1, kcud1, khome\fR �ǻ���Ǥ��ޤ���
-f0, f1, ..., f10 �Τ褦�ʥե��󥯥���󥭡��������硢����餬���Ф���
-�����ɤ� \fBkf0, kf1, ..., kf10\fR �ǻ���Ǥ��ޤ���
-�����Υ����� f0 ���� f10 �ޤǤΥǥե���ȤΥ�٥�ʳ��Υ�٥����ľ�硢
-���Υ�٥�� \fBlf0, lf1, ..., lf10\fR �ǻ���Ǥ��ޤ���
-¾���ü쥭�������Ф��륳���ɤϡ��ʲ��Τ褦�˻���Ǥ��ޤ���
+キーを押すとコードを送出するキーパッドを持つ場合、
+そのキーパッドに関する情報を指定することができます。
+注意すべき点として、キーパッドが局所モードでしか動作しない端末
+(例えば、シフト状態でない HP 2621 のキーがこれに該当します)
+を扱うことはできないことがあります。
+送信状態か非送信状態かを設定できるキーパッドの場合、それらのためのコードを
+\fBsmkx\fR と \fBrmkx\fR とで指定することができます。
+これらの指定がない場合、キーパッドは常に送信状態として扱われます。
+左矢印、右矢印、上矢印、下矢印キー、home キーが送出するコードは、それぞれ
+\fBkcub1, kcuf1, kcuu1, kcud1, khome\fR で指定できます。
+f0, f1, ..., f10 のようなファンクションキーがある場合、これらが送出する
+コードは \fBkf0, kf1, ..., kf10\fR で指定できます。
+これらのキーが f0 から f10 までのデフォルトのラベル以外のラベルを持つ場合、
+このラベルを \fBlf0, lf1, ..., lf10\fR で指定できます。
+他の特殊キーが送出するコードは、以下のように指定できます。
 .B kll
-(�ۡ�������� (home down))��
+(ホームダウン (home down))、
 .B kbs
-(�Хå����ڡ��� (backspace))��
+(バックスペース (backspace))、
 .B ktbc
-(�����֥��ꥢ (clear all tabs))��
+(全タブクリア (clear all tabs))、
 .B kctab
-(���η�Υ��֥��ȥåפ򥯥ꥢ)��
+(この桁のタブストップをクリア)、
 .B kclr
-(���̾õ� (clear screen) �����ޤ������� (erase) ����)��
+(画面消去 (clear screen) キーまたは抹消 (erase) キー)、
 .B kdch1
-(ʸ����� (delete character))��
+(文字削除 (delete character))、
 .B kdl1
-(�Ժ�� (delete line))��
+(行削除 (delete line))、
 .B krmir
-(�����⡼�ɤ���ȴ���� (exit insert mode))��
+(挿入モードから抜ける (exit insert mode))、
 .B kel
-(�����ޤǥ��ꥢ)��
+(行末までクリア)、
 .B ked
-(���̤ν���ޤǥ��ꥢ)��
+(画面の終りまでクリア)、
 .B kich1
-(ʸ������ (insert character) �ޤ��������⡼�ɤ����� (enter insert mode))��
+(文字挿入 (insert character) または挿入モードに入る (enter insert mode))、
 .B kil1
-(������ (insert line))��
+(行挿入 (insert line))、
 .B knp
-(���Υڡ��� (next page))��
+(次のページ (next page))、
 .B kpp
-(���Υڡ��� (previous page))��
+(前のページ (previous page))、
 .B kind
-(���ʥ��������� (scroll forward) / ���ߥ��������� (scroll down))��
+(前進スクロール (scroll forward) / 下降スクロール (scroll down))、
 .B kri
-(���ॹ�������� (scroll backward) / �徺���������� (scroll up))��
+(後退スクロール (scroll backward) / 上昇スクロール (scroll up))、
 .B khts
-(���η�˥��֥��ȥåפ�����)��
-.\" �ߤ����ޤ�ɽ������ʤ��Τ� \[mu] ����
-���ˡ������ѥåɤ� 4 �Ĥ������ޤ� 3 \[mu] 3 �Υ����������ľ�硢¾�� 5 �Ĥ�
-������
+(この桁にタブストップを設定)。
+.\" ×がうまく表示されないので \[mu] 使用
+更に、キーパッドが 4 つの矢印を含む 3 \[mu] 3 のキー配列を持つ場合、他の 5 つの
+キーを
 .BR ka1 ,
 .BR ka3 ,
 .BR kb2 ,
 .BR kc1 ,
 .BR kc3 .
-�ǻ��ꤷ�ޤ���
-3 \[mu] 3 �Υ��������ư�����ѥåɤθ��̤�ɬ�פʾ�硢�����Υ�����ͭ�ѤǤ���
+で指定します。
+3 \[mu] 3 のカーソル移動キーパッドの効果が必要な場合、これらのキーが有用です。
 .PP
-�ե��󥯥���󥭡��˥ץ�����ह��ʸ����ϡ�
+ファンクションキーにプログラムする文字列は、
 .BR pfkey ,
 .BR pfloc ,
 .BR pfx
-�ǻ���Ǥ��ޤ���
-���̤Υ�٥��ʸ����� \fBpln\fP �ǻ��ꤹ�٤��Ǥ���
-������ʸ����ϡ����줾�� 2 �Ĥΰ�������ޤ���
-�ץ�������оݤΥե��󥯥���󥭡��ֹ� (0 ���� 10 �ޤ�) �ȡ�
-�����˥ץ�����ह��ʸ����Ǥ���
-�����ϰϳ��Υե��󥯥���󥭡��ֹ��Ȥ���̤����Υ������Ф��ƥץ�����ष��
-���ޤ����⤷�줺�������ü����¸��ư��Ȥʤ�ޤ���
-�����Υ����ѥӥ�ƥ��ΰ㤤�ϰʲ����̤�Ǥ���
+で指定できます。
+画面のラベルの文字列は \fBpln\fP で指定すべきです。
+これらの文字列は、それぞれ 2 つの引数を取ります。
+プログラム対象のファンクションキー番号 (0 から 10 まで) と、
+そこにプログラムする文字列です。
+この範囲外のファンクションキー番号を使うと未定義のキーに対してプログラムして
+しまうかもしれず、これは端末依存の動作となります。
+これらのケーパビリティの違いは以下の通りです。
 .B pfkey
-����ꤹ��ȡ����Υ����򲡤����Ȥϡ��桼�������ꤷ��ʸ����򥿥��פ���Τ�
-Ʊ�����Ȥˤʤ�ޤ���
+を指定すると、そのキーを押すことは、ユーザが指定した文字列をタイプするのと
+同じことになります。
 .B pfloc
-�Ǥϡ�ü�������Ƕɽ�Ū�ˤ���ʸ���󤬼¹Ԥ���뤳�Ȥˤʤ�ޤ���
+では、端末内部で局所的にその文字列が実行されることになります。
 .B pfx
-�Ǥϡ�����ʸ���󤬥���ԥ塼�������Ф���뤳�Ȥˤʤ�ޤ���
+では、その文字列がコンピュータに送出されることになります。
 .PP
-�����ѥӥ�ƥ� \fBnlab\fP, \fBlw\fP, \fBlh\fP �ϥץ�������ǽ�ʲ��̤Υ�٥��
-���������⤵��������ޤ���
-��٥�򥪥󡢥��դ��륳�ޥ�ɤ�����ʤ顢\fBsmln\fP �� \fBrmln\fP ��
-���ꤷ�Ƥ���������
-�ѹ���������Τ�μ¤ˤ��뤿��ˡ��̾� \fBsmln\fP �� 1 �İʾ��
-pln �������󥹤θ�ǽ��Ϥ���ޤ���
+ケーパビリティ \fBnlab\fP, \fBlw\fP, \fBlh\fP はプログラム可能な画面のラベルの
+数、幅、高さを定義します。
+ラベルをオン、オフするコマンドがあるなら、\fBsmln\fP と \fBrmln\fP に
+指定してください。
+変更が見えるのを確実にするために、通常 \fBsmln\fP は 1 つ以上の
+pln シーケンスの後で出力されます。
 .PP
-.SS ���֤Ƚ����
+.SS タブと初期化
 .PP
-ü�����ϡ��ɥ��������֤���ľ�硢���Υ��֥��ȥåפޤǥ��������ʤ��
-���ޥ�ɤ�
+端末がハードウェアタブを持つ場合、次のタブストップまでカーソルを進める
+コマンドを
 .B ht
-(�̾�� control I) �ǻ���Ǥ��ޤ���
-���Υ��֥��ȥåפޤǺ������˿ʤ��ָ��ॿ�֡ץ��ޥ�ɤϡ�
+(通常は control I) で指定できます。
+前のタブストップまで左方向に進める「後退タブ」コマンドは、
 .BR cbt
-�ǻ���Ǥ��ޤ���
-ü���������֤�ü�������Ф��줺�˥���ԥ塼�������Ƕ����Ÿ�������⡼�ɤ�
-�ʤäƤ����硢�ץ������ϡ����Ȥ�
+で指定できます。
+端末が、タブが端末に送出されずにコンピュータ内部で空白に展開されるモードに
+なっている場合、プログラムは、たとえ
 .B ht
-��
+や
 .B cbt
-��¸�ߤ��Ƥ⡢��������Ѥ��ʤ��Ȥ�����«�ˤʤäƤ��ޤ�������ϡ�
-�桼�������֥��ȥåפ����������ꤷ�Ƥ��ʤ���ǽ�������뤿��Ǥ���
-�Ÿ��������ˡ�
+が存在しても、それらを使用しないという約束になっています。これは、
+ユーザがタブストップを正しく設定していない可能性があるためです。
+電源投入時に、
 .I n
-�Ĥζ��򤴤Ȥ˥ϡ��ɥ��������֤����������Ƥ���ü���ξ�硢���ͥѥ�᡼��
+個の空白ごとにハードウェアタブが初期化されている端末の場合、数値パラメータ
 .B it
-����ꤷ�ޤ�������ϥ��֤Ȥ������ꤵ���������ɽ���ޤ���
-�̾�����
+を指定します。これはタブとして設定される空白数を表します。
+通常、これは
 .IR tset
-���ޥ�ɤ����ϡ��ɥ���������Ÿ������Ѥ���⡼������ȡ����֥��ȥå�����Ȥ�
-�Ԥ����ɤ�������ꤹ�뤿��˻��Ѥ��ޤ���
-���֥��ȥå�������Դ�ȯ������˵����Ǥ���ü���ξ�硢terminfo �Ǥε��Ҥ�
-�ݤˡ����֥��ȥåפ����������ꤵ��Ƥ��뤳�Ȥ����ꤷ�ƹ����ޤ���
+コマンドが、ハードウェアタブ展開を使用するモード設定と、タブストップ設定とを
+行うかどうかを決定するために使用します。
+タブストップ設定を不揮発性メモリに記憶できる端末の場合、terminfo での記述の
+際に、タブストップは正しく設定されていることを想定して構いません。
 .PP
-¾�Υ����ѥӥ�ƥ��Ȥ��ơ�
+他のケーパビリティとして、
 .BR is1 ,
 .BR is2 ,
 .BR is3
-�����ꡢ������ü������������ʸ�������ꤷ�ޤ����ޤ���
+があり、これらは端末を初期化する文字列を指定します。また、
 .BR iprog
-�����ꡢ�����ü��������ѤȤ��Ƽ¹Ԥ���ץ������Υѥ�̾����ꤷ�ޤ���
-�ޤ���\fBif\fR �����ꡢ����Ͻ����ʸ����Ĺ����硢�����ޤ�ե������
-̾������ꤷ�ޤ���
-������ʸ����ˤ�ꡢterminfo �λĤ�ε��Ҥ�̷��ʤ�ư���⡼�ɤ�
-ü�������ꤵ��뤳�Ȥ������ޤ���
-�̾�桼�����������󤹤뤿�Ӥˡ�
+があり、これは端末初期化用として実行するプログラムのパス名を指定します。
+また、\fBif\fR があり、これは初期化文字列が長い場合、それを含むファイルの
+名前を指定します。
+これらの文字列により、terminfo の残りの記述と矛盾なく動作するモードに
+端末が設定されることが求められます。
+通常、ユーザがログインするたびに、
 .IR tput
-�ץ�������
+プログラムの
 .I init
-���ץ���󤬤�����ʸ�����ü�����Ф������Ф��ޤ���
-���Фϰʲ��ν���ǹԤ��ޤ���
-�ץ������
+オプションがこれらの文字列を端末に対して送出します。
+送出は以下の順序で行われます。
+プログラム
 .BR iprog
-��¹� ;
+を実行 ;
 .BR is1
-����� ;
+を出力 ;
 .BR is2
-����� ;
+を出力 ;
 .BR mgc ,
 .BR smgl
-��
+と
 .BR smgr
-�ǥޡ���������� ;
+でマージンを設定 ;
 .B tbc
-��
+と
 .BR hts
-�ǥ��֤����� ;
-�ե�����
+でタブを設定 ;
+ファイル
 .BR if
-����� ;
-�Ǹ��
+を印字 ;
+最後に
 .BR is3
-����ϡ�
+を出力。
 .PP
-������ΤۤȤ�ɤ�
+初期化のほとんどは
 .BR is2
-�ǹԤ��ޤ���
-���̤Υ������󥹤�
+で行われます。
+共通のシーケンスを
 .B is2
-���֤����ü�ʾ���
+に置き、特殊な場合を
 .B is1
-��
+と
 .BR is3
-�Ȥ��֤����Ȥǡ�ʸ����򤽤줾���ʣ�����ƻ������ʤ��Ƥ⡢
-�ü��ü���⡼�ɤ����ꤹ�뤳�Ȥ��Ǥ��ޤ���
-�ޤä����櫓�Τ狼��ʤ����֤����������뤿��Ρ����ϡ��ɴ���
-�ꥻ�åȤ�Ԥ�����Υ������󥹤��Ȥ�Ʊ�ͤˡ�
+とに置くことで、文字列をそれぞれに複製して持たせなくても、
+特殊な端末モードを設定することができます。
+まったくわけのわからない状態から復帰するための、よりハード寄りの
+リセットを行うためのシーケンスの組も同様に、
 .BR rs1 ,
 .BR rs2 ,
 .BR rf ,
 .BR rs3
-�ǻ��ꤹ�뤳�Ȥ��Ǥ��ޤ���������
+で指定することができます。これらは
 .B is2
-��
+と
 .BR if
-���ɤ������������󥹤Ǥ���
-ü�����ϥޤä��Ȥ��˻Ȥ��ץ������Ǥ��롢
+と良く似たシーケンスです。
+端末がハマったときに使うプログラムである、
 .IR reset
-�������Υ������󥹤���Ϥ��ޤ���
-���ޥ�ɤ�
+がこれらのシーケンスを出力します。
+コマンドを
 .BR rs1 ,
 .BR rs2 ,
 .BR rs3 ,
 .B rf
-���֤��Τϡ����̡����Υ��ޥ�ɤ����̤˥桼�����𤵤�����̤򻺤߽Ф���
-���ġ���������κݤˤ�ɬ�פʤ����˸¤�ޤ���
-�㤨�С�vt100 �� 80 ��⡼�ɤ����ꤹ�륳�ޥ�ɤϡ����̤ʤ�
+に置くのは、普通、そのコマンドが画面にユーザを混乱させる効果を産み出し、
+かつ、ログインの際には必要ない場合に限ります。
+例えば、vt100 を 80 桁モードに設定するコマンドは、普通なら
 .BR is2
-�˴ޤ��Ϥ��Ǥ�����
-���Υ��ޥ�ɤϲ��̤˺��𤵤��르�ߤ���Ф��ޤ�����ü���ϴ��� 80 ��⡼�ɤ�
-�ʤäƤ���Τ����̤Ǥ��Τǡ����Υ��ޥ�ɤ�ޤ��ɬ�פ���ޤ���
+に含めるはずですが、
+このコマンドは画面に混乱させるゴミを作り出しますし、端末は既に 80 桁モードに
+なっているのが普通ですので、このコマンドを含める必要ありません。
 .PP
-���֥��ȥåפ����ꡢ���ꥢ��Ԥ����ޥ�ɤ������硢������
+タブストップの設定、クリアを行うコマンドがある場合、それらを
 .B tbc
-(�����֥��ȥåפΥ��ꥢ)
-��
+(全タブストップのクリア)
+と
 .B hts
-(�ƹԤθ��߷�˥��֥��ȥåפ�����)
-�˻���Ǥ��ޤ���
-��������˴ؤ��ơ�����������������Τ��ʣ���ʥ������󥹤�ɬ�פʾ�硢
-���Υ������󥹤�
+(各行の現在桁にタブストップを設定)
+に指定できます。
+タブ設定に関して、ここで説明したものより複雑なシーケンスが必要な場合、
+そのシーケンスを
 .B is2
-��
+や
 .BR if
-���֤��Ƥ⹽���ޤ���
-.SS �ٱ�ȥѥǥ���
+に置いても構いません。
+.SS 遅延とパディング
 .PP
-�ϡ��ɥ��ԡ�ü���� (�㤨�С�DEC VT100 ��ޤ�) ���˸Ť� CRT ��ޤࡢ
-¿���θŤ����٤�ü���� XON/XOFF �ϥ�ɥ��������� DTR �ϥ�ɥ���������
-���ݡ��Ȥ��ޤ�������Υ�������ΰ�ư�ȥ����꡼����ѹ��θ�ˤϡ�
-�ѥǥ���ʸ����ɬ�פ��⤷��ޤ���
+ハードコピー端末と (例えば、DEC VT100 を含む) 非常に古い CRT を含む、
+多くの古くて遅い端末は XON/XOFF ハンドシェークも DTR ハンドシェークも
+サポートしません。特定のカーソルの移動とスクリーンの変更の後には、
+パディング文字が必要かもしれません。
 .PP
-ü�����ե�������Τ���� xon/xoff �ϥ�ɥ�����������Ѥ����� (���ʤ����
-���ϥХåե������դ˶᤯�ʤ�ȡ��ۥ��Ȥ˼�ưŪ�� ^S �������֤����)��
+端末がフロー制御のための xon/xoff ハンドシェークを使用する場合 (すなわち、
+入力バッファが一杯に近くなると、ホストに自動的に ^S を送り返す場合)、
 .BR xon
-����ꤷ�Ƥ���������
-���Υ����ѥӥ�ƥ��ϥѥǥ��󥰤����Ф��ޤ��ޤ����¼�Ū��®�٤����¤Τʤ�
-����ޥåץȷ����Υ��󥽡���ǥХ������Ф��Ƥ����Ǥ��ޤ���
-�롼��������Ū�ʥ����Ȥ˴ؤ��Ƥ��褤���Ѥ���Ω�Ƥ뤳�Ȥ��Ǥ���褦�ˡ�
-���ξ��Ǥ�ѥǥ��󥰾������ꤹ�٤��Ǥ������������ºݤϥѥǥ���ʸ����
-��������ޤ���
+を指定してください。
+このケーパビリティはパディングの送出を抑えます。実質的に速度に制限のない
+メモリマップト形式のコンソールデバイスに対しても指定できます。
+ルーチンが相対的なコストに関してよりよい見積もりを立てることができるように、
+この場合でもパディング情報を指定すべきです。しかし、実際はパディング文字は
+送信されません。
 .PP
-\fBpb\fR (�ѥǥ��󥰥ܡ��졼��) ����ꤹ�뤳�Ȥǡ��ܡ��졼�Ȥ�
-\fBpb\fR ���ͤ���㤤��硢�ѥǥ��󥰤��ޤ����ޤ���
-����ȥ�˥ѥǥ��󥰥ܡ��졼�Ȥ��ʤ���С�
-�ѥǥ��󥰤����Ф���뤫����ʤ����� \fBxon\fR �ˤ�괰�������椵��ޤ���
+\fBpb\fR (パディングボーレート) を指定することで、ボーレートが
+\fBpb\fR の値より低い場合、パディングが抑えられます。
+エントリにパディングボーレートがなければ、
+パディングが送出されるかされないかは \fBxon\fR により完全に制御されます。
 .PP
-�̥� (0) ʸ���ʳ��Υѥǥ���ʸ����ɬ�פȤ���ü���ξ�硢�����
-\fBpad\fR �ǻ���Ǥ��ޤ���
+ヌル (0) 文字以外のパディング文字を必要とする端末の場合、それを
+\fBpad\fR で指定できます。
 .B pad
-ʸ����κǽ��ʸ���Τߤ����Ѥ���ޤ���
+文字列の最初の文字のみが使用されます。
 .PP
-.SS ���ơ�������
-ü���ˤϡ��̾�Υ��եȥ������Ǥϻ��Ѥ���ʤ� (����椨��ü���� \fBlines\fR
-�����ѥӥ�ƥ��ǤϿ�������ʤ�) ;ʬ�ʡ֥��ơ������ԡפ�
-���Ĥ�Τ⤢��ޤ���
+.SS ステータス行
+端末には、通常のソフトウェアでは使用されない (それゆえ、端末の \fBlines\fR
+ケーパビリティでは数に入らない) 余分な「ステータス行」を
+持つものもあります。
 .PP
-�Ǥ��ñ�ʾ��ˤϡ����ơ������Ԥϥ���������֤λ���ϲ�ǽ�Ǥ�����
-���̾�Υ����������ΰ�ΰ����ǤϤʤ���ΤǤ���
-������ΤȤ��� 23 �ԤΥ����������ΰ�Τ��� 24 �Ԥ� VT100 ��Ʊ���褦�ˡ�
-Heathkit H19 �ˤϡ����μ�Υ��ơ������Ԥ�����ޤ���
-���ξ����� \fBhs\fR �����ѥӥ�ƥ��ǻ��ꤷ�ޤ���
+最も簡単な場合には、ステータス行はカーソル位置の指定は可能ですが、
+画面上のスクロール領域の一部ではないものです。
+初期化のときに 23 行のスクロール領域のある 24 行の VT100 と同じように、
+Heathkit H19 には、この種のステータス行があります。
+この状況は \fBhs\fR ケーパビリティで指定します。
 .PP
-���ơ������Ԥ�����ˤ����̤ʥ������󥹤�ɬ�פȤ���ü���⤢��ޤ���
-����ϥѥ�᡼���� 1 �ĤȤ�ʸ���� \fBtsl\fR ��ɽ���ޤ���
-����ϥ�������򥹥ơ������Ԥ�Ϳ����줿 0 ��˰�ư���ޤ���
-�����ѥӥ�ƥ� \fBfsl\fR �ǺǸ�� \fBtsl\fR �����μ���̤Υ���������֤�
-���ɬ�פ�����ޤ������Τ���� \fBtsl\fR �� \fBfsl\fR �����
-\fBsc\fR (save cursor) �� \fBrc\fR (restore cursor) ��ʸ������ͤ�ޤ��
-ɬ�פ����뤫�⤷��ޤ���
+ステータス行に入るには特別なシーケンスを必要とする端末もあります。
+これはパラメータを 1 つとる文字列 \fBtsl\fR で表します。
+これはカーソルをステータス行の与えられた 0 桁に移動します。
+ケーパビリティ \fBfsl\fR で最後の \fBtsl\fR の前の主画面のカーソル位置に
+戻る必要があります。そのために \fBtsl\fR と \fBfsl\fR の中に
+\fBsc\fR (save cursor) と \fBrc\fR (restore cursor) の文字列の値を含める
+必要があるかもしれません。
 .PP
-���ơ������Ԥ��̾ü��������Ʊ�������Ȳ��ꤵ��Ƥ��ޤ������줬
-�����Ǥʤ��Τʤ顢���Τ��Ȥ���ͥ����ѥӥ�ƥ� \fBwsl\fR �ǻ���Ǥ��ޤ���
+ステータス行は通常、端末の幅と同じ幅だと仮定されています。これが
+本当でないのなら、そのことを数値ケーパビリティ \fBwsl\fR で指定できます。
 .PP
-���ơ������Ԥ�õ���������륳�ޥ�ɤ� \fBdsl\fR �ǻ���Ǥ��ޤ���
+ステータス行を消去したり削除するコマンドは \fBdsl\fR で指定できます。
 .PP
-�֡����ͥ����ѥӥ�ƥ� \fBeslok\fR �ϡ����ơ���������ǥ��������ץ������󥹤�
-���������̾��̤�Ư�����Ȥ򼨤��ޤ���
+ブール値ケーパビリティ \fBeslok\fR は、ステータス行内でエスケープシーケンスや
+タブ等が通常通り働くことを示します。
 .PP
-\fBncurses\fR �μ����Ϥ����Υ����ѥӥ�ƥ��Τɤ��ޤ����Ѥ��Ƥ��ޤ���
-����餬���פˤʤä��餳���˵��Ҥ��ޤ���
+\fBncurses\fR の実装はこれらのケーパビリティのどれもまだ利用していません。
+これらが重要になったらここに記述します。
 .PP
-.SS ����
+.SS 線画
 .PP
-¿����ü���ˤϿޤ������Τ����Ω���̤�ʸ�����åȤ�����ޤ���
-terminfo �� \fBcurses\fR �� VT100 �ǥ��ݡ��Ȥ���Ƥ���޷�ʸ����
-AT&T 4410v1 ��ʸ���Τ����Ĥ��򥵥ݡ��Ȥ��ޤ���
-�����̤�ʸ�����åȤ� \fBacsc\fR �����ѥӥ�ƥ������ꤵ��ޤ���
+多くの端末には図を描くのに役に立つ別の文字セットがあります。
+terminfo と \fBcurses\fR は VT100 でサポートされている図形文字と
+AT&T 4410v1 の文字のいくつかをサポートします。
+この別の文字セットは \fBacsc\fR ケーパビリティで設定されます。
 .PP
 .TS H
 center expand;
@@ -2694,92 +2694,92 @@ upper right corner	ACS_URCORNER	+	k
 vertical line   	ACS_VLINE	|	x
 .TE
 .PP
-�������ǥХ����ο޷����åȤ��������Τ˰��֤褤��ˡ�ϡ�����ɽ�Τ���ü���Ѥ�
-���ԡ�������ɲä����б�����޷��ΤȤ����� (\fBsmacs\fR/\fBrmacs\fR �����å���
-�֤����Ф�������) ���Ф����ʸ����Ϳ���뤳�ȤǤ������줫�� VT100 ��
-����ü����ʸ���򱦤��麸�˽���ɤ߾夲�Ƥ���������
-���줬 ACSC ʸ����ˤʤ�ޤ���
+新しいデバイスの図形セットを定義するのに一番よい方法は、この表のその端末用の
+コピーに列を追加し、対応する図形のところに (\fBsmacs\fR/\fBrmacs\fR スイッチの
+間に送出される場合に) 送出される文字を与えることです。それから VT100 と
+その端末の文字を右から左に順に読み上げてください。
+これが ACSC 文字列になります。
 .PP
-.SS ���ΰ���
+.SS 色の扱い
 .PP
-�ۤȤ�ɤΥ��顼ü���� `Tektronix ��' �� `HP ��' �Τɤ��餫�Ǥ���Tektronix ��
-ü���ˤϡ����餫����������줿 N �� (N ���̾� 8 �Ǥ�) ���Ȥ����ꡢ
-ʸ�����������Ω�����ʿ����طʿ������ꤷ�ơ�N * N �ο��ڥ��ˤǤ��ޤ���
-HP ��ü���Ǥϡ����ڥ��򤽤줾���̡������ꤹ��ɬ�פ�����ޤ� (���ʤ��طʤ�
-��Ω�ˤ�����Ǥ��ޤ���)��
-2*M �ΰۤʤä�������� M �ޤǤο��ڥ����Ǥ��ޤ���ANSI-�ߴ�ü���� Tektronix ��
-�Ǥ���
+ほとんどのカラー端末は `Tektronix 風' か `HP 風' のどちらかです。Tektronix 風
+端末には、あらかじめ定義された N 色 (N は通常 8 です) の組があり、
+文字セル毎に独立に前景色と背景色を設定して、N * N の色ペアにできます。
+HP 風端末では、色ペアをそれぞれ別々に設定する必要があります (前景と背景は
+独立には設定できません)。
+2*M の異なった色からは M までの色ペアができます。ANSI-互換端末は Tektronix 風
+です。
 .PP
-�����Ĥ��δ���Ū�ʿ��˴ؤ��륱���ѥӥ�ƥ��Ͽ��ΰ������Ȥ���Ω�Ǥ�������
-�����ѥӥ�ƥ� \fBcolors\fR �� \fBpairs\fR �ˤϡ�Ʊ����ɽ���Ǥ��뿧�ޤ���
-���ڥ��κ��������ꤷ�ޤ���\fBop\fR (original pair) ʸ��������ʿ����طʿ���
-ü���ε����ͤ˥ꥻ�åȤ��ޤ���\fBoc\fR ʸ����Ϥ��٤Ƥο��ޤ��Ͽ��ڥ���
-ü���ε����ͤ˥ꥻ�åȤ��ޤ���(¿���� PC ü�����ߥ�졼����ޤ�)
-�����Ĥ���ü���Ǥϡ��Ÿ����������طʿ��ǤϤʤ������ߤ��طʿ���
-�����ΰ��õ�ޤ������ξ��ˤϥ֡����ͥ����ѥӥ�ƥ� \fBbce\fR ��
-���ꤹ�٤��Ǥ���
+いくつかの基本的な色に関するケーパビリティは色の扱い方とは独立です。数値
+ケーパビリティ \fBcolors\fR と \fBpairs\fR には、同時に表示できる色または
+色ペアの最大数を指定します。\fBop\fR (original pair) 文字列は前景色と背景色を
+端末の規定値にリセットします。\fBoc\fR 文字列はすべての色または色ペアを
+端末の規定値にリセットします。(多くの PC 端末エミュレータを含む)
+いくつかの端末では、電源投入時の背景色ではなく、現在の背景色で
+画面領域を消去します。この場合にはブール値ケーパビリティ \fBbce\fR を
+指定すべきです。
 .PP
-Tektronix ����ü���Ǹ��ߤ����ʿ����طʿ����Ѥ��뤿��ˤϡ�
-\fBsetaf\fR (set ANSI foreground) �� \fBsetab\fR (set ANSI background) ��
-�Ȥ�����\fBsetf\fR (set foreground) �� \fBsetb\fR (set background) ��
-�ȤäƤ���������
-������ 1 �ĤΥѥ�᡼�������ֹ��Ȥ�ޤ���SVr4 ��ʸ��ˤ�
-\fBsetaf\fR/\fBsetab\fR �������񤫤�Ƥ��ޤ���XPG4 ����Ƥˤϡ�
-��ü�����طʤ����ʤ����ꤹ�� ANSI ���������ץ������󥹤򥵥ݡ��Ȥ���ʤ顢
-���줾�� \fBsetaf\fR �� \fBsetab\fR �ǻ��ꤹ�٤��Ǥ���
-ü�����طʤ����ʤ����ꤹ���̤Υ��������ץ������󥹤򥵥ݡ��Ȥ���ʤ顢
-���줾�� \fBsetf\fR �� \fBsetb\fR �ǻ��ꤹ�٤��Ǥ���\fIvidputs()\fR
-�ؿ��� refresh �ؿ� �ϡ��������Ƥ���� \fBsetaf\fR �� \fBsetab\fR ��
-�Ȥ��ޤ����פȽ񤫤�Ƥ��ޤ���
+Tektronix 型の端末で現在の前景色と背景色を変えるためには、
+\fBsetaf\fR (set ANSI foreground) と \fBsetab\fR (set ANSI background) を
+使うか、\fBsetf\fR (set foreground) と \fBsetb\fR (set background) を
+使ってください。
+これらは 1 つのパラメータ、色番号をとります。SVr4 の文書には
+\fBsetaf\fR/\fBsetab\fR だけが書かれています。XPG4 の草案には、
+「端末が背景と前景を設定する ANSI エスケープシーケンスをサポートするなら、
+それぞれ \fBsetaf\fR と \fBsetab\fR で指定すべきです。
+端末が背景と前景を設定する別のエスケープシーケンスをサポートするなら、
+それぞれ \fBsetf\fR と \fBsetb\fR で指定すべきです。\fIvidputs()\fR
+関数と refresh 関数 は、定義されていれば \fBsetaf\fR と \fBsetab\fR を
+使います。」と書かれています。
 .PP
-\fBsetaf\fR/\fBsetab\fR �� \fBsetf\fR/\fBsetb\fR �����ѥӥ�ƥ��Ϥ��줾��
-���Ͱ����� 1 �ĤȤ�ޤ��������� 0-7 �ϰܿ��Ǥ���褦�ʲ��Τ褦����������
-���ޤ� (�������� \fBcurses\fR �� \fBncurses\fR �饤�֥���Ѥ˥إå���
-���ѤǤ��뵭��� #define �Ǥ�)��ü���Υϡ��ɥ������Ϥ���򹥤��ʤ褦��
-�ޥåפ���Τϼ�ͳ�Ǥ�����RGB �ͤϿ����֤Ǥ��̾�ΰ��֤򼨤��Ƥ��ޤ���
+\fBsetaf\fR/\fBsetab\fR と \fBsetf\fR/\fBsetb\fR ケーパビリティはそれぞれ
+数値引数を 1 つとります。引数値 0-7 は移植できるよう以下のように定義されて
+います (中央の列は \fBcurses\fR や \fBncurses\fR ライブラリ用にヘッダで
+利用できる記号の #define です)。端末のハードウェアはこれを好きなように
+マップするのは自由ですが、RGB 値は色空間での通常の位置を示しています。
 .PP
 .TS H
 center;
 l c c c
 l l n l.
-\fB��	#define 	��	RGB\fR
-��	\fBCOLOR_BLACK\fR	0	0, 0, 0
-��	\fBCOLOR_RED\ \fR	1	max,0,0
-��	\fBCOLOR_GREEN\fR	2	0,max,0
-��	\fBCOLOR_YELLOW\fR	3	max,max,0
-��	\fBCOLOR_BLUE\fR	4	0,0,max
-�ޥ���	\fBCOLOR_MAGENTA\fR	5	max,0,max
-������	\fBCOLOR_CYAN\fR	6	0,max,max
-��	\fBCOLOR_WHITE\fR	7	max,max,max
+\fB色	#define 	値	RGB\fR
+黒	\fBCOLOR_BLACK\fR	0	0, 0, 0
+赤	\fBCOLOR_RED\ \fR	1	max,0,0
+緑	\fBCOLOR_GREEN\fR	2	0,max,0
+黄	\fBCOLOR_YELLOW\fR	3	max,max,0
+青	\fBCOLOR_BLUE\fR	4	0,0,max
+マゼンタ	\fBCOLOR_MAGENTA\fR	5	max,0,max
+シアン	\fBCOLOR_CYAN\fR	6	0,max,max
+白	\fBCOLOR_WHITE\fR	7	max,max,max
 .TE
 .PP
-HP ����ü���Ǥϡ��ɤο��ڥ������ߤΤ�Τ������ꤹ�뿧�ڥ��ֹ�ѥ�᡼����
-�Ȥ�ʤä� \fBscp\fR ��ȤäƤ���������
+HP 風の端末では、どの色ペアが現在のものかを設定する色ペア番号パラメータを
+ともなった \fBscp\fR を使ってください。
 .PP
-Tektronix ����ü���Ǥϡ������ѹ��Ǥ��뤳�Ȥ򼨤�����˥����ѥӥ�ƥ�
-\fBccc\fR ������ޤ����⤷�����Ǥ���С�
-\fBinitc\fR �����ѥӥ�ƥ��Ͽ��� (0 ���� \fBcolors\fR - 1) ��
-���򵭽Ҥ��� 3 �ĤΥѥ�᡼����Ȥ�ޤ������� 3 �ĤΥѥ�᡼���ϡ��ǥե���ȤǤ�
-RGB (Red, Green, Blue) �ͤȲ�ᤵ��ޤ����֡����ͥ����ѥӥ�ƥ� \fBhls\fR ��
-����С������ HLS (Hue, Lightness, Saturation) ��ɸ�ˤʤ�ޤ���
-�ϰϤ�ü���˰�¸���ޤ���
+Tektronix 風の端末では、色が変更できることを示すためにケーパビリティ
+\fBccc\fR があります。もしそうであれば、
+\fBinitc\fR ケーパビリティは色数 (0 から \fBcolors\fR - 1) と
+色を記述する 3 つのパラメータをとります。この 3 つのパラメータは、デフォルトでは
+RGB (Red, Green, Blue) 値と解釈されます。ブール値ケーパビリティ \fBhls\fR が
+あれば、代わりに HLS (Hue, Lightness, Saturation) 指標になります。
+範囲は端末に依存します。
 .PP
-HP ����ü���Ǥϡ�\fBinitp\fR �����ڥ��ͤ��ѹ����륱���ѥӥ�ƥ���Ϳ���ޤ���
-�ѥ�᡼���� 7 �ĤȤ�ޤ������ڥ��ֹ� (0 ���� \fBmax_pairs\fR - 1 �ޤ�) ��
-3 �Ĥο����Ȥ� 2 �ĤǤ����ǽ���Ȥ��طʿ���2 ���ܤ��Ȥ����ʿ��򵭽Ҥ��ޤ���
-�����Υѥ�᡼���� \fBhls\fR �˰�¸���� (Red, Green, Blue) ��
-(Hue, Lightness, Saturation) �Ǥ���ɬ�פ�����ޤ���
+HP 風の端末では、\fBinitp\fR が色ペア値を変更するケーパビリティを与えます。
+パラメータを 7 つとります。色ペア番号 (0 から \fBmax_pairs\fR - 1 まで) と
+3 つの数の組が 2 つです。最初の組で背景色を、2 番目の組で前景色を記述します。
+これらのパラメータは \fBhls\fR に依存して (Red, Green, Blue) か
+(Hue, Lightness, Saturation) である必要があります。
 .PP
-���顼ü���Τ����Ĥ��Ǥϡ����ϥϥ��饤�ȤȾ��ͤ��ޤ���
-���ξ��ͤ� \fBncv\fR �����ѥӥ�ƥ�����Ͽ�Ǥ��ޤ���
-����ϡ��������Ѳ�ǽ�ʤȤ��˻Ȥ����Ȥ��Ǥ��ʤ�°���Υӥåȥޥ����Ǥ���
-\fBcurses\fR �����򤹤�°���Ȥ��б��ϰʲ����̤�Ǥ���
+カラー端末のいくつかでは、色はハイライトと衝突します。
+この衝突を \fBncv\fR ケーパビリティで登録できます。
+これは、色が利用可能なときに使うことができない属性のビットマスクです。
+\fBcurses\fR が理解する属性との対応は以下の通りです。
 .PP
 .TS
 center;
 l c c
 lw25 lw2 lw10.
-\fB°��	�ӥå�	10 �ʿ�\fR
+\fB属性	ビット	10 進数\fR
 A_STANDOUT	0	1
 A_UNDERLINE	1	2
 A_REVERSE	2	4
@@ -2791,316 +2791,316 @@ A_PROTECT	7	128
 A_ALTCHARSET	8	256
 .TE
 .PP
-�㤨�С�¿���� IBM PC ���󥽡���ǡ�������°�������ʿ����ĤȾ��ͤ��Ƥ��ޤ���
-���顼�⡼�ɤǤ����ѤǤ��ޤ��󡣤���ϡ�\fBncv\fR �����ѥӥ�ƥ��� 2 ��
-���ꤹ�٤��Ǥ���
+例えば、多くの IBM PC コンソールで、下線の属性は前景色、青と衝突してしまい、
+カラーモードでは利用できません。これは、\fBncv\fR ケーパビリティに 2 を
+指定すべきです。
 .PP
-SVr4 curses �� \fBncv\fR �Ǥϲ��⤷�ޤ��󤬡�
-ncurses �Ϥ����ǧ�����ƥ��顼�Ѥ˽��Ϥ��Ŭ�����ޤ���
+SVr4 curses は \fBncv\fR では何もしませんが、
+ncurses はそれを認識してカラー用に出力を最適化します。
 .PP
-.SS ����¾
-�̥� (0) ʸ���ʳ��Υѥǥ���ʸ����ɬ�פȤ���ü���ξ�硢����� pad ��
-���ꤹ�뤳�Ȥ��Ǥ��ޤ���
-pad ʸ����κǽ��ʸ���Τߤ����Ѥ���ޤ���
-�ѥǥ���ʸ��������ʤ�ü���ξ�硢npc ����ꤷ�Ƥ���������
-ncurses �� termcap �ߴ��� \fBPC\fR �ѿ���������Ƥ��뤳�Ȥ����դ��Ƥ���������
-���ץꥱ�������Ϥ����ͤ�ʥ�ʳ��Τ�Τ����ꤹ�뤫�⤷��ޤ��󤬡�
-ncurses �Ϻǽ�� \fBnpc\fR ��ƥ��Ȥ���ü���˥ѥǥ���ʸ�����ʤ����
-napms ��Ȥ��ޤ���
+.SS その他
+ヌル (0) 文字以外のパディング文字を必要とする端末の場合、それを pad で
+指定することができます。
+pad 文字列の最初の文字のみが使用されます。
+パディング文字を持たない端末の場合、npc を指定してください。
+ncurses は termcap 互換の \fBPC\fR 変数を実装していることに注意してください。
+アプリケーションはこの値をナル以外のものに設定するかもしれませんが、
+ncurses は最初に \fBnpc\fR をテストし、端末にパディング文字がなければ
+napms を使います。
 .PP
-ü����Ⱦ�Ԥ����岼��ư�Ǥ����硢�����
+端末が半行だけ上下移動できる場合、それを
 .B hu
-(Ⱦ�Ծ��)
-��
+(半行上へ)
+と
 .B hd
-(Ⱦ�Բ���)
-�Ȥǻ���Ǥ��ޤ���
-����ϡ���Ȥ��ơ��ϡ��ɥ��ԡ�ü���ξ��դ�ʸ�������դ�ʸ���Τ�������
-Ω���ޤ���
-�ϡ��ɥ��ԡ�ü�����ѻ���ӽФ����Υڡ����˹Ԥ����� (�ե�����ե�����) ��
-�Ǥ����硢�����
+(半行下へ)
+とで指定できます。
+これは、主として、ハードコピー端末の上付き文字、下付き文字のために役に
+立ちます。
+ハードコピー端末が用紙を排出し次のページに行くこと (フォームフィード) が
+できる場合、それを
 .B ff
-(�̾�� control L) �ǻ��ꤷ�ޤ���
+(通常は control L) で指定します。
 .PP
-(Ʊ��ʸ����ˤ��¿���󷫤��֤���������ݤλ�������Τ���) ���ꤷ��ʸ����
-���ꤷ��������������֤����ޥ�ɤ�¸�ߤ����硢�ѥ�᡼����ʸ����
+(同じ文字を極めて多数回繰り返し送信する際の時間節約のため) 指定した文字を
+指定した回数だけ繰り返すコマンドが存在する場合、パラメータ化文字列
 .BR rep
-���Ѥ��Ƥ������ꤹ�뤳�Ȥ��Ǥ��ޤ���
-1 ���ܤΥѥ�᡼���Ϸ����֤����ʸ���ǡ�2 ���ܤΥѥ�᡼���Ϸ����֤�����Ǥ���
-�Ǥ����顢tparm(repeat_char, 'x', 10) �� `xxxxxxxxxx' ��Ʊ�����ȤǤ���
+を用いてそれを指定することができます。
+1 番目のパラメータは繰り返される文字で、2 番目のパラメータは繰り返し回数です。
+ですから、tparm(repeat_char, 'x', 10) は `xxxxxxxxxx' と同じことです。
 .PP
-\s-1TEKTRONIX\s+1 4025 �Τ褦�ˡ����ޥ��ʸ���������ǽ��ü���ξ�硢
+\s-1TEKTRONIX\s+1 4025 のように、コマンド文字を設定可能な端末の場合、
 .BR cmdch
-���Ѥ��Ƥ����ɽ�����Ȥ��Ǥ��ޤ���
-���٤ƤΥ����ѥӥ�ƥ��ǻ��Ѥ����ץ��ȥ����ץ��ޥ��ʸ�������Ǥ��ޤ���
-����ʸ����
+を用いてそれを表すことができます。
+すべてのケーパビリティで使用されるプロトタイプコマンド文字を指定できます。
+この文字は
 .B cmdch
-�����ѥӥ�ƥ��ǻ��ꤵ�졢���줬���̤���ޤ���
-�����Ĥ��� UNIX �����ƥ�Ǥϰʲ�����«�ˤ������äƽ������ʤ���ޤ���
-���ʤ�����ޤ��Ķ��ѿ�
+ケーパビリティで指定され、それが識別されます。
+いくつかの UNIX システムでは以下の約束にしたがって処理がなされます。
+すなわち、まず環境変数
 .B CC
-�򸡺��������줬���ꤵ��Ƥ�����ϡ������ѥӥ�ƥ���ˤ���ץ��ȥ�����
-ʸ���Τ��٤Ƥ����δĶ��ѿ��ǻ��ꤵ�줿ʸ�����֤��������ޤ���
+を検査し、それが設定されている場合は、ケーパビリティ中にあるプロトタイプ
+文字のすべてがその環境変数で指定された文字と置き換えられます。
 .PP
 .IR switch ,
 .IR dialup ,
 .IR patch ,
 .IR network
-�ʤɤΤ褦�ʡ������ü���μ����ɽ���ʤ�ü�����Ҥˤϡ��ץ�����ब
-����ü���Ȥɤ��̿�����Ф褤����ʬ����ʤ���ɽ���Ǥ���褦�ˤ��뤿�ᡢ
+などのような、特定の端末の種類を表さない端末記述には、プログラムが
+その端末とどう通信すればよいかが分からないと表明できるようにするため、
 .B gn
-(����Ū) �����ѥӥ�ƥ�����ꤹ�٤��Ǥ���
-(���Υ����ѥӥ�ƥ��ϡ����������ץ������󥹤��狼�äƤ���
-.I ����
-ü���ε��Ҥˤ�Ŭ�Ѥ���ޤ���)
+(一般的) ケーパビリティを指定すべきです。
+(このケーパビリティは、エスケープシーケンスがわかっている
+.I 仮想
+端末の記述には適用されません。)
 .PP
-ü���������եȥ����Ȥ���ư���ʸ�����٤Ƥ� 8 �ӥå��ܤ�Ω�Ƥ����Ф���
-�֥᥿�����פ���ľ�硢���Τ��Ȥ�
+端末が、シフトキーとして動作し、文字すべての 8 ビット目を立てて送出する
+「メタキー」を持つ場合、このことを
 .BR km
-�ˤ��ɽ�����Ȥ��Ǥ��ޤ���
-���λ��꤬�ʤ���硢���եȥ������ϡ�8 �ӥå��ܤϥѥ�ƥ��ǡ��̾��
-���ꥢ����Ƥ�������ꤷ�ޤ���
-���Ρ֥᥿�⡼�ɡפ򥪥󥪥դ���ʸ����¸�ߤ����硢�����
+により表すことができます。
+この指定がない場合、ソフトウェアは、8 ビット目はパリティで、通常は
+クリアされていると想定します。
+この「メタモード」をオンオフする文字列が存在する場合、それを
 .B smm
-��
+と
 .BR rmm
-�Ȥǻ���Ǥ��ޤ���
+とで指定できます。
 .PP
-ü�������� 1 ��ʬ���¿���Կ��Υ������ľ�硢����ιԿ���
+端末が画面 1 枚分より多い行数のメモリを持つ場合、メモリの行数を
 .BR lm
-�ǻ���Ǥ��ޤ���
-��
+で指定できます。
+値
 .BR lm #0
-�ϡ��Կ��ϸ���Ǥʤ���ΤΡ�1 ����ʬ�ʾ�Υ������Ĥ��Ȥ�ɽ���ޤ���
+は、行数は固定でないものの、1 画面分以上のメモリを持つことを表します。
 .PP
-ü���� \s-1UNIX\s+1 �β���ü���ץ��ȥ���򥵥ݡ��Ȥ��Ƥ����硢
-����ü���ֹ��
+端末が \s-1UNIX\s+1 の仮想端末プロトコルをサポートしている場合、
+その端末番号を
 .BR vt
-�ǻ���Ǥ��ޤ���
+で指定できます。
 .PP
-ü������³���줿�����ץ�󥿤����椹���ǥ������ԡ�ʸ����ϡ����Τ褦��
-����Ǥ��ޤ������ʤ����
+端末に接続された外部プリンタを制御するメディアコピー文字列は、次のように
+指定できます。すなわち、
 .BR mc0 :
-�������Ƥΰ�����
+画面内容の印字、
 .BR mc4 :
-�ץ�󥿥��ա�
+プリンタオフ、
 .BR mc5 :
-�ץ�󥿥���Ǥ���
-�ץ�󥿤�����ΤȤ���ü�������Ф��줿�ƥ����ȤϤ��٤ƥץ�󥿤������ޤ���
-�ץ�󥿤�����ξ��֤Ǥ�ʤ�ü���˥ƥ����Ȥ�ɽ������뤫�ݤ���̤����Ǥ���
-�Ѽ�Ǥ���
+プリンタオンです。
+プリンタがオンのとき、端末に送出されたテキストはすべてプリンタに送られます。
+プリンタがオンの状態でもなお端末にテキストが表示されるか否かは未定義です。
+変種である
 .B mc5p
-�ϥѥ�᡼���� 1 �ļ�ꡢ���Υѥ�᡼�����ͤ�����ʸ��������֥ץ�󥿤�
-����ˤ�³�������Τ��ȥ��դˤ��ޤ���
-���Υѥ�᡼���� 255 ��ۤ��ƤϤʤ�ޤ���
+はパラメータを 1 つ取り、そのパラメータの値だけの文字を送る間プリンタを
+オンにし続け、そのあとオフにします。
+このパラメータは 255 を越えてはなりません。
 .BR mc4
-��ޤह�٤ƤΥƥ����Ȥϡ�
+を含むすべてのテキストは、
 .B mc5p
-��ͭ���ʴ֡�Ʃ��Ū�˥ץ�󥿤��Ϥ���ޤ���
+が有効な間、透過的にプリンタに渡されます。
 .PP
-.SS ���ߵ�ǽ�����ä���ǽ (Glitches and Braindamage)
+.SS ゴミ機能、困った機能 (Glitches and Braindamage)
 .PP
-Hazeltine ü���� `~' ʸ����ɽ���Ǥ��ޤ��󡣤���ˤ� \fBhz\fR ����ꤹ�٤��Ǥ���
+Hazeltine 端末は `~' 文字を表示できません。これには \fBhz\fR を指定すべきです。
 .PP
-Concept �� vt100 �Τ褦�� \fBam\fR ľ��β���ʸ����̵�뤹��ü���ξ�硢
-\fBxenl\fR ����ꤹ�٤��Ǥ���
+Concept や vt100 のように \fBam\fR 直後の改行文字を無視する端末の場合、
+\fBxenl\fR を指定すべきです。
 .PP
-��Ĵɽ�������������� (ñ���̾�Υƥ����Ȥ��˽񤯤����ǤϺѤޤ�)
+強調表示を取り除くために (単に通常のテキストを上に書くだけでは済まず)
 .B el
-��ɬ�פʾ�硢
-\fBxhp\fP ����ꤹ�٤��Ǥ���
+が必要な場合、
+\fBxhp\fP を指定すべきです。
 .PP
-Teleray ü���ϡ����֤ǥ��������ư�������ˤ��ä�ʸ���򤹤٤ƶ���ˤ���
-���ޤ��Τǡ�����ü���Ǥ� \fBxt\fR (�˲�Ū�ʥ���) ����ꤹ�٤��Ǥ���
-�� : ������б������ѿ��ϡ����ߤ� `dest_tabs_magic_smso' �Ǥ�����
-�����ΥС������Ǥϡ�teleray_glitch �Ǥ�����
-���Τդ�������ǽ�ϡ�``magic cookie''(��ˡ�Υ��å���) ��
-��Ƭ�˥���������֤��ʤ����Ȥȡ�
-��Ĵ�⡼�ɤ�õ�뤿��ˡ��Ժ���ȹ�������ɬ�פǤ��뤳�Ȥ��̣���ޤ���
-ncurses �μ����Ϥ��� glitch ��̵�뤷�ޤ���
+Teleray 端末は、タブでカーソル移動した下にあった文字をすべて空白にして
+しまうので、この端末では \fBxt\fR (破壊的なタブ) を指定すべきです。
+注 : これに対応する変数は、現在は `dest_tabs_magic_smso' ですが、
+以前のバージョンでは、teleray_glitch でした。
+このふざけた機能は、``magic cookie''(魔法のクッキー) の
+先頭にカーソルを置けないことと、
+強調モードを消去するために、行削除と行挿入が必要であることも意味します。
+ncurses の実装はこの glitch を無視します。
 .PP
-Beehive �� Superbee ü���ϡ�����������ʸ���� control C ʸ����������
-�����Ǥ��ޤ��󡣤���ˤ�
+Beehive の Superbee 端末は、エスケープ文字や control C 文字を正しく
+送信できません。これには
 .BR xsb
-����ꤷ��f1 �����򥨥������פȤ���f2 ������ control C �Ȥ��ƻ��Ѥ��뤳�Ȥ�
-ɽ���ޤ���
-(�������꤬�����Τ������ Superbee �˸¤�졢���� ROM �˰�¸���ޤ���)
-terminfo �θŤ��С������Ǥϡ����Υ����ѥӥ�ƥ��� `beehive_glitch' ��
-�ƤФ�Ƥ��ޤ����������ߤǤ� `no_esc_ctl_c' �ȸƤФ�Ƥ��뤳�Ȥ�
-���դ��Ƥ���������
+を指定し、f1 キーをエスケープとし、f2 キーを control C として使用することを
+表します。
+(この問題が現れるのは特定の Superbee に限られ、その ROM に依存します。)
+terminfo の古いバージョンでは、このケーパビリティは `beehive_glitch' と
+呼ばれていましたが、現在では `no_esc_ctl_c' と呼ばれていることに
+注意してください。
 .PP
-�ʤˤ������ü���˸�ͭ��¾��������褷������硢\fBx\fR\fIx\fR �η�����
-�����������ѥӥ�ƥ����ɲä��ƻȤäƤ⹽���ޤ���
+なにか特定の端末に固有の他の問題を解決したい場合、\fBx\fR\fIx\fR の形式で
+新しいケーパビリティを追加して使っても構いません。
 .PP
-.SS �褯����ü��
+.SS よく似た端末
 .PP
-2 �Ĥ����ˤ褯����ü���������硢�����Ĥ����㳰�������
-���� (�ѷ���) ��¾�� (���ܼ�) �Ȼ��Ƥ���Ȥ��������Ԥ����Ȥ��Ǥ��ޤ���
-�ѷ��������ˤ����Ƥϡ�
-ʸ���󥱡��ѥӥ�ƥ� \fBuse\fR �ǡ����ܼ��ü����̾����
-����Ǥ��ޤ���
+2 つの非常によく似た端末がある場合、いくつかの例外を除いて
+一方 (変型種) は他方 (基本種) と似ているという定義を行うことができます。
+変型種の定義においては、
+文字列ケーパビリティ \fBuse\fR で、基本種の端末の名前を
+指定できます。
 .B use
-�λ���������Ϳ���������ѥӥ�ƥ��ϡ�
+の指定より前に与えたケーパビリティは、
 .BR use
-�ˤ����������ܥ����פ���Υ����ѥӥ�ƥ���ͥ�褷�ޤ���
-ʣ���� \fBuse\fR �����ѥӥ�ƥ���¸�ߤ����硢�դν��֤ǥޡ�������ޤ���
-���ʤ�������ֱ�¦�� \fBuse\fR �λ����褬�ǽ�˽������졢
-���ˤ��κ������������Ȥ��ä����֤ˤʤ�ޤ���
-����ȥ��������Ū�˻��ꤵ�줿�����ѥӥ�ƥ��ϡ�
-\fBuse\fR �λ����褬Ϳ���륱���ѥӥ�ƥ���ͥ�褷�ޤ���
+により得られる基本タイプの中のケーパビリティに優先します。
+複数の \fBuse\fR ケーパビリティが存在する場合、逆の順番でマージされます。
+すなわち、一番右側の \fBuse\fR の参照先が最初に処理され、
+次にその左が処理されるといった順番になります。
+エントリ中で明示的に指定されたケーパビリティは、
+\fBuse\fR の参照先が与えるケーパビリティに優先します。
 .PP
-�����ѥӥ�ƥ�����κ�¦�� \fBxx@\fR ���֤����Ȥˤ�ꡢ���Υ����ѥӥ�ƥ���
-����󥻥�Ǥ��ޤ��������� xx �Ϥ��Υ����ѥӥ�ƥ��Ǥ���
-�㤨�С�����ȥ�
+ケーパビリティ定義の左側に \fBxx@\fR を置くことにより、そのケーパビリティを
+キャンセルできます。ここで xx はそのケーパビリティです。
+例えば、エントリ
 .PP
 	2621-nl, smkx@, rmkx@, use=2621,
 .PP
-�� \fBsmkx\fR �� \fBrmkx\fR ������ʤ� 2621-nl ��������ޤ���
-����椨������ü���ϥӥ��奢��⡼�ɤǤ�
-�ե��󥯥���󥭡���٥�򥪥�ˤ��ޤ���
-���ε�ǽ�Ϥ���ü���μ�ε�ǽ�䡢�桼���μ�������ɽ���ݤ�ͭ�ѤǤ���
+は \fBsmkx\fR も \fBrmkx\fR も持たない 2621-nl を定義します。
+それゆえ、この端末はビジュアルモードでは
+ファンクションキーラベルをオンにしません。
+この機能はある端末の種々の機能や、ユーザの種々の設定を表す際に有用です。
 .PP
-.SS Ĺ������ȥ����Ȥ���
+.SS 長いエントリの落とし穴
 .PP
-Ĺ�� terminfo �Υ���ȥ������ˤʤꤽ���ˤ���ޤ��󡣸��ߤޤ� terminfo ��
-ʸ����ɽ�κ����� 4K ��ã��������ȥ�Ϥʤ��ΤǤ����Թ��ʤ��Ȥ� termcap �ؤ�
-�����Ϥ��äȸ��������¤���Ƥ��� (1K �ޤ�) �Τǡ�Ĺ�� terminfo ����ȥ��
-termcap �ؤ��������������������������Τ�ޤ���
+長い terminfo のエントリは問題になりそうにありません。現在まで terminfo の
+文字列表の最大値 4K に達したエントリはないのです。不幸なことに termcap への
+翻訳はずっと厳しく制限されている (1K まで) ので、長い terminfo エントリの
+termcap への翻訳は問題を引き起こすかも知れません。
 .PP
-4.3BSD ����ӡ����Ť��С������� tgetent() �Υޥ˥奢��ˤϡ�
-termcap ����ȥ��Ѥ� 1K �ΥХåե��������Ƥ�褦�˽񤤤Ƥ���ޤ���
-����ȥ�� termcap �饤�֥��ˤ��̥�ʸ���ǽ�λ��������Τǡ�
-termcap ����ȥ�Ȥ��ư����ʺ����Ĺ���� 1k-1 (1023) �Х��ȤǤ���
-���ץꥱ�������Ȼ��Ѥ��� termcap �饤�֥�꤬���򤹤뤫��
-�ޤ���tgetent() ��õ���Ƥ��륿���פ�ü���� termcap �ե������
-�ɤ��ˤ��뤫�ˤ�äơ��������Ȥ������Ĥ������뤫���Τ�ޤ���
+4.3BSD および、より古いバージョンの tgetent() のマニュアルには、
+termcap エントリ用に 1K のバッファを割り当てるように書いてあります。
+エントリは termcap ライブラリによりヌル文字で終了させられるので、
+termcap エントリとして安全な最大の長さは 1k-1 (1023) バイトです。
+アプリケーションと使用する termcap ライブラリが何をするか、
+また、tgetent() が探しているタイプの端末が termcap ファイルの
+どこにあるかによって、悪いことがいくつか起こるかも知れません。
 .PP
-termcap �饤�֥�����ˤϡ�1023 �Х��Ȥ��Ĺ������ȥ�򸫤Ĥ����
-�ٹ�Υ�å�������ɽ�������ꡢ��λ�����ꤹ���Τ⤢��ޤ�����
-�����Ǥʤ���Τ⤢��ޤ��������Ǥʤ���Τϥ���ȥ���ڼΤƤ� 1023 �Х��Ȥ�
-���Ƥ��ޤ��ޤ������ץꥱ�������ץ���������ˤ� termcap ����ȥ��
-�侩���줿 1K ���¿��������Ƥ��Τ⤢��ޤ����������Ǥʤ���Τ⤢��ޤ���
+termcap ライブラリの中には、1023 バイトより長いエントリを見つけると
+警告のメッセージを表示したり、終了したりするものもありますし、
+そうでないものもあります。そうでないものはエントリを切捨てて 1023 バイトに
+してしまいます。アプリケーションプログラムの中には termcap エントリに
+推奨された 1K より多く割り当てるものもありますし、そうでないものもあります。
 .PP
-�� termcap ����ȥ�ˤϤ���˴ط�������פ��礭���� 2 �Ĥ���ޤ���
-"tc" Ÿ������ "tc" Ÿ����Ǥ���"tc" �ϡ����ߤΥ���ȥ�κǸ��
-¾�� termcap ����ȥ���դ�­�������Υ����ѥӥ�ƥ����ɲä���
-�����ѥӥ�ƥ��Ǥ���termcap ����ȥ꤬ "tc" �����ѥӥ�ƥ���
-�Ȥ�ʤ��ʤ�С�������� 2 �Ĥ�Ĺ����Ʊ���Ǥ���
+各 termcap エントリにはそれに関係する重要な大きさが 2 つあります。
+"tc" 展開前と "tc" 展開後です。"tc" は、現在のエントリの最後に
+他の termcap エントリを付け足し、そのケーパビリティを追加する
+ケーパビリティです。termcap エントリが "tc" ケーパビリティを
+使わないならば、もちろん 2 つの長さは同じです。
 .PP
-�ü��ü���Υ桼���ʳ��ˤ�ƶ�����Τǡ���tc Ÿ�����פ�Ĺ���ϺǤ�
-���פʤ�ΤǤ�������� /etc/termcap �ˤ��륨��ȥ꤫��Хå�����å����
-���Ԥ��Ȥ��������Τ�Ĺ���Ǥ����Хå�����å���Ȳ��Ԥ��Ȥ� tgetent() ��
-�ɤ߹���֤˼������ޤ���
-termcap �饤�֥�����ˤϺǸ�β��Ԥ��������Τ⤢��ޤ�
-(GNU termcap �ϹԤ��ޤ���)��
-���Τ褦�˲��ꤷ�ޤ���
+特殊な端末のユーザ以外にも影響するので、「tc 展開前」の長さは最も
+重要なものです。これは /etc/termcap にあるエントリからバックスラッシュと
+改行の組を引いたものの長さです。バックスラッシュと改行の組は tgetent() が
+読み込む間に取り除きます。
+termcap ライブラリの中には最後の改行を取り除くものもあります
+(GNU termcap は行いません)。
+次のように仮定します。
 .TP 5
 *
-Ÿ������ termcap ����ȥ�� 1023 �Х��Ȱʾ��Ĺ���Ǥ���
+展開前の termcap エントリは 1023 バイト以上の長さです。
 .TP 5
 *
-���ץꥱ�������� 1k �ΥХåե��������Ƥ������Ǥ���
+アプリケーションは 1k のバッファを割り当てただけです。
 .TP 5
 *
-(BSD/OS 1.1 �� GNU �Τ�ΤΤ褦��) termcap �饤�֥��ϡ�
-���줬ɬ�פʥ���ȥ�Ǥ���С�����Ĺ���˴ؤ�餺��
-�ɤि��˥���ȥ�򤹤٤ƥХåե����ɤ߹��ߤޤ���
+(BSD/OS 1.1 や GNU のもののように) termcap ライブラリは、
+それが必要なエントリであれば、その長さに関わらず、
+読むためにエントリをすべてバッファに読み込みます。
 .TP 5
 *
-tgetent() ��Ĺ������ȥ��ü�������פ���Ĺ������ȥ�θ�� termcap �ե������
-�����ü�������פ����ե�����ˤ���������ʤ� (���Τ��� tgetent() ��
-termcap �ե��������Τ�õ��ɬ�פ�����ޤ�) ü�������פ�õ���Ƥ��ޤ���
+tgetent() は長いエントリの端末タイプか、長いエントリの後に termcap ファイルに
+現れる端末タイプか、ファイルには全く現れない (そのため tgetent() は
+termcap ファイル全体を探す必要があります) 端末タイプを探しています。
 .PP
-����ȡ�tgetent() �ϥ��ꡢ�����餯�ϥ����å��˽Ťͽ񤭤������֤�ץ�������
-��������פ�����Ǥ��礦��telnet �Τ褦�ʥץ��������ä˼夤�Ǥ���
-����Ū�� telnet ��ü�������פΤ褦���ͤ�ưŪ���̤��Ƥ��ޤ��ޤ���
-SunOS 4.1.3 �� Ultrix 4.4 �Τ褦�ˡ����٤�Ĺ�� termcap ����ȥ��
-�ɤ���Ȥ��ˤϷٹ��å�������ɽ������ termcap �饤�֥��Ǥ⡢��̤�
-˾�ޤ�����ΤǤϤ���ޤ���OSF/1 3.0 �Τ褦�� termcap �饤�֥�꤬
-Ĺ������ȥ���ڤ�ΤƤ�ʤ顢�����ǻ�̤��ȤϤ���ޤ��󤬡�
-ü�����Ф��������Τʥǡ������֤����Ȥˤʤ�Ǥ��礦��
+すると、tgetent() はメモリ、おそらくはスタックに重ね書きし、たぶんプログラムを
+コアダンプさせるでしょう。telnet のようなプログラムは特に弱いです。
+現代的な telnet は端末タイプのような値を自動的に通してしまいます。
+SunOS 4.1.3 や Ultrix 4.4 のように、過度に長い termcap エントリを
+読んだときには警告メッセージを表示する termcap ライブラリでも、結果は
+望ましいものではありません。OSF/1 3.0 のように termcap ライブラリが
+長いエントリを切り捨てるなら、ここで死ぬことはありませんが、
+端末に対して不正確なデータを返すことになるでしょう。
 .PP
-��tc Ÿ����פ�Ĺ���Ͼ��Ʊ���褦�˱ƶ�����Ǥ��礦����
-�ƶ��������Τ� TERM �򤽤�ü�������פ˼ºݤ����ꤷ���ͤ����Ǥ���
-tgetent() ��õ���Ƥ�����ǤϤʤ���õ���Ƥ���ü�������פ򸫤Ĥ�������
-���٤��� "tc" Ÿ����Ԥ�����Ǥ���
+「tc 展開後」の長さは上と同じように影響するでしょうが、
+影響を受けるのは TERM をその端末タイプに実際に設定した人だけです。
+tgetent() は探している時ではなく、探していた端末タイプを見つけた時に
+一度だけ "tc" 展開を行うからです。
 .PP
-��ɡ�1023 �Х��Ȥ��Ĺ�� termcap ����ȥ� �ϡ�termcap �饤�֥���
-���ץꥱ�������Τ��ޤ��ޤ��ȹ礻�ǡ���������פ�ٹ�������Τ�����
-�������������⤷��ޤ���"tc" Ÿ�����Ǥ�Ĺ�᤮��ʤ顢¾��ü�������פ�
-�桼���� termcap ����ȥ�Τʤ� TERM �ѿ�����ꤷ�Ƥ���桼���ˤ�
-�ƶ�����Ǥ��礦��
+結局、1023 バイトより長い termcap エントリ は、termcap ライブラリと
+アプリケーションのさまざまな組合せで、コアダンプや警告や不正確な操作を
+引き起こすかもしれません。"tc" 展開前でも長過ぎるなら、他の端末タイプの
+ユーザや termcap エントリのない TERM 変数を指定しているユーザにも
+影響するでしょう。
 .PP
--C (termcap ������) �⡼�ɤǤϡ�\fBtic\fR(1) �� \fBncurses\fR ��
-������ tc ���� termcap ����������Ĺ����Ĺ�᤮���硢�ٹ��å�������Ф��ޤ���
--c (check) ���ץ����ϡ�ʬ�Ϥ��줿 (tc Ÿ�����) Ĺ��������å����ޤ���
-.SS �Х��ʥ�ߴ���
-���Ѥ� UNIX �δ֤ΥХ��ʥ�� terminfo ����ȥ�ΰܿ����˴��Ԥ���Τ�
-�����ǤϤ���ޤ�������� terminfo �� (HP-UX �� AIX ��) ���ʤ��Ȥ� 2 �Ĥ�
-�С�����󤬤��뤫��Ǥ����ɤ���� SVr1 �θ�� System V �� terminfo ����
-ʬ��������Τǡ�ʸ����ɽ�� System V �� XSI Curses ��ĥ��
-(�Х��ʥ�ե����ޥåȤ�) ���ͤ����ĥ�����ѥӥ�ƥ����ɲä��Ƥ��ޤ���
-.SH ��ĥ
-SVr4 �� \fBcurses\fR �μ����Τ����Ĥ��� SVr4 �����Τ�Τ��٤Ƥ�
-�ѥ�᡼��ʸ������� %A �黻�Ҥ� %O �黻�Ҥ��ᤷ�ޤ���
+-C (termcap へ翻訳) モードでは、\fBtic\fR(1) の \fBncurses\fR の
+実装は tc 前の termcap へ翻訳する長さが長過ぎる場合、警告メッセージを出します。
+-c (check) オプションは、分析された (tc 展開後の) 長さもチェックします。
+.SS バイナリ互換性
+商用の UNIX の間のバイナリの terminfo エントリの移植性に期待するのは
+賢明ではありません。問題は terminfo に (HP-UX と AIX で) 少なくとも 2 つの
+バージョンがあるからです。どちらも SVr1 の後で System V の terminfo から
+分岐したもので、文字列表に System V や XSI Curses 拡張と
+(バイナリフォーマットで) 衝突する拡張ケーパビリティを追加しています。
+.SH 拡張
+SVr4 の \fBcurses\fR の実装のいくつかと SVr4 以前のものすべては
+パラメータ文字列内の %A 演算子と %O 演算子を解釈しません。
 .PP
-SVr4/XPG4 �ϡ��̤�ʸ�����åȥ⡼�ɤ� \fBmsgr\fR ����������ΰ�ư����Ĥ��뤫
-�ɤ�������ꤷ�ޤ��� (���Τ褦�ʥ⡼�ɤϡ���������Ǥ� CR �� NL ��
-�ɽ�Ū�ʰ�ư������������ʤ�ʸ���˼̤��Ƥ��ޤ������Τ�ޤ���)��
-\fBncurses\fR �μ����� \fBALTCHARSET\fR �⡼�ɤǤ� \fBmsgr\fR ��̵�뤷�ޤ���
-���Τ��ᡢȿ�Фβ��򤹤� XPG4 �μ����Ǥϡ�\fBncurses\fR �Ѥ˺��줿
-terminfo ����ȥ�� \fBmsgr\fR �򥪥դˤ���ɬ�פ����뤫���Τ�ޤ���
+SVr4/XPG4 は、別の文字セットモードで \fBmsgr\fR がカーソルの移動を許可するか
+どうかを指定しません (そのようなモードは、数ある中でも CR と NL を
+局所的な移動を引き起こさない文字に写してしまうかも知れません)。
+\fBncurses\fR の実装は \fBALTCHARSET\fR モードでは \fBmsgr\fR を無視します。
+このため、反対の解釈をする XPG4 の実装では、\fBncurses\fR 用に作られた
+terminfo エントリの \fBmsgr\fR をオフにする必要があるかも知れません。
 .PP
-\fBncurses\fR �饤�֥��ϡ������θ�Ψ��夲�뤿��˾�����ɸ��Ū����ˡ��
-ʸ��������ʸ�������⡼�ɤ򰷤��ޤ����嵭�� \fBʸ��������/���\fR �������
-���Ȥ��Ƥ���������
+\fBncurses\fR ライブラリは、更新の効率を上げるために少し非標準的な方法で
+文字挿入と文字挿入モードを扱います。上記の \fB文字の挿入/削除\fR の副節を
+参照してください。
 .PP
-\fBset_clock\fR �� \fBdisplay_clock\fR �Υѥ�᡼���ִ��� SVr4 �Ǥ�
-XSI Curses ���ʤǤ���������Ƥ��ޤ���AT&T 505 ü���������񤫤�
-��¬������ΤǤ���
+\fBset_clock\fR と \fBdisplay_clock\fR のパラメータ置換は SVr4 でも
+XSI Curses 規格でも説明されていません。AT&T 505 端末の説明書から
+推測したものです。
 .PP
-\fBkmous\fR �����ѥӥ�ƥ��γ�����Ƥˤ����դ��Ƥ���������\fBncurses\fR ��
-\fBKEY_MOUSE\fR �Ȥ��Ʋ�ᤷ�褦�Ȥ���xterm �Τ褦��
-�����ܡ������ϥ��ȥ꡼����ǥޥ����ȥ�å�������֤����ȤΤǤ���ü����
-���ߥ�졼�������Ѥ��ޤ���
+\fBkmous\fR ケーパビリティの割り当てには注意してください。\fBncurses\fR は
+\fBKEY_MOUSE\fR として解釈しようとし、xterm のような
+キーボード入力ストリーム中でマウストラック情報を返すことのできる端末や
+エミュレータが使用します。
 .PP
-�ۤʤ뾦�Ѥ� terminfo �� curses �Ϥ��줾��ۤʤ� XSI Curses ɸ��ΰ�����
-(�����Ĥ��ξ��) �ۤʤä���ĥ�򥵥ݡ��Ȥ��ޤ����ʲ���
-1995 ǯ 10 ������Ǥ����Τ�����Ǥ���
+異なる商用の terminfo と curses はそれぞれ異なる XSI Curses 標準の一部と
+(いくつかの場合) 異なった拡張をサポートします。以下は
+1995 年 10 月時点での正確な要約です。
 .PP
 \fBSVR4, Solaris, ncurses\fR --
-SVr4 �����ѥӥ�ƥ��򤹤٤ƥ��ݡ��Ȥ��ޤ���
+SVr4 ケーパビリティをすべてサポートします。
 .PP
 \fBSGI\fR --
-SVr4 ���٤Ƥ������Τʤ���ĥʸ���󥱡��ѥӥ�ƥ� 1 �� (\fBset_pglen\fR) ��
-���ݡ��Ȥ��ޤ���
+SVr4 すべてと説明のない拡張文字列ケーパビリティ 1 つ (\fBset_pglen\fR) を
+サポートします。
 .PP
 \fBSVr1, Ultrix\fR --
-terminfo �����ѥӥ�ƥ������¤��줿�����򥵥ݡ��Ȥ��ޤ���
-�֡����ͤ� \fBxon_xoff\fR �ǡ����ͤ� \fBwidth_status_line\fR �ǡ�
-ʸ����� \fBprtr_non\fR �ǽ����Ǥ���
+terminfo ケーパビリティの制限された一部をサポートします。
+ブール値は \fBxon_xoff\fR で、数値は \fBwidth_status_line\fR で、
+文字列は \fBprtr_non\fR で終わりです。
 .PP
 \fBHP/UX\fR --
-SVr1 �ΰ����ȡ�SVr[234] �ο��� \fBnum_labels\fR, \fBlabel_height\fR,
-\fBlabel_width\fR �ȡ��ե��󥯥���󥭡� 11 ���� 63 �ޤǤȡ�
-\fBplab_norm\fR, \fBlabel_on\fR, \fBlabel_off\fR �ȡ�ʸ����ɽ����ߴ��ʳ�ĥ��
-�����Ĥ����ݡ��Ȥ��ޤ���
+SVr1 の一部と、SVr[234] の数値 \fBnum_labels\fR, \fBlabel_height\fR,
+\fBlabel_width\fR と、ファンクションキー 11 から 63 までと、
+\fBplab_norm\fR, \fBlabel_on\fR, \fBlabel_off\fR と、文字列表の非互換な拡張を
+いくつかサポートします。
 .PP
 \fBAIX\fR --
-SVr1 �ΰ����ȡ��ե��󥯥���󥭡� 11 ���� 63 �ޤǤȡ����������
-��ߴ���ʸ����ɽ��ĥ�򥵥ݡ��Ȥ��ޤ���
+SVr1 の一部と、ファンクションキー 11 から 63 までと、たくさんの
+非互換な文字列表拡張をサポートします。
 .PP
 \fBOSF\fR --
-SVr4 ������ AIX ��ĥ��ξ���򥵥ݡ��Ȥ��ޤ���
-.SH ��Ϣ�ե�����
+SVr4 全部と AIX 拡張の両方をサポートします。
+.SH 関連ファイル
 .TP 25
 \*d/?/*
-ü�����Ҥ�ޤ�ե�����
-.SH ��Ϣ����
+端末記述を含むファイル
+.SH 関連項目
 \fBtic\fR(1M), \fBcurses\fR(3X), \fBprintf\fR(3S), \fBterm\fR(\*n).
-.SH ���
+.SH 作者
 Zeyd M. Ben-Halim, Eric S. Raymond, Thomas E. Dickey.
-Pavel Curtis �ˤ�� pcurses �˴�Ť��Ƥ��ޤ���
+Pavel Curtis による pcurses に基づいています。
 .\"#
 .\"# The following sets edit modes for GNU EMACS
 .\"# Local Variables:
