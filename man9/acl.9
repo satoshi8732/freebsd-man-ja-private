@@ -29,38 +29,38 @@
 .Dd December 23, 1999
 .Os
 .Dt ACL 9
-.Sh ̾��
+.Sh 名称
 .Nm acl
-.Nd ���ۥե����륷���ƥॢ����������ꥹ��
-.Sh ��
+.Nd 仮想ファイルシステムアクセス制御リスト
+.Sh 書式
 .In sys/param.h
 .In sys/vnode.h
 .In sys/acl.h
 .Pp
-�����ͥ륳��ե�����졼�����ե��������ˡ�
+カーネルコンフィギュレーションファイルの中に、
 .Cd "options UFS_ACL"
-.Sh ����
-������������ꥹ�ȡ����ʤ�� ACL �ϡ�
-�ե����뤪��ӥǥ��쥯�ȥ��ɽ������ vnode ���Ф��븢�¤�
-����٤��������ǽ�Ȥ��ޤ���
-�������ʤ��顢
-�ۤʤ� ACL �Υ��ޥ�ƥ���������ĥե����륷���ƥब��¿�ˤ��뤿�ᡢ
-vnode ���󥿥ե������� ACL ��ʸˡ�Τߤ����򤷡����ä�ʤ��ե����륷���ƥब
-������������뤳�Ȥ����Ƥˤ��Ƥ��ޤ���
-���ä�ʤ��ե����륷���ƥ�˰�¸���ơ��ġ��Υե�����ޤ��ϥǥ��쥯�ȥ�ϡ�
-��Ϣ�դ����� 0 �İʾ�� ACL ����Ĥ��Ȥ���ǽ�Ǥ���
-���줾�� ACL ��̾���ϡ�Ŭ�ڤ� vnode ACL �ƤӽФ�
+.Sh 解説
+アクセス制御リスト、すなわち ACL は、
+ファイルおよびディレクトリを表現する vnode に対する権限を、
+きめ細かく指定可能とします。
+しかしながら、
+異なる ACL のセマンティクスを持つファイルシステムが過多にあるため、
+vnode インタフェースは ACL の文法のみを理解し、基礎をなすファイルシステムが
+細部を実装することを当てにしています。
+基礎をなすファイルシステムに依存して、個々のファイルまたはディレクトリは、
+関連付けられる 0 個以上の ACL を持つことが可能です。
+それぞれ ACL の名前は、適切な vnode ACL 呼び出し
 .Xr VOP_ACLCHECK 9 ,
 .Xr VOP_GETACL 9
-�����
+および
 .Xr VOP_SETACL 9
-��
+の
 .Fa type
-�ե�����ɤ���Ѥ��ƻ��ꤵ��ޤ���
+フィールドを使用して指定されます。
 .Pp
-���ߤϡ��ġ��� ACL �ϰʲ����������륫���ͥ���Ǹ��ꥵ������
+現在は、個々の ACL は以下に定義されるカーネル内で固定サイズの
 .Vt acl
-��¤�Τˤ�ä�ɽ������ޤ���
+構造体によって表現されます。
 .Bd -literal -offset indent
 struct acl {
         int                     acl_cnt;
@@ -68,87 +68,87 @@ struct acl {
 };
 .Ed
 .Pp
-ACL �ϡ�ACL ����ȥ�θ��ꥵ��������ǹ�������ޤ���
-�� ACL ����ȥ�ϡ�
-�ѡ��ߥå������ȡ����פ�̾�����֡����פʼ��̻Ҥ��鹽������ޤ���
+ACL は、ACL エントリの固定サイズ配列で構成されます。
+各 ACL エントリは、
+パーミッションの組、主要な名前空間、主要な識別子から構成されます。
 .Pp
-���̤� ACL ����ȥ�ϡ��ʲ��Υ��Ф���Ĺ�¤�Τ�
+個別の ACL エントリは、以下のメンバを持つ構造体の
 .Vt acl_entry_t
-���Ǥ���
+型です。
 .Bl -tag -width 2n
 .It Vt acl_tag_t Va ae_tag
-�ʲ���
+以下は
 .Va ae_tag
-�����ꤵ���٤� ACL �η�������Υꥹ�ȤǤ���
+に設定されるべき ACL の型の定義のリストです。
 .Pp
 .Bl -tag -width ".Dv ACL_UNDEFINED_FIELD" -offset indent -compact
 .It Dv ACL_UNDEFINED_FIELD
-̤����� ACL ����
+未定義の ACL 型。
 .It Dv ACL_USER_OBJ
-�¸��桼�� ID ���ե�����ν�ͭ�ԤΥ桼�� ID ��
-���פ���ץ������Τ����Ǥ�դΥ�����������
+実効ユーザ ID がファイルの所有者のユーザ ID と
+一致するプロセスのための任意のアクセス権。
 .It Dv ACL_USER
-�¸��桼�� ID �� ACL ����ȥ�θ��¤�
-���פ���ץ������Τ����Ǥ�դΥ�����������
+実効ユーザ ID が ACL エントリの権限と
+一致するプロセスのための任意のアクセス権。
 .It Dv ACL_GROUP_OBJ
-�¸����롼�� ID �ޤ������Ƥ��ɲäΥ��롼�פ��ե�����ν�ͭ�ԤΥ��롼�� ID ��
-���פ���ץ������Τ����Ǥ�դΥ�����������
+実効グループ ID または全ての追加のグループがファイルの所有者のグループ ID と
+一致するプロセスのための任意のアクセス権。
 .It Dv ACL_GROUP
-�¸����롼�� ID �ޤ������Ƥ��ɲäΥ��롼�פ� ACL ����ȥ�θ��¤�
-���פ���ץ������Τ����Ǥ�դΥ�����������
+実効グループ ID または全ての追加のグループが ACL エントリの権限と
+一致するプロセスのための任意のアクセス権。
 .It Dv ACL_MASK
-�ե����륰�롼�ץ��饹����Υץ����������Ĥ���뤳�Ȥ��Ǥ���
-Ǥ�դΥ����������κǹ���١�
+ファイルグループクラスの中のプロセスが許可されることができる
+任意のアクセス権の最高限度。
 .It Dv ACL_OTHER
-����¾�� ACL ����ȥ�ˤ�ä��ݸ��Ƥ��ʤ�
-�ץ������Τ����Ǥ�դΥ�����������
+その他の ACL エントリによって保護されていない
+プロセスのための任意のアクセス権。
 .It Dv ACL_OTHER_OBJ
 .Dv ACL_OTHER
-��Ʊ���Ǥ���
-�ơ��� ACL ����ȥ�ϡ���̩�ˡ�1 �Ĥ�
+と同じです。
+各々の ACL エントリは、厳密に、1 つの
 .Dv ACL_USER_OBJ
-�� 1 �Ĥ�
+と 1 つの
 .Dv ACL_GROUP_OBJ
-�� 1 �Ĥ�
+と 1 つの
 .Dv ACL_OTHER
-��ޤޤʤ���Фʤ�ޤ���
+を含まなければなりません。
 .Dv ACL_USER ,
 .Dv ACL_GROUP
-�ޤ���
+または
 .Dv ACL_OTHER
-��¸�ߤ�����ˤϡ���̩�� 1 �Ĥ�
+が存在する場合には、厳密に 1 つの
 .Dv ACL_MASK
-����ȥ꤬¸�ߤ���٤��Ǥ���
+エントリが存在するべきです。
 .El
 .It Vt uid_t Va ae_id
-���� ACL �����������ѡ��ߥå����򵭽Ҥ��Ƥ���桼���Υ桼�� ID��
+この ACL がアクセスパーミッションを記述しているユーザのユーザ ID。
 .It Vt acl_perm_t Va ae_perm
-���Υե�����ɤϡ����� ACL ��Ŭ�礹��ץ���������Ϣ�����ե������
-���������Τ���ˡ��ɤμ���Υ�����������������ޤ���
+このフィールドは、この ACL に適合するプロセスが関連したファイルの
+アクセスのために、どの種類のアクセスかを定義します。
 .Bl -tag -width ".Dv ACL_POSIX1E_BITS"
 .It Dv ACL_EXECUTE
-�ץ������ϴ�Ϣ�����ե�����μ¹Ԥ���ǽ�Ǥ���
+プロセスは関連したファイルの実行が可能です。
 .It Dv ACL_WRITE
-�ץ������ϴ�Ϣ�����ե�����ؤν���ߤ���ǽ�Ǥ���
+プロセスは関連したファイルへの書込みが可能です。
 .It Dv ACL_READ
-�ץ������ϴ�Ϣ�����ե����뤫����ɹ��ߤ���ǽ�Ǥ���
+プロセスは関連したファイルからの読込みが可能です。
 .It Dv ACL_PERM_NONE
-�ץ������ϴ�Ϣ�����ե�����ؤ��ɹ��ߡ�����ߤޤ��ϼ¹ԤΥѡ��ߥå�����
-��ͭ���Ƥ��ޤ���
+プロセスは関連したファイルへの読込み、書込みまたは実行のパーミッションを
+所有していません。
 .El
 .El
 .Pp
-.Sh �����˴ؤ�����
+.Sh 実装に関する注
 .Bd -literal
 typedef mode_t  *acl_permset_t;
 
-/* ������ ACL ��¤�� */
+/* 内部の ACL 構造体 */
 struct acl {
         int                     acl_cnt;
         struct acl_entry        acl_entry[ACL_MAX_ENTRIES];
 };
 
-/* ������ ACL ��¤�� */
+/* 外部の ACL 構造体 */
 struct acl_t_struct {
         struct acl              ats_acl;
         int                     ats_cur_entry;
@@ -156,7 +156,7 @@ struct acl_t_struct {
 typedef struct acl_t_struct *acl_t;
 
 /*
- * ae_tag �ե�����ɤ�ͭ������
+ * ae_tag フィールドに有効な値
  */
 #define ACL_UNDEFINED_TAG       0x00000000
 #define ACL_USER_OBJ            0x00000001
@@ -168,7 +168,7 @@ typedef struct acl_t_struct *acl_t;
 #define ACL_OTHER_OBJ           ACL_OTHER
 
 /*
- * acl_type_t �����Τ����ͭ������
+ * acl_type_t 引数のために有効な値
  */
 #define ACL_TYPE_ACCESS    0x00000000
 #define ACL_TYPE_DEFAULT   0x00000001
@@ -178,7 +178,7 @@ typedef struct acl_t_struct *acl_t;
 #define ACL_TYPE_NWFS      0x00000005
 
 /*
- * ae_perm �ե�����ɤ˲�ǽ�ʥե饰
+ * ae_perm フィールドに可能なフラグ
  */
 #define ACL_EXECUTE        0x0001
 #define ACL_WRITE          0x0002
@@ -188,17 +188,17 @@ typedef struct acl_t_struct *acl_t;
 #define ACL_POSIX1E_BITS   (ACL_EXECUTE | ACL_WRITE | ACL_READ)
 
 /*
- * acl_get_entry() �Τ���� entry_id �˲�ǽ����
+ * acl_get_entry() のための entry_id に可能な値
  */
 #define ACL_FIRST_ENTRY         0
 #define ACL_NEXT_ENTRY          1
 
 /*
- * ae_id �ե�����ɤ����̤�������
+ * ae_id フィールドの中の未定義の値
  */
 #define ACL_UNDEFINED_ID        ((uid_t)-1)
 .Ed
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr acl 3 ,
 .Xr vaccess_acl_posix1e 9 ,
 .Xr VFS 9 ,
@@ -206,7 +206,7 @@ typedef struct acl_t_struct *acl_t;
 .Xr VOP_ACLCHECK 9 ,
 .Xr VOP_GETACL 9 ,
 .Xr VOP_SETACL 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Robert Watson
-���񤭤ޤ�����
+が書きました。

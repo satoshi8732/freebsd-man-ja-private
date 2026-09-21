@@ -40,31 +40,31 @@
 .Dd June 4, 1993
 .Dt STRPBRK 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm strpbrk
-.Nd ʣ����ʸ���ˤĤ���ʸ�������ΰ��֤�õ��
-.Sh �饤�֥��
+.Nd 複数の文字について文字列の中の位置を探す
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft char *
 .Fn strpbrk "const char *s" "const char *charset"
-.Sh ����
+.Sh 解説
 .Fn strpbrk
-�ؿ��ϡ�ʸ����
+関数は、文字列
 .Fa charset
-�Τ����Τ����줫��ʸ������
-�̥�ʸ���ǽ�λ����ʸ����
+のうちのいずれかの文字が、
+ヌル文字で終了する文字列
 .Fa s
-����˺ǽ�˽и�������֤�õ����
-����ʸ���ؤΥݥ��󥿤��֤��ޤ���
+の中に最初に出現する位置を探し、
+その文字へのポインタを返します。
 .Fa s
-�����
+の中に
 .Fa charset
-�Τɤ�ʸ����и����ʤ����ϡ�
+のどの文字も出現しない場合は、
 .Fn strpbrk
-�� NULL ���֤��ޤ���
-.Sh ��Ϣ����
+は NULL を返します。
+.Sh 関連項目
 .Xr memchr 3 ,
 .Xr strchr 3 ,
 .Xr strcspn 3 ,
@@ -73,8 +73,8 @@
 .Xr strspn 3 ,
 .Xr strstr 3 ,
 .Xr strtok 3
-.Sh ����
+.Sh 規格
 .Fn strpbrk
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

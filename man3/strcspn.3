@@ -41,32 +41,32 @@
 .Dd June 4, 1993
 .Dt STRCSPN 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm strcspn
-.Nd ʸ������佸���Ĺ����¬��
-.Sh �饤�֥��
+.Nd 文字列の補集合の長さを測る
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft size_t
 .Fn strcspn "const char *s" "const char *charset"
-.Sh ����
+.Sh 解説
 .Fn strcspn
-�ؿ��ϡ��̥�ʸ���ǽ�λ����ʸ����
+関数は、ヌル文字で終了する文字列
 .Fa s
-����ʸ����
+から文字列
 .Fa charset
-�ˤʤ�ʸ�����Ĺ������
+にない文字列の長さだけ
 .Fa s
-�κǽ����ʬ��Ĺ����¬��ޤ�
+の最初の部分の長さを測ります
 .Fa ( charset
-��
-.Em �佸��
-��Ĺ����¬��ޤ�)��
-.Sh �����
+の
+.Em 補集合
+の長さを測ります)。
+.Sh 戻り値
 .Fn strcspn
-�ؿ���¬��줿ʸ���ο����֤��ޤ���
-.Sh ��Ϣ����
+関数は測られた文字の数を返します。
+.Sh 関連項目
 .Xr memchr 3 ,
 .Xr strchr 3 ,
 .Xr strpbrk 3 ,
@@ -75,8 +75,8 @@
 .Xr strspn 3 ,
 .Xr strstr 3 ,
 .Xr strtok 3
-.Sh ����
+.Sh 規格
 .Fn strcspn
-�ؿ���
+関数は
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

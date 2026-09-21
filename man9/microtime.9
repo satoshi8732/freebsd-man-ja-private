@@ -28,15 +28,15 @@
 .Dd September 16, 2004
 .Dt MICROTIME 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm bintime ,
 .Nm getbintime ,
 .Nm microtime ,
 .Nm getmicrotime ,
 .Nm nanotime ,
 .Nm getnanotime
-.Nd ���߻���μ���
-.Sh ��
+.Nd 現在時刻の取得
+.Sh 書式
 .In sys/time.h
 .Ft void
 .Fn bintime "struct bintime *bt"
@@ -50,44 +50,44 @@
 .Fn nanotime "struct timespec *ts"
 .Ft void
 .Fn getnanotime "struct timespec *tsp"
-.Sh ����
+.Sh 解説
 .Fn bintime
-�����
+および
 .Fn getbintime
-�ؿ��ϡ�
+関数は、
 .Fa bt
-�ˤ�äƻ��ꤵ�줿���ɥ쥹�ˡ�
+によって指定されたアドレスに、
 .Ft bintime
-��¤�ΤȤ��ƥ����ƥ�������¸���ޤ���
+構造体としてシステム時刻を保存します。
 .Fn microtime
-�����
+および
 .Fn getmicrotime
-�ؿ���Ʊ���ε�ǽ��̤����ޤ����������
+関数も同等の機能を果たしますが、代わりに
 .Ft timeval
-��¤�ΤȤ��ƻ������¸���ޤ���
-Ʊ�ͤˡ�
+構造体として時刻を保存します。
+同様に、
 .Fn nanotime
-�����
+および
 .Fn getnanotime
-�ؿ��ϡ�
+関数は、
 .Ft timespec
-��¤�ΤȤ��ƻ������¸���ޤ���
+構造体として時刻を保存します。
 .Pp
 .Fn bintime ,
 .Fn microtime ,
 .Fn nanotime
-�ϡ���ǽ�ʸ¤����Τʸ��߻�����֤����參���󥿤򡢾�����ᤷ�ޤ���
-�����ȿ���ơ�
+は、可能な限り正確な現在時刻を返す時刻カウンタを、常に請求します。
+それに反して、
 .Fn getbintime ,
 .Fn getmicrotime ,
 .Fn getnanotime
-�ؿ��ϡ����ΤǤϤʤ�����®�������������֤���ݲ��Ǥ���
+関数は、正確ではないが高速に得られる時刻を返す抽象化です。
 .Pp
 .Fn getbintime ,
 .Fn getmicrotime ,
 .Fn getnanotime
-�ؿ��ΰտޤϡ������ޤ����Τ��м¹Ի��֤Υ桼���ι��ߤ򶯲����뤳�ȤǤ���
-.Sh ��Ϣ����
+関数の意図は、タイマの正確さ対実行時間のユーザの好みを強化することです。
+.Sh 関連項目
 .Xr binuptime 9 ,
 .Xr getbinuptime 9 ,
 .Xr getmicrouptime 9 ,
@@ -95,20 +95,20 @@
 .Xr microuptime 9 ,
 .Xr nanouptime 9 ,
 .Xr tvtohz 9
-.Sh ���
+.Sh 歴史
 .Nm bintime
-�ؿ��ϡ�
+関数は、
 .Fx 5.0
-�ǽ����о줷�ޤ�����
+で初めて登場しました。
 .Nm
-�����
+および
 .Nm nanotime
-�ؿ���
+関数は
 .Fx 3.0
-�ǽ����о줷�ޤ��������̤η���
+で初めて登場しましたが、別の形で
 .Bx 4.4
-����¸�ߤ��Ƥ��ޤ�����
-.Sh ���
-���Υޥ˥奢��ڡ�����
+から存在していました。
+.Sh 作者
+このマニュアルページは
 .An Kelly Yancey Aq kbyanc@posi.net
-���񤭤ޤ�����
+が書きました。

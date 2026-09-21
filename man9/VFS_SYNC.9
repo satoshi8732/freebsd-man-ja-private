@@ -32,54 +32,54 @@
 .Dd January 7, 2005
 .Os
 .Dt VFS_SYNC 9
-.Sh ̾��
+.Sh 名称
 .Nm VFS_SYNC
-.Nd ̤�񤭹��ߥǡ������Ǥ��Ф�
-.Sh ��
+.Nd 未書き込みデータの吐き出し
+.Sh 書式
 .In sys/param.h
 .In sys/mount.h
 .In sys/vnode.h
 .Ft int
 .Fn VFS_SYNC "struct mount *mp" "int waitfor" "struct ucred *cred" "struct thread *td"
-.Sh ����
+.Sh 解説
 .Fn VFS_SYNC
-�ޥ����ϥե����륷���ƥ�����Ƥ�̤�񤭹��ߤΥǡ�����񤭽Ф��ޤ���
+マクロはファイルシステムの全ての未書き込みのデータを書き出します。
 .Pp
-�����ϰʲ����̤�Ǥ���
+引数は以下の通りです。
 .Bl -tag -width ".Fa waitfor"
 .It Fa mp
-�ե����륷���ƥࡣ
+ファイルシステム。
 .It Fa waitfor
-�ؿ��������Ϥδ�λ�ޤ��ԤĤ٤����ɤ�����
-�����ǽ���ͤϰʲ��ΤȤ���Ǥ���
+関数が入出力の完了まで待つべきかどうか。
+指定可能な値は以下のとおりです。
 .Bl -tag -width MNT_NOWAIT
 .It Dv MNT_WAIT
-�����Ϥδ�λ��Ʊ��Ū���Ԥ��ޤ���
+入出力の完了を同期的に待ちます。
 .It Dv MNT_NOWAIT
-���Ƥ������Ϥ򳫻Ϥ��ޤ�����������Ԥ��ޤ���
+全ての入出力を開始しますが、それを待ちません。
 .It Dv MNT_LAZY
-�ե����륷���ƥ�� syncer �ˤ�äƽ���ޤ�Ƥ��ʤ��ǡ�������Ϥ��ޤ���
+ファイルシステムの syncer によって書込まれていないデータを出力します。
 .El
 .It Fa cred
-�ƤӽФ����ξ�����
+呼び出し元の証明。
 .It Fa td
-�ƤӽФ��Ƥ��륹��åɡ�
+呼び出しているスレッド。
 .El
 .Pp
 .Fn VFS_SYNC
-�ޥ����ϡ��ե����륷���ƥ��
+マクロは、ファイルシステムの
 .Va vfs_sync
-�᥽�åɤ�ƤӽФ��ޤ���
-����ϡ��̾�ե����륷���ƥ�������Ƥ� vnode �Τ����
+メソッドを呼び出します。
+それは、通常、ファイルシステム中の全ての vnode のために
 .Xr VOP_FSYNC 9
-��ƤӽФ��ޤ���
-.Sh ��Ϣ����
+を呼び出します。
+.Sh 関連項目
 .Xr fsync 2 ,
 .Xr sync 2 ,
 .Xr VFS 9 ,
 .Xr vnode 9 ,
 .Xr VOP_FSYNC 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-�ˤ�äƽ񤫤�ޤ�����
+によって書かれました。

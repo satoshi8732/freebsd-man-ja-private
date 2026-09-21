@@ -39,35 +39,35 @@
 .Dd June 4, 1993
 .Dt BCOPY 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm bcopy
-.Nd �Х���ʸ����򥳥ԡ�����
-.Sh �饤�֥��
+.Nd バイト文字列をコピーする
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft void
 .Fn bcopy "const void *src" "void *dst" "size_t len"
-.Sh ����
+.Sh 解説
 .Fn bcopy
-�ؿ��ϡ�ʸ����
+関数は、文字列
 .Fa src
-����ʸ����
+から文字列
 .Fa dst
-��
+に
 .Fa len
-�Х��Ȥ򥳥ԡ����ޤ���
-2 �Ĥ�ʸ����ϽŤʤ��äƤ��Ƥ⹽���ޤ���
+バイトをコピーします。
+2 つの文字列は重なり合っていても構いません。
 .Fa len
-�� 0 �ξ�硢���ԡ��Ϥ���ޤ���
-.Sh ��Ϣ����
+が 0 の場合、コピーはされません。
+.Sh 関連項目
 .Xr memccpy 3 ,
 .Xr memcpy 3 ,
 .Xr memmove 3 ,
 .Xr strcpy 3 ,
 .Xr strncpy 3
-.Sh ���
+.Sh 歴史
 .Fn bcopy
-�ؿ���
+関数は
 .Bx 4.2
-���о줷�ޤ�����
+で登場しました。

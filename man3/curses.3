@@ -35,30 +35,30 @@
 .Dd June 4, 1993
 .Dt CURSES 3
 .Os BSD 4
-.Sh Ì¾¾Î
+.Sh åç§°
 .Nm curses
-.Nd ¡ÖºÇÅ¬¡×¤Ê¥«¡¼¥½¥ë°ÜÆ°¤Î¤¢¤ë²èÌÌ´Ø¿ô
-.Sh ½ñ¼°
+.Nd ã€Œæœ€é©ã€ãªã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã®ã‚ã‚‹ç”»é¢é–¢æ•°
+.Sh æ›¸å¼
 .Nm cc
 .Op Ar flags
 .Ar files
 .Fl lcurses ltermcap
 .Op Ar libraries
-.Sh ²òÀâ
-¤³¤ì¤é¤Î¥ë¡¼¥Á¥ó¤Ï¡¢¹çÍıÅª¤ÊºÇÅ¬²½¤Ç²èÌÌ¤ò¹¹¿·¤¹¤ëÊıË¡¤ò¥æ¡¼¥¶¤ËÍ¿¤¨¤Ş¤¹¡£
-¤³¤ì¤é¤Î¥ë¡¼¥Á¥ó¤Ï¸½ºß¤Î²èÌÌ¤Î¥¤¥á¡¼¥¸¤òÊİ»ı¤·¡¢¥æ¡¼¥¶¤Ï¿·¤·¤¤²èÌÌ¤Î
-¥¤¥á¡¼¥¸¤ò¥»¥Ã¥È¥¢¥Ã¥×¤·¤Ş¤¹¡£¼¡¤Ë¡¢
+.Sh è§£èª¬
+ã“ã‚Œã‚‰ã®ãƒ«ãƒ¼ãƒãƒ³ã¯ã€åˆç†çš„ãªæœ€é©åŒ–ã§ç”»é¢ã‚’æ›´æ–°ã™ã‚‹æ–¹æ³•ã‚’ãƒ¦ãƒ¼ã‚¶ã«ä¸ãˆã¾ã™ã€‚
+ã“ã‚Œã‚‰ã®ãƒ«ãƒ¼ãƒãƒ³ã¯ç¾åœ¨ã®ç”»é¢ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä¿æŒã—ã€ãƒ¦ãƒ¼ã‚¶ã¯æ–°ã—ã„ç”»é¢ã®
+ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã—ã¾ã™ã€‚æ¬¡ã«ã€
 .Fn refresh
-¤¬¡¢¸½ºß¤Î²èÌÌ¤¬¿·¤·¤¤
-²èÌÌ¤Î¤è¤¦¤ËÉ½¼¨¤µ¤ì¤ë¤è¤¦¤Ë¥ë¡¼¥Á¥ó¤Ë»Ø¼¨¤·¤Ş¤¹¡£¥ë¡¼¥Á¥ó¤ò
-½é´ü²½¤¹¤ë¤¿¤á¤Ë¤Ï¡¢¥¦¥£¥ó¥É¥¦¤È²èÌÌ¤ò½èÍı¤¹¤ëÂ¾¤Î¥ë¡¼¥Á¥ó¤¬»ÈÍÑ¤µ¤ì¤ë
-Á°¤Ë¡¢¥ë¡¼¥Á¥ó
+ãŒã€ç¾åœ¨ã®ç”»é¢ãŒæ–°ã—ã„
+ç”»é¢ã®ã‚ˆã†ã«è¡¨ç¤ºã•ã‚Œã‚‹ã‚ˆã†ã«ãƒ«ãƒ¼ãƒãƒ³ã«æŒ‡ç¤ºã—ã¾ã™ã€‚ãƒ«ãƒ¼ãƒãƒ³ã‚’
+åˆæœŸåŒ–ã™ã‚‹ãŸã‚ã«ã¯ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¨ç”»é¢ã‚’å‡¦ç†ã™ã‚‹ä»–ã®ãƒ«ãƒ¼ãƒãƒ³ãŒä½¿ç”¨ã•ã‚Œã‚‹
+å‰ã«ã€ãƒ«ãƒ¼ãƒãƒ³
 .Fn initscr
-¤ò¸Æ¤Ó½Ğ¤¹É¬Í×¤¬¤¢¤ê¤Ş¤¹¡£½ªÎ»¤¹¤ëÁ°¤Ë¡¢¥ë¡¼¥Á¥ó
+ã‚’å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚çµ‚äº†ã™ã‚‹å‰ã«ã€ãƒ«ãƒ¼ãƒãƒ³
 .Fn endwin
-¤ò¸Æ¤Ó½Ğ¤¹É¬Í×¤¬¤¢¤ê¤Ş¤¹¡£
+ã‚’å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 .Pp
-.Sh ´ØÏ¢¹àÌÜ
+.Sh é–¢é€£é …ç›®
 .Xr ioctl 2 ,
 .Xr getenv 3 ,
 .Xr tty 4 ,
@@ -67,106 +67,106 @@
 .%T Screen Updating and Cursor Movement Optimization: A Library Package
 .%A Ken Arnold
 .Re
-.Sh ºî¼Ô
+.Sh ä½œè€…
 .An Ken Arnold
-.Sh ´Ø¿ô
+.Sh é–¢æ•°
 .Bl -column "subwin(win,lines,cols,begin_y,begin_x)   "
-.It addch(ch)	¥­¥ã¥é¥¯¥¿¤ò
+.It addch(ch)	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’
 .Em stdscr
-¤ËÄÉ²Ã¤¹¤ë
-.It addstr(str)	¥¹¥È¥ê¥ó¥°¤ò
+ã«è¿½åŠ ã™ã‚‹
+.It addstr(str)	ã‚¹ãƒˆãƒªãƒ³ã‚°ã‚’
 .Em stdscr
-¤ËÄÉ²Ã¤¹¤ë
-.It box(win,vert,hor)	¥¦¥£¥ó¥É¥¦¤Î²ó¤ê¤Ë¥Ü¥Ã¥¯¥¹¤òºî¿Ş¤¹¤ë
-.It cbreak()	cbreak ¥â¡¼¥É¤òÀßÄê¤¹¤ë
-.It clear()	stdscr ¤ò¥¯¥ê¥¢¤¹¤ë
-.It clearok(scr,boolf)	scr ÍÑ¤Î¥¯¥ê¥¢¥Õ¥é¥°¤òÀßÄê¤¹¤ë
-.It clrtobot()	stdscr ¾å¤Ç²¼Ã¼¤Ø¤È¥¯¥ê¥¢¤¹¤ë
-.It clrtoeol()	stdscr ¾å¤Ç¹Ô¤ÎËöÈø¤Ø¤È¥¯¥ê¥¢¤¹¤ë
-.It delch()	1 Ê¸»ú¤òºï½ü¤¹¤ë
-.It deleteln()	1 ¹Ô¤òºï½ü¤¹¤ë
-.It delwin(win)	win ¤òºï½ü¤¹¤ë
-.It echo()	¥¨¥³¡¼¥â¡¼¥É¤òÀßÄê¤¹¤ë
-.It endwin()	¥¦¥£¥ó¥É¥¦¥â¡¼¥É¤ò½ªÎ»¤¹¤ë
-.It erase()	stdscr ¤ò¾Ãµî¤¹¤ë
-.It flusok(win,boolf)	win ¤Ë¤Ä¤¤¤Æ¥Õ¥é¥Ã¥·¥å¥ª¥ó¥ê¥Õ¥ì¥Ã¥·¥å
-(flush-on-refresh) ¥Õ¥é¥°¤òÀßÄê¤¹¤ë
-.It getch()	stdscr ¤Ë¤è¤Ã¤Æ 1 ¥­¥ã¥é¥¯¥¿¤òÆÀ¤ë
-.It getcap(name)	Ã¼Ëöµ¡Ç½
+ã«è¿½åŠ ã™ã‚‹
+.It box(win,vert,hor)	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å›ã‚Šã«ãƒœãƒƒã‚¯ã‚¹ã‚’ä½œå›³ã™ã‚‹
+.It cbreak()	cbreak ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+.It clear()	stdscr ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
+.It clearok(scr,boolf)	scr ç”¨ã®ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
+.It clrtobot()	stdscr ä¸Šã§ä¸‹ç«¯ã¸ã¨ã‚¯ãƒªã‚¢ã™ã‚‹
+.It clrtoeol()	stdscr ä¸Šã§è¡Œã®æœ«å°¾ã¸ã¨ã‚¯ãƒªã‚¢ã™ã‚‹
+.It delch()	1 æ–‡å­—ã‚’å‰Šé™¤ã™ã‚‹
+.It deleteln()	1 è¡Œã‚’å‰Šé™¤ã™ã‚‹
+.It delwin(win)	win ã‚’å‰Šé™¤ã™ã‚‹
+.It echo()	ã‚¨ã‚³ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+.It endwin()	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã‚’çµ‚äº†ã™ã‚‹
+.It erase()	stdscr ã‚’æ¶ˆå»ã™ã‚‹
+.It flusok(win,boolf)	win ã«ã¤ã„ã¦ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚ªãƒ³ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
+(flush-on-refresh) ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
+.It getch()	stdscr ã«ã‚ˆã£ã¦ 1 ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’å¾—ã‚‹
+.It getcap(name)	ç«¯æœ«æ©Ÿèƒ½
 .Em name
-¤òÆÀ¤ë
-.It getstr(str)	stdscr ¤Ë¤è¤Ã¤Æ¥¹¥È¥ê¥ó¥°¤òÆÀ¤ë
-.It gettmode()	tty ¥â¡¼¥É¤òÆÀ¤ë
-.It getyx(win,y,x)	win ÍÑ¤Ë (y,x) ºÂÉ¸¤òÆÀ¤ë
-.It inch()	¸½ºß¤Î (y,x) ºÂÉ¸¤Ç char ¤òÆÀ¤ë
-.It initscr()	²èÌÌ¤ò½é´ü²½¤¹¤ë
-.It insch(c)	1 ¥­¥ã¥é¥¯¥¿¤òÁŞÆş¤¹¤ë
-.It insertln()	1 ¹Ô¤òÁŞÆş¤¹¤ë
-.It leaveok(win,boolf)	win ÍÑ¤Ë½ªÎ» (leave) ¥Õ¥é¥°¤òÀßÄê¤¹¤ë
-.It longname(termbuf,name)	termbuf ¤«¤éÄ¹¤¤Ì¾Á°¤òÆÀ¤ë
-.It move(y,x)	stdscr ¤Î (y,x) ¤Ë°ÜÆ°¤¹¤ë
-.It mvcur(lasty,lastx,newy,newx)	¼Âºİ¤Ë¥«¡¼¥½¥ë¤ò°ÜÆ°¤¹¤ë
-.It newwin(lines,cols,begin_y,begin_x)	¿·¤·¤¤¥¦¥£¥ó¥É¥¦¤òºîÀ®¤¹¤ë
-.It nl()	²ş¹Ô¥Ş¥Ã¥Ô¥ó¥°¤òÀßÄê¤¹¤ë
-.It nocbreak()	cbreak ¥â¡¼¥É¤òÀßÄê²ò½ü¤¹¤ë
-.It noecho()	¥¨¥³¡¼¥â¡¼¥É¤òÀßÄê²ò½ü¤¹¤ë
-.It nonl()	²ş¹Ô¥Ş¥Ã¥Ô¥ó¥°¤òÀßÄê²ò½ü¤¹¤ë
-.It noraw()	Ì¤²Ã¹© (raw) ¤ÎÀßÄê²ò½ü¥â¡¼¥É
-.It overlay(win1,win2)	win1 ¤ò
+ã‚’å¾—ã‚‹
+.It getstr(str)	stdscr ã«ã‚ˆã£ã¦ã‚¹ãƒˆãƒªãƒ³ã‚°ã‚’å¾—ã‚‹
+.It gettmode()	tty ãƒ¢ãƒ¼ãƒ‰ã‚’å¾—ã‚‹
+.It getyx(win,y,x)	win ç”¨ã« (y,x) åº§æ¨™ã‚’å¾—ã‚‹
+.It inch()	ç¾åœ¨ã® (y,x) åº§æ¨™ã§ char ã‚’å¾—ã‚‹
+.It initscr()	ç”»é¢ã‚’åˆæœŸåŒ–ã™ã‚‹
+.It insch(c)	1 ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’æŒ¿å…¥ã™ã‚‹
+.It insertln()	1 è¡Œã‚’æŒ¿å…¥ã™ã‚‹
+.It leaveok(win,boolf)	win ç”¨ã«çµ‚äº† (leave) ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
+.It longname(termbuf,name)	termbuf ã‹ã‚‰é•·ã„åå‰ã‚’å¾—ã‚‹
+.It move(y,x)	stdscr ã® (y,x) ã«ç§»å‹•ã™ã‚‹
+.It mvcur(lasty,lastx,newy,newx)	å®Ÿéš›ã«ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã™ã‚‹
+.It newwin(lines,cols,begin_y,begin_x)	æ–°ã—ã„ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã™ã‚‹
+.It nl()	æ”¹è¡Œãƒãƒƒãƒ”ãƒ³ã‚°ã‚’è¨­å®šã™ã‚‹
+.It nocbreak()	cbreak ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šè§£é™¤ã™ã‚‹
+.It noecho()	ã‚¨ã‚³ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šè§£é™¤ã™ã‚‹
+.It nonl()	æ”¹è¡Œãƒãƒƒãƒ”ãƒ³ã‚°ã‚’è¨­å®šè§£é™¤ã™ã‚‹
+.It noraw()	æœªåŠ å·¥ (raw) ã®è¨­å®šè§£é™¤ãƒ¢ãƒ¼ãƒ‰
+.It overlay(win1,win2)	win1 ã‚’
 .Em win2
-¤Î¾å¤Ë¥ª¡¼¥Ğ¥ì¥¤¤¹¤ë
-.It overwrite(win1,win2)	win1 ¤ò
+ã®ä¸Šã«ã‚ªãƒ¼ãƒãƒ¬ã‚¤ã™ã‚‹
+.It overwrite(win1,win2)	win1 ã‚’
 .Em win2
-¤Î°ìÈÖ¾å¤Ë¾å½ñ¤­¤¹¤ë
-.It printw(fmt,arg1,arg2,...)	stdscr ¾å¤Ç¤Î printf
-.It raw()	Ì¤²Ã¹© (raw) ¥â¡¼¥É¤òÀßÄê¤¹¤ë
-.It refresh()	¸½ºß¤Î²èÌÌ¤¬
+ã®ä¸€ç•ªä¸Šã«ä¸Šæ›¸ãã™ã‚‹
+.It printw(fmt,arg1,arg2,...)	stdscr ä¸Šã§ã® printf
+.It raw()	æœªåŠ å·¥ (raw) ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+.It refresh()	ç¾åœ¨ã®ç”»é¢ãŒ
 .Em stdscr
-¤Î¤è¤¦¤ËÉ½¼¨¤µ¤ì¤ë¤è¤¦¤Ë¤¹¤ë
-.It resetty()	ÊİÂ¸¤µ¤ì¤¿ÃÍ¤Ë tty ¥Õ¥é¥°¤ò¥ê¥»¥Ã¥È¤¹¤ë
-.It savetty()	ÊİÂ¸¤µ¤ì¤¿¸½ºß¤Î tty ¥Õ¥é¥°
-.It scanw(fmt,arg1,arg2,...)	stdscr ¤Ë¤è¤ë scanf
-.It scroll(win)	win ¤ò 1 ¹Ô¤À¤±¥¹¥¯¥í¡¼¥ë¤¹¤ë
-.It scrollok(win,boolf)	win ÍÑ¤Ë¥¹¥¯¥í¡¼¥ë¥Õ¥é¥°¤òÀßÄê¤¹¤ë
-.It setterm(name)	Ì¾Á°ÍÑ¤Î term ÊÑ¿ô¤òÀßÄê¤¹¤ë
-.It standend()	standout ¥â¡¼¥É¤ò½ªÎ»¤¹¤ë
-.It standout()	standout ¥â¡¼¥É¤ò³«»Ï¤¹¤ë
-.It subwin(win,lines,cols,begin_y,begin_x)	win ¤Î¥µ¥Ö¥¦¥£¥ó¥É¥¦¤òºîÀ®¤¹¤ë
-.It touchline(win,y,sx,ex)	win ¤ÇÊÑ¹¹¤µ¤ì¤¿¤è¤¦¤Ë¹Ô
+ã®ã‚ˆã†ã«è¡¨ç¤ºã•ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
+.It resetty()	ä¿å­˜ã•ã‚ŒãŸå€¤ã« tty ãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+.It savetty()	ä¿å­˜ã•ã‚ŒãŸç¾åœ¨ã® tty ãƒ•ãƒ©ã‚°
+.It scanw(fmt,arg1,arg2,...)	stdscr ã«ã‚ˆã‚‹ scanf
+.It scroll(win)	win ã‚’ 1 è¡Œã ã‘ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹
+.It scrollok(win,boolf)	win ç”¨ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
+.It setterm(name)	åå‰ç”¨ã® term å¤‰æ•°ã‚’è¨­å®šã™ã‚‹
+.It standend()	standout ãƒ¢ãƒ¼ãƒ‰ã‚’çµ‚äº†ã™ã‚‹
+.It standout()	standout ãƒ¢ãƒ¼ãƒ‰ã‚’é–‹å§‹ã™ã‚‹
+.It subwin(win,lines,cols,begin_y,begin_x)	win ã®ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã™ã‚‹
+.It touchline(win,y,sx,ex)	win ã§å¤‰æ›´ã•ã‚ŒãŸã‚ˆã†ã«è¡Œ
 .Em y
 .Em sx
-¤«¤é
+ã‹ã‚‰
 .Em sy
-¤ò¥Ş¡¼¥¯¤¹¤ë
-.It touchoverlap(win1,win2)	win2 ¾å¤Î
+ã‚’ãƒãƒ¼ã‚¯ã™ã‚‹
+.It touchoverlap(win1,win2)	win2 ä¸Šã®
 .Em win1
-¤Î¥ª¡¼¥Ğ¥é¥Ã¥×¤òÊÑ¹¹¤µ¤ì¤¿¤è¤¦¤Ë¥Ş¡¼¥¯¤¹¤ë
-.It touchwin(win)	win ¤Î¤¹¤Ù¤Æ¤òÊÑ¹¹¤¹¤ë
-.It unctrl(ch)	ch  ¤Î°õºş²ÄÇ½¤Ê¥Ğ¡¼¥¸¥ç¥ó
-.It waddch(win,ch)	win ¤Ë¥­¥ã¥é¥¯¥¿¤òÄÉ²Ã¤¹¤ë
-.It waddstr(win,str)	win ¤Ë¥¹¥È¥ê¥ó¥°¤òÄÉ²Ã¤¹¤ë
-.It wclear(win)	win ¤ò¥¯¥ê¥¢¤¹¤ë
-.It wclrtobot(win)	win ¤Î²¼Ã¼¤Ş¤Ç¥¯¥ê¥¢¤¹¤ë
-.It wclrtoeol(win)	win ¤ÎºÇ¸å¤Î¹Ô¤Ş¤Ç¥¯¥ê¥¢¤¹¤ë
-.It wdelch(win,c)	win ¤«¤é¥­¥ã¥é¥¯¥¿¤òºï½ü¤¹¤ë
-.It wdeleteln(win)	win ¤«¤é¹Ô¤òºï½ü¤¹¤ë
-.It werase(win)	win ¤òËõ¾Ã¤¹¤ë
-.It wgetch(win)	win ¤Ë¤è¤Ã¤Æ 1 ¥­¥ã¥é¥¯¥¿¤òÆÀ¤ë
-.It wgetstr(win,str)	win ¤Ë¤è¤Ã¤Æ 1 ¥¹¥È¥ê¥ó¥°¤òÆÀ¤ë
-.It winch(win)	win Æâ¤Î¸½ºß¤Î (y,x) ¤Ë¤¢¤ë¥­¥ã¥é¥¯¥¿¤òÆÀ¤ë
-.It winsch(win,c)	win ¤Ë¥­¥ã¥é¥¯¥¿¤òÁŞÆş¤¹¤ë
-.It winsertln(win)	win ¤Ë¹Ô¤òÁŞÆş¤¹¤ë
-.It wmove(win,y,x)	win ¤Ë¸½ºß¤Î (y,x) ºÂÉ¸¤òÀßÄê¤¹¤ë
-.It wprintw(win,fmt,arg1,arg2,...)	win ¤Ë¤Ä¤¤¤Æ¤Î printf
-.It wrefresh()	win ²èÌÌ¤¬
+ã®ã‚ªãƒ¼ãƒãƒ©ãƒƒãƒ—ã‚’å¤‰æ›´ã•ã‚ŒãŸã‚ˆã†ã«ãƒãƒ¼ã‚¯ã™ã‚‹
+.It touchwin(win)	win ã®ã™ã¹ã¦ã‚’å¤‰æ›´ã™ã‚‹
+.It unctrl(ch)	ch  ã®å°åˆ·å¯èƒ½ãªãƒãƒ¼ã‚¸ãƒ§ãƒ³
+.It waddch(win,ch)	win ã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’è¿½åŠ ã™ã‚‹
+.It waddstr(win,str)	win ã«ã‚¹ãƒˆãƒªãƒ³ã‚°ã‚’è¿½åŠ ã™ã‚‹
+.It wclear(win)	win ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
+.It wclrtobot(win)	win ã®ä¸‹ç«¯ã¾ã§ã‚¯ãƒªã‚¢ã™ã‚‹
+.It wclrtoeol(win)	win ã®æœ€å¾Œã®è¡Œã¾ã§ã‚¯ãƒªã‚¢ã™ã‚‹
+.It wdelch(win,c)	win ã‹ã‚‰ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
+.It wdeleteln(win)	win ã‹ã‚‰è¡Œã‚’å‰Šé™¤ã™ã‚‹
+.It werase(win)	win ã‚’æŠ¹æ¶ˆã™ã‚‹
+.It wgetch(win)	win ã«ã‚ˆã£ã¦ 1 ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’å¾—ã‚‹
+.It wgetstr(win,str)	win ã«ã‚ˆã£ã¦ 1 ã‚¹ãƒˆãƒªãƒ³ã‚°ã‚’å¾—ã‚‹
+.It winch(win)	win å†…ã®ç¾åœ¨ã® (y,x) ã«ã‚ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’å¾—ã‚‹
+.It winsch(win,c)	win ã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’æŒ¿å…¥ã™ã‚‹
+.It winsertln(win)	win ã«è¡Œã‚’æŒ¿å…¥ã™ã‚‹
+.It wmove(win,y,x)	win ã«ç¾åœ¨ã® (y,x) åº§æ¨™ã‚’è¨­å®šã™ã‚‹
+.It wprintw(win,fmt,arg1,arg2,...)	win ã«ã¤ã„ã¦ã® printf
+.It wrefresh()	win ç”»é¢ãŒ
 .Em win
-¤Î¤è¤¦¤ËÉ½¼¨¤µ¤ì¤ë¤è¤¦¤Ë¤¹¤ë
-.It wscanw(win,fmt,arg1,arg2,...)	win ¤Ë¤è¤ë scanf
-.It wstandend(win)	win ¤Ç¤Î standout ¥â¡¼¥É¤ò½ªÎ»¤¹¤ë
-.It wstandout(win)	win ¤Ç¤Î standout ¥â¡¼¥É¤ò³«»Ï¤¹¤ë
+ã®ã‚ˆã†ã«è¡¨ç¤ºã•ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
+.It wscanw(win,fmt,arg1,arg2,...)	win ã«ã‚ˆã‚‹ scanf
+.It wstandend(win)	win ã§ã® standout ãƒ¢ãƒ¼ãƒ‰ã‚’çµ‚äº†ã™ã‚‹
+.It wstandout(win)	win ã§ã® standout ãƒ¢ãƒ¼ãƒ‰ã‚’é–‹å§‹ã™ã‚‹
 .El
-.Sh Îò»Ë
+.Sh æ­´å²
 .Nm curses
-¥Ñ¥Ã¥±¡¼¥¸¤Ï
+ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯
 .Bx 4.0
-¤Ç¸½¤ì¤Ş¤·¤¿¡£
+ã§ç¾ã‚Œã¾ã—ãŸã€‚

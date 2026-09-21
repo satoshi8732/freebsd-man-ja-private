@@ -36,35 +36,35 @@
 .Dd March 10, 1994
 .Dt RINT 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm rint ,
 .Nm rintf
-.Nd ��ư�����������������ͤؤδݤ�
-.Sh �饤�֥��
+.Nd 浮動小数点形式で整数値への丸め
+.Sh ライブラリ
 .Lb libm
-.Sh ��
+.Sh 書式
 .In math.h
 .Ft double
 .Fn rint "double x"
 .Ft float
 .Fn rintf "float x"
-.Sh ����
+.Sh 解説
 .Fn rint
-�����
+および
 .Fn rintf
-�ؿ��ϡ������Ԥʤ��Ƥ���ݤ���ˡ�˽��äơ�
-(�����ٿ��ޤ���ñ���ٿ��Ȥ���ɽ�������)
+関数は、広く行なわれている丸め方法に従って、
+(倍精度数または単精度数として表現される)
 .Fa x   
-�˺Ǥ�ᤤ�����ͤ��֤��ޤ���
-.Sh ��Ϣ����
+に最も近い整数値を返します。
+.Sh 関連項目
 .Xr abs 3 ,
 .Xr ceil 3 ,
 .Xr fabs 3 ,
 .Xr floor 3 ,
 .Xr ieee 3 ,
 .Xr math 3
-.Sh ���
+.Sh 歴史
 .Fn rint
-�ؿ��ϡ�
+関数は、
 .At v6
-���о줷�ޤ�����
+で登場しました。

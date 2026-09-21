@@ -32,54 +32,54 @@
 .Dd June 30, 1999
 .Os
 .Dt VOP_ADVLOCK 9
-.Sh ̾��
+.Sh 名称
 .Nm VOP_ADVLOCK
-.Nd ��礻���쥳���ɥ��å�
-.Sh ��
+.Nd 問合せ型レコードロック
+.Sh 書式
 .In sys/param.h
 .In sys/vnode.h
 .In sys/fcntl.h
 .In sys/lockf.h
 .Ft int
 .Fn VOP_ADVLOCK "struct vnode *vp" "caddr_t id" "int op" "struct flock *fl" "int flags"
-.Sh ����
-�����ϰʲ����̤�Ǥ���
+.Sh 解説
+引数は以下の通りです。
 .Bl -tag -width flags
 .It Fa vp
-����Ƥ��� vnode��
+操作されている vnode。
 .It Fa id
-���å����ѹ����Ƥ��뼱�̥ȡ�����
+ロックを変更している識別トークン。
 .It Fa op
-�¹Ԥ���٤���� (
+実行するべき操作 (
 .Xr fcntl 2
-�򻲾Ȥ��Ƥ�������)��
+を参照してください)。
 .It Fa fl
-���å��ε��ҡ�
+ロックの記述。
 .It Fa flags
-�ʲ����ͤΤҤȤİʾ塣
+以下の値のひとつ以上。
 .Bl -column F_UNLCK -offset indent
-.It Dv F_RDLCK Ta ��ͭ�ޤ����ɤ߹��ߥ��å�
-.It Dv F_UNLCK Ta ���å����
-.It Dv F_WRLCK Ta ��¾Ū�ޤ��Ͻ񤭹��ߥ��å�
-.It Dv F_WAIT Ta ���å�����ǧ�����ޤ��Ե�
-.It Dv F_FLOCK Ta ���å��Τ����
+.It Dv F_RDLCK Ta 共有または読み込みロック
+.It Dv F_UNLCK Ta ロック解除
+.It Dv F_WRLCK Ta 排他的または書き込みロック
+.It Dv F_WAIT Ta ロックが承認されるまで待機
+.It Dv F_FLOCK Ta ロックのために
 .Xr flock 2
-�Υ��ޥ�ƥ���������
-.It Dv F_POSIX Ta ���å��Τ���� POSIX �Υ��ޥ�ƥ����������
+のセマンティクス使用
+.It Dv F_POSIX Ta ロックのために POSIX のセマンティクスを使用
 .El
 .El
 .Pp
-���Υ���ȥ�ݥ���Ȥϡ��ե��������礻���쥳���ɥ��å������ޤ���
-�ۤȤ�ɤΥե����륷���ƥ�ϡ����θƤӽФ��Τ���κ�Ȥ�
+このエントリポイントは、ファイルの問合せ型レコードロックを操作します。
+ほとんどのファイルシステムは、この呼び出しのための作業を
 .Fn lf_advlock
-�˰�Ǥ���ޤ���
-.Sh �����
-�������ˤ� 0 ���֤��졢�����Ǥʤ����ˤϥ��顼���֤���ޤ���
-.Sh ��Ϣ����
+に委任します。
+.Sh 戻り値
+成功時には 0 が返され、そうでない場合にはエラーが返されます。
+.Sh 関連項目
 .Xr fcntl 2 ,
 .Xr flock 2 ,
 .Xr vnode 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

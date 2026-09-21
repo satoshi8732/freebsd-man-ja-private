@@ -31,67 +31,67 @@
 .Dd March 15, 1999
 .Dt G711CONV 1
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm g711conv
-.Nd G.711 �˽����Ѵ�
-.Sh ��
+.Nd G.711 に従う変換
+.Sh 書式
 .Nm
 .Op Fl a
 .Op Fl u
 .Op Fl P
 .Op Fl A
 .Op Fl R
-.Sh ����
+.Sh 解説
 .Nm
-�桼�ƥ���ƥ��� isdn4bsd �ѥå������ΰ���ʬ�Ǥ���
-ITU G.711�ǵ��ꤵ��Ƥ��� A-Law �� u-law �ե����ޥåȴ֤��Ѵ��˻Ȥ��ޤ���
-���Υ��ޥ�ɤ� Sun Microsystems, Inc. �ˤ�äƼ������줿
-��ե���󥹼����˴�Ť��Ƥ��ޤ���
-Sun Microsystems, Inc. �Υ�ե���󥹼�����
-��ͳ�������ǽ�Ǽ�ͳ�����Ѥ��뤳�Ȥ��Ǥ��ޤ���
+ユーティリティは isdn4bsd パッケージの一部分です。
+ITU G.711で規定されている A-Law と u-law フォーマット間の変換に使われます。
+このコマンドは Sun Microsystems, Inc. によって実装された
+リファレンス実装に基づいています。
+Sun Microsystems, Inc. のリファレンス実装は
+自由に入手可能で自由に利用することができます。
 .Pp
-�ʲ��Υ��ץ�������Ѳ�ǽ�Ǥ�:
+以下のオプションが利用可能です:
 .Bl -tag -width Ds
 .It Fl a
-A-law ���� u-law ���Ѵ����ޤ���
+A-law から u-law へ変換します。
 .It Fl u
-u-law ���� A-law ���Ѵ����ޤ���
+u-law から A-law へ変換します。
 .It Fl r
-�Ѵ����˥ӥå�ȿž��Ԥ��ޤ���
+変換前にビット反転を行います。
 .It Fl R
-�Ѵ���˥ӥå�ȿž��Ԥ��ޤ���
+変換後にビット反転を行います。
 .It Fl P
-�ºݤ��Ѵ��򤹤�����ˡ�ɸ����Ϥ˷�̤Ȥ���
-�������Ѵ��ơ��֥�� (C �Υ������Ȥ���) ɽ�����ޤ���
+実際の変換をする代わりに、標準出力に結果として
+生じる変換テーブルを (C のソースとして) 表示します。
 .El
-.Sh ����
-A-Law �� u-law �֤��Ѵ���ˡ�ϡ�
-ITU Recommendation G.711 �ǵ��ꤵ��Ƥ��ޤ���
+.Sh 規格
+A-Law と u-law 間の変換方法は、
+ITU Recommendation G.711 で規定されています。
 .Pp
-���ͤˤʤ������ Sun Microsystems, Inc. �ˤ�äƹԤ��Ƥ��ꡢ�����
-http://www.itu.int/itudoc/itu-t/rec/g/g700-799/refimpl.txt ���黲�ȤǤ��ޤ���
-.Sh ������
-���Υ��ޥ��:
+参考になる実装は Sun Microsystems, Inc. によって行われており、これは
+http://www.itu.int/itudoc/itu-t/rec/g/g700-799/refimpl.txt から参照できます。
+.Sh 使用例
+次のコマンド:
 .Bd -literal -offset indent
 g711conv -P -a
 .Ed
 .Pp
-��ɸ����Ϥ� C �Υ������Ȥ��� A-law ���� u-law �ؤ��Ѵ��ơ��֥��
-ɽ�����ޤ���
+は標準出力に C のソースとして A-law から u-law への変換テーブルを
+表示します。
 .Pp
-���Υ��ޥ��:
+次のコマンド:
 .Bd -literal -offset indent
 cat max_headroom.ul | g711conv -u -R > /dev/i4btel0
 .Ed
 .Pp
-�� u-law ������ Max Headroom �β����� A-law ���Ѵ�����
-�Ѵ���̤ΥӥåȤ�դˤ��������ƥ����ƥ��֤� isdn4bsd ���å��ͥ�������
-�ǡ���������ޤ���
-.Sh ���
+は u-law 形式の Max Headroom の音声を A-law へ変換して
+変換結果のビットを逆にし、そしてアクティブな isdn4bsd 電話コネクションへ
+データを送ります。
+.Sh 作者
 .Nm
-�桼�ƥ���ƥ��Ȥ��Υޥ˥奢��ڡ�����
+ユーティリティとこのマニュアルページは
 .An Hellmuth Michaelis Aq hm@kts.org
-���񤭤ޤ�����������
-Sun Microsystems, Inc. ���񤤤� G.711 �Ѵ���ե���󥹥����ɤȡ�
+が書きました。これらは
+Sun Microsystems, Inc. が書いた G.711 変換リファレンスコードと、
 .An Stefan Bethke
-�� isdn4bsd �ش�£���������ɤ˴�Ť��Ƥ��ޤ���
+が isdn4bsd へ寄贈したコードに基づいています。

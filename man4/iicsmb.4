@@ -27,31 +27,31 @@
 .Dd August 10, 1998
 .Dt IICSMB 4
 .Os FreeBSD
-.Sh ̾��
+.Sh 名称
 .Nm iicsmb
 .Nd
-I2C ���� SMB �ؤΥ֥�å�
-.Sh ��
+I2C から SMB へのブリッジ
+.Sh 書式
 .Cd "device iicsmb0 at iicbus?"
 .Pp
-1 �İʾ�� smbus �Х����Ф���:
+1 つ以上の smbus バスに対して:
 .Cd "controller smbus0"
-.Sh ����
+.Sh 解説
 .Em iicsmb
-�ɥ饤�Ф�
+ドライバは
 .Xr iicbus 4
-��𤷤�
+を介した
 .Xr smbus 4
-�����ƥ��Ѥ� SMB ���ޥ�ɤ򥵥ݡ��Ȥ��Ƥ��ޤ���
+システム用の SMB コマンドをサポートしています。
 .Pp
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr smbus 4
-.Sh ���
+.Sh 歴史
 .Nm
-�ޥ˥奢��ڡ�����
+マニュアルページは
 .Fx 3.0
-�Ǻǽ���о줷�ޤ�����
-.Sh ���
-���Υޥ˥奢��ڡ�����
+で最初に登場しました。
+.Sh 作者
+このマニュアルページは
 .An Nicolas Souchu
-���񤭤ޤ�����
+が書きました。

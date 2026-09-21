@@ -36,13 +36,13 @@
 .Dd June 2, 1993
 .Dt SIGSETMASK 2
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm sigsetmask ,
 .Nm sigblock
-.Nd ���ߤΥ����ʥ�ޥ���������
-.Sh �饤�֥��
+.Nd 現在のシグナルマスクを操作する
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In signal.h
 .Ft int
 .Fn sigsetmask "int mask"
@@ -50,55 +50,55 @@
 .Fn sigblock "int mask"
 .Ft int
 .Fn sigmask "int signum"
-.Sh ����
+.Sh 解説
 .Bf -symbolic
-���Υ��󥿥ե�������
+このインタフェースは
 .Ef
 .Xr sigprocmask 2
 .Bf -symbolic
-�ˤ�äƵ켰�Τ�ΤȤʤäƤ��ޤ���
+によって旧式のものとなっています。
 .Ef
 .Pp
 .Fn sigsetmask
-�ؿ��ϡ����ꤵ�줿
+関数は、指定された
 .Fa mask
-�򸽺ߤΥ����ʥ�ޥ��������ꤷ�ޤ���
+を現在のシグナルマスクに設定します。
 .Fa mask
-���б�����ӥåȤ� 1 �Ǥ����硢�����ʥ���ۿ��ϥ֥��å�����ޤ���
+で対応するビットが 1 である場合、シグナルの配信はブロックされます。
 .Fn sigblock
-�ؿ��ϡ����ꤵ�줿
+関数は、指定された
 .Fa mask
-��Υ����ʥ�򸽺ߤΥ����ʥ�ޥ������ɲä��ޤ���
+中のシグナルを現在のシグナルマスクに追加します。
 .Fn sigsetmask
-�Ȱ㤤����񤭤Ϥ��ޤ���
-�ޥ���
+と違い、上書きはしません。
+マクロ
 .Fn sigmask
-�ϡ����ꤷ��
+は、指定した
 .Fa signum
-�Υޥ�����������뤿����󶡤���Ƥ��ޤ���
+のマスクを作成するために提供されています。
 .Pp
-�����ƥ�Ǥϡ�
+システムでは、
 .Dv SIGKILL
-��
+や
 .Dv SIGSTOP
-�Υ֥��å������Ĥ���Ƥ��ޤ���
-.Sh �����
+のブロックが許可されていません。
+.Sh 戻り値
 .Fn sigblock
-�ؿ���
+関数と
 .Fn sigsetmask
-�ؿ��ϡ��ޥ������줿�����ʥ�����Υ��åȤ��ᤵ��ޤ���
-.Sh ��Ϣ����
+関数は、マスクされたシグナルの前のセットが戻されます。
+.Sh 関連項目
 .Xr kill 2 ,
 .Xr sigaction 2 ,
 .Xr sigprocmask 2 ,
 .Xr sigsuspend 2 ,
 .Xr sigvec 2 ,
 .Xr sigsetops 3
-.Sh ���
+.Sh 歴史
 .Fn sigsetmask
-�ؿ���
+関数と
 .Fn sigblock
-�ؿ���
+関数は
 .Bx 4.2
-�ǤϤ�����о줷�ޤ�����
-�����������ߤǤ� ���δؿ�����Ѥ��뤳�ȤϿ侩����Ƥ��ޤ���
+ではじめて登場しました。
+しかし、現在では この関数を使用することは推奨されていません。

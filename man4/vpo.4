@@ -27,32 +27,32 @@
 .Dd March 5, 1998
 .Dt VPO 4
 .Os FreeBSD
-.Sh ̾��
+.Sh 名称
 .Nm vpo
 .Nd
-�ѥ��뤫�� SCSI �ؤΥ��󥿥ե������ɥ饤��
-.Sh ��
+パラレルから SCSI へのインタフェースドライバ
+.Sh 書式
 .Cd "controller vpo at ppbus?"
 .Pp
-1 �İʾ�� SCSI �Х����Ф�:
+1 つ以上の SCSI バスに対し:
 .Cd "controller scbus0 at vpo0"
-.Sh ����
+.Sh 解説
 .Em vpo
-�ɥ饤�Ф��� 1 ����Ū�ϡ�
-Iomega ZIP �ɥ饤�֤��Ȥ߹��ޤ줿 Adaptec AIC-7110 SCSI ����ȥ�����ؤ�
-�����������󶡤��뤳�ȤǤ���
-��������Iomega Jaz Traveller �Υѥ��뤫�� SCSI �ؤΥ��󥿥ե������Ǥ�
-ư���Ǥ��礦��
-.Sh ��Ϣ����
+ドライバの第 1 の目的は、
+Iomega ZIP ドライブに組み込まれた Adaptec AIC-7110 SCSI コントローラへの
+アクセスを提供することです。
+しかし、Iomega Jaz Traveller のパラレルから SCSI へのインタフェースでも
+動作するでしょう。
+.Sh 関連項目
 .Xr ppbus 4 ,
 .Xr scsi 4 ,
 .Xr sd 4
-.Sh ���
+.Sh 歴史
 .Nm
-�ޥ˥奢��ڡ�����
+マニュアルページは
 .Fx 3.0
-�ǽ����о줷�ޤ�����
-.Sh ���
-���Υޥ˥奢��ڡ�����
+で初めて登場しました。
+.Sh 作者
+このマニュアルページは
 .An Nicolas Souchu
-���񤭤ޤ�����
+が書きました。

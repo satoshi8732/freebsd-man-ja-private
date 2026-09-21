@@ -32,57 +32,57 @@
 .Dd January 7, 2005
 .Dt SYSCALL_MODULE 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm SYSCALL_MODULE
-.Nd syscall �����ͥ�⥸�塼������ޥ���
-.Sh ��
+.Nd syscall カーネルモジュール宣言マクロ
+.Sh 書式
 .In sys/param.h
 .In sys/kernel.h
 .In sys/proc.h
 .In sys/module.h
 .In sys/sysent.h
 .Fn SYSCALL_MODULE name "int *offset" "struct sysent new_sysent" "modeventhand_t evh" "void *arg"
-.Sh ����
+.Sh 解説
 .Fn SYSCALL_MODULE
-�ޥ����Ͽ����� syscall ��������ޤ���
+マクロは新しい syscall を宣言します。
 .Fn SYSCALL_MODULE
-��
+は
 .Fa name
-�Ȥ���̾���Υ����ͥ�⥸�塼��������Ÿ������ޤ���
+という名前のカーネルモジュールの宣言に展開されます。
 .Pp
-���Υޥ������׵ᤵ���Ĥ�ΰ����ϰʲ����̤�Ǥ���
+このマクロで要求される残りの引数は以下の通りです。
 .Bl -tag -width ".Fa new_sysent"
 .It Fa offset
-syscall ������դ���
+syscall が割り付ける
 .Vt "struct sysent"
-��Υ��ե��åȤ���¸����
+中のオフセットを保存する
 .Vt int
-�ؤΥݥ��󥿡�
+へのポインタ。
 .It Fa new_sysent
-syscall ���������ؿ�����Ӥ��δؿ���ɬ�פȤ�������ο�
+syscall を実装する関数およびこの関数が必要とする引数の数
 .In ( sys/sysent.h
-����)��
+参照)。
 .It Fa evh
-����
+引数
 .Fa arg
-���륫���ͥ�⥸�塼��Υ��٥�ȥϥ�ɥ�ؿ��ؤΥݥ��󥿡�
-�ܺ٤ˤĤ��Ƥ�
+を取るカーネルモジュールのイベントハンドラ関数へのポインタ。
+詳細については
 .Xr module 9
-�򻲾Ȥ��Ƥ���������
+を参照してください。
 .It Fa arg
-���줬�ƤӽФ����Ȥ���
+それが呼び出されるとき、
 .Fa evh
-���٥�ȥϥ�ɥ�Υ�����Хå��ؿ����Ϥ���������
+イベントハンドラのコールバック関数へ渡される引数。
 .El
-.Sh ������
-syscall �⥸�塼��Τ���κ���¤��㤬��
+.Sh 使用例
+syscall モジュールのための最低限の例が、
 .Pa /usr/share/examples/kld/syscall/module/syscall.c
-����˸��Ĥ����ޤ���
-.Sh ��Ϣ����
+の中に見つけられます。
+.Sh 関連項目
 .Xr module 9
 .Pp
 .Pa /usr/share/examples/kld/syscall/module/syscall.c
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Alexander Langer Aq alex@FreeBSD.org
-�ˤ�äƽ񤫤�ޤ�����
+によって書かれました。

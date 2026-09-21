@@ -28,56 +28,56 @@
 .Dd July 27, 1998
 .Os
 .Dt I386_GET_IOPERM 2
-.Sh ̾��
+.Sh 名称
 .Nm i386_get_ioperm ,
 .Nm i386_set_ioperm
-.Nd i386 �����ϥݡ��ȶ��֤ؤΥץ��������ȤΥ����������������
-.Sh �饤�֥��
+.Nd i386 入出力ポート空間へのプロセスごとのアクセスを管理する
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In machine/sysarch.h
 .Ft int
 .Fn i386_get_ioperm "unsigned int start" "unsigned int *length" "int *enable"
 .Ft int
 .Fn i386_set_ioperm "unsigned int start" "unsigned int length" "int enable"
-.Sh ����
+.Sh 解説
 .Fn i386_get_ioperm
-�����ƥॳ����ϡ��ץ������������ϥݡ��ȶ��֤ˤĤ��ƤΥѡ��ߥå�����
+システムコールは、プロセスの入出力ポート空間についてのパーミッションを
 .Fa *enable
-��������֤��ޤ���
-�ݡ��Ȥ��ϰϤ�
+引数内に返します。
+ポートの範囲は
 .Fa start
-�ǳ��Ϥ���Ϣ³����ȥ�ο���
+で開始し、連続エントリの数が
 .Fa *length
-����֤���ޤ���
+内に返されます。
 .Pp
 .Fn i386_set_ioperm
-�����ƥॳ����ϡ�
+システムコールは、
 .Fa start
-������
+引数と
 .Fa length
-�����ˤ�äƵ��Ҥ��줿�����ϥݡ��Ȥ��ϰϤؤΥ���������
+引数によって記述された入出力ポートの範囲へのアクセスを
 .Fa enable
-�����ǻ��ꤵ�줿���֤����ꤷ�ޤ���
-.Sh �����
+引数で指定された状態に設定します。
+.Sh 戻り値
 .Rv -std
-.Sh ���顼
+.Sh エラー
 .Fn i386_get_ioperm
-��
+と
 .Fn i386_set_ioperm
-�����ƥॳ����ϼ��ξ��˼��Ԥ��ޤ�:
+システムコールは次の場合に失敗します:
 .Bl -tag -width Er
 .It Bq Er EINVAL
 .Fa start
-�ޤ���
+または
 .Fa length
-������̵�����ϰϤ����ꤵ��ޤ�����
+引数に無効な範囲が指定されました。
 .It Bq Er EPERM
-i386_set_ioperm �θƤӽФ�¦�������ѥ桼���ǤϤ���ޤ���Ǥ�����
+i386_set_ioperm の呼び出し側がスーパユーザではありませんでした。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr io 4
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Jonathan Lemon
-���������ޤ�����
+が作成しました。

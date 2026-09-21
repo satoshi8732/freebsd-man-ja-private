@@ -40,31 +40,31 @@
 .Dd June 4, 1993
 .Dt MEMCHR 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm memchr
-.Nd �Х�������ΥХ��Ȥΰ��֤򼨤�
-.Sh �饤�֥��
+.Nd バイト列中のバイトの位置を示す
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft void *
 .Fn memchr "const void *b" "int c" "size_t len"
-.Sh ����
+.Sh 解説
 .Fn memchr
-�ؿ��ϡ�
-�Х�����
+関数は、
+バイト列
 .Fa b
-���
-(unsigned char ���Ѵ����줿)
+中で
+(unsigned char に変換された)
 .Fa c
-���ǽ�˸��Ĥ��ä����֤򼨤��ޤ���
-.Sh �����
+が最初に見つかった位置を示します。
+.Sh 戻り値
 .Fn memchr
-�ؿ��ϡ���������Х��ȤΥݥ��󥿡�
-�ޤ��ϳ�������Х��Ȥ�
+関数は、該当するバイトのポインタ、
+または該当するバイトが
 .Fa len
-�ĤΥХ������¸�ߤ��ʤ����� NULL ���֤��ޤ���
-.Sh ��Ϣ����
+個のバイト中に存在しない時は NULL を返します。
+.Sh 関連項目
 .Xr strchr 3 ,
 .Xr strcspn 3 ,
 .Xr strpbrk 3 ,
@@ -73,8 +73,8 @@
 .Xr strspn 3 ,
 .Xr strstr 3 ,
 .Xr strtok 3
-.Sh ����
+.Sh 規格
 .Fn memchr
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

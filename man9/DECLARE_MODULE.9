@@ -32,71 +32,71 @@
 .Dd January 6, 2005
 .Dt DECLARE_MODULE 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm DECLARE_MODULE
-.Nd �����ͥ�⥸�塼������ޥ���
-.Sh ��
+.Nd カーネルモジュール宣言マクロ
+.Sh 書式
 .In sys/param.h
 .In sys/kernel.h
 .In sys/module.h
 .Fn DECLARE_MODULE "name" "moduledata_t data" "sub" "order"
-.Sh ����
+.Sh 解説
 .Fn DECLARE_MODULE
-�ޥ����ϰ���Ū�ʥ����ͥ�⥸�塼���������ޤ���
-�����
+マクロは一般的なカーネルモジュールを宣言します。
+これは
 .Fn SYSINIT
-�ޥ�������Ѥ��ơ����Υ⥸�塼��򥷥��ƥ����Ͽ���ޤ���
+マクロを使用して、そのモジュールをシステムに登録します。
 .Fn DECLARE_MODULE
-���̾
+は通常、
 .Xr DRIVER_MODULE 9 ,
 .Xr DEV_MODULE 9
-�����
+および
 .Xr SYSCALL_MODULE 9
-�Τ褦��¾�Υޥ�������ǻ��Ѥ���ޤ���
-��������㤨��ưŪ�� sysctl ��������뤿��ˡ�
-ľ�ܸƤӽФ���뤳�Ȥ��ǽ�Ǥ���
+のような他のマクロの中で使用されます。
+もちろん、例えば動的な sysctl を実装するために、
+直接呼び出されることも可能です。
 .Pp
-�����ϰʲ��ΤȤ���Ǥ���
+引数は以下のとおりです。
 .Bl -tag -width indent
 .It Fa name
-�⥸�塼����̤��뤿���
+モジュールを識別するために
 .Fn SYSINIT
-�ƤӽФ��ǻ��Ѥ����⥸�塼���̾���Ǥ���
+呼び出しで使用されるモジュールの名前です。
 .It Fa data
 .Vt module_t
-��¤�Τ���ǻ��Ѥ����⥸�塼��̾������̾�Τ���ӷ�
+構造体の中で使用されるモジュール名の正式名称および型
 .Vt modeventhand_t
-�Υ��٥�ȥϥ�ɥ�ؿ��ؤΥݥ��󥿤� 2 �Ĥμ��פ����Ǥ�ޤ�
+のイベントハンドラ関数へのポインタの 2 つの主要な要素を含む
 .Vt moduledata_t
-��¤�ΤǤ���
+構造体です。
 .It Fa sub
 .Fn SYSINIT
-�ޥ����ؤ�ľ�ܤΰ����Ǥ���
-���Τ����ͭ�����ͤ�
+マクロへの直接の引数です。
+このための有効な値は
 .Vt sysinit_sub_id
-��󷿤�
+列挙型に
 .In ( sys/kernel.h
-�򻲾�) �ޤޤ�Ƥ��ơ������ƥॹ�����ȥ��åץ��󥿥ե������η����������ޤ���
-�㤨��
+を参照) 含まれていて、システムスタートアップインタフェースの型を明示します。
+例えば
 .Xr DRIVER_MODULE 9
-�ޥ����ϡ������Υ⥸�塼�뤬�ǥХ����Τ���Υɥ饤�Ф�ޤ�Ǥ���Τǡ�
-������
+マクロは、これらのモジュールがデバイスのためのドライバを含んでいるので、
+ここで
 .Dv SI_SUB_DRIVERS
-���ͤ���Ѥ��ޤ���
-�¹Ի��˥����ɤ���륫���ͥ�⥸�塼��Ǥϡ�
+の値を使用します。
+実行時にロードされるカーネルモジュールでは、
 .Dv SI_SUB_EXEC
-���ͤ϶��̤Ǥ���
+の値は共通です。
 .It Fa order
 .Fn SYSINIT
-�Τ���ΰ����Ǥ���
-����� KLD �Υ��֥����ƥ���ν�����ν�����̣���ޤ���
-ͭ�����ͤ�
+のための引数です。
+これは KLD のサブシステム内の初期化の順序を意味します。
+有効な値は
 .Vt sysinit_elem_order
-���
+列挙型
 .Pq In sys/kernel.h
-���������Ƥ��ޤ���
+で定義されています。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr DEV_MODULE 9 ,
 .Xr DRIVER_MODULE 9 ,
 .Xr module 9 ,
@@ -104,11 +104,11 @@
 .Pp
 .Pa /usr/include/sys/kernel.h ,
 .Pa /usr/share/examples/kld
-.Sh ���
+.Sh 作者
 .An -nosplit
-���Υޥ˥奢��ڡ�����
+このマニュアルページは
 .An Andrew Reiter Aq arr@watson.org
-�ˤ�äƽ񤫤줿
-KLD Facility Programming Tutorial �˿�ȯ����ơ�
+によって書かれた
+KLD Facility Programming Tutorial に触発されて、
 .An Alexander Langer Aq alex@FreeBSD.org
-�ˤ�äƽ񤫤�ޤ�����
+によって書かれました。

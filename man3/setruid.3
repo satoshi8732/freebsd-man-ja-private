@@ -36,49 +36,49 @@
 .Dd June 2, 1993
 .Dt SETRUID 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm setruid ,
 .Nm setrgid
-.Nd �桼���ȥ��롼�� ID �����ꤹ��
-.Sh �饤�֥��
+.Nd ユーザとグループ ID を設定する
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In unistd.h
 .Ft int
 .Fn setruid "uid_t ruid"
 .Ft int
 .Fn setrgid "gid_t rgid"
-.Sh ����
+.Sh 解説
 .Fn setruid
-�ؿ�
+関数
 .Pq Fn setrgid
-�ϡ����ߤΥץ������μºݤΥ桼�� ID (���롼�� ID) ��
-���ꤷ�ޤ���
-.Sh �����
+は、現在のプロセスの実際のユーザ ID (グループ ID) を
+設定します。
+.Sh 戻り値
 .Rv -std
-.Sh ���顼
-�ؿ��ϼ��ξ��˼��Ԥ��ޤ�:
+.Sh エラー
+関数は次の場合に失敗します:
 .Bl -tag -width Er
 .It Bq Er EPERM
-�桼���������ѥ桼���Ǥʤ���
-���ꤵ�줿 ID ���� ID �Ǥ�¸� ID �Ǥ⤢��ޤ���Ǥ�����
+ユーザがスーパユーザでなく、
+指定された ID が実 ID でも実効 ID でもありませんでした。
 .El
-.Sh �ߴ���
-�����θƤӽФ��λ��Ѥϰܿ���ǽ�ǤϤ���ޤ���
-��������Ѥ���ΤϤ�����Ǥ��ޤ��󡣾��������ͽ�������Ǥ���
-.Sh ��Ϣ����
+.Sh 互換性
+これらの呼び出しの使用は移植可能ではありません。
+これらを使用するのはお勧めできません。将来除去される予定だからです。
+.Sh 関連項目
 .Xr getgid 2 ,
 .Xr getuid 2 ,
 .Xr setegid 2 ,
 .Xr seteuid 2 ,
 .Xr setgid 2 ,
 .Xr setuid 2
-.Sh ���
+.Sh 歴史
 .Fn setruid
-��
+と
 .Fn setrgid
-�����ƥॳ�����
+システムコールは
 .Bx 4.2
-�Ǹ��졢
+で現れ、
 .Bx 4.4
-����Ȥ���ޤ�����
+で落とされました。

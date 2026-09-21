@@ -29,57 +29,57 @@
 .Dd July 17, 1995
 .Dt SHMCTL 2
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm shmctl
-.Nd ��ͭ��������
-.Sh �饤�֥��
+.Nd 共有メモリ制御
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In machine/param.h
 .In sys/types.h
 .In sys/ipc.h
 .In sys/shm.h
 .Ft int
 .Fn shmctl "int shmid" "int cmd" "struct shmid_ds *buf"
-.Sh ����
+.Sh 解説
 .Fa shmid
-�ˤ�äƻ��ꤵ�줿��ͭ���ꥻ�����Ⱦ��
+によって指定された共有メモリセグメント上で
 .Fa cmd
-�ˤ�äƻ��ꤵ�줿������¹Ԥ��ޤ�:
+によって指定された処理を実行します:
 .Bl -tag -width SHM_UNLOCKX
 .It Dv IPC_STAT
 .Fa "struct shmid_ds"
-�Υ������Ȥ��������
+のセグメントを取得し、
 .Fa buf
-�ˤ�äƻ��ꤵ�줿����ˤ������¸���ޤ���
+によって指定されたメモリにそれを保存します。
 .\"
 .\" XXX need to make sure that this is correct for FreeBSD
 .\"
 .It Dv IPC_SET
 .Fa "struct shmid_ds"
-�������Ȥ�
+セグメントの
 .Fa shm_perm.uid ,
 .Fa shm_perm.gid ,
-�����
+および
 .Fa shm_perm.mode
-�γƥ��Ф�
+の各メンバを
 .Fa buf
-�ǻؤ��줿��¤�ΤΥ��Ф��ѹ����ޤ���
-�ƤӽФ��ץ������μ¸��桼�� ID �ϡ�
+で指された構造体のメンバに変更します。
+呼び出しプロセスの実効ユーザ ID は、
 .Fa shm_perm.uid
-�ޤ���
+または
 .Fa shm_perm.cuid
-�Τɤ��餫�Ȱ��פ��뤫���ޤ��ϥ����ѥ桼���ø�����äƤ���ɬ�פ�����ޤ���
+のどちらかと一致するか、またはスーパユーザ特権を持っている必要があります。
 .It Dv IPC_RMID
-�����ƥफ�饻�����Ȥ����ޤ���
-�������Ȥ˥����å��������٤ƤΥץ���������λ����ޤǡ�����ϹԤ��ޤ���
-�����������ä��� IPC_RMID ���¹Ԥ����ȡ�����ʹߥץ�������
-���Υ������Ȥ˥����å����뤳�Ȥ������ޤ���
-���������뤿��ˤϡ��ƤӽФ��ץ������μ¸��桼�� ID ��
+システムからセグメントを除去します。
+セグメントにアタッチしたすべてのプロセスが終了するまで、除去は行われません。
+しかし、いったん IPC_RMID 操作が実行されると、それ以降プロセスは
+そのセグメントにアタッチすることを許されません。
+操作が成功するためには、呼び出しプロセスの実効ユーザ ID が
 .Fa shm_perm.uid
-�ޤ���
+または
 .Fa shm_perm.cuid
-�Ȱ��פ��뤫���ޤ��ϸƤӽФ��ץ������˥����ѥ桼���ø���ɬ�פǤ���
+と一致するか、または呼び出しプロセスにスーパユーザ特権が必要です。
 .\" .It Dv SHM_LOCK
 .\" Locks the segment in memory.  The calling process must have
 .\" superuser privileges. Not implemented in FreeBSD.
@@ -89,46 +89,46 @@
 .El
 .Pp
 .Vt shmid_ds
-��¤�Τϼ��Τ褦���������ޤ�:
+構造体は次のように定義されます:
 .\"
 .\" I fiddled with the spaces a bit to make it fit well when viewed
 .\" with nroff, but otherwise it's straight from sys/shm.h
 .\"
 .Bd -literal
 struct shmid_ds {
-    struct ipc_perm shm_perm;   /* ���ѡ��ߥå����¤�� */
-    int             shm_segsz;  /* �������ȤΥ����� (�Х���ñ��) */
-    pid_t           shm_lpid;   /* �Ǹ�ζ�ͭ�������Υץ����� ID */
-    pid_t           shm_cpid;   /* �����ԤΥץ����� ID  */
-    short           shm_nattch; /* ���ߤΥ����å��ο� */
-    time_t          shm_atime;  /* �Ǹ�� shmat() �λ��� */
-    time_t          shm_dtime;  /* �Ǹ�� shmdt() �λ��� */
-    time_t          shm_ctime;  /* shmctl() �ˤ��Ǹ���ѹ��λ��� */
-    void           *shm_internal; /* SystemV �ζ�� */
+    struct ipc_perm shm_perm;   /* 操作パーミッション構造体 */
+    int             shm_segsz;  /* セグメントのサイズ (バイト単位) */
+    pid_t           shm_lpid;   /* 最後の共有メモリ操作のプロセス ID */
+    pid_t           shm_cpid;   /* 作成者のプロセス ID  */
+    short           shm_nattch; /* 現在のアタッチの数 */
+    time_t          shm_atime;  /* 最後の shmat() の時刻 */
+    time_t          shm_dtime;  /* 最後の shmdt() の時刻 */
+    time_t          shm_ctime;  /* shmctl() による最後の変更の時刻 */
+    void           *shm_internal; /* SystemV の愚行 */
 };
 .Ed
-.Sh �����
+.Sh 戻り値
 .Rv -std shmctl
-.Sh ���顼
+.Sh エラー
 .Fn shmctl
-�����ƥॳ����ϼ��ξ��˽����˼��Ԥ��ޤ�:
+システムコールは次の場合に処理に失敗します:
 .Bl -tag -width Er
 .It Bq Er EINVAL
-̵�������ޤ���
+無効な操作、または
 .Fa shmid
-�˻��ꤵ�줿��ͭ���ꥻ�����Ȥ����Ф���ޤ���Ǥ�����
+に指定された共有メモリセグメントが検出されませんでした。
 .\"
 .\" XXX I think the following is right: ipcperm() only returns EPERM
 .\"	when an attempt is made to modify (IPC_M) by a non-creator
 .\"	non-owner
 .It Bq Er EPERM
-�ƤӽФ��ץ������μ¸��桼�� ID ������ͭ���ꥻ�����Ȥν�ͭ��
-�ޤ��Ϻ����ԤΥ桼�� ID �Ȱ��פ��ޤ���
+呼び出しプロセスの実効ユーザ ID が、共有メモリセグメントの所有者
+または作成者のユーザ ID と一致しません。
 .It Bq Er EACCES
-���ȶ�ͭ���ꥻ�����ȥ⡼�ɤδ֤��԰��פΤ����
-�ѡ��ߥå���󤬵��䤵��ޤ�����
+操作と共有メモリセグメントモードの間の不一致のために
+パーミッションが拒絶されました。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr shmat 2 ,
 .Xr shmdt 2 ,
 .Xr shmget 2 ,

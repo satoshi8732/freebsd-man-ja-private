@@ -3,100 +3,100 @@
 .\" %FreeBSD: src/lib/libc/rpc/netconfig.5,v 1.1 2001/03/19 12:49:51 alfred Exp %
 .\" $FreeBSD$
 .\" WORD:
-.\" WORD: transport			�ȥ�󥹥ݡ���
-.\" WORD: configuration data base	����ǡ����١���
-.\" WORD: transport names		�ȥ�󥹥ݡ���̾
-.\" WORD: semantics			���ޥ�ƥ�����
-.\" WORD: format			�ե����ޥå�
-.\" WORD: connectionless		���ͥ������쥹
-.\" WORD: connection-oriented		���ͥ������ظ�
-.\" WORD: ordered			����դ�
-.\" WORD: see below			��������(���ˤϲ���ʤ��Ƥɤ��򸫤��ȸ����Τ�..)
-.\" WORD: unused			̤����
-.\" WORD: parse				��ʸ����
-.\" WORD: names of the libraries	�饤�֥��̾���¤�
+.\" WORD: transport			トランスポート
+.\" WORD: configuration data base	設定データベース
+.\" WORD: transport names		トランスポート名
+.\" WORD: semantics			セマンティクス
+.\" WORD: format			フォーマット
+.\" WORD: connectionless		コネクションレス
+.\" WORD: connection-oriented		コネクション指向
+.\" WORD: ordered			順序付き
+.\" WORD: see below			下記参照(下には何もなくてどこを見ろと言うのか..)
+.\" WORD: unused			未使用
+.\" WORD: parse				構文解析
+.\" WORD: names of the libraries	ライブラリ名の並び
 .\"
 .Dd November 17, 2000
 .Dt NETCONFIG 5
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm netconfig
-.Nd �ͥåȥ������ǡ����١���
-.Sh ��
+.Nd ネットワーク設定データベース
+.Sh 書式
 .Pa /etc/netconfig
-.Sh ����
+.Sh 解説
 .Nm
-�ե�����Ǥϡ�
-.Dq �ȥ�󥹥ݡ���̾ 
-�Υꥹ�Ȥ�������ơ����줾��Υ��ޥ�ƥ�������ץ��ȥ���򵭽Ҥ��Ƥ��ޤ���
+ファイルでは、
+.Dq トランスポート名 
+のリストを定義して、それぞれのセマンティクスやプロトコルを記述しています。
 .Fx 
-�Ǥϡ����Υե������ RPC �饤�֥��Υ����ɤ��������Ѥ��Ƥ��ޤ���
+では、このファイルは RPC ライブラリのコードだけが使用しています。
 .Pp
-����ȥ�ϼ��Τ褦�ʥե����ޥåȤˤʤäƤ��ޤ�:
+エントリは次のようなフォーマットになっています:
 .Pp
 .Ar network_id semantics flags family protoname device libraries
 .Pp
-����ȥ��������ե�����ɤϼ����̤�Ǥ�:
+エントリを構成するフィールドは次の通りです:
 .Bl -tag -width network_id
 .It Ar network_id
-���Ҥ���ȥ�󥹥ݡ��Ȥ�̾��
+記述するトランスポートの名称
 .It Ar semantics
-�ȥ�󥹥ݡ��ȤΥ��ޥ�ƥ������򵭽Ҥ��ޤ���
-����ϼ��Τ����ΰ�ĤǤ�:
+トランスポートのセマンティクスを記述します。
+これは次のうちの一つです:
 .Bl -tag -width tpi_cots_ord -offset indent
 .It Sy tpi_clts
-���ͥ������쥹�ȥ�󥹥ݡ���
+コネクションレストランスポート
 .It Sy tpi_cots
-���ͥ������ظ��ȥ�󥹥ݡ���
+コネクション指向トランスポート
 .It Sy tpi_cots_ord
-���ͥ������ظ�����դ��ȥ�󥹥ݡ���
+コネクション指向順序付きトランスポート
 .It Sy tpi_raw
-�ǤΥ��ͥ������
+素のコネクション
 .El
 .It Ar flags
-���Υե�����ɤϥ֥�󥯤�(
+このフィールドはブランクか(
 .Dq Li - 
-�Ȼ��ꤷ�ޤ�)��
-�ޤ���
+と指定します)、
+または
 .Dq Li v 
-��ޤߤޤ���
+を含みます。
 .Dq Li v 
-��ޤ�Ȥ���
+を含むときは
 .Xr getnetconfig 3
-�ؿ��Ǹ��뤳�Ȥ������Ȥ������Ȥ�ɽ���ޤ���
+関数で見ることが出来るということを表します。
 .It Ar family
-�ȥ�󥹥ݡ��ȤΥץ��ȥ���ե��ߥ�ǡ�
-���ߤϼ��Τ����ΰ�ĤǤ�:
+トランスポートのプロトコルファミリで、
+現在は次のうちの一つです:
 .Bl -tag -width loopback -offset indent
 .It Sy inet6
 IPv6
 .Pq Dv PF_INET6
-�ץ��ȥ���ե��ߥ�
+プロトコルファミリ
 .It Sy inet
 IPv4
 .Pq Dv PF_INET
-�ץ��ȥ���ե��ߥ�
+プロトコルファミリ
 .It Sy loopback
 .Dv PF_LOCAL
-�ץ��ȥ���ե��ߥ�
+プロトコルファミリ
 .El
 .It Ar protoname
-�ȥ�󥹥ݡ��ȤΥץ��ȥ���̾�ǡ�
-���ߤ�
+トランスポートのプロトコル名で、
+現在は
 .Sy udp ,
 .Sy tcp
-�Τɤ��餫�����⤷���϶��Ǥ���
+のどちらかか、もしくは空です。
 .It Ar device
 .Fx 
-�Ǥϡ����Υե�����ɤϾ�˶��Ǥ���
+では、このフィールドは常に空です。
 .It Ar libraries
 .Fx 
-�Ǥϡ����Υե�����ɤϾ�˶��Ǥ���
+では、このフィールドは常に空です。
 .El
 .Pp
-���Υե�������Υ���ȥ�ν���ˤ�äơ����ꤵ�줿�ͥåȥ�������פ��Ф��� 
-RPC �饤�֥�ꥳ���ɤΥȥ�󥹥ݡ��Ȥ�ͥ���̤���ޤ�ޤ���
-�㤨�С�����ץ�Ȥ��ƥͥåȥ������ե����뤬���Τ褦�ˤʤäƤ����Ȥ��ޤ�:
+このファイル内のエントリの順序によって、指定されたネットワークタイプに対する 
+RPC ライブラリコードのトランスポートの優先順位が決まります。
+例えば、サンプルとしてネットワーク設定ファイルが下のようになっていたとします:
 .Bd -literal -offset indent
 udp6       tpi_clts      v     inet6    udp     -       -
 tcp6       tpi_cots_ord  v     inet6    tcp     -       -
@@ -106,37 +106,37 @@ rawip      tpi_raw       -     inet      -      -       -
 local      tpi_cots_ord  -     loopback  -      -       -
 .Ed
 .Pp
-���ΤȤ����ͥåȥ�������פȤ���
+このとき、ネットワークタイプとして
 .Sy udp
-����Ѥ��� RPC �饤�֥��ؿ���ƤӽФ���
+を使用して RPC ライブラリ関数を呼び出すと
 .Xr ( rpc 3 
-����)��
-�ޤ��ǽ��
+参照)、
+まず最初に
 .Sy udp6 
-���Ƥ���
+を試してから
 .Sy udp 
-���ޤ���
+を試します。
 .Pp
 .Xr getnetconfig 3
-�䡢���δ�Ϣ�δؿ��Ϥ��Υե������ʸ���Ϥ��Ƽ��Τ褦�ʥե����ޥåȤ�
-��¤�Τ��֤��ޤ�:
+や、その関連の関数はこのファイルを構文解析して次のようなフォーマットの
+構造体を返します:
 .Bd -literal
 struct netconfig {
-    char *nc_netid;              /* �ͥåȥ�� ID */
-    unsigned long nc_semantics;  /* ���ޥ�ƥ����� (��������) */
-    unsigned long nc_flag;       /* �ե饰 (��������) */
-    char *nc_protofmly;          /* �ץ��ȥ���ե��ߥ� */
-    char *nc_proto;              /* �ץ��ȥ���̾ */
-    char *nc_device;             /* �ͥåȥ���ǥХ����Υѥ�̾ (̤����) */
-    unsigned long nc_nlookups;   /* ���Ȥ���饤�֥��ο� (̤����) */
-    char **nc_lookups;           /* �饤�֥��̾���¤� (̤����) */
-    unsigned long nc_unused[9];  /* ͽ�� */
+    char *nc_netid;              /* ネットワーク ID */
+    unsigned long nc_semantics;  /* セマンティクス (下記参照) */
+    unsigned long nc_flag;       /* フラグ (下記参照) */
+    char *nc_protofmly;          /* プロトコルファミリ */
+    char *nc_proto;              /* プロトコル名 */
+    char *nc_device;             /* ネットワークデバイスのパス名 (未使用) */
+    unsigned long nc_nlookups;   /* 参照するライブラリの数 (未使用) */
+    char **nc_lookups;           /* ライブラリ名の並び (未使用) */
+    unsigned long nc_unused[9];  /* 予約 */
 };
 .Ed
-.Sh ��Ϣ�ե�����
+.Sh 関連ファイル
 .Bl -tag -width /etc/netconfig -compact
 .It Pa /etc/netconfig
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr getnetconfig 3 ,
 .Xr getnetpath 3

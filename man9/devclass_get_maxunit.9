@@ -32,22 +32,22 @@
 .Dd June 16, 1998
 .Dt DEVCLASS_GET_MAXUNIT 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm devclass_get_maxunit
-.Nd ���饹����κ���Υ�˥å��ֹ�򸡺�
-.Sh ��
+.Nd クラスの中の最大のユニット番号を検索
+.Sh 書式
 .In sys/param.h
 .In sys/bus.h
 .Ft int
 .Fn devclass_get_maxunit "devclass_t dc"
-.Sh ����
-���ꤵ�줿
+.Sh 解説
+指定された
 .Dv devclass
-����ΥǥХ������󥹥��󥹤˳�����Ƥ�줿������Υ�˥å��ֹ���֤��ޤ���
-.Sh ��Ϣ����
+の中のデバイスインスタンスに割り当てられた、最大のユニット番号を返します。
+.Sh 関連項目
 .Xr devclass 9 ,
 .Xr device 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

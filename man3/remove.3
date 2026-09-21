@@ -40,48 +40,48 @@
 .Dd June 4, 1993
 .Dt REMOVE 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm remove
-.Nd �ǥ��쥯�ȥꥨ��ȥ�κ��
-.Sh �饤�֥��
+.Nd ディレクトリエントリの削除
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In stdio.h
 .Ft int
 .Fn remove "const char *path"
-.Sh ����
+.Sh 解説
 .Fn remove
-�ؿ��ϡ�
+関数は、
 .Fa path
-�ˤ�äƻ��ꤵ���ե�����⤷���ϥǥ��쥯�ȥ�������ޤ���
+によって指定されるファイルもしくはディレクトリを削除します。
 .Pp
 .Fa path
-���ǥ��쥯�ȥ��ؤ��Ƥ�����硢
+がディレクトリを指していた場合、
 .Fn remove "path"
-��
+は
 .Fn rmdir "path"
-��Ʊ���Ǥ���
-�ե������ؤ��Ƥ������ϡ�
+と同等です。
+ファイルを指していた場合は、
 .Fn unlink "path"
-��Ʊ���Ǥ���
-.Sh �����
+と同等です。
+.Sh 戻り値
 .Rv -std remove
-.Sh ���顼
+.Sh エラー
 .Fn remove
-�ؿ��ϡ����顼��ȯ������ȡ��롼����
+関数は、エラーが発生すると、ルーチン
 .Xr lstat 2 ,
 .Xr rmdir 2 ,
 .Xr unlink 2
-�ǵ��ꤵ��Ƥ��륨�顼��
+で規定されているエラーを
 .Va errno
-�����ꤹ�뤳�Ȥ�����ޤ���
-.Sh ��Ϣ����
+に設定することがあります。
+.Sh 関連項目
 .Xr rmdir 2 ,
 .Xr unlink 2
-.Sh ����
+.Sh 規格
 .Fn remove
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��
+と
 .St -xpg4.2
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

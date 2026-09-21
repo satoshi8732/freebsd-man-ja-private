@@ -28,61 +28,61 @@
 .Dd January 15, 2003
 .Dt ELFDUMP 1
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm elfdump
 .Nd 
 .Tn ELF
-�ե�����˴ؤ�������ɽ��
-.Sh ��
+ファイルに関する情報の表示
+.Sh 書式
 .Nm
 .Fl a | cdeGhinprs
 .Op Fl w Ar file
 .Ar file
-.Sh ����
+.Sh 解説
 .Nm
-�桼�ƥ���ƥ��ϡ����ꤵ�줿
+ユーティリティは、指定された
 .Tn ELF
 .Ar file
-���͡��ʾ����ɽ�����ޤ���
+の様々な情報を表示します。
 .Pp
-���ץ����ϼ����̤�Ǥ�:
+オプションは次の通りです:
 .Bl -tag -width ".Fl w Ar file"
 .It Fl a
-���٤Ƥξ����ɽ�����ޤ���
+すべての情報を表示します。
 .It Fl c
-��ͭ�إå���ɽ�����ޤ���
+共有ヘッダを表示します。
 .It Fl d
-ưŪ����ܥ��ɽ�����ޤ���
+動的シンボルを表示します。
 .It Fl e
-ELF �إå���ɽ�����ޤ���
+ELF ヘッダを表示します。
 .It Fl G
-GOT ��ɽ�����ޤ���
+GOT を表示します。
 .It Fl h
-�ϥå����ͤ�ɽ�����ޤ���
+ハッシュ値を表示します。
 .It Fl i
-ưŪ���󥿥ץ꥿��ɽ�����ޤ���
+動的インタプリタを表示します。
 .It Fl n
-note ����������ɽ�����ޤ���
+note セクションを表示します。
 .It Fl p
-�ץ������إå���ɽ�����ޤ���
+プログラムヘッダを表示します。
 .It Fl r
-�����֤�ɽ�����ޤ���
+再配置を表示します。
 .It Fl s
-����ܥ�ɽ��ɽ�����ޤ���
+シンボル表を表示します。
 .It Fl w Ar file
-���Ϥ�ɸ����Ϥ�����
+出力を、標準出力の代りに
 .Ar file
-�˽񤭽Ф��ޤ���
+に書き出します。
 .El
-.Sh ������
-ŵ��Ū��
+.Sh 使用例
+典型的な
 .Nm
-���ޥ�ɤλ�����ϼ����̤�Ǥ�:
+コマンドの使用例は次の通りです:
 .Pp
 .Dl "elfdump -a -w output /bin/ls"
-.Sh ����
+.Sh 診断
 .Ex -std
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr objdump 1 ,
 .Xr readelf 1
 .Rs
@@ -90,20 +90,20 @@ note ����������ɽ�����ޤ���
 .%T "System V Application Binary Interface"
 .%O http://www.sco.com/developers/gabi/
 .Re
-.Sh ���
+.Sh 歴史
 .Nm
-�桼�ƥ���ƥ����ǽ���о줷���Τ�
+ユーティリティが最初に登場したのは
 .Fx 5.0
-�Ǥ���
-.Sh ���
+です。
+.Sh 作者
 .An -nosplit
 .Nm
-�桼�ƥ���ƥ���
+ユーティリティは
 .An Jake Burkholder Aq jake@FreeBSD.org
-�����Ҥ��ޤ�����
-���Υޥ˥奢��ڡ�����
+が記述しました。
+このマニュアルページは
 .An David O'Brien Aq obrien@FreeBSD.org
-�����Ҥ��ޤ�����
-.Sh �Х�
+が記述しました。
+.Sh バグ
 .Tn ELF
-gABI �����˼������Ƥ���櫓�ǤϤ���ޤ���
+gABI を完全に実装しているわけではありません。

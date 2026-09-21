@@ -130,9 +130,9 @@
 .\"
 .IX Title "ADDR2LINE 1"
 .TH ADDR2LINE 1 "2004-04-09" "binutils-2.14.91" "GNU Development Tools"
-.SH ̾��
-addr2line \- ���ɥ쥹��ե�����̾�ȹ��ֹ���Ѵ�����
-.SH ��
+.SH 名称
+addr2line \- アドレスをファイル名と行番号に変換する
+.SH 書式
 .IX Header "SYNOPSIS"
 addr2line [\fB\-b\fR \fIbfdname\fR|\fB\-\-target=\fR\fIbfdname\fR]
           [\fB\-C\fR|\fB\-\-demangle\fR[=\fIstyle\fR]]
@@ -140,109 +140,109 @@ addr2line [\fB\-b\fR \fIbfdname\fR|\fB\-\-target=\fR\fIbfdname\fR]
           [\fB\-f\fR|\fB\-\-functions\fR] [\fB\-s\fR|\fB\-\-basename\fR]
           [\fB\-H\fR|\fB\-\-help\fR] [\fB\-V\fR|\fB\-\-version\fR]
           [addr addr ...]
-.SH ����
+.SH 解説
 .IX Header "DESCRIPTION"
 \fBaddr2line\fR
-�ϥץ������Υ��ɥ쥹��ե�����̾�ȹ��ֹ���Ѵ����ޤ���
-���ɥ쥹�ȼ¹ԥե����뤬Ϳ������ȡ��¹ԥե�������ΥǥХå������
-�Ȥä�Ϳ����줿���ɥ쥹��ե�����̾�ȹ��ֹ���б��Ť��ޤ���
+はプログラムのアドレスをファイル名と行番号に変換します。
+アドレスと実行ファイルが与えられると、実行ファイル中のデバッグ情報を
+使って与えられたアドレスをファイル名と行番号に対応づけます。
 .PP
-���Ѥ����¹ԥե������
+使用される実行ファイルは
 \fB\-e\fR
-���ץ����ǻ��ꤷ�ޤ���
-�ǥե���Ȥ�
+オプションで指定します。
+デフォルトは
 \fBa.out\fR
-�Ǥ���
+です。
 .PP
 \fBaddr2line\fR
-�ˤ� 2 �Ĥ�ư��⡼�ɤ�����ޤ���
+には 2 つの動作モードがあります。
 .PP
-1 ���ܤǤϡ�16�ʿ��Υ��ɥ쥹�򥳥ޥ�ɹԤǻ��ꤷ�ơ�
+1 つ目では、16進数のアドレスをコマンド行で指定して、
 \fBaddr2line\fR
-���ƥ��ɥ쥹���б�����ե�����̾�ȹ��ֹ��ɽ�����ޤ���
+が各アドレスに対応するファイル名と行番号を表示します。
 .PP
-2 ���ܤǤϡ�
+2 つ目では、
 \fBaddr2line\fR
-�� 16�ʿ��Υ��ɥ쥹��ɸ�����Ϥ����ɤ߹���ǡ��ƥ��ɥ쥹��
-�б�����ե�����̾�ȹ��ֹ��ɸ����Ϥ�ɽ�����ޤ���
-���Υ⡼�ɤǤ�
+は 16進数のアドレスを標準入力から読み込んで、各アドレスに
+対応するファイル名と行番号を標準出力に表示します。
+このモードでは
 \fBaddr2line\fR
-��ѥ�����ǡ�ưŪ�����ӽФ��줿���ɥ쥹���Ѵ����뤿������ѤǤ��ޤ���
+をパイプ中で、動的に選び出されたアドレスを変換するために利用できます。
 .PP
-���Ϥη�����
-\fB\s-1�ե�����̾:���ֹ�\s0\fR
-�Ǥ���
-�ե�����̾�ȹ��ֹ��
-�ƥ��ɥ쥹���Ȥ˲��Ԥ��ƽ��Ϥ���ޤ���
+出力の形式は
+\fB\s-1ファイル名:行番号\s0\fR
+です。
+ファイル名と行番号は
+各アドレスごとに改行して出力されます。
 \fB\-f\fR
-���ץ���󤬻��ꤵ���ȡ�
-\fB\s-1�ե�����̾:���ֹ�\s0\fR
-�ιԤ�����
-���ɥ쥹��ޤ�ؿ���̾����
-\fB\s-1�ؿ�̾\s0\fR
-�ιԤȤ��ƽ��Ϥ��ޤ���
+オプションが指定されると、
+\fB\s-1ファイル名:行番号\s0\fR
+の行の前に
+アドレスを含む関数の名前を
+\fB\s-1関数名\s0\fR
+の行として出力します。
 .PP
-�ե�����̾�ޤ��ϴؿ�̾������Ǥ��ʤ����ϡ�
+ファイル名または関数名が特定できない場合は、
 \fBaddr2line\fR
-�Ϥ���餬ɽ�������٤����� 2 �ĤΥ����������ޡ�����ɽ�����ޤ���
-���ֹ椬����Ǥ��ʤ�����
+はそれらが表示されるべき場所に 2 つのクエスチョンマークを表示します。
+行番号が特定できない場合は
 \fBaddr2line\fR
-�� 0 ��ɽ�����ޤ���
-.SH ���ץ����
+は 0 を表示します。
+.SH オプション
 .IX Header "OPTIONS"
-�����������Ȥ���ɽ������Ƥ��롢
-Ĺ���������û�����Υ��ץ����ϡ������Ǥ���
+ここに選択肢として表示されている、
+長形式および短形式のオプションは、等価です。
 .IP "\fB\-b\fR \fIbfdname\fR" 4
 .IX Item "-b bfdname"
 .PD 0
 .IP "\fB\-\-target=\fR\fIbfdname\fR" 4
 .IX Item "--target=bfdname"
 .PD
-���֥������ȥե�����Υ��֥������ȡ������ɷ�����
+オブジェクトファイルのオブジェクト・コード形式を
 \fIbfdname\fR
-�ǻ��ꤷ�ޤ���
+で指定します。
 .IP "\fB\-C\fR" 4
 .IX Item "-C"
 .PD 0
 .IP "\fB\-\-demangle[=\fR\fIstyle\fR\fB]\fR" 4
 .IX Item "--demangle[=style]"
 .PD
-����ܥ�̾������ɽ����桼����٥��ɽ���˥ǥ����� (\fIdemangle\fR) ���ޤ���
-�ä��ƥ����ƥब�ղä�����Ƭ�Υ������������������Τǡ�
-����ˤ�ä� \*(C+ �δؿ�̾���狼��䤹���ʤ�ޤ���
-����ѥ��餴�Ȥˡ��ޥ󥰥���ˡ���ۤʤ�ޤ���
-���ץ����Υǥޥ󥰥륹�������������Ѥ��뤳�Ȥǡ�
-����ѥ���ˤ��ä��ǥޥ󥰥륹������������ǽ�Ǥ���
+シンボル名の内部表現をユーザレベルの表現にデコード (\fIdemangle\fR) します。
+加えてシステムが付加した先頭のアンダスコアも取り除くので、
+これによって \*(C+ の関数名がわかりやすくなります。
+コンパイラごとに、マングル方法が異なります。
+オプションのデマングルスタイル引数を使用することで、
+コンパイラにあったデマングルスタイルを選択可能です。
 .IP "\fB\-e\fR \fIfilename\fR" 4
 .IX Item "-e filename"
 .PD 0
 .IP "\fB\-\-exe=\fR\fIfilename\fR" 4
 .IX Item "--exe=filename"
 .PD
-���ɥ쥹���Ѵ������оݤμ¹ԥե�����̾����ꤷ�ޤ���
-�ǥե���ȤΥե�����̾��
+アドレスを変換する対象の実行ファイル名を指定します。
+デフォルトのファイル名は
 \fIa.out\fR
-�Ǥ���
+です。
 .IP "\fB\-f\fR" 4
 .IX Item "-f"
 .PD 0
 .IP "\fB\-\-functions\fR" 4
 .IX Item "--functions"
 .PD
-�ե�����ȹ��ֹ����˲ä��ƴؿ�̾��ɽ�����ޤ���
+ファイルと行番号情報に加えて関数名を表示します。
 .IP "\fB\-s\fR" 4
 .IX Item "-s"
 .PD 0
 .IP "\fB\-\-basenames\fR" 4
 .IX Item "--basenames"
 .PD
-�ƥե�����̾�Υ١��� (�ѥ�̾��������ե�����̾��ʬ) �Τߤ�ɽ�����ޤ���
-.SH "��Ϣ����"
+各ファイル名のベース (パス名を除いたファイル名部分) のみを表示します。
+.SH "関連項目"
 .IX Header "SEE ALSO"
 Info
-��
+の
 \fIbinutils\fR
-�ιࡣ
+の項。
 .SH "COPYRIGHT"
 .IX Header "COPYRIGHT"
 Copyright (c) 1991, 92, 93, 94, 95, 96, 97, 98, 99, 2000,
@@ -254,9 +254,9 @@ or any later version published by the Free Software Foundation;
 with no Invariant Sections, with no Front-Cover Texts, and with no
 Back-Cover Texts.  A copy of the license is included in the
 section entitled ``\s-1GNU\s0 Free Documentation License''.
-.SH ���ܸ���
-��� ����(hnokubi@yyy.or.jp): FreeBSD �Ѥ�����
-.\" .SH ����
-.\" ��� ���� <hnokubi@yyy.or.jp> 1998/09/23 FreeBSD �Ѥ�������
-.\" ������ͺ <horikawa@jp.FreeBSD.org> 2001/08/04 binutils 2.11.2 �Ѥ˽�����
-.\" ������ͺ <horikawa@jp.FreeBSD.org> 2002/12/29 binutils 2.12.91 �Ѥ˽�����
+.SH 日本語訳
+野首 寛高(hnokubi@yyy.or.jp): FreeBSD 用に翻訳
+.\" .SH 履歴
+.\" 野首 寛高 <hnokubi@yyy.or.jp> 1998/09/23 FreeBSD 用に翻訳。
+.\" 堀川和雄 <horikawa@jp.FreeBSD.org> 2001/08/04 binutils 2.11.2 用に修正。
+.\" 堀川和雄 <horikawa@jp.FreeBSD.org> 2002/12/29 binutils 2.12.91 用に修正。

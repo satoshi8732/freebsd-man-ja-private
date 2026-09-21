@@ -18,33 +18,33 @@ the original English.
 ..
 .\" $FreeBSD$
 .TH PFBTOPS 1 "1 May 2003" "Groff Version 1.19"
-.SH ̾��
-pfbtops \- .pfb �ե����ޥåȤ� PostScript �ե���Ȥ�
-ASCII �ե����ޥåȤ��Ѵ�����
-.SH ��
+.SH 名称
+pfbtops \- .pfb フォーマットの PostScript フォントを
+ASCII フォーマットに変換する
+.SH 書式
 .B pfbtops
 [
 .I pfb_file
 ]
-.SH ����
+.SH 解説
 .B pfbtops
-�ϡ�
+は、
 .B .pfb
-�ե����ޥåȤ� PostScript �ե���Ȥ�
-ASCII �ե����ޥåȤ��Ѵ�����
-�ƥ����ȥѥ��åȤ�Ĺ���Ԥ�û�������ޤ��ʬ�䤷�ޤ���
+フォーマットの PostScript フォントを
+ASCII フォーマットに変換し、
+テキストパケットの長い行を短いかたまりに分割します。
 .I pfb_file
-����ά���줿��硢ɸ�����Ϥ��� pfb �ե�������ɤ߹��ߤޤ���
-ASCII �ե����ޥåȤ� PostScript �ե���Ȥ�ɸ����Ϥ˽��Ϥ���ޤ���
-MS-DOS �ˤ����� PostScript �ե���Ȥ�����
+が省略された場合、標準入力から pfb ファイルを読み込みます。
+ASCII フォーマットの PostScript フォントは標準出力に出力されます。
+MS-DOS における PostScript フォントは普通
 .B pfb
-�ե����ޥåȤǶ��뤵��ޤ���
+フォーマットで供給されます。
 .LP
-�Ѵ���� ASCII �ե����ޥåȤ� PostScript �ե���Ȥ�
-groff �ǻ��Ѥ��뤳�Ȥ��Ǥ��ޤ���groff ���Ѥ�������
+変換後の ASCII フォーマットの PostScript フォントは
+groff で使用することができます。groff で用いる前に
 .B /usr/share/groff_font/devps/download
-����Ͽ����ɬ�פ�����ޤ���
-.SH ��Ϣ����
+に登録する必要があります。
+.SH 関連項目
 .BR grops (1)
 .
 .\" Local Variables:

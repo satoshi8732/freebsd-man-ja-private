@@ -28,81 +28,81 @@
 .Dd July 26, 2001
 .Dt KLDSYM 2
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm kldsym
-.Nd KLD ��Υ���ܥ�̾�ˤ�븡��
-.Sh �饤�֥��
+.Nd KLD 内のシンボル名による検索
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In sys/param.h
 .In sys/linker.h
 .Ft int
 .Fn kldsym "int fileid" "int command" "void *data"
-.Sh ����
+.Sh 解説
 .Fn kldsym
-�����ƥॳ����ϡ�
+システムコールは、
 .Fa fileid
-�ǻ��ꤵ�줿�⥸�塼��ˤ�����
+で指定されたモジュールにおける
 .Fa data
-�ǻ��ꤵ�줿����ܥ�Υ��ɥ쥹���֤��ޤ���
+で指定されたシンボルのアドレスを返します。
 .Fa fileid
-�� 0 �ξ�硢���٤ƤΥ����ɤ���Ƥ���⥸�塼�뤬��������ޤ���
-���ߡ���������Ƥ���
+が 0 の場合、すべてのロードされているモジュールが検索されます。
+現在、実装されている
 .Fa command
-��
+は
 .Dv KLDSYM_LOOKUP
-�ΤߤǤ���
+のみです。
 .Pp
 .Fa data
-�����ϡ����ι�¤�ΤǤ�:
+引数は、次の構造体です:
 .Pp
 .Bd -literal -offset indent
 struct kld_sym_lookup {
     int         version;        /* sizeof(struct kld_sym_lookup) */
-    char        *symname;       /* �����оݤΥ���ܥ�̾ */
+    char        *symname;       /* 検索対象のシンボル名 */
     u_long      symvalue;
     size_t      symsize;
 };
 .Ed
 .Pp
 .Va version
-���Фϡ�
+メンバは、
 .Fn kldsym
-��Ƥ֥����ɤˤ�äơ�
+を呼ぶコードによって、
 .Fn sizeof "struct kld_sym_lookup"
-�����ꤵ���٤��Ǥ���
-���˼��� 2 �Ĥΰ���
+に設定されるべきです。
+次に示す 2 個の引数
 .Va version
-��
+と
 .Va symname
-�ϡ��桼�������ꤷ�ޤ���
-�Ǹ�� 2 ��
+は、ユーザが指定します。
+最後の 2 個
 .Va symvalue
-��
+と
 .Va symsize
-�ϡ�
+は、
 .Fn kldsym
-�ˤ�ä������ޤ���
-�����ϡ�
+によって埋められます。
+これらは、
 .Va symname
-�˴�Ϣ�դ���줿���ɥ쥹�ȡ�
-����λؤ��Ƥ���ǡ������礭���򡢤��줾���ݻ����ޤ���
-.Sh �����
+に関連付けられたアドレスと、
+それの指しているデータの大きさを、それぞれ保持します。
+.Sh 戻り値
 .Rv -std kldsym
-.Sh ���顼
+.Sh エラー
 .Fn kldsym
-�����ƥॳ����ϼ��ξ��˼��Ԥ��ޤ�:
+システムコールは次の場合に失敗します:
 .Bl -tag -width Er
 .It Bq Er EINVAL
 .Fa data->version
-�ޤ���
+または
 .Fa command
-������ͤ������Ǥ���
+の中の値が不正です。
 .It Bq Er ENOENT
 .Fa fileid
-�����������Ǥ��뤫�����ꤷ������ܥ뤬���Ĥ���ޤ���Ǥ�����
+引数が不正であるか、指定したシンボルが見つかりませんでした。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr kldfind 2 ,
 .Xr kldfirstmod 2 ,
 .Xr kldload 2 ,
@@ -112,8 +112,8 @@ struct kld_sym_lookup {
 .Xr modnext 2 ,
 .Xr modstat 2 ,
 .Xr kld 4
-.Sh ���
+.Sh 歴史
 .Fn kldsym
-�����ƥॳ�����
+システムコールは
 .Fx 3.0
-�ǤϤ�����о줷�ޤ�����
+ではじめて登場しました。

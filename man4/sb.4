@@ -15,68 +15,68 @@
 .Dd August 9, 1997
 .Dt SB 4 i386
 .Os FreeBSD
-.Sh ̾��
+.Sh 名称
 .Nm sb
-.Nd Creative Labs SoundBlaster �ڤӸߴ��ǥХ����ɥ饤��
-.Sh ��
-sb �ɥ饤�Фǥ��ݡ��Ȥ���Ƥ������ƤΥ�����ɥ����ɤˤϰʲ���ɬ�פǤ�:
+.Nd Creative Labs SoundBlaster 及び互換デバイスドライバ
+.Sh 書式
+sb ドライバでサポートされている全てのサウンドカードには以下が必要です:
 .Cd controller snd0
 .Pp
-SoundBlaster, SB Pro, SoundBlaster16, Pro Audio Spectrum (SB ���ߥ�졼��)
-�Τ����:
+SoundBlaster, SB Pro, SoundBlaster16, Pro Audio Spectrum (SB エミュレート)
+のために:
 .Cd "device sb0 at isa? port 0x220 irq 7 drq 1"
 .Pp
-SB16 ��ͭ�Υ��ݡ��ȤΤ����:
+SB16 固有のサポートのために:
 .Cd "device sbxvi0 at isa? drq 5"
 .Pp
-SoundBlaster 16 �ˤ����� 16 �ӥå� MIDI ���ݡ��ȤΤ����:
+SoundBlaster 16 における 16 ビット MIDI サポートのために:
 .Cd "device sbmidi0 at isa? port 0x300"
 .Pp
-Jazz16 ���ݡ��Ȥ��ɲä��뤿���:
+Jazz16 サポートを追加するために:
 .Cd "options JAZZ16"
 .Pp
-Logitech SoundMan Games ���ݡ��Ȥ��ɲä��뤿���:
+Logitech SoundMan Games サポートを追加するために:
 .Cd "options SM_GAMES"
 .Pp
-SG NX Pro mixer ���ݡ��Ȥ��ɲä��뤿���:
+SG NX Pro mixer サポートを追加するために:
 .Cd "options __SGNXPRO__"
 .Pp
-OPL-2/3 �� SoundBlaster, SoundBlaster Pro, SB 16, Pro Audio
-Spectrum �ǻȤ��Ƥ��ޤ���Yamaha OPL-2/OPL-3 FM ���ݡ��ȤΤ����:
+OPL-2/3 は SoundBlaster, SoundBlaster Pro, SB 16, Pro Audio
+Spectrum で使われています。Yamaha OPL-2/OPL-3 FM サポートのために:
 .Cd "device opl0  at isa? port 0x388"
-.Sh ����
-���Υɥ饤�Ф� SoundBlaster 1.0 ���� SoundBlaster 16/SoundBlaster 32 
-��ޤ� SoundBlaster �ե��ߥ�򥫥С����Ƥ��ޤ���awe �ɥ饤�Ф� 
-AWE32/64 �ε�ǽ���󶡤��Ƥ��ޤ������Υɥ饤�Ф� FreeBSD 2.0-current 
-�С�����󤫤� 3.0-current �С������ޤ��󶡤���Ƥ��ޤ���
-����ե������ conflicts ������ɤ�Ȥ����Ȥˤ�äơ�
-ʣ���Υ����ɤ�Ʊ��� DMA ����Ѥ���褦������Ǥ��ޤ���
-����ϡ�ʣ���Υ��ߥ�졼������Ԥ��ܡ��ɤ�ͭ�ѤǤ���
-.Sh �Х�
-SB16 �ϡ��̤Υɥ饤�Ф�Ʊ�� IRQ �ȥ��ɥ쥹��Ȥ����ᡢ���ФǤ��ʤ� 
-snd �ɥ饤�Ф�¸�ߤ���Ǥ��礦��
-����ϡ����ͤ�ȯ�����Ƥ���ȥ����ͥ뤬�ͤ��뤿��Ǥ���
-����ϡ�sb16 �ǥХ����ιԤ� "confilicts" ������ɤ��Ѥ���в���Ǥ��ޤ���
+.Sh 解説
+このドライバは SoundBlaster 1.0 から SoundBlaster 16/SoundBlaster 32 
+を含む SoundBlaster ファミリをカバーしています。awe ドライバは 
+AWE32/64 の機能を提供しています。このドライバは FreeBSD 2.0-current 
+バージョンから 3.0-current バージョンまで提供されています。
+設定ファイルに conflicts キーワードを使うことによって、
+複数のカードを同一の DMA を使用するように設定できます。
+これは、複数のエミュレーションを行うボードに有用です。
+.Sh バグ
+SB16 は、別のドライバと同じ IRQ とアドレスを使うため、検出できない 
+snd ドライバも存在するでしょう。
+これは、衝突が発生しているとカーネルが考えるためです。
+これは、sb16 デバイスの行に "confilicts" キーワードを用いれば回避できます。
 .Pp
-���ߤΥС������ϡ��ǥХ����򥯥��������ƺ��٥����ץ󤹤뤳�Ȥʤ�
-�⡼�ɤ��ѹ����뵡ǽ�򥵥ݡ��Ȥ򤷤Ƥ��ޤ��󡣤��ε�ǽ�Υ��ݡ��ȤˤĤ��Ƥϡ�
-����ΥС������˼�������뤫�⤷��ޤ��� 
-.Sh ��Ϣ����
+現在のバージョンは、デバイスをクローズして再度オープンすることなく
+モードを変更する機能をサポートをしていません。この機能のサポートについては、
+将来のバージョンに実装されるかもしれません。 
+.Sh 関連項目
 cdcontrol(1),  cdplay(1),  mixer(8)
-.Sh ���
-���ꥸ�ʥ�� SoundBlaster DSP, SoundBlaster 16 MIDI, Yamaha OPL-3 
-�ǥХ�����
+.Sh 作者
+オリジナルの SoundBlaster DSP, SoundBlaster 16 MIDI, Yamaha OPL-3 
+デバイスは
 .An Hannu Savolainen
-���񤭤ޤ�����
-SoundBlaster 16 DSP �Υ����ɤ�
+が書きました。
+SoundBlaster 16 DSP のコードは
 .An J. Schuber Aq jsb@sth.ruhr-uni-bochum.de
-���񤭤ޤ�����
-OPL-3 �ɥ饤�Ф��Ф�����ɤ�
+が書きました。
+OPL-3 ドライバに対する改良は
 .An Rob Hooft Aq hooft@chem.ruu.nl
-���Ԥ��ޤ�����
-.Sh ���
-Sound Galaxy NX Pro �Υ��ݡ��Ȥ� Hunyue Yau ���ɲä��ޤ���(Jan 6 1994)��
-MV ProSonic/Jazz 16 �� 16�ӥåȥ��ݡ��Ȥ� JRA Gibson ���ɲä��ޤ���
-(April 1995)�� 
-Audio Excel DSP 16 ���ݡ��Ȥ� Riccardo Facchetti ���ɲä��ޤ���(March
-24 1995)��  
+が行いました。
+.Sh 歴史
+Sound Galaxy NX Pro のサポートは Hunyue Yau が追加しました(Jan 6 1994)。
+MV ProSonic/Jazz 16 の 16ビットサポートは JRA Gibson が追加しました
+(April 1995)。 
+Audio Excel DSP 16 サポートは Riccardo Facchetti が追加しました(March
+24 1995)。  

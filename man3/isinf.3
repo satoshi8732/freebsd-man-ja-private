@@ -36,47 +36,47 @@
 .Dd January 29, 1994
 .Dt ISINF 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm isinf ,
 .Nm isnan ,
 .Nm isnanf
-.Nd ̵���� (infinity) �ޤ�������� (not-a-number) �Υƥ���
-.Sh �饤�֥��
+.Nd 無限大 (infinity) または非数値 (not-a-number) のテスト
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .Ft int
 .Fn isinf double
 .Ft int
 .Fn isnan double
 .Ft int
 .Fn isnanf float
-.Sh ����
+.Sh 解説
 .Fn isinf
-�ؿ��ϡ����ͤ�
-��̵�����
+関数は、数値が
+「無限大」
 .Dq \\*(If
-�Ǥ����
-1 �򡢤����Ǥʤ����
-0 ���֤��ޤ���
+であれば
+1 を、そうでなければ
+0 を返します。
 .Pp
 .Fn isnan
-�ؿ������
+関数および
 .Fn isnanf
-�ؿ��ϡ������ټ¿��ޤ���ñ���ټ¿���
-������͡�
+関数は、倍精度実数または単精度実数が
+「非数値」
 .Dq not-a-number
-�Ǥ���� 1 ��
-�����Ǥʤ���� 0 ���֤��ޤ���
-.Sh ��Ϣ����
+であれば 1 を、
+そうでなければ 0 を返します。
+.Sh 関連項目
 .Xr math 3
 .Rs
 .%T "IEEE Standard for Binary Floating-Point Arithmetic"
 .%Q ANSI
 .%R Std 754-1985
 .Re
-.Sh �Х�
+.Sh バグ
 .Tn VAX
-�����
-Tahoe �Τɤ������ư���������ˤ����Ƥ⡢
-��̵����פ������͡פ�ʬ���뤿����ͤ�����ޤ���
-�����Υ������ƥ������Ǥϡ������Υ롼����ϡ���� 0 ���֤��ޤ���
+および
+Tahoe のどちらの浮動小数点数においても、
+「無限大」や「非数値」を見分けるための値を持ちません。
+これらのアーキテクチャ上では、これらのルーチンは、常に 0 を返します。

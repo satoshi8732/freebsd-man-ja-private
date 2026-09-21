@@ -41,47 +41,47 @@
 .Dd June 4, 1993
 .Dt STRCAT 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm strcat
-.Nd ʸ�����Ϣ��
-.Sh �饤�֥��
+.Nd 文字列の連結
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft char *
 .Fn strcat "char *s" "const char *append"
 .Ft char *
 .Fn strncat "char *s" "const char *append" "size_t count"
-.Sh ����
+.Sh 解説
 .Fn strcat
-�����
+および
 .Fn strncat
-�ؿ��ϡ��̥�ʸ���ǽ�λ����ʸ����
+関数は、ヌル文字で終了する文字列
 .Fa append
-��̥�ʸ���ǽ�λ����ʸ����
+をヌル文字で終了する文字列
 .Fa s
-�ν������ɲä������˽�ü��
+の終わりに追加し、次に終端の
 .Ql \e0
-���ɲä��ޤ���ʸ����
+を追加します。文字列
 .Fa s
-�ϡ���̤��ݻ�����Τ˽�ʬ�ʥ��ڡ�������äƤ��ʤ���Фʤ�ޤ���
+は、結果を保持するのに十分なスペースを持っていなければなりません。
 .Pp
 .Fn strncat
-�ؿ��ϡ�
+関数は、
 .Fa append
-����
+から
 .Fa count
-��Ķ���ʤ�����ʸ�����ɲä������˽�ü��
+を超えない数の文字を追加し、次に終端の
 .Ql \e0
-���ɲä��ޤ���
-.Sh �����
+を追加します。
+.Sh 戻り値
 .Fn strcat
-�����
+および
 .Fn strncat
-�ؿ��ϡ��ݥ���
+関数は、ポインタ
 .Fa s
-���֤��ޤ���
-.Sh ��Ϣ����
+を返します。
+.Sh 関連項目
 .Xr bcopy 3 ,
 .Xr memccpy 3 ,
 .Xr memcpy 3 ,
@@ -89,10 +89,10 @@
 .Xr strcpy 3 ,
 .Xr strlcat 3 ,
 .Xr strlcpy 3
-.Sh ����
+.Sh 規格
 .Fn strcat
-�����
+および
 .Fn strncat
-�ؿ��ϡ�
+関数は、
 .St -isoC
-Ŭ�礷�Ƥ��ޤ���
+適合しています。

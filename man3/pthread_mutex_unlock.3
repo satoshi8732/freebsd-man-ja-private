@@ -31,47 +31,47 @@
 .Dd July 30, 1998
 .Dt PTHREAD_MUTEX_UNLOCK 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm pthread_mutex_unlock
-.Nd mutex �Υ��å�����
-.Sh �饤�֥��
+.Nd mutex のロックを解除
+.Sh ライブラリ
 .Lb libc_r
-.Sh ��
+.Sh 書式
 .In pthread.h
 .Ft int
 .Fn pthread_mutex_unlock "pthread_mutex_t *mutex"
-.Sh ����
-���ߤΥ���åɤ�
+.Sh 解説
+現在のスレッドが
 .Fa mutex
-�Υ��å����ݻ����Ƥ�����ˤϡ�
+のロックを保持している場合には、
 .Fn pthread_mutex_unlock
-�ؿ��ϡ�
+関数は、
 .Fa mutex
-�Υ��å��������ޤ���
-.Sh �����
-���꤬�ʤ����ϡ�
+のロックを解除します。
+.Sh 戻り値
+問題がない場合は、
 .Fn pthread_mutex_unlock
-�� 0 ���֤��ޤ���
-���꤬������ϡ����Υ��顼�򼨤�����˥��顼�ֹ椬�֤���ޤ���
-.Sh ���顼
+は 0 を返します。
+問題がある場合は、そのエラーを示すためにエラー番号が返されます。
+.Sh エラー
 .Fn pthread_mutex_trylock
-�ϰʲ��ξ��˼��Ԥ��ޤ���
+は以下の場合に失敗します。
 .Bl -tag -width Er
 .It Bq Er EINVAL
 .Fa mutex
-�ˤ�äƻ��ꤵ�줿�ͤ�̵���Ǥ���
+によって指定された値が無効です。
 .It Bq Er EPERM
-���ߤΥ���åɤ�
+現在のスレッドが
 .Fa mutex
-�Υ��å����ݻ����Ƥ��ޤ���
+のロックを保持していません。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr pthread_mutex_destroy 3 ,
 .Xr pthread_mutex_init 3 ,
 .Xr pthread_mutex_lock 3 ,
 .Xr pthread_mutex_trylock 3
-.Sh ����
+.Sh 規格
 .Fn pthread_mutex_unlock
-��
+は
 .St -p1003.1-96
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

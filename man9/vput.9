@@ -32,34 +32,34 @@
 .Dd July 24, 1996
 .Os
 .Dt VPUT 9
-.Sh ̾��
+.Sh 名称
 .Nm vput
-.Nd vnode �λ��ѥ�����ȤΥǥ�����Ȥȥ��å����
-.Sh ��
+.Nd vnode の使用カウントのデクリメントとロック解除
+.Sh 書式
 .In sys/param.h
 .In sys/vnode.h
 .Ft void
 .Fn vput "struct vnode *vp"
-.Sh ����
-vnode ��
+.Sh 解説
+vnode の
 .Va v_usecount
-�ե�����ɤ�ǥ�����Ȥ������� vnode �Υ��å��������ޤ���
+フィールドをデクリメントし、その vnode のロックを解除します。
 .Bl -tag -width 2n
 .It Fa vp
-�ǥ�����Ȥ���� vnode��
+デクリメントされる vnode。
 .El
 .Pp
-�������ϡ�
+この操作は、
 .Xr vrele 9
-��³��
+が続く
 .Xr VOP_UNLOCK 9
-�θƤӽФ��ȡ���ǽŪ��Ʊ���Ǥ���
-.Sh ��Ϣ����
+の呼び出しと、機能的に同等です。
+.Sh 関連項目
 .Xr vnode 9 ,
 .Xr VOP_UNLOCK 9 ,
 .Xr vref 9 ,
 .Xr vrele 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

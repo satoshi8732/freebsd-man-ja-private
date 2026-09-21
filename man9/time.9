@@ -35,12 +35,12 @@
 .Dd September 17, 2004
 .Dt TIME 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm boottime ,
 .Nm time_second ,
 .Nm time_uptime
-.Nd �����ƥ�����ѿ�
-.Sh ��
+.Nd システム時刻変数
+.Sh 書式
 .In sys/time.h
 .Bl -item -compact
 .It
@@ -50,17 +50,17 @@
 .It
 .Va extern struct timeval time_uptime ;
 .El
-.Sh ����
+.Sh 解説
 .Va boottime
-�ѿ��ϥ����ƥ�Υ֡��Ȼ�����ݻ����ޤ���
+変数はシステムのブート時刻を保持します。
 .Pp
 .Va time_second
-�ѿ��ϥ����ƥ��
-.Dq �����
-�����å� (��) �Ǥ���
+変数はシステムの
+.Dq 柱時計
+クロック (秒) です。
 .Pp
 .Va time_uptime
-�ѿ��ϡ��֡��Ȥ��Ƥ�����ÿ��Ǥ���
+変数は、ブートしてからの秒数です。
 .Pp
 .Xr bintime 9 ,
 .Xr getbintime 9 ,
@@ -68,19 +68,19 @@
 .Xr getmicrotime 9 ,
 .Xr nanotime 9 ,
 .Xr getnanotime 9
-�ؿ��ϡ����߻���������Τˡ��Բ�ʬ�˼������뤳�Ȥ��Ǥ��ޤ���
-Ʊ�ͤ�
+関数は、現在時刻をより正確に、不可分に取得することができます。
+同様に
 .Xr binuptime 9 ,
 .Xr getbinuptime 9 ,
 .Xr microuptime 9 ,
 .Xr getmicrouptime 9 ,
 .Xr nanouptime 9 ,
 .Xr getnanouptime 9
-�ؿ��ϡ��֡��Ȥ��Ƥ���ηв���֤������Τˡ��Բ�ʬ�˼������뤳�Ȥ��Ǥ��ޤ���
+関数は、ブートしてからの経過時間をより正確に、不可分に取得することができます。
 .Va boottime
-�ѿ��ϡ����̤ʷٲ��ʤ����ɤ߽񤭤��뤳�Ȥ��Ǥ��ޤ���
+変数は、特別な警戒なしに読み書きすることができます。
 .Pp
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr clock_settime 2 ,
 .Xr ntp_adjtime 2 ,
 .Xr settimeofday 2 ,

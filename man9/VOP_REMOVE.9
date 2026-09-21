@@ -32,37 +32,37 @@
 .Dd July 24, 1996
 .Os
 .Dt VOP_REMOVE 9
-.Sh ̾��
+.Sh 名称
 .Nm VOP_REMOVE ,
 .Nm VOP_RMDIR
-.Nd �ե�����ޤ��ϥǥ��쥯�ȥ�κ��
-.Sh ��
+.Nd ファイルまたはディレクトリの削除
+.Sh 書式
 .In sys/param.h
 .In sys/vnode.h
 .Ft int
 .Fn VOP_REMOVE "struct vnode *dvp" "struct vnode *vp" "struct componentname *cnp"
 .Ft int
 .Fn VOP_RMDIR "struct vnode *dvp" "struct vnode *vp" "struct componentname *cnp"
-.Sh ����
-�����Υ���ȥ�ݥ���Ȥϡ����줾��ե�����ȥǥ��쥯�ȥ�������ޤ���
+.Sh 解説
+これらのエントリポイントは、それぞれファイルとディレクトリを削除します。
 .Pp
-�����ϰʲ����̤�Ǥ���
+引数は以下の通りです。
 .Bl -tag -width dvp
 .It Fa dvp
-�ǥ��쥯�ȥ�� vnode��
+ディレクトリの vnode。
 .It Fa vp
-����оݥե������ vnode��
+削除対象ファイルの vnode。
 .It Fa cnp
-�ե�����Υѥ�̾����
+ファイルのパス名情報。
 .El
-.Sh ���å�
+.Sh ロック
 .Fa dvp
-�����
+および
 .Fa vp
-���ˡ�������˥��å�����Ƥ���٤��ǡ���������å�����³���Ƥ��ޤ���
-.Sh �����
-�������ˤ� 0 ���֤��졢�����Ǥʤ����ˤϥ��顼�����ɤ��֤���ޤ���
-.Sh ����������
+共に、入る時にロックされているべきで、戻り時もロックされ続けています。
+.Sh 戻り値
+成功時には 0 が返され、そうでない場合にはエラーコードが返されます。
+.Sh 疑似コード
 .Bd -literal
 int
 vop_remove(struct vnode *dvp, struct vnode *vp, struct componentname *cnp)
@@ -75,14 +75,14 @@ vop_remove(struct vnode *dvp, struct vnode *vp, struct componentname *cnp)
     }
 
     /*
-     * �ǥ��쥯�ȥ꤫�� cnp->cn_nameptr ��̾����������vp �Υ��
-     * ������Ȥ򹹿����ޤ���
+     * ディレクトリから cnp->cn_nameptr の名前を削除し、vp のリンク
+     * カウントを更新します。
      */
     ...;
 
     /*
-     * "." �κ�����ߤ�������դ��Ƥ���������XXX ����Ϥ��
-     * ���ؤǼ�갷����٤��Ǥ���
+     * "." の削除を試みる場合は注意してください。XXX これはより
+     * 上層で取り扱われるべきです。
      */
     if (dvp == vp)
 	vrele(vp);
@@ -93,17 +93,17 @@ vop_remove(struct vnode *dvp, struct vnode *vp, struct componentname *cnp)
     return error;
 }
 .Ed
-.Sh ���顼
+.Sh エラー
 .Bl -tag -width Er
 .It Bq Er EPERM
-�ե�������ѹ��Բ�ǽ�Ǥ���
+ファイルは変更不可能です。
 .It Bq Er ENOTEMPTY
-���ǤϤʤ��ǥ��쥯�ȥ�������褦�Ȥ��ޤ�����
+空ではないディレクトリを削除しようとしました。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr vnode 9 ,
 .Xr VOP_LOOKUP 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

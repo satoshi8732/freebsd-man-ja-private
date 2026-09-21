@@ -32,54 +32,54 @@
 .Dd July 24, 1996
 .Os
 .Dt VOP_FSYNC 9
-.Sh ̾��
+.Sh 名称
 .Nm VOP_FSYNC
-.Nd �ե����륷���ƥ�Хåե��Υե�����ؤ��Ǥ��Ф�
-.Sh ��
+.Nd ファイルシステムバッファのファイルへの吐き出し
+.Sh 書式
 .In sys/param.h
 .In sys/vnode.h
 .Ft int
 .Fn VOP_FSYNC "struct vnode *vp" "struct ucred *cred" "int waitfor" "struct thread *td"
-.Sh ����
-���θƤӽФ��ϥե���������Ƥα��줿�Хåե����Ǥ��Ф��ޤ���
+.Sh 解説
+この呼び出しはファイルの全ての汚れたバッファを吐き出します。
 .Xr sync 2
-�����
+および
 .Xr fsync 2
-�����ƥॳ�����������뤿��˻��Ѥ���ޤ���
+システムコールを実装するために使用されます。
 .Pp
-�����ϰʲ����̤�Ǥ���
+引数は以下の通りです。
 .Bl -tag -width waitfor
 .It Fa vp
-�ե������ vnode��
+ファイルの vnode。
 .It Fa cred
-�ƤӽФ�¦�ξ�����
+呼び出し側の証明。
 .It Fa waitfor
-�����Ϥδ�λ��ؿ����ԤĤ٤����ɤ�����
+入出力の完了を関数が待つべきかどうか。
 .Bl -tag -width MNT_NOWAIT
 .It Dv MNT_WAIT
-�����Ϥδ�λ��Ʊ��Ū���Ԥ��ޤ���
+入出力の完了を同期的に待ちます。
 .It Dv MNT_NOWAIT
-���Ƥ������Ϥ򳫻Ϥ��ޤ�����������Ԥ��ޤ���
+全ての入出力を開始しますが、それを待ちません。
 .It Dv MNT_LAZY
-�ե����륷���ƥ�� syncer �ˤ�äƽ���ޤ�Ƥ��ʤ��ǡ�������Ϥ��ޤ���
+ファイルシステムの syncer によって書込まれていないデータを出力します。
 .El
 .It Fa td
-�ƤӽФ��Ƥ��륹��åɡ�
+呼び出しているスレッド。
 .El
 .Pp
-����
+引数
 .Fa waitfor
-��
+は
 .Dv MNT_WAIT
-�ޤ���
+または
 .Dv MNT_NOWAIT
-�Τɤ��餫�ǡ��ؿ���������˽񤭹��ߤν�λ���ԤĤ٤����ɤ�������ꤷ�ޤ���
-.Sh ���å�
-�ե�����ϥ���ȥ���˥��å������٤��Ǥ���
-.Sh �����
-�ƤӽФ��������������ˤ� 0 ���֤��졢
-�����Ǥʤ����ˤ�Ŭ�ڤʥ��顼�����ɤ��֤���ޤ���
-.Sh ����������
+のどちらかで、関数が戻る前に書き込みの終了を待つべきかどうかを指定します。
+.Sh ロック
+ファイルはエントリ時にロックされるべきです。
+.Sh 戻り値
+呼び出しが成功した場合には 0 が返され、
+そうでない場合には適切なエラーコードが返されます。
+.Sh 疑似コード
 .Bd -literal
 int
 vop_fsync(struct vnode *vp, struct ucred *cred, int waitfor, struct thread *td)
@@ -95,13 +95,13 @@ loop:
 	nbp = bp->b_vnbufs.le_next;
 
 	/*
-	 * ���˽񤭹�����ΥХåե���̵�뤷�ޤ���
+	 * 既に書き込み中のバッファを無視します。
 	 */
 	if (bp->b_flags & B_BUSY)
 	    continue;
 	
 	/*
-	 * �Хåե�������Ƥ��뤫��ǧ���ޤ���
+	 * バッファが汚れているか確認します。
 	 */
 	if ((bp->b_flags & B_DELWRI) == 0)
 	    panic("vop_fsync: not dirty");
@@ -128,22 +128,22 @@ loop:
     }
 
     /*
-     * �ǥ�������� vnode ��񤭽Ф��ޤ���
+     * ディスク上の vnode を書き出します。
      */
     tv = time;
     return VOP_UPDATE(vp, &tv, &tv, waitfor == MNT_WAIT);
 }
 .Ed
-.Sh ���顼
+.Sh エラー
 .Bl -tag -width Er
 .It Bq Er ENOSPC
-�ե����륷���ƥब���դǤ���
+ファイルシステムが一杯です。
 .It Bq Er EDQUOT
-����������Ķ�ᤷ�ޤ�����
+クォータを超過しました。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr vnode 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

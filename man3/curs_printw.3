@@ -1,9 +1,9 @@
 .\" $FreeBSD$
 .TH curs_printw 3 ""
-.SH ̾��
+.SH 名称
 \fBprintw\fR, \fBwprintw\fR, \fBmvprintw\fR,
 \fBmvwprintw\fR, \fBvwprintw\fR - print formatted output in \fBncurses\fR windows
-.SH ��
+.SH 書式
 \fB#include <ncurses.h>\fR
 
 \fBint printw(char *fmt\fR [\fB, arg\fR] \fB...);\fR
@@ -19,49 +19,49 @@
 .br
 \fBint vwprintw(WINDOW *win, char *fmt, varglist);\fR
 .br
-.SH ����
+.SH 解説
 \fBprintw\fR
-��
+、
 \fBwprintw\fR
-��
+、
 \fBmvprintw\fR
-�������
+、および
 \fBmvwprintw\fR
-�γƥ롼�����
+の各ルーチンは
 \fBprintf\fR
 [
 \fBprintf\fR(3)
-�򻲾�
+を参照
 ]
-��������Ƥ��ޤ����ºݤˤϡ�
+に類似しています。実際には、
 \fBprintf\fR
-�ˤ�äƽ��Ϥ���륹�ȥ�󥰤ϡ�����˻���Υ�����ɥ����
+によって出力されるストリングは、代わりに指定のウィンドウ上で
 \fBwaddstr\fR
-�����Ѥ��줿���Τ褦�˽��Ϥ���ޤ���
+が使用されたかのように出力されます。
 
 \fBvwprintw\fR
-�롼�����
+ルーチンは
 \fBvprintf\fR
 [
 \fBprintf\fR(3)
-�򻲾�
+を参照
 ]
-��������Ƥ��ꡢ�ѿ������ꥹ�Ȥ���Ѥ���
+に類似しており、変数引数リストを使用して
 \fBwprintw\fR
-��¹Ԥ��ޤ���
+を実行します。
 3
-�֤�ΰ�����
+番めの引数は
 \fBva_list\fR
-�Ǥ�������ϡ�
+です。これは、
 \fB<varargs.h>\fR
-���������Ƥ���褦�ˡ������Υꥹ�Ȥ�ؤ��ݥ��󥿤Ǥ���
-.SH �����
-�롼����Ϥ��٤ƽ������Ԥ��������
+で定義されているように、引数のリストを指すポインタです。
+.SH 戻り値
+ルーチンはすべて処理失敗すると整数
 \fBERR\fR
-���֤��Ƥ��ޤ�������������˴�λ�������ϡ�
+を返してきます。処理が正常に完了した場合は、
 \fBERR\fR
-�ʳ��������ͤ��֤��ޤ���
-.SH ��Ϣ����
+以外の整数値を返します。
+.SH 関連項目
 \fBncurses\fR(3), \fBprintf\fR(3), \fBvprintf(3)\fR
 .\"#
 .\"# The following sets edit modes for GNU EMACS

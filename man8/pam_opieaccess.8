@@ -38,113 +38,113 @@
 .Dd January 21, 2002
 .Dt PAM_OPIEACCESS 8
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm pam_opieaccess
-.Nd OPIEAccess PAM �⥸�塼��
-.Sh ��
+.Nd OPIEAccess PAM モジュール
+.Sh 書式
 .Op Ar service-name
 .Ar module-type
 .Ar control-flag
 .Pa pam_opieaccess
 .Op Ar options
-.Sh ����
-���Ȥ� OPIE ǧ�ڤ����Ԥ��Ƥ�
+.Sh 解説
+たとえ OPIE 認証が失敗しても
 .Pf ( Xr pam_unix 8
-�⥸�塼��Τ褦��) ¾�μ��ʤ���Ѥ���
-ǧ�ڤ�μ¤�³�ԤǤ���褦�ˤ��뤿��ˡ�
+モジュールのような) 他の手段を使用して
+認証を確実に続行できるようにするために、
 .Nm
-�⥸�塼���
+モジュールは
 .Xr pam_opie 8
-PAM �⥸�塼������礷�ƻ��Ѥ���ޤ���
-Ŭ�ڤˤ��Υ⥸�塼�����Ѥ��뤿��ˡ�
+PAM モジュールと統合して使用されます。
+適切にこのモジュールを使用するために、
 .Xr pam_opie 8
-�� control-flag ���
+は control-flag 項を
 .Dq Li sufficient
-�ˤ��Ƥ���������
-���ˡ�
+にしてください。
+更に、
 .Nm
-��
+は
 .Xr pam_opie 8
-�Τ������˵��Ҥ� control-flag ���
+のすぐ下に記述し control-flag 項を
 .Dq Li requisite
-�ˤ��Ƥ���������
+にしてください。
 .Pp
 .Nm
-�⥸�塼�뤬��ǽ���󶡤��� PAM ���ƥ���Ϥ��� 1 �Ĥ�
-ǧ�� (authentication) �Ǥ���
+モジュールが機能を提供する PAM カテゴリはただ 1 つで
+認証 (authentication) です。
 .Ar module-type
-��Υѥ�᡼���Ȥ��Ƥϡ�
+項のパラメータとしては、
 .Dq Li auth
-��ǽ�Ȥʤ�ޤ���
-����Ϥޤ�¾�� module-type ���Ф��Ƥ�
-�̥�ؿ� (���⤷�ʤ��ؿ�) ���󶡤��ޤ���
-.Ss OPIEAccess ǧ�ڥ⥸�塼��
-ǧ�ڹ�������
+機能となります。
+これはまた他の module-type に対しては
+ヌル関数 (何もしない関数) を提供します。
+.Ss OPIEAccess 認証モジュール
+認証構成要素
 .Pq Fn pam_sm_authenticate
-�ϼ��� 2 �Ĥξ���
+は次の 2 つの場合に
 .Dv PAM_SUCCESS
-���ᤷ�ޤ���
+を戻します。
 .Bl -enum
 .It
-�桼���� OPIE ��ͭ���ˤ��Ƥ��ޤ���
+ユーザが OPIE を有効にしていません。
 .It
-�桼���� OPIE ��ͭ���ˤ��Ƥ��ơ���⡼�ȥۥ��Ȥ�
+ユーザは OPIE を有効にしていて、リモートホストは
 .Pa /etc/opieaccess
-�˿���Ǥ���ۥ��ȤȤ��Ƶ��Ҥ��Ƥ��ꡢ
-�桼���ϼ�ʬ�Υۡ���ǥ��쥯�ȥ��
+に信頼できるホストとして記述してあり、
+ユーザは自分のホームディレクトリに
 .Pa opiealways
-�Ȥ����ե�������֤��Ƥ��ޤ���
+というファイルを置いていません。
 .El
 .Pp
-�����ʳ��ξ��ϡ�����ǧ�ڹ������Ǥ�
+これら以外の場合は、この認証構成要素は
 .Dv PAM_AUTH_ERR
-���ᤷ�ޤ���
+を戻します。
 .Pp
-�ʲ��� options �बǧ�ڥ⥸�塼����Ϥ��ޤ���
+以下の options 項が認証モジュールに渡せます。
 .Bl -tag -width ".Cm allow_local"
 .It Cm allow_local
-�̾���������������ϡ�
+通常、ローカルログインは、
 .Dq localhost
-����Υ�⡼�ȥ��������Ʊ�����¤�����ޤ���
-���Υ��ץ����ϡ�
+からのリモートログインと同じ制限を受けます。
+このオプションは、
 .Nm
-������˥�������������������褦�ˤ����ޤ���
+が、常にローカルログインを許すようにさせます。
 .It Cm debug
 .Dv LOG_DEBUG
-��٥�ΥǥХå������
+レベルのデバッグ情報を
 .Xr syslog 3
-�ǵ�Ͽ���ޤ���
+で記録します。
 .It Cm no_warn
-�桼���ؤηٹ��å��������޻ߤ��ޤ���
-�����Υ�å������ϥ桼���λ�ߤ�ǧ�ڤ�
-���䤷����ͳ��ޤ�Ǥ��ޤ���
+ユーザへの警告メッセージを抑止します。
+これらのメッセージはユーザの試みた認証を
+拒絶した理由を含んでいます。
 .El
-.Sh ��Ϣ�ե�����
+.Sh 関連ファイル
 .Bl -tag -width ".Pa /etc/opieaccess"
 .It Pa /etc/opieaccess
-���ꤵ�줿�ۥ��Ȥޤ��ϥͥåȥ����
-����ʸˡ�ˤĤ��Ƥε��Ҥ�
+信頼されたホストまたはネットワーク。
+この文法についての記述は
 .Xr opieaccess 5
-�򻲾Ȥ��Ƥ���������
+を参照してください。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr opie 4 ,
 .Xr opieaccess 5 ,
 .Xr pam.conf 5 ,
 .Xr pam 8 ,
 .Xr pam_opie 8
-.Sh ���
+.Sh 作者
 .Nm
-�⥸�塼��Ȥ��Υޥ˥奢��ڡ����ϡ�
+モジュールとこのマニュアルページは、
 .Fx
-�ץ��������ȤΤ���� ThinkSec AS �����
-Network Associates, Inc. �Ҥ�
-Security Research ����Ǥ���
-NAI Labs �ˤ�äơ�
+プロジェクトのために ThinkSec AS および
+Network Associates, Inc. 社の
+Security Research 部門である
+NAI Labs によって、
 DARPA/SPAWAR contract N66001-01-C-8035
 .Pq Dq CBOSS
-����˴�Ť�
+契約に基づき
 DARPA CHATS research program
-�ΰ�ĤȤ��Ƴ�ȯ����ޤ�����
+の一環として開発されました。
 .\" Translated by Tetsuro Furuya <ht5t-fry@asahi-net.or.jp> , Oct., 2002.
 .\" Checked by Kazuo Horikawa <horikawa@jp.FreeBSD.org>  , Oct., 2002.

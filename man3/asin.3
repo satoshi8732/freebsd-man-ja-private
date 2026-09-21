@@ -32,60 +32,60 @@
 .\"     from: @(#)asin.3	5.1 (Berkeley) 5/2/91
 .\" %FreeBSD: src/lib/msun/man/asin.3,v 1.6.2.4 2001/12/17 10:08:36 ru Exp %
 .\"
-.\" WORD: range      ���[asin.3]
-.\" WORD: principal  ����[asin.3]
-.\" WORD: radian     �饸����[asin.3]
+.\" WORD: range      区間[asin.3]
+.\" WORD: principal  主値[asin.3]
+.\" WORD: radian     ラジアン[asin.3]
 .\"
 .\" $FreeBSD$
 .Dd May 2, 1991
 .Dt ASIN 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm asin ,
 .Nm asinf
-.Sh �饤�֥��
+.Sh ライブラリ
 .Lb libm
-.Nd �������ؿ�
-.Sh ��
+.Nd 逆正弦関数
+.Sh 書式
 .In math.h
 .Ft double
 .Fn asin "double  x"
 .Ft float
 .Fn asinf "float  x"
-.Sh ����
+.Sh 解説
 .Fn asin
-�����
+および
 .Fn asinf
-�ؿ��ϡ�
+関数は、
 .Fa x
-�ε������μ��ͤ�׻����ޤ���
-[-1, +1] �ζ�ֳ��ΰ����ˤ�äơ��ΰ襨�顼��ȯ�����ޤ���
-�ݤ�ˤ������ε����ϡ�
+の逆正弦の主値を計算します。
+[-1, +1] の区間外の引数によって、領域エラーが発生します。
+丸めによる誤差の議論は、
 .Xr math 3
-�򻲾Ȥ��Ƥ���������
-.Sh �����
+を参照してください。
+.Sh 戻り値
 .Fn asin
-�����
+および
 .Fn asinf
-�ؿ��ϡ�
+関数は、
 .Bk -words
 .Bq -\*(Pi/2 , +\*(Pi/2
 .Ek
-�饸����ζ�֤ε��������֤��ޤ���
+ラジアンの区間の逆正弦を返します。
 .Tn VAX
-�����
+および
 .Tn Tahoe
-�Ǥϡ�
+では、
 .Bd -unfilled -offset indent
 .Pf \&| Ns Ar x Ns \&| > 1
 .Ed
 .Pp
-�ξ��ˡ��������Х��ѿ�
+の場合に、グローバル変数
 .Va errno
-��
+を
 .Er EDOM
-�����ꤷ��ͽ�󤵤줿���ڥ��ɥե���Ȥ���������ޤ���
-.Sh ��Ϣ����
+に設定し、予約されたオペランドフォルトが生成されます。
+.Sh 関連項目
 .Xr acos 3 ,
 .Xr atan 3 ,
 .Xr atan2 3 ,
@@ -96,8 +96,8 @@
 .Xr sinh 3 ,
 .Xr tan 3 ,
 .Xr tanh 3
-.Sh ����
+.Sh 規格
 .Fn asin
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

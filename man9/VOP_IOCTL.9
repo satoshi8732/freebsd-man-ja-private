@@ -32,43 +32,43 @@
 .Dd July 24, 1996
 .Os
 .Dt VOP_IOCTL 9
-.Sh ̾��
+.Sh 名称
 .Nm VOP_IOCTL
-.Nd �ǥХ�����ͭ������
-.Sh ��
+.Nd デバイス固有の制御
+.Sh 書式
 .In sys/param.h
 .In sys/vnode.h
 .Ft int
 .Fn VOP_IOCTL "struct vnode *vp" "u_long command" "caddr_t data" "int fflag" "struct ucred *cred" "struct thread *td"
-.Sh ����
-�ǥХ�����¸����ˡ�ǤΥե���������ޤ���
+.Sh 解説
+デバイス依存の方法でのファイルを操作します。
 .Pp
-�����ϰʲ����̤�Ǥ���
+引数は以下の通りです。
 .Bl -tag -width command
 .It Fa vp
-�ե����� (�̾�ϥǥХ�����ɽ������) �� vnode��
+ファイル (通常はデバイスを表現する) の vnode。
 .It Fa command
-�¹Ԥ��٤��ǥХ�����ͭ����
+実行すべきデバイス固有の操作。
 .It Fa cnp
-���ꤵ�줿���Τ���γ�ĥ�ǡ�����
+指定された操作のための拡張データ。
 .It Fa fflag
-���Ĥ��Υե饰 ???
+幾つかのフラグ ???
 .It Fa cred
-�ƤӽФ�¦�ξ�����
+呼び出し側の証明。
 .It Fa td
-�ƤӽФ�������åɡ�
+呼び出したスレッド。
 .El
 .Pp
-�ۤȤ�ɤΥե����륷���ƥ�Ϥ��Υ���ȥ�ݥ���Ȥ�������ޤ���
-.Sh ���å�
-��������ե�����ϥ��å�����Ƥ���٤��ǤϤ���ޤ���
-.Sh �����
-�������ˤ� 0 ���֤��졢�����Ǥʤ����ˤ�Ŭ�ڤʥ��顼���֤���ޤ���
+ほとんどのファイルシステムはこのエントリポイントを実装しません。
+.Sh ロック
+入る時、ファイルはロックされているべきではありません。
+.Sh 戻り値
+成功時には 0 が返され、そうでない場合には適切なエラーが返されます。
 .Pp
-ioctl ��ǧ������ʤ��ޤ��ϥϥ�ɥ뤵��ʤ����ˤϡ�
+ioctl が認識されないまたはハンドルされない場合には、
 .Er ENOTTY
-���֤����٤��Ǥ���
-.Sh ����������
+が返されるべきです。
+.Sh 疑似コード
 .Bd -literal
 int
 vop_ioctl(struct vnode *vp, int command, caddr_t data, int fflag,
@@ -78,9 +78,9 @@ vop_ioctl(struct vnode *vp, int command, caddr_t data, int fflag,
     return ENOTTY;
 }
 .Ed
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr vnode 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

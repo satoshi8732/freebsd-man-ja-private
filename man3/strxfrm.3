@@ -40,36 +40,36 @@
 .Dd June 4, 1993
 .Dt STRXFRM 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm strxfrm
-.Nd ʸ������������ˤ������ä��Ѵ�����
-.Sh �饤�֥��
+.Nd 文字列をロケールにしたがって変換する
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Fn strxfrm "char *dst" "const char *src" "size_t n"
-.Sh ����
+.Sh 解説
 .Fn strxfrm
-�ؿ��ϡ�
+関数は、
 .Fa src
-�ˤ�꼨���줿�̥�ʸ���ǽ�λ����ʸ�����
-���ߤΥ�������ȹ� (locale collation) ��������ˤϡ�
-����˽��ä��Ѵ�����
+により示されたヌル文字で終了する文字列を、
+現在のロケール照合 (locale collation) がある場合には、
+それに従って変換し、
 .\"then copies the transformed string
 .\"into
 .\".Fa dst .
-�Ѵ�����ʸ�����
+変換した文字列を
 .Fa dst
-�˥��ԡ����ޤ���
+にコピーします。
 .\"Not more than
 .\".Fa n
 .\"characters are copied into
 .\".Fa dst ,
 .\"including the terminating null character added.
 .Fa n
-��ۤ��ʤ�ʸ������
+を越えない文字数が
 .Fa dst
-�˥̥�ʸ�����ղä��ƥ��ԡ�����ޤ���
+にヌル文字を付加してコピーされます。
 .\"If
 .\".Fa n
 .\"is set to 0
@@ -77,20 +77,20 @@
 .\"for transformation),
 .\".Fa dst
 .\"is permitted to be a NULL pointer.
-�⤷
+もし
 .Fa n
-�� 0 �����åȤ��줿��� (���ξ���Ѵ���ɬ�פȤʤ�¥���������ꤹ��Τ�����ޤ�)��
+に 0 がセットされた場合 (この場合変換に必要となる実サイズを決定するのを助けます)、
 .Fa dst
-�ˤ� NULL �ݥ��󥿤ˤ������������ޤ���
+には NULL ポインタにする事が許されます。
 .Pp
 .Fn strxfrm
-�θ��
+の後で
 .Fn strcmp
-��Ȥä� 2 �Ĥ�ʸ�������Ӥ��뤳�Ȥϡ�
-���� 2 �Ĥ�ʸ�����
+を使って 2 つの文字列を比較することは、
+元の 2 つの文字列を
 .Fn strcoll
-��Ȥä���Ӥ��뤳�Ȥ�Ʊ���ˤʤ�ޤ���
-.Sh �����
+を使って比較することと同じになります。
+.Sh 戻り値
 .\"Upon successful completion,
 .\".Fn strxfrm
 .\"returns the length of the transformed string not including
@@ -100,20 +100,20 @@
 .\"or more, the contents of
 .\".Fa dst
 .\"are indeterminate.
-����������������硢
+完全に成功した場合、
 .Fn strxfrm
-�Ͻ�ü�Υ̥�ʸ����ޤޤʤ��Ѵ����줿ʸ�����Ĺ�����֤��ޤ���
-�⤷�����ͤ�
+は終端のヌル文字を含まない変換された文字列の長さを返します。
+もしこの値が
 .Fa n
-��Ʊ�����������礭����硢
+と同じかそれより大きい場合、
 .Fa dst
-�����Ƥ�����Ǥ���
-.Sh ��Ϣ����
+の内容は不定です。
+.Sh 関連項目
 .Xr setlocale 3 ,
 .Xr strcmp 3 ,
 .Xr strcoll 3
-.Sh ����
+.Sh 規格
 .Fn strxfrm
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

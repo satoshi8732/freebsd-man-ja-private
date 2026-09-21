@@ -30,44 +30,44 @@
 .Dd July 9, 2001
 .Dt DEVSW 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm devsw
 .Nd
 .Vt cdevsw
-��¤�Τμ���
-.Sh ��
+構造体の取得
+.Sh 書式
 .In sys/param.h
 .In sys/conf.h
 .Ft "struct cdevsw *"
 .Fn devsw "dev_t dev"
-.Sh ����
+.Sh 解説
 .Fn devsw
-�ؿ��Ϥ���ʸ�����ǥХ��� ID �˴�Ϣ�դ���줿
+関数はこの文字型デバイス ID に関連付けられた
 .Vt cdevsw
-��¤�ΤؤΥݥ��󥿤��֤��ޤ���
+構造体へのポインタを返します。
 .Fa dev->si_cdevsw
-�����ꤵ��Ƥ�����ˤϤ��줬�֤��졢�����Ǥʤ����ˤ�
+が設定されている場合にはそれが返され、そうでない場合には
 .Va cdevsw
-�����
+配列へ
 .Xr major 9
-��ʬ���ե��åȤ�������Τ��֤���ޤ���
+値分オフセットさせたものが返されます。
 .Pp
-�����ϰʲ����̤�Ǥ���
+引数は以下の通りです。
 .Bl -tag -width ".Fa dev"
 .It Fa dev
-�֤����٤�
+返されるべき
 .Vt cdevsw
-����ȥ�ΥǥХ����Ǥ���
+エントリのデバイスです。
 .El
-.Sh �����
+.Sh 戻り値
 .Vt cdevsw
-��¤�ΤؤΥݥ��󥿤Ǥ���
-.Sh ��Ϣ����
+構造体へのポインタです。
+.Sh 関連項目
 .Xr major 9 ,
 .Xr minor 9 ,
 .Xr umajor 9 ,
 .Xr uminor 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Chad David Aq davidc@acns.ab.ca
-���񤭤ޤ�����
+が書きました。

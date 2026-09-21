@@ -27,53 +27,53 @@
 .Dd October 16, 1998
 .Dt DPT 4 i386
 .Os FreeBSD 3.0
-.Sh ̾��
+.Sh 名称
 .Nm dpt
-.Nd DPT RAID ����ȥ����� SCSI �ɥ饤��
-.Sh ��
-1 �İʾ�� EISA ����ȥ�������Ф�
+.Nd DPT RAID コントローラ SCSI ドライバ
+.Sh 書式
+1 つ以上の EISA コントローラに対し
 .Cd "controller eisa0"
 .Cd "controller dpt0"
 .Pp
-1 �İʾ�� PCI ����ȥ�������Ф�
+1 つ以上の PCI コントローラに対し
 .Cd "controller pci0"
 .Cd "controller dpt0"
 .Pp
-PCI �����ץ�������ޥå� I/O ����ѤǤ���褦�ˤ���ˤ�
-�ʲ��λ����ͭ���Ȥ��롣
+PCI アダプタがメモリマップ I/O を使用できるようにするには
+以下の指定を有効とする。
 .Cd options DPT_ALLOW_MEMIO
 .Pp
-.Sh ����
+.Sh 解説
 .Nm
-�ɥ饤�Ф� 
+ドライバは 
 DPT Smart Cache Plus, Smart Cache III, Smart Raid III, Smart Cache IV, 
-Smart RAID IV �ե��ߥ�Υ��ݡ��Ȥ��󶡤��ޤ���
-.Sh ��Ϣ�ե�����
+Smart RAID IV ファミリのサポートを提供します。
+.Sh 関連ファイル
 .Bl -tag -width /usr/share/man0/template.doc -compact
 .It Pa sys/dev/dpt/dpt_scsi.c
-�����ɥ饤�Фμ���
+コアドライバの実装
 .It Pa sys/dev/dpt/dpt.h
-�쥸�������åȤȥ����ɥ饤�ФΥǡ�����¤
+レジスタセットとコアドライバのデータ構造
 .It Pa sys/pci/dpt_pci.c
-PCI �Х��ɥ饤�Ф���°������
+PCI バスドライバに付属するもの
 .It Pa sys/i386/eisa/dpt_eisa.c
-EISA �Х��ɥ饤�Ф���°������
+EISA バスドライバに付属するもの
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr cd 4 ,
 .Xr ch 4 ,  
 .Xr scsi 4 ,
 .Xr da 4 ,
 .Xr sa 4
-.Sh ���
+.Sh 作者
 .Nm
-�ɥ饤�Ф�
+ドライバは
 .An Simon Shapiro
-�����Ҥ���
+が記述し、
 .An Justin T. Gibbs
-�� CAM SCSI �����ƥ�˰ܿ����ޤ�����
-.Sh ���
+が CAM SCSI システムに移植しました。
+.Sh 歴史
 .Nm
-��
+は
 .Fx 2.2.6
-���о줷�ޤ�����
+で登場しました。

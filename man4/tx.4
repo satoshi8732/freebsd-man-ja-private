@@ -28,64 +28,64 @@
 .Dd January 28, 1997
 .Dt TX 4 i386
 .Os FreeBSD
-.Sh ̾��
+.Sh 名称
 .Nm tx
 .Nd
-SMC9432TX �ե������ȥ������ͥåȥǥХ����ɥ饤��
-.Sh ��
+SMC9432TX ファーストイーサネットデバイスドライバ
+.Sh 書式
 .Cd "device tx0"
-.Sh ����
+.Sh 解説
 .Nm
-�ǥХ����ɥ饤�Ф� SMC 83c170 (EPIC) �����Ѥ����������ͥåȥ����ץ���
-���ݡ��Ȥ��Ƥ��ޤ���
+デバイスドライバは SMC 83c170 (EPIC) を利用したイーサネットアダプタを
+サポートしています。
 .Pp
 .Nm
-�ɥ饤�Фϰʲ��˵󤲤��ǥ��������פ򥵥ݡ��Ȥ��Ƥ��ޤ�:
+ドライバは以下に挙げるメディアタイプをサポートしています:
 .Pp
 .Bl -tag -width xxxxxxxxxxxxxxx
 .It autoselect
-��ưȽ�̤�ͭ���ˤ��ޤ� (�ǥե����) 
+自動判別を有効にします (デフォルト) 
 .It 100baseTX
-100Mbps (�ե������ȥ������ͥå�) �ˤ��ž�������Ѥ��ޤ�
+100Mbps (ファーストイーサネット) による転送を利用します
 .It 10baseT/UTP
-10BaseT �ݡ��ȤǤ� 10Mbps �ˤ��ž�������Ѥ��ޤ�
+10BaseT ポートでの 10Mbps による転送を利用します
 .El
 .Pp
 .Nm
-�ɥ饤�Фϰʲ��˵󤲤��ǥ������ץ����򥵥ݡ��Ȥ��Ƥ��ޤ�:
+ドライバは以下に挙げるメディアオプションをサポートしています:
 .Pp
 .Bl -tag -width xxxxxxxxxxxxxxx
 .It full-duplex
-����Ťˤ��ž�������Ѥ��ޤ�
+全二重による転送を利用します
 .El
 .Pp
-������ ``ifconfig tx0 linkN'' �ˤ������ϥ��ݡ��Ȥ���Ƥ��ޤ���
-.Sh ����
+以前の ``ifconfig tx0 linkN'' による設定はサポートされていません。
+.Sh 診断
 .Bl -diag
 .It "tx%d: device timeout %d packets"
-�ǥХ����ϡ���������Τ���ߤ��ޤ�����
-���Υ��顼�θ塢�ǥХ����ȥɥ饤�Фϥꥻ�åȤ���ޤ���
+デバイスは、応答するのを中止しました。
+このエラーの後、デバイスとドライバはリセットされます。
 .It "tx%d: PCI fatal error occured (%s)"
-���ˤ����륨�顼�Τ����ɤ줫�ҤȤĤ�ȯ�����ޤ���: PCI Target Abort,
-PCI Master Abort, Data Parity Error, Address Parity Error��
-���Υ��顼�θ塢�ǥХ����ȥɥ饤�Фϥꥻ�åȤ���ޤ���
+次にあげるエラーのうちどれかひとつが発生しました: PCI Target Abort,
+PCI Master Abort, Data Parity Error, Address Parity Error。
+このエラーの後、デバイスとドライバはリセットされます。
 .It "tx%d: WARNING! no link established"
-��ǥ�������³����Ƥ��ޤ���
-��ư���ˤΤ�ɽ������ޤ���
+メディアが接続されていません。
+起動時にのみ表示されます。
 .It "tx%d: cannot allocate mbuf header/cluster"
-�����ѥ��åȤΤ���Υ�����ѰդǤ��ޤ���
-�ѥ��åȤ��˴�����ޤ���
-.\" Revision 1.5.2.2 �Ǥ� packet thrown away �˽�������Ƥ���
+受信パケットのためのメモリを用意できません。
+パケットは破棄されます。
+.\" Revision 1.5.2.2 では packet thrown away に修正されている
 .\" Dec 31 1999, <horikawa@jp.FreeBSD.org>
 .It "tx%d: can't stop %s DMA"
-�ꥻ�åȤ�ԤäƤ���֤ˡ�
-�ɥ饤�ФϥǥХ������������ߤ����뤳�Ȥ��Ǥ��ޤ���Ǥ�����
+リセットを行っている間に、
+ドライバはデバイスを正常に停止させることができませんでした。
 .El
-.Sh �Х�
+.Sh バグ
 .Pp
-�ޥ�����㥹�ȥѥ��åȥե��륿��󥰤ϡ����ݡ��Ȥ��Ƥ��ޤ���
-�ҤȤĤ� PHY (Quality Semiconductor QS6612) �Τߡ��ºݤ˥ƥ��Ȥ��ޤ�����
-.Sh ��Ϣ����
+マルチキャストパケットフィルタリングは、サポートしていません。
+ひとつの PHY (Quality Semiconductor QS6612) のみ、実際にテストしました。
+.Sh 関連項目
 .Xr arp 4 ,
 .Xr netintro 4 ,
 .Xr ifconfig 8

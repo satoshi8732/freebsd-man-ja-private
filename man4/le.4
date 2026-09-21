@@ -29,48 +29,48 @@
 .Dd January 19, 1997
 .Dt LE 4 i386
 .Os FreeBSD
-.Sh ̾��
+.Sh 名称
 .Nm le
 .Nd
-DEC EtherWORKS II/III �������ͥåȥǥХ����ɥ饤��
-.Sh ��
+DEC EtherWORKS II/III イーサネットデバイスドライバ
+.Sh 書式
 .Cd "device le0 at isa? port 0x300 net irq 5 iomem 0xd0000"
-.Sh ����
+.Sh 解説
 .Nm
-�ɥ饤�Фϡ������ Digital Equipment EtherWORKS II
-(DE200, DE201,  DE202, DE422) �� DEC EtherWORKS III (DE203, DE204, DE205) NIC 
-�Υ��ݡ��Ȥ��󶡤��ޤ���
+ドライバは、後期の Digital Equipment EtherWORKS II
+(DE200, DE201,  DE202, DE422) と DEC EtherWORKS III (DE203, DE204, DE205) NIC 
+のサポートを提供します。
 .Pp
 .Nm
-�ɥ饤�ФΤ����ͭ���� IRQ ����� 5, 10, 11, 15 �Ǥ���
+ドライバのための有効な IRQ 設定は 5, 10, 11, 15 です。
 .Pp
-.Sh ����
+.Sh 診断
 .Bl -diag
 .It "le%d: not configured -- too many devices"
-1 ��Υޥ���˵������
+1 台のマシンに許される
 .Nm
-�ǥХ����ο��ˤ����¤�����ޤ���
+デバイスの数には制限があります。
 .It "le%d: lemac configuration error: expected IRQ 0x%x actual 0x%x"
-���Ф��줿 IRQ �ͤϡ������ͥ�����ե�����ǻ��ꤵ����ͤȰ��פ��ޤ���
-�Ǥ����������ɤ��ѹ����뤫�������������ͥ���ۤ��ʤ���Фʤ�ޤ��� 
+検出された IRQ 値は、カーネル設定ファイルで指定される値と一致しません
+でした。カードを変更するか、新しいカーネルを構築しなければなりません。 
 .It "le%d: lemac configuration error: expected iomem 0x%x actual 0x%x"
-���Ф��줿 iomem �ͤϡ������ͥ�����ե�����ǻ��ꤵ����ͤȰ��פ��ޤ�
-��Ǥ����� �����ɤ��ѹ����뤫�������������ͥ���ۤ��ʤ���Фʤ�ޤ���
+検出された iomem 値は、カーネル設定ファイルで指定される値と一致しませ
+んでした。 カードを変更するか、新しいカーネルを構築しなければなりません。
 .It "le%d: reset: EEPROM checksum failed (0x%x)"
-EEPROM ��ξ������ΤǤ���Ȥ������Ȥ�
+EEPROM 内の情報が正確であるということに
 .Nm 
-�ɥ饤�Фϰ�¸���ޤ������Υ��顼��ȯ������ʤ�С������ɤ��ѹ����Ƥ���������
+ドライバは依存します。このエラーが発生するならば、カードを変更してください。
 .It "le%d: fatal RXD error, attempting recovery"
 .It "le%d: recovery failed -- board disabled"
-�������顼��ȯ�����ޤ������ɥ饤�Фϡ����Υ��顼����������褦�Ȥ��ޤ���
-�����������줬�Բ�ǽ�ʾ�硢�ɥ饤�Фϥ����ɤ򥷥�åȥ����󤷤ޤ��� 
+受信エラーが発生しました。ドライバは、このエラーから回復しようとします。
+しかし、それが不可能な場合、ドライバはカードをシャットダウンします。 
 .It "le%d: lance: warning: excessive collisions: TDR%dns (%d-%dm)"
-�ˤ��¿���Υ������ͥåȥ��ꥸ��󤬸��Ф���ޤ������ͥåȥ�������
-�˺������Ƥ����礫�⤷��ޤ��󡣤��뤤�ϡ������ EtherWORKS �����ɤ�
-�������򼨺����뤫�⤷��ޤ���  
+極めて多くのイーサネットコリジョンが検出されました。ネットワークが非常
+に混雑している場合かもしれません。あるいは、これは EtherWORKS カードに
+よる問題を示唆するかもしれません。  
 .El
 .Pp
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr arp 4 ,
 .Xr netintro 4 ,
 .Xr config 8 ,
@@ -78,16 +78,16 @@ EEPROM ��ξ������ΤǤ���Ȥ������Ȥ�
 .Rs
 .%T "Building 4.3 BSD UNIX System with Config"
 .Re
-.Sh ���
+.Sh 歴史
 .Nm
-�ǥХ����ɥ饤�Фϡ�
+デバイスドライバは、
 .Fx 2.0
-��¸�ߤ��ޤ�����
-.Sh ���
+で存在しました。
+.Sh 作者
 .Nm
-�ǥХ����ɥ饤�Фϡ�
+デバイスドライバは、
 .An Matt Thomas
-���񤭤ޤ�����
-���Υޥ˥奢��ڡ����ϡ�
+が書きました。
+このマニュアルページは、
 .An David E. O'Brien
-���񤭤ޤ�����
+が書きました。

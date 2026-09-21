@@ -32,25 +32,25 @@
 .Dd July 24, 1996
 .Os
 .Dt VOP_PRINT 9
-.Sh ̾��
+.Sh 名称
 .Nm VOP_PRINT
-.Nd �ǥХå������ɽ��
-.Sh ��
+.Nd デバッグ情報の表示
+.Sh 書式
 .In sys/param.h
 .In sys/vnode.h
 .Ft int
 .Fn VOP_PRINT "struct vnode *vp"
-.Sh ����
-�����ϰʲ����̤�Ǥ���
+.Sh 解説
+引数は以下の通りです。
 .Bl -tag -width 2n
 .It Fa vp
-ɽ���оݤ� vnode��
+表示対象の vnode。
 .El
-.Sh �����
-�������ˤ� 0 ���֤��졢�����Ǥʤ����ˤϥ��顼���֤���ޤ���
-.Sh ��Ϣ����
+.Sh 戻り値
+成功時には 0 が返され、そうでない場合にはエラーが返されます。
+.Sh 関連項目
 .Xr vnode 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

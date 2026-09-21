@@ -30,189 +30,189 @@
 .Dd March 30, 2002
 .Dt RC.SENDMAIL 8
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm rc.sendmail
 .Nd
 .Xr sendmail 8
-��ư������ץ�
-.Sh ����
+起動スクリプト
+.Sh 解説
 .Nm
-������ץȤϡ�
+スクリプトは、
 .Xr sendmail 8
-��ư���뤿��ˡ��֡��Ȼ���
+を起動するために、ブート時に
 .Pa /etc/rc
-�����Ѥ��ޤ���
-�ܥ�����ץȤ�
+が使用します。
+本スクリプトは
 .Xr sendmail 8
-��ͭ�Ǥ��뤳�Ȥ�տޤ��Ƥ��ꡢ���٤Ƥ� MTA �����ѤǤϤ���ޤ���
+固有であることを意図しており、すべての MTA に汎用ではありません。
 .Xr rc.conf 5
-��
+の
 .Va mta_start_script
-�ѿ���
+変数が
 .Pa /etc/rc.sendmail
-�����ꤵ��Ƥ�����Τߡ��ܥ�����ץȤ�
+に設定されている場合のみ、本スクリプトが
 .Pa /etc/rc
-����ƤФ�ޤ���
+から呼ばれます。
 .Pp
 .Nm
-�ϡ��¹Ԥ��٤���������ꤹ�롢��ά��ǽ�ʰ����������ޤ���
-���Ѳ�ǽ�ʽ����ϼ����̤�Ǥ�:
+は、実行すべき処理を指定する、省略可能な引数を取り得ます。
+利用可能な処理は次の通りです:
 .Bl -tag -width ".Cm restart-mspq"
 .It Cm start
-MTA �� MSP ���塼���ʤ򳫻Ϥ��ޤ���
+MTA と MSP キューランナを開始します。
 .It Cm stop
-MTA �� MSP ���塼���ʤ���ߤ��ޤ���
+MTA と MSP キューランナを停止します。
 .It Cm restart
-MTA �� MSP ���塼���ʤ�Ƴ��Ϥ��ޤ���
+MTA と MSP キューランナを再開始します。
 .It Cm start-mta
-MTA �����򳫻Ϥ��ޤ���
+MTA だけを開始します。
 .It Cm stop-mta
-MTA ��������ߤ��ޤ���
+MTA だけを停止します。
 .It Cm restart-mta
-MTA ������Ƴ��Ϥ��ޤ���
+MTA だけを再開始します。
 .It Cm start-mspq
-MSP ���塼���ʤ����򳫻Ϥ��ޤ���
+MSP キューランナだけを開始します。
 .It Cm stop-mspq
-MSP ���塼���ʤ�������ߤ��ޤ���
+MSP キューランナだけを停止します。
 .It Cm restart-mspq
-MSP ���塼���ʤ�����Ƴ��Ϥ��ޤ���
+MSP キューランナだけを再開始します。
 .El
 .Pp
-��������ꤷ�ʤ���硢
+処理を指定しない場合、
 .Cm start
-�����ꤵ��ޤ���
+が仮定されます。
 .Pp
 .Nm
-������ץȤϡ�
+スクリプトは、
 .Pa Makefile
-�Υ������å�
+のターゲット
 .Cm start , stop ,
 .Cm restart
-��¸����뤿��ˡ�
+を実現するために、
 .Pa /etc/mail/Makefile
-�Ǥ���Ѥ���ޤ���
-.Sh RC.CONF �ѿ�
-�����ѿ�����
+でも使用されます。
+.Sh RC.CONF 変数
+次の変数が、
 .Nm
-��ư��˱ƶ����ޤ���
-������
+の動作に影響します。
+これらは
 .Pa /etc/defaults/rc.conf
-��������졢
+で定義され、
 .Pa /etc/rc.conf
-���ѹ���ǽ�Ǥ���
+で変更可能です。
 .Bl -tag -width indent
 .It Va sendmail_enable
-.Pq Vt ʸ����
+.Pq Vt 文字列
 .Dq Li YES
-�����ꤹ��ȡ������ƥ�֡��Ȼ���
+に設定すると、システムブート時に
 .Xr sendmail 8
-�ǡ�����ư���ޤ���
+デーモンを起動します。
 .Dq Li NO
-�����ꤹ��ȡ�����᡼��ƻ��Ѥ�
+に設定すると、到着メール監視用に
 .Xr sendmail 8
-�ǡ�����ư���ޤ���
-����ϡ�
+デーモンを起動しません。
+これは、
 .Xr sendmail 8
-�ǡ���󤬥롼�ץХå����󥿥ե������� SMTP �ݡ��Ȥ�ƻ뤹�뤳�Ȥ�ߤ�ޤ���
+デーモンがループバックインタフェースの SMTP ポートを監視することを止めません。
 .Dq Li NONE
-���ץ����ϲ��ͤ��㲼���Ƥ��ꡢ���Ѥ��٤��ǤϤ���ޤ���
-����Υ�꡼���ǤϺ������ޤ���
+オプションは価値が低下しており、使用すべきではありません。
+将来のリリースでは削除されます。
 .It Va sendmail_flags
-.Pq Vt ʸ����
+.Pq Vt 文字列
 .Va sendmail_enable
-��
+が
 .Dq Li YES
-�ξ�硢������
+の場合、これらは
 .Xr sendmail 8
-�ǡ������Ϥ��ե饰�Ȥʤ�ޤ���
+デーモンに渡すフラグとなります。
 .It Va sendmail_submit_enable
-.Pq Vt �֡�����
+.Pq Vt ブール値
 .Dq Li YES
-�����ꤷ
+に設定し
 .Va sendmail_enable
-��
+を
 .Dq NO
-�����ꤹ��ȡ�
+に設定すると、
 .Va sendmail_flags
-������
+の代りに
 .Va sendmail_submit_flags
-����Ѥ���
+を使用して
 .Xr sendmail 8
-��¹Ԥ��ޤ���
-��������ۥ��ȤΤߤ��Ф����Ե����� SMTP �����ӥ���𤷤�
-�������뤫��Υ᡼����������Ĥ��뤳�Ȥ�տޤ��Ƥ��ޤ���
-����ϡ�
+を実行します。
+ローカルホストのみに対して待機する SMTP サービスを介した
+ローカルからのメール送信を許可することを意図しています。
+これは、
 .Xr sendmail 8
-��桼�� ID ���ꤷ���Х��ʥ�Ȥ��ʤ������ɬ�פǤ���
+をユーザ ID 設定したバイナリとしないために必要です。
 .Xr jail 2
-�����ƥ����Ǥ�ư��ޤ���
-jail ����������ۥ��ȥ��󥿥ե������ؤΥХ���ɤ�����ʤ�����Ǥ���
+システムの中では動作しません。
+jail がローカルホストインタフェースへのバインドを許さないからです。
 .It Va sendmail_submit_flags
-.Pq Vt ʸ����
+.Pq Vt 文字列
 .Va sendmail_enable
-��
+が
 .Dq Li NO
-�����ꤵ�졢
+に設定され、
 .Va sendmail_submit_enable
-��
+が
 .Dq Li YES
-�����ꤵ�줿��硢������
+に設定された場合、これらは
 .Xr sendmail 8
-�ǡ������Ϥ����ե饰�ˤʤ�ޤ���
+デーモンに渡されるフラグになります。
 .It Va sendmail_outbound_enable
-.Pq Vt �֡�����
+.Pq Vt ブール値
 .Dq Li YES
-�����ꤷ
+に設定し
 .Va sendmail_enable
-��
+と
 .Va sendmail_submit_enable
-��ξ����
+の両方を
 .Dq Li NO
-�����ꤹ��ȡ�
+に設定すると、
 .Va sendmail_flags
-������
+の代りに
 .Va sendmail_outbound_flags
-����Ѥ���
+を使用して
 .Xr sendmail 8
-��¹Ԥ��ޤ���
-SMTP �����ӥ����Ԥ��������ˡ���������Υ᡼�륭�塼������
-�����褦�ˤ��뤳�Ȥ�տޤ��Ƥ��ޤ���
+を実行します。
+SMTP サービスを待ち受けずに、ローカルのメールキュー管理が
+出来るようにすることを意図しています。
 .It Va sendmail_outbound_flags
-.Pq Vt ʸ����
+.Pq Vt 文字列
 .Va sendmail_enable
-��
+と
 .Va sendmail_submit_enable
-��ξ����
+の両方を
 .Dq Li NO
-�����ꤷ��
+に設定し、
 .Va sendmail_outbound_enable
-��
+を
 .Dq Li YES
-�����ꤹ��ȡ�������
+に設定すると、これらは
 .Xr sendmail 8
-�ǡ������Ϥ����ե饰�ˤʤ�ޤ���
+デーモンに渡されるフラグになります。
 .It Va sendmail_msp_queue_enable
-.Pq Vt �֡�����
+.Pq Vt ブール値
 .Dq Li YES
-�����ꤹ��ȡ������ƥ�֡��Ȼ��ˡ����饤����� (MSP) ���塼����
+に設定すると、システムブート時に、クライアント (MSP) キューランナ
 .Xr sendmail 8
-�ǡ����򡢵�ư���ޤ���
-sendmail 8.12 �Ǥϡ����ޥ�ɥ饤�󤫤�������ˤ��̤Υ��塼�����Ѥ���ޤ���
-���饤����ȥ��塼���ʤϡ�
-�������塼�˲����֤�˺����ʤ����Ȥ��ݾڤ��ޤ���
+デーモンを、起動します。
+sendmail 8.12 では、コマンドラインからの送信には別のキューが使用されます。
+クライアントキューランナは、
+送信キューに何も置き忘れられないことを保証します。
 .It Va sendmail_msp_queue_flags
-.Pq Vt ʸ����
+.Pq Vt 文字列
 .Va sendmail_msp_queue_enable
-��
+を
 .Dq Li YES
-�����ꤹ��ȡ�������
+に設定すると、これらは
 .Xr sendmail 8
-�ǡ������Ϥ����ե饰�ˤʤ�ޤ���
+デーモンに渡されるフラグになります。
 .El
 .Pp
-�������ѿ��ϡ�
+これらの変数は、
 .Xr sendmail 8
-�ε�ư��ˡ�򼡤Τ褦�˷��ꤷ�ޤ�:
+の起動方法を次のように決定します:
 .Pp
 .Bd -literal -offset indent
 # MTA
@@ -234,23 +234,23 @@ if (${sendmail_enable} != NONE &&
 endif
 .Ed
 .Pp
-�����ʤ�
+いかなる
 .Xr sendmail 8
-�ǡ����ⵯư���ʤ��褦�ˤ���ˤϡ�
+デーモンも起動しないようにするには、
 .Pa /etc/rc.conf
-�Ǽ����ѿ������ꤷ�ޤ�:
+で次の変数を設定します:
 .Bd -literal -offset indent
 sendmail_enable="NO"
 sendmail_submit_enable="NO"
 sendmail_outbound_enable="NO"
 sendmail_msp_queue_enable="NO"
 .Ed
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr rc.conf 5 ,
 .Xr rc 8 ,
 .Xr sendmail 8
-.Sh ���
+.Sh 歴史
 .Nm
-�ե�����ϡ�
+ファイルは、
 .Fx 4.6
-���о줷�ޤ�����
+で登場しました。

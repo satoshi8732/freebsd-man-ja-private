@@ -40,29 +40,29 @@
 .Dd June 4, 1993
 .Dt STRSPN 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm strspn
-.Nd ʸ�����¬��
-.Sh �饤�֥��
+.Nd 文字列を測る
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft size_t
 .Fn strspn "const char *s" "const char *charset"
-.Sh ����
+.Sh 解説
 .Fn strspn
-�ؿ��ϡ��̥�ʸ���ǽ�λ����ʸ����
+関数は、ヌル文字で終了する文字列
 .Fa s
-�ˤĤ��ơ�
+について、
 .Fa s
-������Ф���ʸ����
+から取り出した文字が
 .Fa charset
-���¸�ߤ���
-�ǽ�ζ�֤�Ĺ����¬��ޤ���
-.Sh �����
+中に存在する
+最初の区間の長さを測ります。
+.Sh 戻り値
 .Fn strspn
-�ؿ��ϡ�¬��줿ʸ�������֤��ޤ���
-.Sh ��Ϣ����
+関数は、測られた文字数を返します。
+.Sh 関連項目
 .Xr memchr 3 ,
 .Xr strchr 3 ,
 .Xr strcspn 3 ,
@@ -71,8 +71,8 @@
 .Xr strsep 3 ,
 .Xr strstr 3 ,
 .Xr strtok 3
-.Sh ����
+.Sh 規格
 .Fn strspn
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

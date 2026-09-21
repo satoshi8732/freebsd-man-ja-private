@@ -34,14 +34,14 @@
 .Dd April 15, 1997
 .Dt ARC4RANDOM 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm arc4random ,
 .Nm arc4random_stir ,
 .Nm arc4random_addrandom
-.Nd arc4 ��������ͥ졼��
-.Sh �饤�֥��
+.Nd arc4 乱数ジェネレータ
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In stdlib.h
 .Ft u_int32_t
 .Fn arc4random "void"
@@ -49,40 +49,40 @@
 .Fn arc4random_stir "void"
 .Ft void
 .Fn arc4random_addrandom "unsigned char *dat" "int datlen"
-.Sh ����
+.Sh 解説
 .Fn arc4random
-�ؿ��ϡ�arc4 �Ź椬���Ѥ��Ƥ��륭�����ȥ꡼�ॸ���ͥ졼������Ѥ��ޤ���
-arc4 �Ź�ϡ�8*8 �� 8 �ӥå� S-Box ����Ѥ��ޤ���
-S-Box ����
+関数は、arc4 暗号が採用しているキーストリームジェネレータを使用します。
+arc4 暗号は、8*8 の 8 ビット S-Box を使用します。
+S-Box は約
 .if t 2 2\u\s71700\s10\d
 .if n (2**1700)
-�Ĥξ��֤��뤳�Ȥ��Ǥ��ޤ���
+個の状態を取ることができます。
 .Pp
 .Fn arc4random_stir
-�ؿ��ϡ�
+関数は、
 .Pa /dev/urandom
-����ǡ������ɤ߼�ꡢ�������Ѥ���
+からデータを読み取り、それを使用して
 .Fn arc4random_addrandom
-�ˤ�ä� S-Box �ν�����Ѥ��ޤ���
+によって S-Box の順序を変えます。
 .Pp
 .Fn arc4random
-����Ѥ�������
+を使用する前に
 .Fn arc4random_stir
-��ƤӽФ�ɬ�פϤ���ޤ���
+を呼び出す必要はありません。
 .Fn arc4random
-�ϼ�ưŪ�˼�ʬ���Ȥ��������뤫��Ǥ���
+は自動的に自分自身を初期化するからです。
 .Pp
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr rand 3 ,
 .Xr random 3 ,
 .Xr srandomdev 3
-.Sh ���
+.Sh 歴史
 .Pa RC4
-�ϡ�RSA Data Security, Inc. �ˤ�ä��߷פ���ޤ�����
+は、RSA Data Security, Inc. によって設計されました。
 .Pa RC4
-�ϡ�ƿ̾�� USENET �˥ݥ��Ȥ��졢���ꥸ�ʥ�Υ����ɤ˥�����������
-ʣ���οͤˤ�ä�Ʊ���Ǥ��뤳�Ȥ���ǧ����ޤ�����
+は、匿名で USENET にポストされ、オリジナルのコードにアクセスした
+複数の人によって同等であることが確認されました。
 .Pa RC4
-�ϴ�ȵ�̩�Ǥ��ä��Τǡ����ΰŹ��
+は企業機密であったので、この暗号は
 .Pa ARC4
-�ȸƤФ�Ƥ��ޤ���
+と呼ばれています。

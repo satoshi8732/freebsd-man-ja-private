@@ -32,30 +32,30 @@
 .Dd July 24, 1996
 .Os
 .Dt VOP_READLINK 9
-.Sh ̾��
+.Sh 名称
 .Nm VOP_READLINK
-.Nd ����ܥ�å���󥯤Υ������åȤ��ɤ߹���
-.Sh ��
+.Nd シンボリックリンクのターゲットの読み込み
+.Sh 書式
 .In sys/param.h
 .In sys/vnode.h
 .In sys/uio.h
 .Ft int
 .Fn VOP_READLINK "struct vnode *vp" "struct uio *uio" "struct ucred *cred"
-.Sh ����
-����ϡ�����ܥ�å���󥯤Υ������åȤΥѥ�̾���ɤ߹��ߤޤ���
+.Sh 解説
+これは、シンボリックリンクのターゲットのパス名を読み込みます。
 .Bl -tag -width uio
 .It Fa vp
-����ܥ�å���󥯤� vnode��
+シンボリックリンクの vnode。
 .It Fa uio
-�ɤ߹��ߤޤ��Ͻ񤭹��ߤΤ���Υǡ����ΰ��֡�
+読み込みまたは書き込みのためのデータの位置。
 .It Fa cred
-�ƤӽФ�¦�ξ�����
+呼び出し側の証明。
 .El
-.Sh ���å�
-������ˡ�vnode �ϥ��å�����Ƥ���٤��ǡ���λ���ˤ���å�����³���ޤ���
-.Sh �����
-�������ˤ� 0 ���֤��졢�����Ǥʤ����ˤϥ��顼�����ɤ��֤���ޤ���
-.Sh ����������
+.Sh ロック
+入る時に、vnode はロックされているべきで、終了時にもロックされ続けます。
+.Sh 戻り値
+成功時には 0 が返され、そうでない場合にはエラーコードが返されます。
+.Sh 疑似コード
 .Bd -literal
 int
 vop_readlink(struct vnode *vp, struct uio *uio, struct ucred *cred)
@@ -63,22 +63,22 @@ vop_readlink(struct vnode *vp, struct uio *uio, struct ucred *cred)
     int error = 0;
 
     /*
-     * ����ܥ�å���󥯤Υ������åȤ��ɤ߹��ߤޤ���
+     * シンボリックリンクのターゲットを読み込みます。
      */
     ...;
 
     return error;
 }
 .Ed
-.Sh ���顼
+.Sh エラー
 .Bl -tag -width Er
 .It Bq Er EIO
-����ܥ�å���󥯤����Ƥ��ɤ߹��ߤδ֤ˡ��ɤ߹��ߥ��顼��ȯ�����ޤ�����
+シンボリックリンクの内容の読み込みの間に、読み込みエラーが発生しました。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr uiomove 9 ,
 .Xr vnode 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

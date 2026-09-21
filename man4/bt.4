@@ -30,32 +30,32 @@
 .Dd October 16, 1998
 .Dt BT 4 i386
 .Os FreeBSD
-.Sh ̾��
+.Sh 名称
 .Nm bt
-.Nd Buslogic/Mylex MultiMaster SCSI �ۥ��ȥ����ץ��ɥ饤��
-.Sh ��
+.Nd Buslogic/Mylex MultiMaster SCSI ホストアダプタドライバ
+.Sh 書式
 .Cd "controller bt0 at isa? port ? cam irq ?"
 .Cd controller scbus0 at bt0
-.Sh ����
-���Υɥ饤�Ф� Buslogic/Mylex MultiMaster �ޤ��ϸߴ�����ȥ������
-��³���줿
+.Sh 解説
+このドライバは Buslogic/Mylex MultiMaster または互換コントローラに
+接続された
 .Tn SCSI
-�Х��ؤΥ����������󶡤��ޤ� (����: ����ɽ�ǥ��ޥ�ɤ�
-���塼���󥰲�ǽ�� CCB�θĿ��Ǥ�):
+バスへのアクセスを提供します (訳注: 次の表でコマンドは
+キューイング可能な CCBの個数です):
 .Pp
 .Bd -filled -offset indent
 .Bl -column "BT-956CD " "ISA " "Commands " Description
-MultiMaster "W" ���꡼���ۥ��ȥ����ץ�:
+MultiMaster "W" シリーズホストアダプタ:
 .Pp
-.Em "�����ץ�  �Х�   ���ޥ�� ����"
+.Em "アダプタ  バス   コマンド 解説"
 BT-948    PCI     192     ULtra SCSI-3
 BT-958    PCI     192     Wide ULtra SCSI-3
 BT-958D   PCI     192     Wide Differential ULtra SCSI-3
 .El
 .Bl -column "BT-956CD " "ISA " "Commands " Description
-MultiMaster "C" ���꡼���ۥ��ȥ����ץ�:
+MultiMaster "C" シリーズホストアダプタ:
 .Pp
-.Em "�����ץ�  �Х�   ���ޥ�� ����"
+.Em "アダプタ  バス   コマンド 解説"
 BT-946C   PCI     100     Fast SCSI-2
 BT-956C   PCI     100     Wide Fast SCSI-2
 BT-956CD  PCI     100     Wide Differential Fast SCSI-2
@@ -67,9 +67,9 @@ BT-545C   ISA      50     Fast SCSI-2
 BT-540CF  ISA      50     Fast SCSI-2
 .El
 .Bl -column "BT-956CD " "ISA " "Commands " Description
-MultiMaster "S" ���꡼���ۥ��ȥ����ץ�:
+MultiMaster "S" シリーズホストアダプタ:
 .Pp
-.Em "�����ץ�  �Х�   ���ޥ�� ����"
+.Em "アダプタ  バス   コマンド 解説"
 BT-445S   VLB      30     Fast SCSI-2
 BT-747S   EISA     30     Fast SCSI-2
 BT-747D   EISA     30     Differential Fast SCSI-2
@@ -77,63 +77,63 @@ BT-757S   EISA     30     Wide Fast SCSI-2
 BT-757D   EISA     30     Wide Differential Fast SCSI-2
 BT-545S   ISA      30     Fast SCSI-2
 BT-542D   ISA      30     Differential Fast SCSI-2
-BT-742A   EISA     30     SCSI-2 (742A ��ӥ���� H)
-BT-542B   ISA      30     SCSI-2 (542B ��ӥ���� H)
+BT-742A   EISA     30     SCSI-2 (742A リビジョン H)
+BT-542B   ISA      30     SCSI-2 (542B リビジョン H)
 .El
 .Bl -column "BT-956CD " "ISA " "Commands " Description
-MultiMaster "A" ���꡼���ۥ��ȥ����ץ�:
+MultiMaster "A" シリーズホストアダプタ:
 .Pp
-.Em "�����ץ�  �Х�   ���ޥ�� ����"
-BT-742A   EISA     30     SCSI-2 (742A ��ӥ���� A - G)
-BT-542B   ISA      30     SCSI-2 (542B ��ӥ���� A - G)
+.Em "アダプタ  バス   コマンド 解説"
+BT-742A   EISA     30     SCSI-2 (742A リビジョン A - G)
+BT-542B   ISA      30     SCSI-2 (542B リビジョン A - G)
 .El
 .Ed
 .Pp
-AMI FastDisk �ۥ��ȥ����ץ��ϡ����� BusLogic MultiMaster ��������ʤΤ�
-Ʊ�ͤˤ��Υɥ饤�Фǥ��ݡ��Ȥ���ޤ���
+AMI FastDisk ホストアダプタは、真の BusLogic MultiMaster クローンなので
+同様にこのドライバでサポートされます。
 .Pp
-�����դ����塼���󥰤ϡ�'W' ���꡼���Υ����ץ����ե����०������
-��ӥ���� 4.42 �ʾ�� 'C' ���꡼�������ץ����ե����०������
-��ӥ���� 3.35 �ʾ�� 'S' ���꡼�������ץ��ǥ��ݡ��Ȥ���ޤ���
+タグ付きキューイングは、'W' シリーズのアダプタ、ファームウェアが
+リビジョン 4.42 以上の 'C' シリーズアダプタ、ファームウェアが
+リビジョン 3.35 以上の 'S' シリーズアダプタでサポートされます。
 .Pp
-�ܡ��ɤΥե����०�����Υ�ӥ����ˤ�äƤϡ�
-����ǥХ����ؤι���٤ǥ��å����åפ��뤫���Τ�ޤ���
-�����դ����塼���󥰤��Ȥ��Ƥ�����ˤϡ��äˤ��줬�����ޤ���
-���ʤ��Υ����ץ������꤬���������ϡ�
-Mylex �Υƥ��˥��륵�ݡ��Ȥ�Ϣ������
-���Υ���ȥ������Ѥκǿ��Υե����०������ȤäƤ�������ǧ���Ʋ�������
-.Sh ��Ϣ����
+ボードのファームウェアのリビジョンによっては、
+特定デバイスへの高負荷でロックアップするかも知れません。
+タグ付きキューイングが使われている場合には、特にこれが言えます。
+あなたのアダプタで問題が起きた場合は、
+Mylex のテクニカルサポートに連絡し、
+そのコントローラ用の最新のファームウェアを使っている事を確認して下さい。
+.Sh 関連項目
 .Xr cd 4 ,
 .Xr scsi 4 ,
 .Xr da 4 ,
 .Xr sa 4
-.Sh ���
+.Sh 作者
 .An Julian Elischer
-�� Multimaster �������ѤΥɥ饤�Ф�񤭡�
-���줬 386BSD �ѥå����åȤ����ۤ���ޤ�����
+が Multimaster カード用のドライバを書き、
+これが 386BSD パッチキットで配布されました。
 .An Justin T. Gibbs
-�����Υɥ饤�Ф���ľ����
-�������ܡ��ɤε�ǽ����Ѥ��� FreeBSD 3.0R �� CAM SCSI �ե졼������
-ư���褦�ˤ��ޤ�����
+がそのドライバが書き直し、
+新しいボードの機能を活用して FreeBSD 3.0R の CAM SCSI フレームワークで
+動作するようにしました。
 .Pp
-Linux �Ѥ˴������ľܤ������⤵�줿 Mylex/BusLogic MultiMaster �ɥ饤�Ф�
-�񤤤Ƥ��줿 Leonard N. Zubkoff �˴��դ��ޤ���
-���Υɥ饤�ФǤι��ϰϤ� MultiMaster ����ȥ������
-�ե����०������ӥ����¾�ǤϽ񤫤�ʤ��褦�ʤ������ʤ�
-���ݡ��Ȥ���θ���̵���ˤ��Բ�ǽ���ä��Ǥ��礦��
-.Sh ��Ϣ�ե�����
+Linux 用に完全かつ詳しく解説された Mylex/BusLogic MultiMaster ドライバを
+書いてくれた Leonard N. Zubkoff に感謝します。
+このドライバでの広範囲の MultiMaster コントローラと
+ファームウェアリビジョン、他では書かれないようなそれらの癖の
+サポートは彼の功績無しには不可能だったでしょう。
+.Sh 関連ファイル
 .Bl -tag -width /usr/share/man0/template.doc -compact
 .It Pa sys/dev/buslogic/bt.c
-�ɥ饤�м����Υ���
+ドライバ実装のコア
 .It Pa sys/dev/buslogic/btreg.h
-MultiMaster �Υ쥸�������åȤȥɥ饤�ФΥ����Υǡ�����¤
+MultiMaster のレジスタセットとドライバのコアのデータ構造
 .It Pa sys/pci/bt_pci.c
-PCI �Х��ɥ饤�Х����å�����
+PCI バスドライバアタッチメント
 .It Pa sys/i386/eisa/bt_eisa.c
-EISA �Х��ɥ饤�Х����å�����
+EISA バスドライバアタッチメント
 .It Pa sys/i386/isa/bt_isa.c
-ISA/VL �Х��ɥ饤�Х����å�����
+ISA/VL バスドライバアタッチメント
 .El
-.Sh ���
+.Sh 歴史
 .Nm
-�ɥ饤�Ф� 386BSD �ѥå����åȤ����о줷�ޤ�����
+ドライバは 386BSD パッチキットから登場しました。

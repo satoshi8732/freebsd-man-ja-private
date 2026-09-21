@@ -29,36 +29,36 @@
 .Dd October 7, 1998
 .Os
 .Dt AUTH_GETVAL 3
-.Sh ̾��
+.Sh 名称
 .Nm auth_getval
 .Nd
 .Pa /etc/auth.conf
-�����ͤ��ɤ߼��ؿ�
-.Sh �饤�֥��
+から値を読み取る関数
+.Sh ライブラリ
 .Lb libutil
-.Sh ��
+.Sh 書式
 .In sys/types.h
 .In libutil.h
 .Ft char *
 .Fn auth_getval "const char *name"
-.Sh ����
-�ؿ�
+.Sh 解説
+関数
 .Fn auth_getval
-�ϡ�
+は、
 .Fa name
-�Ȥ����ե�����ɤ��б������ͤ��֤��ޤ���
-���Τ褦�ʥե�����ɤ����Ĥ���ʤ���硢�ޤ��� auth �ե�����򳫤��뤳�Ȥ�
-�Ǥ��ʤ����� NULL ���֤��ޤ���
-.Sh ��Ϣ����
+というフィールドに対応する値を返します。
+そのようなフィールドが見つからない場合、または auth ファイルを開けることが
+できない場合は NULL を返します。
+.Sh 関連項目
 .Xr properties_free 3 ,
 .Xr properties_read 3 ,
 .Xr property_find 3 ,
 .Xr auth.conf 5
-.Sh �ե�����
+.Sh ファイル
 .Pa /etc/auth.conf
-�ˤϡ�
+には、
 .Fn auth_getval
-����������
+が検索する
 name=value
-�Υڥ���
-�ޤޤ�Ƥ��ޤ���
+のペアが
+含まれています。

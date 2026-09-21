@@ -36,30 +36,30 @@
 .Dd June 4, 1993
 .Dt GETDISKBYNAME 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm getdiskbyname
-.Nd �ǥ�����̾�������Ū�ʥǥ������ε��Ҥ��������
-.Sh �饤�֥��
+.Nd ディスク名から包括的なディスクの記述を取得する
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In sys/disklabel.h
 .Ft struct disklabel *
 .Fn getdiskbyname "const char *name"
-.Sh ����
+.Sh 解説
 .Fn getdiskbyname
-�ؿ��ϥǥ�����̾ (���Ȥ���
+関数はディスク名 (たとえば
 .Ql rm03 )
-������˼�ꡢ������ȥ���󤪤��ɸ��Υǥ������ѡ��ƥ������ơ��֥��
-���Ҥ��롢�ץ��ȥ����פΥǥ�������٥���֤��ޤ���
-���٤Ƥξ����
+を引数に取り、ジオメトリ情報および標準のディスクパーティションテーブルを
+記述する、プロトタイプのディスクラベルを返します。
+すべての情報は
 .Xr disktab 5
-�ե����뤫�������ޤ���
-.Sh ��Ϣ����
+ファイルから得られます。
+.Sh 関連項目
 .Xr disklabel 5 ,
 .Xr disktab 5 ,
 .Xr disklabel 8
-.Sh ���
+.Sh 歴史
 .Fn getdiskbyname
-�ؿ���
+関数は
 .Bx 4.3
-�ǤϤ�����о줷�ޤ�����
+ではじめて登場しました。

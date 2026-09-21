@@ -4,32 +4,32 @@
 .\" $FreeBSD$
 .\"
 .TH MMROFF 1 "11 October 2002" "Groff Version 1.19"
-.SH ̾��
-mmroff \- ���ȤΥץ�ץ����å�
-.SH ��
+.SH 名称
+mmroff \- 参照のプリプロセッサ
+.SH 書式
 .B mmroff
 [
 .I -x
 ]
 .I groff_arguments
-.SH ����
-\fBmmroff\fP �ϡ�\fBgroff\fP �Ѥ�ñ��ʥץ�ץ����å��Ǥ���
-����ϡ�\fBmm\fP �ޥ����ˤ����ƻ��Ȥ�Ÿ�����뤿��˻��Ѥ���ޤ���
-\fBgroff_mm(7)\fP �򻲾Ȥ��Ƥ���������
-\fBgroff\fP �� 2 �ټ¹Ԥ���ޤ���1 ���ܤǤ� \fB-z\fP �����
-\fB-rRef=1\fR ���ץ����Ĥ��Ǽ¹Ԥ��졢���٤Ƥλ��Ȥ��������
-�����ơ����ȥե����뤬�ǿ��Τ�ΤˤʤäƤ���ºݤλ��Ȥν�����
-�Ԥ��ޤ���
+.SH 解説
+\fBmmroff\fP は、\fBgroff\fP 用の単純なプリプロセッサです。
+これは、\fBmm\fP マクロにおいて参照を展開するために使用されます。
+\fBgroff_mm(7)\fP を参照してください。
+\fBgroff\fP は 2 度実行されます。1 回目では \fB-z\fP および
+\fB-rRef=1\fR オプションつきで実行され、すべての参照を収集し、
+そして、参照ファイルが最新のものになってから実際の参照の処理を
+行います。
 .TP
 \fB\-x\fR
-���ȥե������������Ǥ������Υ��ץ����ϻ��ȥե������
-��������Τ˻��ѤǤ��ޤ��������������Ȥ��뤿���ɬ�פ�
-�����Ȥϸ¤�ޤ��󡣤ޤ������Υ��ץ�������Ѥ���ȡ�
-\fBgroff\fP �� 1 ������¹Ԥ���ޤ���
+参照ファイルを作るだけです。このオプションは参照ファイルを
+更新するのに使用できますが、正しい参照を作るために必要な
+処理とは限りません。また、このオプションを使用すると、
+\fBgroff\fP は 1 回だけ実行されます。
 .\".SH BUGS
-.SH ���
-J\(:orgen H\(:agg, Lund, Sweden <jh@axis.se> �Ǥ���
-.SH ��Ϣ�ե�����
+.SH 作者
+J\(:orgen H\(:agg, Lund, Sweden <jh@axis.se> です。
+.SH 関連ファイル
 .TP
 .B /usr/share/tmac/tmac.m
 .TP
@@ -38,7 +38,7 @@ J\(:orgen H\(:agg, Lund, Sweden <jh@axis.se> �Ǥ���
 .B /usr/share/tmac/mm/*.MT
 .TP
 .B /usr/share/tmac/mm/locale
-.SH "��Ϣ����"
+.SH "関連項目"
 .BR groff_mm(7),
 .BR groff_mmse(7),
 .BR groff (1),

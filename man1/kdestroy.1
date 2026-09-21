@@ -36,10 +36,10 @@
 .Dd August 27, 1997
 .Dt KDESTROY 1
 .Os HEIMDAL
-.Sh ̾��
+.Sh 名称
 .Nm kdestroy
-.Nd ���ߤΥ����åȥե�������˲�����
-.Sh ��
+.Nd 現在のチケットファイルを破壊する
+.Sh 書式
 .Nm
 .Op Fl c Ar cachefile
 .Op Fl -cache= Ns Ar cachefile
@@ -47,20 +47,20 @@
 .Op Fl -no-delete-v4
 .Op Fl -version
 .Op Fl -help
-.Sh ����
+.Sh 解説
 .Nm
-�ϸ��ߤΥ����åȰ켰�������ޤ���
+は現在のチケット一式を削除します。
 .Pp
-���ݡ��Ȥ��륪�ץ����:
+サポートするオプション:
 .Bl -tag -width Ds
 .It Fl c Ar cachefile
 .It Fl cache= Ns Ar cachefile
-������륭��å���ե����롣
+削除するキャッシュファイル。
 .It Fl -no-unlog
-AFS �ȡ�����������ޤ���
+AFS トークンを削除しません。
 .It Fl -no-delete-v4
-v4 �����åȤ������ޤ���
+v4 チケットを削除しません。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr kinit 1 ,
 .Xr klist 1

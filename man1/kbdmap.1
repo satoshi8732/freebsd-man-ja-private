@@ -27,11 +27,11 @@
 .Dd July 3, 2002
 .Dt KBDMAP 1
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm kbdmap ,
 .Nm vidfont
-.Nd syscons �ѥե���ȥ����
-.Sh ��
+.Nd syscons 用フロントエンド
+.Sh 書式
 .Nm
 .Op Fl K
 .Op Fl V
@@ -42,111 +42,111 @@
 .Op Fl r | Fl restore
 .Op Fl s | Fl show
 .Op Fl v | Fl verbose
-.Sh ����
+.Sh 解説
 .Nm
-�桼�ƥ���ƥ���ͭ���ʥ����ޥåפ��ưפ����ꤹ�륳�ޥ�ɤǤ���
-Ʊ�ͤ�
+ユーティリティは有効なキーマップを容易に設定するコマンドです。
+同様に
 .Nm vidfont
-�ϥե���Ȥ����ꤷ�ޤ���
-�������ǡ����١�����ε��� (description) ��õ���ޤ���
-���ε��ҤϱѸ� (�ǥե����) ���뤤��¾�θ���ǽ񤫤�Ƥ��ޤ���
-ξ���ޥ�ɤȤ⥭���ޥåפ���ӥե���ȤΥǡ����١����򸡺����ޤ���
-�ǥե���ȤǤϱѸ�ǵ��Ҥ���Ƥ��ޤ�����¾�θ���Ǥʤ���Ƥ⹽���ޤ���
-�����Υץ�����������Ū�Ǥ��ꡢ
-�桼�������ɬ�פ����� (�㤨�Х����ޥå�����)
-�����뤿���ü����ư����Τȴ��Ԥ��ޤ���
+はフォントを設定します。
+いずれもデータベース中の記述 (description) を探します。
+この記述は英語 (デフォルト) あるいは他の言語で書かれています。
+両コマンドともキーマップおよびフォントのデータベースを検査します。
+デフォルトでは英語で記述されていますが、他の言語でなされても構いません。
+これらのプログラムは対話的であり、
+ユーザからの必要な入力 (例えばキーマップ選択)
+を得るために端末出動作するものと期待します。
 .Pp
 .Tn MSDOS
-�����ɥڡ����Υ����ޥåפ�ե���Ȥ���Ѥ��ʤ��褦��������ޤ���
-��ǽ�Ǥ����
+コードページのキーマップやフォントを使用しないよう強く勧めます。
+可能であれば
 .Tn ISO
-ɸ��С�������ȤäƤ�������!
+標準バージョンを使ってください!
 .Tn X11
-��
+は
 .Tn MSDOS
-�����ɥڡ����򥵥ݡ��Ȥ��ޤ���
+コードページをサポートしません。
 .Pp
-���Υ��ץ�������Ѳ�ǽ�Ǥ�:
+次のオプションが利用可能です:
 .Bl -tag -width Ds
 .It Fl K
 .Nm
-�Ȥ��ƥ��ޥ�ɤ�¹Ԥ��ޤ���
+としてコマンドを実行します。
 .It Fl V
 .Nm vidfont
-�Ȥ��ƥ��ޥ�ɤ�¹Ԥ��ޤ���
+としてコマンドを実行します。
 .It Fl d , Fl default
-�ǥե���ȸ������Ѥ��ޤ���
+デフォルト言語を使用します。
 .Ev LANG
-�Ķ��ѿ���̵�뤵��ޤ���
+環境変数は無視されます。
 .It Fl h , Fl help
-���ץ���������ɽ�����ƽ�λ���ޤ���
+オプション一覧を表示して終了します。
 .It Fl l , Fl lang Ar language
-���Ҥ���ӥ�˥塼��ɽ���˸���
+記述およびメニューの表示に言語
 .Ar language
-���Ѥ��ޤ���
+を用います。
 .It Fl p , Fl print
-ɸ����Ϥ˻��Ѳ�ǽ�ʥ����ޥåפ⤷���ϥե���Ȥ�ɽ��������λ���ޤ���
+標準出力に使用可能なキーマップもしくはフォントを表示し、終了します。
 .It Fl r , Fl restore
 .Pa /etc/rc.conf
-����ǥե���ȥե���Ȥ�����ɤ��ޤ���
+からデフォルトフォントをロードします。
 .It Fl s , Fl show
-���ߥ��ݡ��Ȥ��Ƥ�������ɽ�����ƽ�λ���ޤ���
+現在サポートしている言語を表示して終了します。
 .It Fl v , Fl verbose
-�̾��꤭��٤����ٹ��å���������Ϥ��ޤ���
+通常よりきめ細かく警告メッセージを出力します。
 .El
-.Sh �Ķ��ѿ�
+.Sh 環境変数
 .Bl -tag -width LANG -compact
 .It Ev LANG
-��˾������졣
+希望する言語。
 .El
-.Sh ��Ϣ�ե�����
+.Sh 関連ファイル
 .Bl -tag -width /usr/share/syscons/keymaps/INDEX.keymaps -compact
 .It Pa /usr/share/syscons/keymaps/INDEX.keymaps
-�����ޥåפΥǡ����١���
+キーマップのデータベース
 .It Pa /usr/share/syscons/fonts/INDEX.fonts
-�ե���ȤΥǡ����١���
+フォントのデータベース
 .It Pa /etc/rc.conf
-�ǥե���ȤΥե����
+デフォルトのフォント
 .It Pa /usr/X11/lib/X11/locale/locale.alias
-���̤�
+共通な
 .Ev LANG
-�˴ؤ��뵭��
+に関する記述
 .El
-.Sh �Х�
+.Sh バグ
 .\" .Nm kbdmap/vidfont
 .\" does not know which font is in use. E.g. if the current font
 .\" is iso-8859-1 and you chose lang 'ru' (for Russian)
 .\" you get funny latin1 characters and not russkij shrift.
 .\"
 .Nm
-�����
+および
 .Nm vidcontrol
-�Υ桼�ƥ���ƥ��� (����) ���󥽡���ǤΤߵ�ǽ���ޤ���
+のユーティリティは (仮想) コンソールでのみ機能します。
 .Tn X11
-��Ǥ�ư��ޤ���
-.Sh ��Ϣ����
+上では動作しません。
+.Sh 関連項目
 .Xr dialog 1 ,
 .Xr kbdcontrol 1 ,
 .Xr vidcontrol 1 ,
 .Xr kbdmap 5 ,
 .Xr rc.conf 5
-.Sh ���
+.Sh 歴史
 .Nm
-�����
+および
 .Nm vidfont
-���ޥ�ɤ�
+コマンドは
 .Fx 2.1
-�����о줷�ޤ�����
-.Sh ���
+から登場しました。
+.Sh 作者
 .An -nosplit
 .An Wolfram Schneider
 .Aq wosch@FreeBSD.org
-�����ꥸ�ʥ�� Perl �С�������񤭤ޤ�����
-���С������ϡ�
+がオリジナルの Perl バージョンを書きました。
+元バージョンは、
 .Fx 5.0
-������
+向きに
 .An Jonathan Belson
 .Aq jon@witchspace.com
-�� C �ǽ�ľ������ΤǤ���
-.Sh ���ܸ���
-��� �߻�(sakai@csl.cl.nec.co.jp): FreeBSD����������
+が C で書き直したものです。
+.Sh 日本語訳
+酒井 淳嗣(sakai@csl.cl.nec.co.jp): FreeBSD向けに翻訳

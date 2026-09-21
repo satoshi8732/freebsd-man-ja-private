@@ -32,56 +32,56 @@
 .Dd July 24, 1996
 .Os
 .Dt VOP_PATHCONF 9
-.Sh ̾��
+.Sh 名称
 .Nm VOP_PATHCONF
-.Nd POSIX �ѥ���������μ���
-.Sh ��
+.Nd POSIX パス構成情報の取得
+.Sh 書式
 .In sys/param.h
 .In sys/vnode.h
 .In sys/unistd.h
 .Ft int
 .Fn VOP_PATHCONF "struct vnode *vp" "int name" "int *retval"
-.Sh ����
-�����ϰʲ����̤�Ǥ���
+.Sh 解説
+引数は以下の通りです。
 .Bl -tag -width retval
 .It Fa vp
-����������оݤ� vnode��
+情報を得る対象の vnode。
 .It Fa name
-�֤�����η���
+返す情報の型。
 .It Fa retval
-������֤���ꡣ
+情報を返す場所。
 .El
 .Pp
 .Fa name
-���ͤϰʲ��β����֤���뤫����ꤷ�ޤ���
+の値は以下の何が返されるかを指定します。
 .Bl -tag -width _PC_CHOWN_RESTRICTED
 .It Dv _PC_LINK_MAX
-�ե�����ؤΥ�󥯤κ����͡�
+ファイルへのリンクの最大値。
 .It Dv _PC_NAME_MAX
-�ե�����̾�κ���Х��ȿ���
+ファイル名の最大バイト数。
 .It Dv _PC_PATH_MAX
-�ѥ�̾�κ���Х��ȿ���
+パス名の最大バイト数。
 .It Dv _PC_PIPE_BUF
-�Բ�ʬ�˥ѥ��פ˽񤭽Ф�������Х��ȿ���
+不可分にパイプに書き出される最大バイト数。
 .It Dv _PC_CHOWN_RESTRICTED
 .Xr chown 2
-�����ƥॳ����Τ����Ŭ�ڤ��ø���ɬ�פʾ��ˤ� 1��
-�����Ǥʤ����ˤ� 0��
+システムコールのために適切な特権が必要な場合には 1、
+そうでない場合には 0。
 .It Dv _PC_NO_TRUNC
 .Dv KERN_NAME_MAX
-����Ĺ���ե�����̾���ڤ�ͤ������ˤ� 1��
+よりも長いファイル名が切り詰められる場合には 1。
 .El
-.Sh �����
+.Sh 戻り値
 .Fa name
-��ǧ��������硢
+が認識される場合、
 .Fa *retval
-�˻��ꤵ�줿�ͤ����ꤵ��� 0 ���֤��졢�����Ǥʤ����ˤ�
+に指定された値が設定されて 0 が返され、そうでない場合には
 .Er EINVAL
-���֤���ޤ���
-.Sh ��Ϣ����
+が返されます。
+.Sh 関連項目
 .Xr pathconf 2 ,
 .Xr vnode 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

@@ -32,27 +32,27 @@
 .Dd July 24, 1996
 .Os
 .Dt VOP_BWRITE 9
-.Sh ̾��
+.Sh 名称
 .Nm VOP_BWRITE
-.Nd �ե����륷���ƥ�Хåե��ν񤭹���
-.Sh ��
+.Nd ファイルシステムバッファの書き込み
+.Sh 書式
 .In sys/param.h
 .In sys/vnode.h
 .Ft int
 .Fn VOP_BWRITE "struct vnode *vp" "struct buf *bp"
-.Sh ����
-�����ϰʲ����̤�Ǥ���
+.Sh 解説
+引数は以下の通りです。
 .Bl -tag -width 2n
 .It Fa vp
-�񤭹��ޤ�Ƥ���ե������ vnode��
+書き込まれているファイルの vnode。
 .It Fa bp
-�񤭹��ޤ��٤��Хåե���
+書き込まれるべきバッファ。
 .El
-.Sh �����
-�������ˤ� 0 ���֤��졢�����Ǥʤ����ˤϥ��顼���֤���ޤ���
-.Sh ��Ϣ����
+.Sh 戻り値
+成功時には 0 が返され、そうでない場合にはエラーが返されます。
+.Sh 関連項目
 .Xr vnode 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

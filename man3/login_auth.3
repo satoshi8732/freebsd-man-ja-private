@@ -23,7 +23,7 @@
 .Dd December 29, 1996
 .Os
 .Dt LOGIN_AUTH 3
-.Sh ̾��
+.Sh 名称
 .\" .Nm auth_script
 .\" .Nm auth_env
 .\" .Nm auth_scan
@@ -33,10 +33,10 @@
 .\" .Nm auth_ttyok
 .\" .Nm auth_hostok
 .\" .Nm auth_timesok
-.Nd �������󥯥饹��������ǡ����١�����ǧ�ڷ���
-.Sh �饤�֥��
+.Nd ログインクラス受け入れデータベースの認証形式
+.Sh ライブラリ
 .Lb libutil
-.Sh ��
+.Sh 書式
 .In sys/types.h
 .In login_cap.h
 .\" .Ft int
@@ -59,13 +59,13 @@
 .\" .Fn auth_hostok "login_cap_t *lc" "const char *hostname" "char const *ip"
 .\" .Ft int
 .\" .Fn auth_timesok "login_cap_t *lc" "time_t now"
-.Sh ����
-���δؿ����åȤϡ�
+.Sh 解説
+この関数セットは、
 .Xr login.conf 5
-���󶡤���������󥯥饹��ǧ�ڷ���
-���󥿥ե������򥵥ݡ��Ȥ��ޤ���
-.\" .Sh �����
-.Sh ��Ϣ����
+が提供するログインクラスの認証形式
+インタフェースをサポートします。
+.\" .Sh 戻り値
+.Sh 関連項目
 .Xr getcap 3 ,
 .Xr login_cap 3 ,
 .Xr login_class 3 ,

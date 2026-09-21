@@ -30,52 +30,52 @@
 .Dd December 2, 2001
 .Dt VFS_SET 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm VFS_SET
-.Nd �������֥�ե����륷���ƥ�
+.Nd ローダブルファイルシステム
 .Vt vfsconf
-�Υ��åȥ��å�
-.Sh ��
+のセットアップ
+.Sh 書式
 .In sys/param.h
 .In sys/kernel.h
 .In sys/module.h
 .In sys/mount.h
 .Ft void
 .Fn VFS_SET "struct vfsops *vfsops" "fsname" "int flags"
-.Sh ����
+.Sh 解説
 .Fn VFS_SET
-�ϥ������֥�⥸�塼��Τ����Ϳ����줿
+はローダブルモジュールのために与えられた
 .Fa vfsops , fsname
-�����
+および
 .Fa flags
-��
+で
 .Vt vfsconf
-��¤�Τ�����������٥�ȥϥ�ɥ�Ȥ���
+構造体を作成し、イベントハンドラとして
 .Fn vfs_modevent
-����Ѥ���
+を使用して
 .Xr DECLARE_MODULE 9
-�θƤӽФ��ˤ�ä�������ޤ���
+の呼び出しによって宣言します。
 .Pp
 .Fa flags
-�����Τ�������Ѳ�ǽ���ͤϰʲ��ΤȤ���Ǥ�:
+引数のために利用可能な値は以下のとおりです:
 .Bl -hang -width ".Dv VFCF_SYNTHETIC"
 .It Dv VFCF_STATIC
-�ե����륷���ƥ�ϥ����ͥ������Ū�����Ѳ�ǽ�Ǥ���٤��Ǥ���
+ファイルシステムはカーネル内で静的に利用可能であるべきです。
 .It Dv VFCF_NETWORK
-�ͥåȥ���˥������ݡ��Ȳ�ǽ�ʥե����륷���ƥ�Ǥ���
+ネットワークにエクスポート可能なファイルシステムです。
 .It Dv VFCF_READONLY
-�񤭹��������ݡ��Ȥ���Ƥ��ޤ���
+書き込み操作がサポートされていません。
 .It Dv VFCF_SYNTHETIC
-�����ե����륷���ƥ�Ǥ��ꡢ�ǡ����ϥǥ�������Υե������ɽ�����Ƥ��ޤ���
+疑似ファイルシステムであり、データはディスク上のファイルを表現していません。
 .It Dv VFCF_LOOPBACK
-�롼�ץХå��ե����륷���ƥ�쥤��Ǥ���
+ループバックファイルシステムレイヤです。
 .It Dv VFCF_UNICODE
-�ե�����̾�� Unicode �Ȥ��Ƴ�Ǽ����ޤ���
+ファイル名は Unicode として格納されます。
 .El
-.Sh ����������
+.Sh 疑似コード
 .Bd -literal
 /*
- * ���Ѥ����Τ򵭽Ҥ����Ĥ�� vfs_std ����Ѥ��ޤ���
+ * 使用するものを記述し、残りは vfs_std を使用します。
  */
 static struct vfsops myfs_vfsops = {
         myfs_mount,
@@ -96,11 +96,11 @@ static struct vfsops myfs_vfsops = {
 
 VFS_SET(myfs_vfsops, skelfs, 0);
 .Ed
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr DECLARE_MODULE 9 ,
 .Xr vfsconf 9 ,
 .Xr vfs_modevent 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Chad David Aq davidc@acns.ab.ca
-�ˤ�äƽ񤫤�ޤ�����
+によって書かれました。

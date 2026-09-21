@@ -29,34 +29,34 @@
 .Dd March 3, 1999
 .Dt KLDFIRSTMOD 2
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm kldfirstmod
-.Nd "���ꤵ�줿 kld �ե����뤫��ǽ�Υ⥸�塼�� ID ���֤�"
-.Sh �饤�֥��
+.Nd "指定された kld ファイルから最初のモジュール ID を返す"
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In sys/param.h
 .In sys/linker.h
 .Ft int
 .Fn kldfirstmod "int fileid"
-.Sh ����
+.Sh 解説
 .Fn kldfirstmod
-�����ƥॳ����ϡ�
+システムコールは、
 .Fa fileid
-�ˤ�äƻ��Ȥ��줿�ǽ�Υ⥸�塼��˴�Ϣ����⥸�塼�� ID ���֤��ޤ���
-.Sh �����
+によって参照された最初のモジュールに関連するモジュール ID を返します。
+.Sh 戻り値
 .Fn kldfirstmod
-�ϡ�
+は、
 .Fa fileid
-�ˤ�äƻ��Ȥ����ǽ�Υ⥸�塼��� ID ���֤���
-���Ȥ��ʤ����� 0 ���֤��ޤ���
-.Sh ���顼
+によって参照される最初のモジュールの ID を返し、
+参照がない場合は 0 を返します。
+.Sh エラー
 .Bl -tag -width Er
 .It Bq Er ENOENT
 .Fa fileid
-�ˤ�äƻ��Ȥ��줿 kld �ե����뤬���Ĥ���ޤ���Ǥ�����
+によって参照された kld ファイルが見つかりませんでした。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr kldfind 2 ,
 .Xr kldload 2 ,
 .Xr kldnext 2 ,
@@ -69,8 +69,8 @@
 .Xr modstat 2 ,
 .Xr kld 4 ,
 .Xr kldstat 8
-.Sh ���
+.Sh 歴史
 .Nm kld
-���󥿥ե�������
+インタフェースは
 .Fx 3.0
-�ǤϤ�����о줷�ޤ�����
+ではじめて登場しました。

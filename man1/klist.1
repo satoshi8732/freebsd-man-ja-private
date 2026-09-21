@@ -1,4 +1,4 @@
-.\" Copyright (c) 2000 - 2002 Kungliga Tekniska H���gskolan
+.\" Copyright (c) 2000 - 2002 Kungliga Tekniska HÖgskolan
 .\" (Royal Institute of Technology, Stockholm, Sweden).
 .\" All rights reserved.
 .\"
@@ -31,18 +31,18 @@
 .\"
 .\" %Id: klist.1,v 1.12 2003/02/16 21:10:26 lha Exp %
 .\"
-.\" WORD: credential: ��ʾ���
-.\" WORD: principal: �ץ�󥷥ѥ�
-.\" WORD: realm: ����
+.\" WORD: credential: 資格証明
+.\" WORD: principal: プリンシパル
+.\" WORD: realm: レルム
 .\"
 .\" $FreeBSD$
 .Dd July 8, 2000
 .Dt KLIST 1
 .Os HEIMDAL
-.Sh ̾��
+.Sh 名称
 .Nm klist
-.Nd Kerberos ��ʾ����Υꥹ��ɽ��
-.Sh ��
+.Nd Kerberos 資格証明のリスト表示
+.Sh 書式
 .Nm
 .Oo Fl c Ar cache \*(Ba Xo
 .Fl -cache= Ns Ar cache
@@ -56,108 +56,108 @@
 .Op Fl f
 .Op Fl -version
 .Op Fl -help
-.Sh ����
+.Sh 解説
 .Nm
-�ϻ�ʾ�������å��� (�����åȥե��������̾�Ǥ��Τ���)
-���鸽�ߤΥ����åȤ��ɤ߹���ɽ�����ޤ���
-.\" also known as = ������̾�Ǥ��Τ��롢��̾�����̾Ρ����ޤ���̾�򡢰�̾���Ȥ���
-.\" ��ʸ: crential �� credential �θ��ꡣ
+は資格証明キャッシュ (チケットファイルの別名でも知られる)
+から現在のチケットを読み込み表示します。
+.\" also known as = 〜の別名でも知られる、別名〜、別称〜、またの名を、一名〜という
+.\" 原文: crential は credential の誤り。
 .Pp
-���ݡ��Ȥ���Ƥ��륪�ץ����ϼ����̤�Ǥ�:
+サポートされているオプションは次の通りです:
 .Bl -tag -width Ds
 .It Xo
 .Fl c Ar cache ,
 .Fl -cache= Ns Ar cache
 .Xc
-�ꥹ��ɽ�������ʾ�������å���
+リスト表示する資格証明キャッシュ
 .It Xo
 .Fl s ,
 .Fl t ,
 .Fl -test
 .Xc
-��ʾ�������å���ˤ�����桼���Υ������������Ф���
-�����ƥ��֤�ͭ���� TGT �Ǥ��뤳�Ȥ�ƥ��Ȥ��ޤ���
+資格証明キャッシュにおけるユーザのローカルレルムに対する
+アクティブで有効な TGT であることをテストします。
 .It Xo
 .Fl 4 ,
 .Fl -v4
 .Xc
-v4 �����åȤ�ɽ������
+v4 チケットを表示する
 .It Xo
 .Fl T ,
 .Fl -tokens
 .Xc
-AFS �ȡ������ɽ������
+AFS トークンを表示する
 .It Xo
 .Fl 5 ,
 .Fl -v5
 .Xc
-v5 ��ʾ�������å����ɽ������ (���줬�ǥե���ȤǤ�)
+v5 資格証明キャッシュを表示する (これがデフォルトです)
 .It Fl f
-�����åȥե饰��ʲ��ξ�ά���Ǵޤ�ޤ���
-��ʸ���ϰʲ��ˤ���������Υե饰���̣���ޤ���
-.\" ��ʸ: charcted �� character �� typo 
+チケットフラグを以下の省略形で含めます。
+各文字は以下にあげる特定のフラグを意味します。
+.\" 原文: charcted は character の typo 
 .Bl -tag -width  XXX -compact -offset indent
 .It F
-ž����ǽ (forwardable)
+転送可能 (forwardable)
 .It f
-ž�����줿 (forwarded)
+転送された (forwarded)
 .It P
-������ǽ (proxiable)
+代理可能 (proxiable)
 .It p
-�������줿 (proxied)
+代理された (proxied)
 .It D
-���դ����� (postdate-able)
+先付け日付 (postdate-able)
 .It d
-���դ����դ��줿 (postdated)
+先付け日付された (postdated)
 .It R
-������ǽ (renewable)
+更新可能 (renewable)
 .It I
-��� (initial)
+初回 (initial)
 .It i
-̵�� (invalid)
+無効 (invalid)
 .It A
-����ǧ�ڤ��줿 (pre-authenticated)
+事前認証された (pre-authenticated)
 .It H
-�ϡ��ɥ�����ǧ�ڤ��줿 (����: �׵ᤷ��; hardware authenticated)
+ハードウェア認証された (訳註: 要求した; hardware authenticated)
 .El
 .Pp
-���ξ����
+この情報は
 .Fl -verbose
-���ץ����Ǥ⡢����Ĺ�ʷ��ǽ��Ϥ���ޤ���
+オプションでも、より冗長な形で出力されます。
 .It Xo
 .Fl v ,
 .Fl -verbose
 .Xc
-��Ĺ�ʽ��ϡ�
-���ϲ�ǽ�ʾ������Ƥ�ޤ�ޤ�:
+冗長な出力。
+出力可能な情報全てを含めます:
 .Bl -tag -width XXXX -offset indent
-.It Server (������)
-�����åȤ��ɤΥץ�󥷥ѥ�Τ���Τ�ΤǤ��뤫
-.\" ��ʸ: princial �� principal �θ��ꡣ
-.It Ticket etype (�����å� etype)
-�����å���ǻ��Ѥ���Ƥ���Ź沽�����ס�
-¸�ߤ�����ϸ��С�����󤬸��³���ޤ�
-.\" use �� used �� typo
-.It Session key (���å���󥭡�)
-�����åȤΰŹ沽�����פȰۤʤäƤ���ʤ顢���å���󥭡��ΰŹ沽������
-.It Auth time (ǧ�ڻ���)
-ǧ�ڸ򴹤��Ԥ�줿����
-.\" take place = �Ԥ��롢������
-.It Start time (���ϻ���)
-���Υ����åȤ�ͭ���ˤʤ���� 
-(auth time �Ȱۤʤ���ˤΤ�ɽ������ޤ�)
-.\" this tickets �� this ticket �� typo
-.It End time (��λ����)
-�����åȤ�ͭ�����¤��ڤ����
-���˴��¤��ڤ�Ƥ�����Ϥ��λ���������ޤ�
-.It Renew till (�����ޤ�)
-���Υץ�󥷥ѥ뤫�����������åȤΤ�������äȤ��٤��ޤ�ͭ���ʻ���
-.It Ticket flags (�����åȥե饰)
-�����åȤ����ꤵ��Ƥ���ե饰
-.It Addresses (���ɥ쥹)
-���Υ����åȤ�ͭ���Ȥʤ륢�ɥ쥹�Υ��å�
+.It Server (サーバ)
+チケットがどのプリンシパルのためのものであるか
+.\" 原文: princial は principal の誤り。
+.It Ticket etype (チケット etype)
+チケット中で使用されている暗号化タイプ。
+存在する場合は鍵バージョンが後に続きます
+.\" use は used の typo
+.It Session key (セッションキー)
+チケットの暗号化タイプと異なっているなら、セッションキーの暗号化タイプ
+.It Auth time (認証時刻)
+認証交換が行われた時刻
+.\" take place = 行われる、起こる
+.It Start time (開始時刻)
+このチケットが有効になる時刻 
+(auth time と異なる場合にのみ表示されます)
+.\" this tickets は this ticket の typo
+.It End time (終了時刻)
+チケットの有効期限が切れる時刻。
+既に期限が切れている場合はその旨注記されます
+.It Renew till (更新まで)
+このプリンシパルから得たチケットのうち、もっとも遅くまで有効な時刻
+.It Ticket flags (チケットフラグ)
+チケットに設定されているフラグ
+.It Addresses (アドレス)
+このチケットが有効となるアドレスのセット
 .El
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr kdestroy 1 ,
 .Xr kinit 1

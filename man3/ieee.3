@@ -36,7 +36,7 @@
 .Dd February 25, 1994
 .Dt IEEE 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm copysign ,
 .Nm copysignf ,
 .Nm finite ,
@@ -49,10 +49,10 @@
 .Nm remainderf ,
 .Nm scalbn ,
 .Nm scalbnf
-.Nd IEEE �黻�ؿ�
-.Sh �饤�֥��
+.Nd IEEE 演算関数
+.Sh ライブラリ
 .Lb libm
-.Sh ��
+.Sh 書式
 .In math.h
 .Ft double
 .Fn copysign "double x" "double y"
@@ -78,77 +78,77 @@
 .Fn scalbn "double x" "int n"
 .Ft float
 .Fn scalbnf "float x" "int n"
-.Sh ����
-�����δؿ��ϡ�
+.Sh 解説
+これらの関数は、
 .St -ieee754
-�ˤ�ä��׵�ޤ��Ͽ侩����Ƥ��ޤ���
+によって要求または推奨されています。
 .Pp
 .Fn copysign
-�����
+および
 .Fn copysignf
-�ϡ�
+は、
 .Fa x
-������
+の符号を
 .Fa y
-�������֤�������
+の符号に置き換えて
 .Fa x
-���֤��ޤ���
+を返します。
 .Pp
 \-\*(If \*(Lt
 .Fa x
 \*(Lt +\*(If
-�λ��ˤϡ�
+の時には、
 .Fn finite
-�����
+および
 .Fn finitef
-�ϡ��� 1 ���֤��ޤ��������Ǥʤ��� (
+は、値 1 を返します。そうでない時 (
 .Pf \\*(Ba Ns Fa x Ns \\*(Ba
-= \*(If �ޤ���
+= \*(If または
 .Fa x
-�� \*(Na �λ�) �ˤϡ�0 ���֤���ޤ���
+が \*(Na の時) には、0 が返されます。
 .Pp
 .Fn ilogb
-�����
+および
 .Fn ilogbf
-�ϡ�
+は、
 .Fa x
-��
+の
 .Fa n
-������������֤��ޤ���
+乗を整数型で返します。
 .Fn ilogb \*(Pm\*(If
-��
+は
 .Dv INT_MAX
-���֤���
+を返し、
 .Fn ilogb 0
-��
+は
 .Dv INT_MIN
-���֤��ޤ���
+を返します。
 .Pp
 .Fn nextafter
-�����
+および
 .Fn nextafterf
-�ϡ����Υޥ���ɽ����ǽ�ʿ���
+は、次のマシン表示可能な数を
 .Fa x
-����
+から
 .Fa y
-�������֤��ޤ���
+方向に返します。
 .Pp
 .Fn remainder
-�����
+および
 .Fn remainderf
-�ϡ���;
+は、剰余
 .Fa r
 :=
 .Fa x
 \-
 .Fa n\(**y
-���֤��ޤ������ΤȤ�
+を返します。このとき
 .Fa n
-��
+は
 .Bk -words
 .Fa x Ns / Ns Fa y
 .Ek
-�����Τ��ͤ˺Ǥ�ᤤ�����Ǥ������ˡ�
+の正確な値に最も近い整数です。更に、
 .Pf \\*(Ba Fa n
 \-
 .Sm off
@@ -156,9 +156,9 @@
 .Sm on
 =
 1/2
-�ʤ�С�
+ならば、
 .Fa n
-�϶����Ǥ������η�̡���;�����Τ˷׻����졢
+は偶数です。その結果、剰余は正確に計算され、
 .Sm off
 .Pf \\*(Ba Fa r No \\*(Ba
 .Sm on
@@ -166,24 +166,24 @@
 .Sm off
 .Pf \\*(Ba Fa y No \\*(Ba/2
 .Sm on
-�Ȥʤ�ޤ�����������
+となります。しかし、
 .Fn remainder x 0
-�����
+および
 .Fn remainder \*(If 0
-�ϡ�\*(Na ����������̵���ʱ黻�Ǥ���
+は、\*(Na を生成する無効な演算です。
 .Pp
 .Fn scalbn
-�����
+および
 .Fn scalbnf
-�ϡ��ؿ����ˤ�äƷ׻����줿
+は、指数操作によって計算された
 .Fa x Ns \(**(2** Ns Fa n )
-���֤��ޤ���
-.Sh ��Ϣ����
+を返します。
+.Sh 関連項目
 .Xr math 3
-.Sh ���
+.Sh 歴史
 .Nm ieee
-�ؿ��ϡ�
+関数は、
 .Bx 4.3
-���о줷�ޤ�����
-.Sh ����
+で登場しました。
+.Sh 規格
 .St -ieee754

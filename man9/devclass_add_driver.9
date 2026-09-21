@@ -32,12 +32,12 @@
 .Dd June 16, 1998
 .Dt DEVCLASS_ADD_DRIVER 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm devclass_add_driver ,
 .Nm devclass_delete_driver ,
 .Nm devclass_find_driver
-.Nd devclass ����Υɥ饤�Ф����
-.Sh ��
+.Nd devclass の中のドライバの操作
+.Sh 書式
 .In sys/param.h
 .In sys/bus.h
 .Ft int
@@ -46,15 +46,15 @@
 .Fn devclass_delete_driver "devclass_t dc" "driver_t *driver"
 .Ft driver_t *
 .Fn devclass_find_driver "devclass_t dc" "const char *name"
-.Sh ����
-�����δؿ��ϡ������ƥ�˿������ɥ饤�Ф��ɲä��뤿�ᡢ
-�Ť��ɥ饤�Ф������뤿�ᡢ
-�����¸�ߤ��Ƥ���ɥ饤�Ф�õ�����ᡢ���Ѳ�ǽ�Ǥ���
-�̾�ɥ饤�Фϥ����ƥ��������˼�ưŪ���ɲä���ޤ���
-.Sh ��Ϣ����
+.Sh 解説
+これらの関数は、システムに新しいドライバを追加するため、
+古いドライバを削除するため、
+および存在しているドライバを探すため、使用可能です。
+通常、ドライバはシステム初期化時に自動的に追加されます。
+.Sh 関連項目
 .Xr devclass 9 ,
 .Xr driver 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

@@ -29,23 +29,23 @@
 .\"
 .Dd February 3, 1998
 .Dt i4btrc 4
-.Sh ̾��
+.Sh 名称
 .Nm i4btrc
-.Nd D ����� B ����ͥ�Τ���� isdn4bsd ISDN ���󥿥ե������ɥ饤��
-.Sh FreeBSD �Ǥν�
+.Nd D および B チャネルのための isdn4bsd ISDN インタフェースドライバ
+.Sh FreeBSD での書式
 .Cd pseudo-device \&"i4btrc\&" Op count
-.Sh NetBSD �Ǥν�
-�ʤ�
-.Sh ����
+.Sh NetBSD での書式
+なし
+.Sh 解説
 .Nm
-�ɥ饤�Фϡ�D ����� (�ޤ���) B ����ͥ뤫����������ǡ����˥إå���
-�ղä����Ԥ�������ɲä��ޤ���������
+ドライバは、D および (または) B チャネルから受信したデータにヘッダを
+付加して待ち行列へ追加します。これらは
 .Xr isdntrace 8
-�桼�ƥ���ƥ����ɤ߼�ꡢ���˽������뤳�Ȥˤʤ�ޤ���
-.Sh ��Ϣ����
+ユーティリティが読み取り、更に処理することになります。
+.Sh 関連項目
 .Xr isdnd 8
 .Xr isdntrace 8
-.Sh ���
+.Sh 作者
 .Nm
-�ǥХ����ɥ饤�ФȤ��Υޥ˥奢��ڡ����� Hellmuth Michaelis ������
-���ޤ�����hm@kts.org �����Ϣ���Ǥ��ޤ���
+デバイスドライバとこのマニュアルページは Hellmuth Michaelis が作成
+しました。hm@kts.org で彼に連絡できます。

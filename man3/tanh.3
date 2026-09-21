@@ -36,34 +36,34 @@
 .Dd May 2, 1991
 .Dt TANH 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm tanh ,
 .Nm tanhf
-.Nd �ж����ܴؿ�
-.Sh �饤�֥��
+.Nd 双曲正接関数
+.Sh ライブラリ
 .Lb libm
-.Sh ��
+.Sh 書式
 .In math.h
 .Ft double
 .Fn tanh "double x"
 .Ft float
 .Fn tanhf "float x"
-.Sh ����
+.Sh 解説
 .Fn tanh
-�����
+および
 .Fn tanhf
-�ؿ��ϡ�
+関数は、
 .Fa x   
-���ж����ܤ�׻����ޤ���
-�ݤ�ˤ������ε����ϡ�
+の双曲正接を計算します。
+丸めによる誤差の議論は、
 .Xr math 3
-�򻲾Ȥ��Ƥ���������
-.Sh �����
+を参照してください。
+.Sh 戻り値
 .Fn tanh
-�����
+および
 .Fn tanhf
-�ؿ��ϡ��ж����ܤ��ͤ��֤��ޤ���
-.Sh ��Ϣ����
+関数は、双曲正接の値を返します。
+.Sh 関連項目
 .Xr acos 3 ,
 .Xr asin 3 ,
 .Xr atan 3 ,
@@ -74,8 +74,8 @@
 .Xr sin 3 ,
 .Xr sinh 3 ,
 .Xr tan 3
-.Sh ����
+.Sh 規格
 .Fn tanh
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

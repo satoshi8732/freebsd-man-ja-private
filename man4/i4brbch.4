@@ -29,21 +29,21 @@
 .\"
 .Dd February 3, 1998
 .Dt i4brbch 4
-.Sh ̾��
+.Sh 名称
 .Nm i4brbch
-.Nd ISDN B ����ͥ��ľ�ܥ����������뤿��� isdn4bsd �ɥ饤��
-.Sh FreeBSD �Ǥν�
+.Nd ISDN B チャネルに直接アクセスするための isdn4bsd ドライバ
+.Sh FreeBSD での書式
 .Cd pseudo-device \&"i4brbch\&" Op count
-.Sh NetBSD �Ǥν�
-�ʤ�
-.Sh ����
+.Sh NetBSD での書式
+なし
+.Sh 解説
 .Nm
-�ɥ饤�Фϲ����Ѵ����ܤ���Ƥ��ʤ� B ����ͥ�ȤΥ��󥿥ե���������
-���ޤ�������� isdn4bsd �ѥå������ΰ����Ǥ���
-.Sh ��Ϣ����
+ドライバは何も変換が施されていない B チャネルとのインタフェースを提供
+します。これは isdn4bsd パッケージの一部です。
+.Sh 関連項目
 .Xr isdnd 8
 .Xr isdnd.rc 5
-.Sh ���
+.Sh 作者
 .Nm
-�ɥ饤�ФȤ��Υޥ˥奢��ڡ����� Hellmuth Michaelis ���������ޤ�����
-hm@kts.org �����Ϣ���Ǥ��ޤ���
+ドライバとこのマニュアルページは Hellmuth Michaelis が作成しました。
+hm@kts.org で彼に連絡できます。

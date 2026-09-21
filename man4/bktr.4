@@ -7,26 +7,26 @@
 .in +0.5i
 .Dt BKTR 4 i386
 .Os FreeBSD 2.2
-.Sh ̾��
+.Sh 名称
 .Nm brooktree
-.Nd �ӥǥ�����ץ���ɥ饤��
-.Sh ��
+.Nd ビデオキャプチャドライバ
+.Sh 書式
 .Nm device bktr0
 .Pp
 .Nm controller iicbus0
 .Nm controller iicbb0
 .Nm controller smbus0
-.Sh ����
+.Sh 解説
 .Nm bktr
-�ɥ饤�Фϡ��㥳���ȡ���ѥե����ޥ󥹤Υܡ��ɤ� PCI
-.Em �ӥǥ�
-����ץ�����󶡤��ޤ���
-���Υɥ饤�Фϡ�Matrox Meteor �ɥ饤�Ф˴�Ť��Ƥ��ޤ���
-bktr �ɥ饤�Ф�
+ドライバは、低コスト、高パフォーマンスのボードで PCI
+.Em ビデオ
+キャプチャを提供します。
+このドライバは、Matrox Meteor ドライバに基づいています。
+bktr ドライバは
 .Em Brooktree Bt848 Video Capture Chip
-���ܤäƤ���ӥǥ������ɤΤۤȤ�ɤ򥵥ݡ��Ȥ��ޤ���
+が載っているビデオカードのほとんどをサポートします。
 .Pp
-�äˡ����Υ����ɤ�ư��뤳�Ȥ�ʬ���äƤ��ޤ�:
+特に、次のカードが動作することが分かっています:
 .br
 .Em Hauppage Wincast TV
 .br
@@ -36,12 +36,12 @@ bktr �ɥ饤�Ф�
 .br
 .Em Intel Smart Video Recorder III
 .Pp
-���Υɥ饤�Фϸ��ߡ����ε�ǽ�򥵥ݡ��Ȥ��ޤ�:
+このドライバは現在、次の機能をサポートします:
 .br
 .in +0.5i
-PCI ���� PCI �ؤ� DMA ž��
+PCI から PCI への DMA 転送
 .br
-����åԥ�
+クリッピング
 .br
 yuv
 .br
@@ -52,44 +52,44 @@ rgb24
 rgb32
 .in -0.5i
 .Pp
-�����Υ����ɤǤϡ����塼�ʤȤۤ������ʤ� I2C �Х���������³����Ƥ�
-�ޤ���Brooktree848 ���åפϡ����ΥХ���Ǥ��������ʤ򥳥�ȥ����뤹
-��ޥ����ǥХ����Ȥ���ư��Ƥ��ޤ���
-���äơ�
+これらのカードでは、チューナとほかの部品が I2C バスで内部接続されてい
+ます。Brooktree848 チップは、そのバス上でそれらの部品をコントロールす
+るマスタデバイスとして動作しています。
+従って、
 .Xr iicbus 4 ,
 .Xr iicbb 4
-��
+と
 .Xr smbus 4
-����ȥ����������ϥ����ƥ��֤� bktr ���ݡ��Ȥ�ɬ�ܤǤ���
+コントローラの宣言はアクティブな bktr サポートに必須です。
 .Pp
-���Υ����ͥ�ѥ�᡼�����ɥ饤�ФΤ���ʤ�����˻��Ѳ�ǽ�Ǥ�:
+次のカーネルパラメータがドライバのさらなる設定に使用可能です:
 .Pp
 .Em options "BROOKTREE_ALLOC_PAGES=xxx"
-�ϥץ����֤����������Ȥ��ˡ�������Ƥ�Ϣ³�����ڡ����ο�����ꤷ�ޤ���
-�����ͥ뤬������Ƥ�ڡ����ο��Υǥե���Ȥ� 216 �Ǥ���
-����ϡ�(216*4096) �Х��Ȼ��Ѳ�ǽ�Ǥ��뤳�Ȥ򼨤��Ƥ��ޤ���
+はプローブに成功したときに、割り当てる連続したページの数を指定します。
+カーネルが割り当てるページの数のデフォルトは 216 です。
+これは、(216*4096) バイト使用可能であることを示しています。
 .Pp
-.Sh ���
-���Υɥ饤�Ф�
+.Sh 作者
+このドライバは
 .An Jim Lowe Aq james@miller.cs.uwm.edu ,
 .An Mark Tinguely Aq tinguely@plains.nodak.edu ,
 .An Amancio Hasty Aq hasty@star-gate.com
-�Ȥ���¾�ο͡��κ�Ȥ˴�Ť��Ƥ��ޤ���
-.Sh ��Ϣ�ե�����
+とその他の人々の作業に基づいています。
+.Sh 関連ファイル
 .Bl -tag -width /usr/share/examples/meteor -compact
 .It Pa /usr/share/examples/meteor
-Meteor �ɥ饤�� (�褯�����߷פǤ���) �ǤǤ��뤳�Ȥ���
+Meteor ドライバ (よく似た設計である) でできることの例
 .It Pa /usr/ports/graphics/fxtv
-bktr �ɥ饤�Ф����Ѥ���ɽ���ץ������ - 
+bktr ドライバを利用する表示プログラム - 
 .Em The X Window System
-��
+と
 .Em The Ports Collection
-�����󥹥ȡ��뤵��Ƥ���ɬ�פ�����ޤ���
+がインストールされている必要があります。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr meteor 4
-.Sh ���
+.Sh 歴史
 .Nm
-�ɥ饤�Ф�
+ドライバは
 .Fx 2.2
-�ǽ��Ƹ���ޤ�����
+で初めて現れました。

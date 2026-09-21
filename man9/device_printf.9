@@ -29,30 +29,30 @@
 .Dd April 21, 2003
 .Dt DEVICE_PRINTF 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm device_printf
-.Nd �ե����ޥåȽ��Ϥ��Ѵ�
-.Sh ��
+.Nd フォーマット出力の変換
+.Sh 書式
 .In sys/param.h
 .In sys/bus.h
 .Ft int
 .Fn device_printf "device_t dev" "const char *fmt" ...
-.Sh ����
+.Sh 解説
 .Fn device_printf
-�ؿ���
+関数は
 .Xr printf 9
-�ؿ��ؤ������ʥ��󥿥ե������Ǥ���
-�����󤪤�ӥ��ڡ��������³��
+関数への便利なインタフェースです。
+コロンおよびスペースが後に続く
 .Fa dev
-�ǥХ�����̾������Ϥ��ޤ���
-���줫�顢
+デバイスの名前を出力します。
+それから、
 .Fa fmt
-����Ӥ���ؤλĤ�ΰ������Ϥ��줿���ˤ�
+およびそれへの残りの引数が渡された場合には
 .Xr printf 9
-�����������Τ���Ϥ��ޤ���
-.Sh �����
+が印字するものを出力します。
+.Sh 戻り値
 .Fn device_printf
-�ؿ���ɽ�����줿ʸ�������֤��ޤ���
-.Sh ��Ϣ����
+関数は表示された文字数を返します。
+.Sh 関連項目
 .Xr printf 3 ,
 .Xr printf 9

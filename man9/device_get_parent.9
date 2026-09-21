@@ -32,20 +32,20 @@
 .Dd April 21, 2003
 .Dt DEVICE_GET_PARENT 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm device_get_parent
-.Nd �ǥХ����οƤμ���
-.Sh ��
+.Nd デバイスの親の取得
+.Sh 書式
 .In sys/param.h
 .In sys/bus.h
 .Ft device_t
 .Fn device_get_parent "device_t dev"
-.Sh ����
+.Sh 解説
 .Fn device_get_parent
-�ؿ��ϥǥХ����οƥǥХ�����̾�����֤��ޤ���
-.Sh ��Ϣ����
+関数はデバイスの親デバイスの名前を返します。
+.Sh 関連項目
 .Xr device 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Warner Losh
-���񤭤ޤ�����
+が書きました。

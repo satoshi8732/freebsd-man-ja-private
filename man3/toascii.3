@@ -36,22 +36,22 @@
 .Dd June 4, 1993
 .Dt TOASCII 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm toascii
-.Nd �Х��Ȥ� 7 �ӥå� ASCII ���Ѵ�
-.Sh �饤�֥��
+.Nd バイトを 7 ビット ASCII に変換
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In ctype.h
 .Ft int
 .Fn toascii "int c"
-.Sh ����
+.Sh 解説
 .Fn toascii
-�ؿ��ϡ�1 �Ĥ�ʸ�����顢���� 7 �ӥåȰʳ��Ρ��ѥ�ƥ��ޤ���¾�Υޡ������ӥåȤ�ޤह�٤Ƥ�������ޤ���
-.Sh �����
+関数は、1 つの文字から、下位 7 ビット以外の、パリティまたは他のマーカービットを含むすべてを取り除きます。
+.Sh 戻り値
 .Fn toascii
-�ؿ��ϡ�ɬ��ͭ���� ASCII ʸ�����֤��ޤ���
-.Sh ��Ϣ����
+関数は、必ず有効な ASCII 文字を返します。
+.Sh 関連項目
 .Xr isalnum 3 ,
 .Xr isalpha 3 ,
 .Xr isascii 3 ,

@@ -32,28 +32,28 @@
 .Dd September 6, 1999
 .Dt DEVICE_GET_FLAGS 9
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm device_set_flags ,
 .Nm device_get_flags
-.Nd �ɥ饤�Хե饰�����
-.Sh ��
+.Nd ドライバフラグの操作
+.Sh 書式
 .In sys/param.h
 .In sys/bus.h
 .Ft void
 .Fn device_set_flags "device_t dev" "u_int32_t flags"
 .Ft u_int32_t
 .Fn device_get_flags "device_t dev"
-.Sh ����
-�ġ��ΥǥХ����ϡ��ǥХ����ο��񤤤����椹�뤿��˻��Ѥ����
-�ɥ饤�а�¸�Υե饰���Ȥ򡢤��Ф��Х��ݡ��Ȥ��Ƥ��ޤ���
-�����Υե饰��
+.Sh 解説
+個々のデバイスは、デバイスの振舞いを制御するために使用される
+ドライバ依存のフラグの組を、しばしばサポートしています。
+これらのフラグは
 .Fn device_get_flags
-�θƤӽФ��ˤ�ä��ɤ߹��ޤ졢
+の呼び出しによって読み込まれ、
 .Fn device_set_flags
-�θƤӽФ��ˤ�äƽ񤭹��ޤ�ޤ���
-.Sh ��Ϣ����
+の呼び出しによって書き込まれます。
+.Sh 関連項目
 .Xr device 9
-.Sh ���
-���Υޥ˥奢��ڡ�����
+.Sh 作者
+このマニュアルページは
 .An Doug Rabson
-���񤭤ޤ�����
+が書きました。

@@ -41,29 +41,29 @@
 .Dd June 4, 1993
 .Dt STRLEN 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm strlen
-.Nd ʸ�����Ĺ����¬��
-.Sh �饤�֥��
+.Nd 文字列の長さを測定
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In string.h
 .Ft size_t
 .Fn strlen "const char *s"
-.Sh ����
+.Sh 解説
 .Fn strlen
-�ؿ��ϡ�ʸ����
+関数は、文字列
 .Fa s
-��Ĺ����׻����ޤ���
-.Sh �����
+の長さを計算します。
+.Sh 戻り値
 .Fn strlen
-�ؿ��ϡ���ü��
-.Dv �̥�
-ʸ����ޤޤʤ�ʸ�������֤��ޤ���
-.Sh ��Ϣ����
+関数は、終端の
+.Dv ヌル
+文字を含まない文字数を返します。
+.Sh 関連項目
 .Xr string 3
-.Sh ����
+.Sh 規格
 .Fn strlen
-�ؿ��ϡ�
+関数は、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。

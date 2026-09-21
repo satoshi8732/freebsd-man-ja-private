@@ -28,62 +28,62 @@
 .Dd August 4, 1998
 .Dt PTHREAD_RWLOCKATTR_SETPSHARED 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm pthread_rwlockattr_setpshared
-.Nd �ץ�������ͭ°��������
-.Sh �饤�֥��
+.Nd プロセス共有属性の設定
+.Sh ライブラリ
 .Lb libc_r
-.Sh ��
+.Sh 書式
 .In pthread.h
 .Ft int
 .Fn pthread_rwlockattr_setpshared "pthread_rwlockattr_t *attr" "int pshared"
-.Sh ����
+.Sh 解説
 .Fn pthread_rwlockattr_setpshared
-�ؿ��ϡ�
+関数は、
 .Fa attr
-�Υץ�������ͭ°����
+のプロセス共有属性を
 .Fa pshared
-�ˤ�äƻ��Ȥ���Ƥ����ͤ����ꤷ�ޤ���
+によって参照されている値に設定します。
 .Fa pshared
-�ϡ��ʲ��� 2 �Ĥ���� 1 �Ĥˤʤ�ޤ���
+は、以下の 2 つの内の 1 つになります。
 .Bl -tag -width PTHREAD_PROCESS_PRIVATE
 .It Dv PTHREAD_PROCESS_SHARED
-�ɼ�� / ����ߥ��å���°�������˥��������������ƤΥץ�������
-���ƤΥ���åɤϡ����å������Ǥ��ޤ���
+読取り / 書込みロックが属するメモリにアクセスする全てのプロセスの
+全てのスレッドは、ロックを操作できます。
 .It Dv PTHREAD_PROCESS_PRIVATE
-�ɼ�� / ����ߥ��å���������������åɤ�Ʊ���ץ���������Ǻ������줿
-����åɤΤߤ������å������Ǥ��ޤ���
-���줬�ǥե�����ͤǤ���
+読取り / 書込みロックを初期化したスレッドと同じプロセスの中で作成された
+スレッドのみが、ロックを操作できます。
+これがデフォルト値です。
 .El
-.Sh �����
-���꤬�ʤ����ϡ�
+.Sh 戻り値
+問題がない場合は、
 .Fn pthread_rwlockattr_setpshared
-�ؿ��� 0 ���֤��ޤ���
-���꤬������ϡ����Υ��顼�򼨤�����˥��顼�ֹ椬�֤���ޤ���
-.Sh ��Ϣ����
+関数は 0 を返します。
+問題がある場合は、そのエラーを示すためにエラー番号が返されます。
+.Sh 関連項目
 .Xr pthread_rwlock_init 3 ,
 .Xr pthread_rwlockattr_init 3 ,
 .Xr pthread_rwlockattr_setpshared 3
-.Sh ����
+.Sh 規格
 .Fn pthread_rwlockattr_setpshared
-�ؿ��ϡ�
+関数は、
 .St -susv2
-��Ŭ�礷�Ƥ���Ϥ��Ǥ���
-.Sh ���顼
+に適合しているはずです。
+.Sh エラー
 .Fn pthread_rwlockattr_setpshared
-�ϰʲ��ξ��˼��Ԥ��ޤ���
+は以下の場合に失敗します。
 .Bl -tag -width Er
 .It Bq Er EINVAL
 .Fa attr
-�ޤ���
+または
 .Fa pshared
-�ˤ�äƻ��ꤵ�줿�ͤ�̵���Ǥ���
+によって指定された値が無効です。
 .El
-.Sh ���
+.Sh 歴史
 .Fn pthread_rwlockattr_setpshared
-�ؿ��ϡ�
+関数は、
 .Fx 3.0
-�ǤϤ�����о줷�ޤ�����
-.Sh �Х�
+ではじめて登場しました。
+.Sh バグ
 .Dv PTHREAD_PROCESS_SHARED
-°���ϡ����ݡ��Ȥ���Ƥ��ޤ���
+属性は、サポートされていません。

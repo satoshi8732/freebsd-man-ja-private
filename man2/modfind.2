@@ -29,43 +29,43 @@
 .Dd September 28, 2000
 .Dt MODFIND 2
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm modfind
-.Nd �����ͥ�⥸�塼��� modid ���֤�
-.Sh �饤�֥��
+.Nd カーネルモジュールの modid を返す
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In sys/param.h
 .In sys/module.h
 .Ft int
 .Fn modfind "const char *modname"
-.Sh ����
+.Sh 解説
 .Fn modfind
-�����ƥॳ�����
+システムコールは
 .Fa modname
-�ˤ�äƻ��Ȥ���륫���ͥ�⥸�塼��� modid ���֤��ޤ���
-.Sh �����
+によって参照されるカーネルモジュールの modid を返します。
+.Sh 戻り値
 .Fn modfind
-�����ƥॳ�����
+システムコールは
 .Fa file
-�ˤ�äƻ��Ȥ���륫���ͥ�⥸�塼��� modid ���֤��ޤ���
-���顼�������硢
+によって参照されるカーネルモジュールの modid を返します。
+エラーがある場合、
 .Fn modfind
-�� -1 ���֤������顼�򼨤������
+は -1 を返し、エラーを示すために
 .Va errno
-�����ꤵ��ޤ���
-.Sh ���顼
+が設定されます。
+.Sh エラー
 .Fn modfind
-�Ͻ������Ԥ���ȡ�
+は処理を失敗すると、
 .Va errno
-��ʲ��Τ褦�����ꤷ�ޤ�:
+を以下のように設定します:
 .Bl -tag -width Er
 .It Bq Er EFAULT
-��������ɬ�פʥǡ����������ͥ���֤����ɤ߼��ޤ���Ǥ�����
+この操作に必要なデータがカーネル空間から読み取れませんでした。
 .It Bq Er ENOENT
-���ꤵ�줿�ե�����ϥ����ͥ�˥����ɤ���Ƥ��ޤ���
+指定されたファイルはカーネルにロードされていません。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr kldfind 2 ,
 .Xr kldfirstmod 2 ,
 .Xr kldload 2 ,
@@ -78,8 +78,8 @@
 .Xr modstat 2 ,
 .Xr kld 4 ,
 .Xr kldstat 8
-.Sh ���
+.Sh 歴史
 .Nm kld
-���󥿥ե�������
+インタフェースは
 .Fx 3.0
-�ǤϤ�����о줷�ޤ�����
+ではじめて登場しました。

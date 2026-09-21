@@ -36,16 +36,16 @@
 .Dd June 4, 1993
 .Dt MEMORY 3
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm malloc ,
 .Nm free ,
 .Nm realloc ,
 .Nm calloc ,
 .Nm alloca
-.Nd ����Ū�ʥ������������
-.Sh �饤�֥��
+.Nd 一般的なメモリ割り当て操作
+.Sh ライブラリ
 .Lb libc
-.Sh ��
+.Sh 書式
 .In stdlib.h
 .Ft void *
 .Fn malloc "size_t size"
@@ -57,18 +57,18 @@
 .Fn calloc "size_t nelem" "size_t elsize"
 .Ft void *
 .Fn alloca "size_t size"
-.Sh ����
-���δؿ��ϡ��ƽФ��ץ������Υ���γ�����ƤȲ�����Ԥʤ��ޤ���
-�ܺ٤ˤĤ��Ƥϡ����줾��Υޥ˥奢��ڡ����򻲾Ȥ��Ƥ���������
-.Sh ��Ϣ����
+.Sh 解説
+この関数は、呼出しプロセスのメモリの割り当てと解放を行ないます。
+詳細については、それぞれのマニュアルページを参照してください。
+.Sh 関連項目
 .Xr alloca 3 ,
 .Xr calloc 3 ,
 .Xr free 3 ,
 .Xr malloc 3 ,
 .Xr realloc 3
-.Sh ����
-���δؿ��ϡ�
+.Sh 規格
+この関数は、
 .Fn alloca
-�������
+を除き、
 .St -isoC
-��Ŭ�礷�Ƥ��ޤ���
+に適合しています。
