@@ -27,21 +27,21 @@
 .Dd November 29, 1994
 .Dt AIC 4 i386
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm aic
-.Nd Adaptec �� AIC-6260 �� AIC-6360 �� SCSI �ɥ饤��
-.Sh ��
+.Nd Adaptec の AIC-6260 と AIC-6360 の SCSI ドライバ
+.Sh 書式
 .Cd "device aic0 at isa? port 0x340 bio irq 11"
-.Sh ����
+.Sh 解説
 .Nm aic
-�ɥ饤�Ф� Adaptec �� AIC-6260 �� AIC-6360 �� SCSI
-����ȥ�������åפΥ��ݡ��Ȥ��󶡤��ޤ���
-����ϡ�Adaptec 152x �� Creative
-Labs SoundBlaster SCSI �ۥ��ȥ����ץ���ޤߤޤ���
+ドライバは Adaptec の AIC-6260 と AIC-6360 の SCSI
+コントローラチップのサポートを提供します。
+これは、Adaptec 152x と Creative
+Labs SoundBlaster SCSI ホストアダプタを含みます。
 .Pp
-�����Υ���ȥ�������åפ��Ѥ���¿���Υ����ƥ��
-�֡��� ROM ����äƤ��ޤ��󡣤������äơ���������֡��ȤϤǤ��ޤ���
-.Sh ��Ϣ����
+これらのコントローラチップを用いた多くのシステムは
+ブート ROM を持っていません。したがって、ここからブートはできません。
+.Sh 関連項目
 .Xr cd 4 ,
 .Xr ch 4 ,
 .Xr intro 4 ,

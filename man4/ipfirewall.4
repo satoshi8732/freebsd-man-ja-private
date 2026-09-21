@@ -5,94 +5,94 @@
 .Dd June 22, 1997
 .Dt IPFIREWALL 4
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm ipfirewall
-.Nd IP �ѥ��åȥե��륿����ӥȥ�ե��å�¬��
-.Sh ��
+.Nd IP パケットフィルタおよびトラフィック測定
+.Sh 書式
 .Fd #include <sys/types.h>
 .Fd #include <sys/queue.h>
 .Fd #include <netinet/in.h>
 .Fd #include <netinet/ip_fw.h>
 .Ft int
 .Fn setsockopt raw_socket IPPROTO_IP "ipfw option" "struct ipfw" size
-.Sh ����
-ipfirewall (��̾ ipfw) �ϡ������ƥ�Υ��󥿥ե��������̲᤹�� IP �ѥ��åȤ�
-�Ф��ƥե��륿��󥰤������쥯�Ȥʤɤν�����Ԥ������ƥ�ε�ǽ�Ǥ���
-�ѥ��åȤ�Ŭ�礹���Τ����Ĥ���ޤǥѥ�����롼��ν�ꥹ�ȤȾȤ餷��蘆��
-�ޤ���Ŭ�礹��롼�뤬���Ĥ��ä������Ǥ�����б�����ư���¹Ԥ��ޤ���
-�롼��� 1 ���� 65534 �ޤǤ��ֹ�򿶤�졢
-ʣ���Υ롼�뤬Ʊ���ֹ��ͭ���뤳�Ȥ��ǽ�Ǥ���
+.Sh 解説
+ipfirewall (別名 ipfw) は、システムのインタフェースを通過する IP パケットに
+対してフィルタリングやリダイレクトなどの処理を行うシステムの機能です。
+パケットは適合するものが見つかるまでパターンルールの順リストと照らし合わされ
+ます。適合するルールが見つかった時点でそれに対応する動作を実行します。
+ルールは 1 から 65534 までの番号を振られ、
+複数のルールが同じ番号を共有することも可能です。
 .Pp
-ͣ��ɬ��¸�ߤ���롼��Ȥ��ƥ롼���ֹ� 65535 ������ޤ���
-���Υ롼����̾�Ϥ��٤ƤΥѥ��åȤ��˴����ޤ���
-�������äơ������꾮�����ֹ�Υ롼���Ŭ�礷�ʤ��ä��ѥ��åȤϤ��٤�
-�˴�����ޤ���
-�������������ͥ�򥳥�ѥ��뤹����Υ��ץ����
+唯一必ず存在するルールとしてルール番号 65535 があります。
+このルールは通常はすべてのパケットを破棄します。
+したがって、これより小さな番号のルールに適合しなかったパケットはすべて
+破棄されます。
+しかし、カーネルをコンパイルする時のオプション
 .Dq IPFIREWALL_DEFAULT_TO_ACCEPT
-����ꤹ��ȡ������ԤϤ��٤� (�Υѥ��åȤ��̲��) ���Ĥ���褦��
-���θ���롼����ѹ����뤳�Ȥ��Ǥ��ޤ���
+を指定すると、管理者はすべて (のパケットの通過を) 許可するように
+この固定ルールを変更することができます。
 .Pp
 .Fn setsockopt
-���Ϥ�����ͤϡ��롼��򵭽Ҥ��Ƥ��� ip_fw ��¤�� (��������) �Ǥ���
-(IP_FW_DEL �Τ褦��) �����Ĥ��Υ������Ǥϥ롼���ֹ�Τߤ����פˤʤ�ޤ���
-.Sh ���ޥ��
-�롼��ꥹ�Ȥ򰷤�����˼��Υ����åȥ��ץ�����Ȥ��ޤ�:
+へ渡される値は、ルールを記述している ip_fw 構造体 (下記参照) です。
+(IP_FW_DEL のような) いくつかのケースではルール番号のみが重要になります。
+.Sh コマンド
+ルールリストを扱うために次のソケットオプションを使います:
 .Pp
-IP_FW_ADD �ϡ��롼��ꥹ�Ȥ˥롼����������ޤ���
+IP_FW_ADD は、ルールリストにルールを挿入します。
 .Pp
-IP_FW_DEL �ϡ�Ŭ�礹��롼���ֹ����ĥ롼��򤹤٤ƺ�����ޤ���
+IP_FW_DEL は、適合するルール番号を持つルールをすべて削除します。
 .Pp
-IP_FW_GET �ϡ�Ŭ�礹��롼���ֹ�� (�ǽ��) �롼����֤��ޤ���
+IP_FW_GET は、適合するルール番号の (最初の) ルールを返します。
 .Pp
-IP_FW_ZERO �ϡ�
-Ŭ�礹��롼���ֹ����Ĥ��٤ƤΥ롼��˴ؤ������פ� 0 �ˤ��ޤ���
-�롼���ֹ椬 0 �ξ��ˤϤ��٤ƤΥ롼��� 0 �ˤ��ޤ���
+IP_FW_ZERO は、
+適合するルール番号を持つすべてのルールに関する統計を 0 にします。
+ルール番号が 0 の場合にはすべてのルールを 0 にします。
 .Pp
-IP_FW_FLUSH (65535 �����) ���٤ƤΥ롼���õ�ޤ���
+IP_FW_FLUSH (65535 を除く) すべてのルールを消去します。
 .Pp
-�����ͥ�Υ������ƥ���٥뤬 2 ����礭������
-IP_FW_GET �Τߤ����Ĥ���ޤ���
-.Sh �롼�빽¤��
-�롼��ϼ��ι�¤�Τǵ��Ҥ���Ƥ��ޤ�:
+カーネルのセキュリティレベルが 2 より大きい場合は
+IP_FW_GET のみが許可されます。
+.Sh ルール構造体
+ルールは次の構造体で記述されています:
 .Bd -literal
-/* 1 �ĤΥ��󥿥ե���������� */
+/* 1 個のインタフェースを指定 */
 union ip_fw_if {
-    struct in_addr fu_via_ip;   /* IP ���ɥ쥹�ǻ��� */
-    struct {                    /* ���󥿥ե�����̾�ǻ��� */
-#define FW_IFNLEN       6       /* ��¤�Τ� 2^x �������֤� */
+    struct in_addr fu_via_ip;   /* IP アドレスで指定 */
+    struct {                    /* インタフェース名で指定 */
+#define FW_IFNLEN       6       /* 構造体を 2^x 境界に置く */
             char  name[FW_IFNLEN];
-            short unit;         /* -1 ��Ǥ�դΥ�˥åȤ�Ŭ�� */
+            short unit;         /* -1 は任意のユニットに適合 */
     } fu_via_if;
 };
 
-/* 1 �Ĥ� ipfw �롼�� */
+/* 1 個の ipfw ルール */
 struct ip_fw {
-    u_long fw_pcnt,fw_bcnt;         /* �ѥ��åȤȥХ��ȿ��Υ����� */
-    struct in_addr fw_src, fw_dst;  /* �����Ƚ����� IP ���ɥ쥹 */
-    struct in_addr fw_smsk, fw_dmsk;/* �����Ƚ����� IP ���ɥ쥹�Υޥ��� */
-    u_short fw_number;              /* �롼���ֹ� */
-    u_short fw_flg;                 /* �ե饰�� */
-#define IP_FW_MAX_PORTS 10          /* ���ɤ������� */
-    u_short fw_pts[IP_FW_MAX_PORTS];/* Ŭ�礹��ݡ����ֹ������ */
-    u_char fw_ipopt,fw_ipnopt;      /* IP ���ץ����Υ��å�/���󥻥å� */
-    u_char fw_tcpf,fw_tcpnf;        /* TCP �ե饰�Υ��å�/���󥻥å� */
+    u_long fw_pcnt,fw_bcnt;         /* パケットとバイト数のカウンタ */
+    struct in_addr fw_src, fw_dst;  /* 始点と終点の IP アドレス */
+    struct in_addr fw_smsk, fw_dmsk;/* 始点と終点の IP アドレスのマスク */
+    u_short fw_number;              /* ルール番号 */
+    u_short fw_flg;                 /* フラグ語 */
+#define IP_FW_MAX_PORTS 10          /* 程良い最大値 */
+    u_short fw_pts[IP_FW_MAX_PORTS];/* 適合するポート番号の配列 */
+    u_char fw_ipopt,fw_ipnopt;      /* IP オプションのセット/アンセット */
+    u_char fw_tcpf,fw_tcpnf;        /* TCP フラグのセット/アンセット */
 #define IP_FW_ICMPTYPES_DIM (256 / (sizeof(unsigned) * 8))
-    unsigned fw_icmptypes[IP_FW_ICMPTYPES_DIM]; /* ICMP �����פΥӥåȥޥå� */
-    long timestamp;                 /* �ǽ�Ŭ��Υ����ॹ����� (tv_sec) */
-    union ip_fw_if fw_in_if, fw_out_if;/* ����/���ϤΥ��󥿥ե����� */
+    unsigned fw_icmptypes[IP_FW_ICMPTYPES_DIM]; /* ICMP タイプのビットマップ */
+    long timestamp;                 /* 最終適合のタイムスタンプ (tv_sec) */
+    union ip_fw_if fw_in_if, fw_out_if;/* 入力/出力のインタフェース */
     union {
-        u_short fu_divert_port;     /* Divert/tee �ݡ��� */
-        u_short fu_skipto_rule;     /* SKIPTO ���ޥ�ɥ롼���ֹ� */
-        u_short fu_reject_code;     /* REJECT ���������� */
+        u_short fu_divert_port;     /* Divert/tee ポート */
+        u_short fu_skipto_rule;     /* SKIPTO コマンドルール番号 */
+        u_short fu_reject_code;     /* REJECT 応答コード */
     } fw_un;
-    u_char fw_prot;                 /* IP �ץ��ȥ��� */
-    u_char fw_nports;               /* �ݡ���������Ρ������ݡ��ȿ���   */
-                                    /* �����ݡ��ȿ� (�����ݡ��Ȥ�����   */
-                                    /* �ݡ��Ȥ˸�³������Ƿ� 10 �ݡ��� */
-                                    /* 0 �����ݡ��ȥޥå��ΰ�̣)        */
+    u_char fw_prot;                 /* IP プロトコル */
+    u_char fw_nports;               /* ポート配列中の、始点ポート数と   */
+                                    /* 終点ポート数 (終点ポートが始点   */
+                                    /* ポートに後続。最大で計 10 ポート */
+                                    /* 0 は全ポートマッチの意味)        */
 };
 
-/* ����/�����Υݡ��ȿ��� "fw_nports" �˥��󥳡��� */
+/* 始点/終点のポート数を "fw_nports" にエンコード */
 
 #define IP_FW_GETNSRCP(rule)            ((rule)->fw_nports & 0x0f)
 #define IP_FW_SETNSRCP(rule, n)         do {                            \\
@@ -105,101 +105,101 @@ struct ip_fw {
                                           (rule)->fw_nports |= (n) << 4;\\
                                         } while (0)
 
-/* flags" �ե�������ѥե饰�� */
+/* flags" フィールド用フラグ値 */
 
-#define IP_FW_F_IN      0x0001  /* ���ϥѥ��åȤ�����å�               */
-#define IP_FW_F_OUT     0x0002  /* ���ϥѥ��åȤ�����å�               */
-#define IP_FW_F_IIFACE  0x0004  /* ���ϥ��󥿥ե������ƥ��Ȥ�Ŭ��       */
-#define IP_FW_F_OIFACE  0x0008  /* ���ϥ��󥿥ե������ƥ��Ȥ�Ŭ��       */
+#define IP_FW_F_IN      0x0001  /* 入力パケットをチェック               */
+#define IP_FW_F_OUT     0x0002  /* 出力パケットをチェック               */
+#define IP_FW_F_IIFACE  0x0004  /* 入力インタフェーステストを適用       */
+#define IP_FW_F_OIFACE  0x0008  /* 出力インタフェーステストを適用       */
 
-#define IP_FW_F_COMMAND 0x0070  /* Ϣ��������ȥ��ѤΥޥ���             */
-#define IP_FW_F_DENY    0x0000  /* ����ϵ��ݥ롼��                     */
-#define IP_FW_F_REJECT  0x0010  /* ���ݤ��Ʊ����ѥ��åȤ�����           */
-#define IP_FW_F_ACCEPT  0x0020  /* ����ϼ����롼��                     */
-#define IP_FW_F_COUNT   0x0030  /* ����Ϸ׿��롼��                     */
-#define IP_FW_F_DIVERT  0x0040  /* ����� divert �롼��                 */
-#define IP_FW_F_TEE     0x0050  /* �����ʬ���롼��                     */
-#define IP_FW_F_SKIPTO  0x0060  /* ����ϥ����åץ롼��                 */
+#define IP_FW_F_COMMAND 0x0070  /* 連鎖型エントリ用のマスク             */
+#define IP_FW_F_DENY    0x0000  /* これは拒否ルール                     */
+#define IP_FW_F_REJECT  0x0010  /* 拒否して応答パケットを送信           */
+#define IP_FW_F_ACCEPT  0x0020  /* これは受理ルール                     */
+#define IP_FW_F_COUNT   0x0030  /* これは計数ルール                     */
+#define IP_FW_F_DIVERT  0x0040  /* これは divert ルール                 */
+#define IP_FW_F_TEE     0x0050  /* これは分岐ルール                     */
+#define IP_FW_F_SKIPTO  0x0060  /* これはスキップルール                 */
 
-#define IP_FW_F_PRN     0x0080  /* ���Υ롼�뤬Ŭ�礷������ɽ��       */
+#define IP_FW_F_PRN     0x0080  /* このルールが適合した場合に表示       */
 
-#define IP_FW_F_SRNG    0x0100  /* �ǽ�� 2 �Ĥλ����ݡ��Ȥϡ��Ǿ���    *
-                                 * ������ϰ� (�ۥ��ȤΥХ��Ƚ�ǳ�Ǽ)  */
+#define IP_FW_F_SRNG    0x0100  /* 最初の 2 つの始点ポートは、最小と    *
+                                 * 最大の範囲 (ホストのバイト順で格納)  */
 
-#define IP_FW_F_DRNG    0x0200  /* �ǽ�� 2 �Ĥν����ݡ��Ȥϡ��Ǿ���    *
-                                 * ������ϰ� (�ۥ��ȤΥХ��Ƚ�ǳ�Ǽ)  */
+#define IP_FW_F_DRNG    0x0200  /* 最初の 2 つの終点ポートは、最小と    *
+                                 * 最大の範囲 (ホストのバイト順で格納)  */
 
-#define IP_FW_F_IIFNAME 0x0400  /* ���ϥ��󥿥ե�������̾��/��˥å�    *
-                                 * (IP �ǤϤʤ�)                        */
-#define IP_FW_F_OIFNAME 0x0800  /* ���ϥ��󥿥ե�������̾��/��˥å�    *
-                                 * (IP �ǤϤʤ�)                        */
+#define IP_FW_F_IIFNAME 0x0400  /* 入力インタフェースは名前/ユニット    *
+                                 * (IP ではない)                        */
+#define IP_FW_F_OIFNAME 0x0800  /* 出力インタフェースは名前/ユニット    *
+                                 * (IP ではない)                        */
 
-#define IP_FW_F_INVSRC  0x1000  /* ���������å��ΰ�̣��ȿž             */
-#define IP_FW_F_INVDST  0x2000  /* ���������å��ΰ�̣��ȿž             */
+#define IP_FW_F_INVSRC  0x1000  /* 始点チェックの意味を反転             */
+#define IP_FW_F_INVDST  0x2000  /* 終点チェックの意味を反転             */
 
-#define IP_FW_F_FRAG    0x4000  /* ����                                 */
+#define IP_FW_F_FRAG    0x4000  /* 断片                                 */
 
-#define IP_FW_F_ICMPBIT 0x8000  /* ICMP �����ץӥåȥޥåפ�ͭ��        */
+#define IP_FW_F_ICMPBIT 0x8000  /* ICMP タイプビットマップは有効        */
 
-#define IP_FW_F_MASK    0xFFFF  /* ���ꤦ�뤹�٤ƤΥե饰�ӥåȤΥޥ��� */
+#define IP_FW_F_MASK    0xFFFF  /* ありうるすべてのフラグビットのマスク */
 .Ed
 
-.Sh �롼���ư��
-�ƥ롼��ϡ��ե饰����� IP_FW_F_COMMAND �ӥåȤǼ�����롢����ư�������ޤ���
+.Sh ルールの動作
+各ルールは、フラグ語中の IP_FW_F_COMMAND ビットで示される、次の動作を持ちます。
 
-  IP_FW_F_DENY          - �ѥ��åȤ��˴����ޤ�
-  IP_FW_F_REJECT        - �ѥ��åȤ��˴�����ICMP �ޤ��� TCP ���ͳ���Ƶ��ݤ����Τ��ޤ�
-  IP_FW_F_ACCEPT        - �ѥ��åȤ��������ޤ�
-  IP_FW_F_COUNT         - �����󥿤����ä������ޥå��󥰤�³���ޤ�
-  IP_FW_F_DIVERT        - �ѥ��åȤ� divert(4) �����åȤˤ��餷�ޤ�
-  IP_FW_F_TEE           - �ѥ��åȤ� divert(4) �����åȤ˥��ԡ�������³���ޤ�
-  IP_FW_F_SKIPTO        - �롼���ֹ� fu_skipto_rule �إ����åפ��ޤ�
+  IP_FW_F_DENY          - パケットを破棄します
+  IP_FW_F_REJECT        - パケットを破棄し、ICMP または TCP を経由して拒否を通知します
+  IP_FW_F_ACCEPT        - パケットを受け入れます
+  IP_FW_F_COUNT         - カウンタを増加させ、マッチングを続けます
+  IP_FW_F_DIVERT        - パケットを divert(4) ソケットにそらします
+  IP_FW_F_TEE           - パケットを divert(4) ソケットにコピーし、継続します
+  IP_FW_F_SKIPTO        - ルール番号 fu_skipto_rule へスキップします
 .Pp
-IP_FW_F_REJECT �ξ�硢fu_reject_code ���ֹ椬 0 ���� 255 �ʤ��
-�б����륳���ɤȤȤ�˼��������ѥ��åȤλ����� IP ���ɥ쥹��
-ICMP unreachable �ѥ��åȤ������֤��ޤ���
-�����ǤϤʤ����ˤϡ��ͤ� 256 �ǥץ��ȥ��뤬 IPPROTO_TCP �Ǥ���ɬ�פ����ꡢ
-���ξ�� TCP reset �ѥ��åȤ������ޤ���
+IP_FW_F_REJECT の場合、fu_reject_code の番号が 0 から 255 ならば
+対応するコードとともに受信したパケットの始点の IP アドレスへ
+ICMP unreachable パケットを送り返します。
+そうではない場合には、値は 256 でプロトコルが IPPROTO_TCP である必要があり、
+この場合 TCP reset パケットが送られます。
 .Pp
-IP_FW_F_SKIPTO ����Ѥ���ȡ�fu_skipto_rule ��꾮�����롼���ֹ�����
-���٤Ƥ�Ϣ³����롼�뤬�����åפ���ޤ���
-.Sh �����ͥ륪�ץ����
-�����ͥ�����ե�����ǤΥ��ץ����:
-  IPFIREWALL               - ipfirewall ��ͭ���ˤ��ޤ�
-  IPFIREWALL_VERBOSE       - firewall �ν��Ϥ�ͭ���ˤ��ޤ�
-  IPFIREWALL_VERBOSE_LIMIT - firewall �ν��Ϥ��������ޤ�
-  DIVERT                   - divert(4) �����åȤ�ͭ���ˤ��ޤ�
+IP_FW_F_SKIPTO を使用すると、fu_skipto_rule より小さいルール番号を持つ
+すべての連続するルールがスキップされます。
+.Sh カーネルオプション
+カーネル設定ファイルでのオプション:
+  IPFIREWALL               - ipfirewall を有効にします
+  IPFIREWALL_VERBOSE       - firewall の出力を有効にします
+  IPFIREWALL_VERBOSE_LIMIT - firewall の出力を抑制します
+  DIVERT                   - divert(4) ソケットを有効にします
 .Pp
-�ѥ��åȤ� IP_FW_F_PRN �ӥåȤ����åȤ���Ƥ���롼���Ŭ�礷��
-IPFIREWALL_VERBOSE ��ͭ���ˤ���Ƥ�����ˤϥ�å����������󥽡����
-���Ϥ���ޤ���
-IPFIREWALL_VERBOSE_LIMIT �Ϥ��줾��Υ롼�뤬������å���������ϤǤ���
-����κ����ͤ����¤��ޤ���
-�������ѿ���
+パケットが IP_FW_F_PRN ビットがセットされているルールに適合し、
+IPFIREWALL_VERBOSE が有効にされている場合にはメッセージがコンソールに
+出力されます。
+IPFIREWALL_VERBOSE_LIMIT はそれぞれのルールがログメッセージを出力できる
+回数の最大値を制限します。
+これらの変数も
 .Xr sysctl 3
-���󥿥ե��������ͳ�������ѤǤ��ޤ���
-.Sh ����
+インタフェースを経由して利用できます。
+.Sh 診断
 
-[EINVAL]  IP ���ץ������󤬺Ǿ��ͤ��û�������󶡤��줿���ץ����
-          �Хåե����Ĺ����Ŭ�ڤʷ����Ǥ�����ip_fw ��¤�Τǹ�¤Ū
-          �ʥ��顼��ȯ�����ޤ��� (n_src_p+n_dst_p ���硢ALL/ICMP
-          �ץ��ȥ���Τ���Υݡ��ȥ��åȤʤ�)�������ʥ롼���ֹ椬
-          �Ȥ��ޤ�����
-.Sh ��Ϣ����
+[EINVAL]  IP オプションの欄が最小値より短いか、提供されたオプション
+          バッファより長く不適切な形式でした。ip_fw 構造体で構造的
+          なエラーが発生しました (n_src_p+n_dst_p 過大、ALL/ICMP
+          プロトコルのためのポートセットなど)。不正なルール番号が
+          使われました。
+.Sh 関連項目
 .Xr setsockopt 2 ,
 .Xr divert 4 ,
 .Xr ip 4 ,
 .Xr ipfw 8 ,
 .Xr sysctl 8
-.Sh �Х�
-``tee'' �롼��Ϥޤ���������Ƥ��ޤ��� (���ߤϸ��̤�����ޤ���)��
+.Sh バグ
+``tee'' ルールはまだ実装されていません (現在は効果がありません)。
 .Pp
-���� man �ڡ����Ϥޤ���Ȥ�ɬ�פǤ���
-.Sh ���
-ipfw ��ǽ�Ϻǽ�� BSDI �ؤΥѥå������Ȥ���
+この man ページはまだ作業が必要です。
+.Sh 歴史
+ipfw 機能は最初に BSDI へのパッケージとして
 Daniel Boulet <danny@BouletFermat.ab.ca>
-�ˤ�äƽ񤫤�ޤ�����
+によって書かれました。
 Ugen J.S.Antsilevich <ugen@NetVision.net.il>
-���������ѹ�����FreeBSD �ذܿ����ޤ�����
+が大幅に変更し、FreeBSD へ移植しました。
 .Pp
-Archie Cobbs <archie@whistle.com> �ˤ�äƤ����Ĥ��γ�ĥ���ä����ޤ�����
+Archie Cobbs <archie@whistle.com> によっていくつかの拡張が加えられました。

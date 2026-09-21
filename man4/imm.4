@@ -27,35 +27,35 @@
 .Dd October 27, 1998
 .Dt IMM 4
 .Os FreeBSD
-.Sh ̾��
+.Sh 名称
 .Nm imm
 .Nd
-�ѥ��뤫�� SCSI �ؤΥ��󥿥ե������ɥ饤��
-.Sh ��
+パラレルから SCSI へのインタフェースドライバ
+.Sh 書式
 .Cd "controller vpo at ppbus?"
 .Pp
-1 �İʾ�� SCSI �Х����Ф�:
+1 つ以上の SCSI バスに対し:
 .Cd "controller scbus0 at vpo0"
-.Sh ����
-imm �ɥ饤�Фϡ�
+.Sh 解説
+imm ドライバは、
 .Xr vpo 4
-�ɥ饤�Ф��ĥ���ơ�
-Iomega Matchmaker Parallel to SCSI ���󥿥ե������Ѥˤ�����ΤǤ���
-���Υɥ饤�ФΤۤȤ�ɤ�
+ドライバを拡張して、
+Iomega Matchmaker Parallel to SCSI インタフェース用にしたものです。
+このドライバのほとんどは
 .Xr microseq 9
-�Υᥫ�˥������Ѥ��ƽ񤫤�Ƥ��ޤ���
-.Sh ��Ϣ����
+のメカニズムを使用して書かれています。
+.Sh 関連項目
 .Xr ppbus 4 ,
 .Xr vpo 4 ,
 .Xr microseq 9 ,
 .Xr scsi 4 ,
 .Xr sd 4
-.Sh ���
+.Sh 歴史
 .Nm
-�ޥ˥奢��ڡ�����
+マニュアルページは
 .Fx 3.0
-���о줷�ޤ�����
-.Sh ���
-���Υޥ˥奢��ڡ�����
+で登場しました。
+.Sh 作者
+このマニュアルページは
 .An Nicolas Souchu
-���񤭤ޤ�����
+が書きました。

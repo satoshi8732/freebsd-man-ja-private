@@ -29,39 +29,39 @@
 .Dd January 19, 1997
 .Dt ZP 4 i386
 .Os FreeBSD
-.Sh ̾��
+.Sh 名称
 .Nm zp
 .Nd
-3Com PCMCIA Etherlink III �������ͥåȥǥХ����ɥ饤��
-.Sh ��
+3Com PCMCIA Etherlink III イーサネットデバイスドライバ
+.Sh 書式
 .Cd "device zp0 at isa? port 0x300 net irq 10 iomem 0xd8000"
-.Sh ����
+.Sh 解説
 .Nm
-�ɥ饤�Ф�
-3Com 3C589 PCMCIA Etherlink III �������ͥåȥ���ȥ������
-���ݡ��Ȥ��󶡤��ޤ���
+ドライバは
+3Com 3C589 PCMCIA Etherlink III イーサネットコントローラの
+サポートを提供します。
 .Pp
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr arp 4 ,
 .Xr netintro 4 ,
 .Xr ifconfig 8
-.Sh ���
+.Sh 歴史
 .Nm
-�ǥХ����ɥ饤�Ф�
+デバイスドライバは
 .Fx 2.0.5
-�ǽ����о줷�ޤ�����
-.Sh ���
+で初めて登場しました。
+.Sh 作者
 .Nm
-�ǥХ����ɥ饤�Ф�
+デバイスドライバは
 .An Tatsumi Hosokawa
-���񤭤ޤ�����
-����ϡ�
+が書きました。
+これは、
 .An Herb Peyerl ,
 .An Devid Hinds ,
 .An Donald Becker ,
 .An David Greenman ,
 .An Seiji Murata
-�ˤ�륤�����ͥåȥɥ饤�ФΥ����ɤ˴�Ť��Ƥ��ޤ���
-���Υޥ˥奢��ڡ�����
+によるイーサネットドライバのコードに基づいています。
+このマニュアルページは
 .An David E. O'Brien
-���񤭤ޤ�����
+が書きました。

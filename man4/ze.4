@@ -29,62 +29,62 @@
 .Dd January 19, 1997
 .Dt ZE 4 i386
 .Os FreeBSD
-.Sh ̾��
+.Sh 名称
 .Nm ze
 .Nd
-IBM/National Semiconductor PCMCIA �������ͥåȥǥХ����ɥ饤��
-.Sh ��
+IBM/National Semiconductor PCMCIA イーサネットデバイスドライバ
+.Sh 書式
 .Cd "device ze0 at isa? port 0x300 net irq 5 iomem 0xd8000"
-.Sh ����
+.Sh 解説
 .Nm
-�ɥ饤�Фϡ�IBM/National Semiconductor �١�����
-PCMCIA �������ͥåȥ���ȥ�����Υ��ݡ��Ȥ��󶡤��ޤ���
-����� IBM Thinkpad ��
-IBM Credit Card adapter I �ڤ� II �䡢National `InfoMover' NE4100
-PCMCIA �����ɤ�ޤߤޤ���
+ドライバは、IBM/National Semiconductor ベースの
+PCMCIA イーサネットコントローラのサポートを提供します。
+これは IBM Thinkpad 用
+IBM Credit Card adapter I 及び II や、National `InfoMover' NE4100
+PCMCIA カードを含みます。
 .Nm
-�ɥ饤�Ф� National Semiconductor DS8390 �������ͥåȥ����ץ��Ѥ�
-�ǥХ����ɥ饤�Ф˴�Ť��Ƥ��ޤ���
-.Sh ����
+ドライバは National Semiconductor DS8390 イーサネットアダプタ用の
+デバイスドライバに基づいています。
+.Sh 診断
 .Bl -diag
 .It "ze%d: device timeout, isr=%02x, imr=%02x, imask=%04x"
-�ǥХ������ͥåȥ���˱������ʤ��ʤ�ޤ������ޤ��ϡ��ͥåȥ����³
-(�����֥�) �����꤬����ޤ���   
+デバイスがネットワークに応答しなくなりました。または、ネットワーク接続
+(ケーブル) に問題があります。   
 .It "ze%d: shared memory corrupt - invalid packet length %d"
-���Υ��顼�ϡ��������ͥåȥɥ饤�Х��åפ������ӥ����ǡ���٤��⤤
-���ˤȤ��ɤ������ޤ����ѥ��å�Ĺ�ΥХ��ȥ��������ڤ��ؤ�äƤ��ޤ�
-����Ǥ���
+このエラーは、イーサネットドライバチップが初期リビジョンで、負荷が高い
+場合にときどき見られます。パケット長のバイトオーダが切り替わってしまう
+ためです。
 .El
-.Sh �ٹ�
-���Υɥ饤�Ф� IBM Credit Card Adapter for Ethernet ���Ф��ƤΤ�ư�
-�뤳�Ȥ��Τ��Ƥ��ޤ���
-PCMCIA ����ե�����졼����󥪥ץ����쥸���� (COR) �ΰ��ַ����
-IBM �Υ����ɤ�ͽ�ۤ���Ƥ����ͤ˥ϡ��ɥ����ǥ��󥰤��뤫���ˡ�
-����ե�����졼����󥿥ץ����Ϥ���褦�ɥ饤�Ф�������С�
-¾�� PCMCIA �����ɤǤ⤪���餯ư���Ǥ��礦��
-.Sh �Х�
-���ߡ� ���Υɥ饤�Фϥޥ�����㥹�Ȥ򥵥ݡ��Ȥ��Ƥ��ޤ���
-.Sh ��Ϣ����
+.Sh 警告
+このドライバは IBM Credit Card Adapter for Ethernet に対してのみ動作す
+ることが知られています。
+PCMCIA コンフィギュレーションオプションレジスタ (COR) の位置決定を、
+IBM のカードで予想されている値にハードコーディングするかわりに、
+コンフィギュレーションタプルを解析するようドライバを修正すれば、
+他の PCMCIA カードでもおそらく動作するでしょう。
+.Sh バグ
+現在、 このドライバはマルチキャストをサポートしていません。
+.Sh 関連項目
 .Xr arp 4 ,
 .Xr netintro 4 ,
 .Xr ifconfig 8
-.Sh ���
+.Sh 歴史
 .Nm
-�ǥХ����ɥ饤�Ф�
+デバイスドライバは
 .Fx 1.1.5
-�����о줷�ޤ�����
-.Sh ���
+から登場しました。
+.Sh 作者
 .Nm
-�ǥХ����ɥ饤�Ф� 
+デバイスドライバは 
 .An Keith Moore 
-���񤭤ޤ�������Ȥ��
+が書きました。もともと
 .An David Greenman 
-�����̤˴�Ť��Ƥ��ꡢKeith �� PCMCIA ���ѹ����ɲä򤷤ޤ�����
-�����
+の成果に基づいており、Keith が PCMCIA の変更と追加をしました。
+それを
 .An Jordan Hubbard 
-��
+が
 .Fx 1.1.5
-�˹�碌�Ʋ�¤���ޤ�����
-���Υޥ˥奢��ڡ����� 
+に合わせて改造しました。
+このマニュアルページは 
 .An David E. O'Brien
-���񤭤ޤ�����
+が書きました。
