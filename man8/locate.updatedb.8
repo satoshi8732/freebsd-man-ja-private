@@ -34,38 +34,38 @@
 .Dd February 11, 1996
 .Dt LOCATE.UPDATEDB 8
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm locate.updatedb
-.Nd locate �ǡ����١����ι���
-.Sh ��
+.Nd locate データベースの更新
+.Sh 書式
 .Nm /usr/libexec/locate.updatedb
-.Sh ����
+.Sh 解説
 .Nm locate.updatedb
-�桼�ƥ���ƥ��ϡ�
+ユーティリティは、
 .Xr locate 1
-�ǻ��Ѥ����ǡ����١����ι�����Ԥ��ޤ���
-�̾�ϡ�
+で使用されるデータベースの更新を行います。
+通常は、
 .Pa /etc/periodic/weekly/310.locate
-������ץ�
-�ˤ�꽵�˰��ټ¹Ԥ���ޤ���
+スクリプト
+により週に一度実行されます。
 .Pp
-�����˹��ۤ����ǡ����١��������Ƥϡ�
+新規に構築されるデータベースの内容は、
 .Pa /etc/locate.rc
-�ե�����
-���Ѥ������ꤹ�뤳�Ȥ�����ޤ���
-.Sh ��Ϣ�ե�����
+ファイル
+を用いて設定することが出来ます。
+.Sh 関連ファイル
 .Bl -tag -width /var/db/locate.database -compact
 .It Pa /var/db/locate.database
-�ǥե���ȤΥǡ����١���
+デフォルトのデータベース
 .It Pa /etc/locate.rc
-����ե�����
+設定ファイル
 .El
-.Sh �Ķ��ѿ�
+.Sh 環境変数
 .Bl -tag -width /var/db/locate.database -compact
 .It Pa LOCATE_CONFIG
-����ե�����Υѥ�
+設定ファイルのパス
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr locate 1 ,
 .Xr periodic 8
 .Rs

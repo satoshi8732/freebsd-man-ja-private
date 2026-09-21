@@ -38,39 +38,39 @@
 .Dd October 25, 1994
 .Dt YPPOLL 8
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm yppoll
-.Nd YP �����Ф��� YP �ޥåפΥС�������Ҥͤ�
-.Sh ��
+.Nd YP サーバから YP マップのバージョンを尋ねる
+.Sh 書式
 .Nm
 .Op Fl h Ar host
 .Op Fl d Ar domain
 .Ar mapname
-.Sh ����
+.Sh 解説
 .Nm
-�桼�ƥ���ƥ��� YP �����Хץ��������Ф���
+ユーティリティは YP サーバプロセスに対して
 .Ar mapname
-�Υ������ֹ�ȡ��ɤΥۥ��Ȥ��ޥ��������ФʤΤ���Ҥͤޤ���
+のオーダ番号と、どのホストがマスタサーバなのかを尋ねます。
 .Pp
-���ץ����ϰʲ��ΤȤ���Ǥ���
+オプションは以下のとおりです。
 .Bl -tag -width indent
 .It Fl h Ar host
 .Ar host
-���ư���Ƥ��� YP �����Хץ��������Ф���
+上で動いている YP サーバプロセスに対して
 .Ar mapname
-�˴ؤ�������Ҥͤޤ���
-�⤷
+に関する情報を尋ねます。
+もし
 .Ar host
-�����ꤵ��ʤ��ä���硢Ĵ������륵���Ф�
+が指定されなかった場合、調査されるサーバは
 .Xr ypwhich 1
-�ˤ�ä��֤����ǥե���ȥ����Фˤʤ�ޤ���
+によって返されるデフォルトサーバになります。
 .It Fl d Ar domain
 .Xr domainname 1
-�ˤ�ä��֤����ǥե���ȥɥᥤ��ǤϤʤ�
+によって返されるデフォルトドメインではなく
 .Ar domain
-YP �ɥᥤ�����Ѥ��ޤ���
+YP ドメインを使用します。
 .El
-.Sh ��Ϣ����
+.Sh 関連項目
 .Xr domainname 1 ,
 .Xr ypcat 1 ,
 .Xr ypmatch 1 ,
@@ -78,7 +78,7 @@ YP �ɥᥤ�����Ѥ��ޤ���
 .Xr yp 8 ,
 .Xr ypbind 8 ,
 .Xr ypset 8
-.Sh ���
+.Sh 作者
 .An Theo De Raadt
-��
+と
 .An John Brezak

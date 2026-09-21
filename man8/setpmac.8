@@ -34,34 +34,34 @@
 .Dd January 14, 2003
 .Os
 .Dt SETPMAC 8
-.Sh ̾��
+.Sh 名称
 .Nm setpmac
-.Nd "�̤� MAC �ץ�������٥�ˤ����륳�ޥ�ɼ¹�"
-.Sh ��
+.Nd "別の MAC プロセスラベルにおけるコマンド実行"
+.Sh 書式
 .Nm
 .Ar label
 .Ar command
 .Op Ar arg ...
-.Sh ����
+.Sh 解説
 .Nm
-�桼�ƥ���ƥ��ϡ������ץ�������ե�����������٥��
+ユーティリティは、新規プロセスをフォークし、ラベルを
 .Ar label
-�����ꤷ�褦�Ȥ������������
+に設定しようとし、成功すると
 .Ar command
-��¹Ԥ��ޤ���
-.Sh ��Ϣ����
+を実行します。
+.Sh 関連項目
 .Xr mac 4 ,
 .Xr maclabel 7 ,
 .Xr getfmac 8 ,
 .Xr getpmac 8 ,
 .Xr setfmac 8
-.Sh ���
-���Υ��եȥ������ϡ�
+.Sh 作者
+このソフトウェアは、
 Network Associates Labs,
 the Security Research Division of Network Associates Inc.
-����DARPA CHATS ����ץ������ΰ����Ȥ��ơ�
-DARPA/SPAWAR ���� N66001-01-C-8035
+が、DARPA CHATS 研究プログラムの一部として、
+DARPA/SPAWAR 契約 N66001-01-C-8035
 .Pq Dq CBOSS
-�Τ�Ȥˡ�
+のもとに、
 .Fx
-Project �˴�£���ޤ�����
+Project に寄贈しました。

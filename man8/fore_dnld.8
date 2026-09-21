@@ -25,90 +25,90 @@
 .\" @(#) %FreeBSD: src/sbin/atm/fore_dnld/fore_dnld.8,v 1.8 2004/07/02 21:45:00 ru Exp %
 .\" $FreeBSD$
 .\"
-.\" WORD: current directory	�����ȥǥ��쥯�ȥ�
+.\" WORD: current directory	カレントディレクトリ
 .\"
 .Dd December 3, 1996
 .Dt FORE_DNLD 8
 .Os
-.Sh ̾��
+.Sh 名称
 .Nm fore_dnld
-.Nd "FORE Systems �ҤΥޥ����������ɤ�ۥ��� ATM �����ץ��˥���������ɤ���"
-.Sh ��
+.Nd "FORE Systems 社のマイクロコードをホスト ATM アダプタにダウンロードする"
+.Sh 書式
 .Nm
 .Op Fl 3
 .Op Fl i Ar intf
 .Op Fl d Ar path
 .Op Fl f Ar objfile
 .Op Fl r
-.Sh ����
+.Sh 解説
 .Nm
-�桼�ƥ���ƥ��ϡ�FORE Systems �ҤΥޥ����������ɤ�ۥ��� ATM �����ץ���
-����������ɤ��ޤ���
-.Sh ���ץ����
+ユーティリティは、FORE Systems 社のマイクロコードをホスト ATM アダプタに
+ダウンロードします。
+.Sh オプション
 .Bl -tag -width indent
 .It Fl i Ar intf
-�ɤ� ATM ���󥿥ե������˥ޥ����������ɤ����������ɤ��뤫����ꤷ�ޤ���
-�ǥե���ȤǤϡ�FORE Systems �ҤΥۥ��ȥ����ץ����٤Ƥ�
-�ޥ����������ɤ�����ɤ��ޤ���
+どの ATM インタフェースにマイクロコードをダウンロードするかを指定します。
+デフォルトでは、FORE Systems 社のホストアダプタすべてに
+マイクロコードをロードします。
 .It Fl d Ar path
 .Ar objfile
-��̾���������դ���ѥ�����ꤷ�ޤ���
-�ǥե���ȤǤϡ������ȥǥ��쥯�ȥ��Ȥ��ޤ���
+の名前の前に付けるパスを指定します。
+デフォルトでは、カレントディレクトリを使います。
 .It Fl f Ar objfile
-�ޥ����������ɤΥХ��ʥ�ե��������ꤷ�ޤ���
-�ǥե���ȤǤϡ�
-SBA-200 �����ץ��ˤ�
+マイクロコードのバイナリファイルを指定します。
+デフォルトでは、
+SBA-200 アダプタには
 .Pa sba200.obj
-��
-SBA-200E �����ץ��ˤ�
+を、
+SBA-200E アダプタには
 .Pa sba200e.obj
-��
-PCA-200E �����ץ��ˤ�
+を、
+PCA-200E アダプタには
 .Pa pca200e.bin
-����Ѥ��ޤ���
+を使用します。
 .El
-.Sh ��
-PCA200E �����ץ����Ф��Ƥϡ����ޥ�ɥ饤��ǥե��������ꤷ�ʤ���硢
-�Ȥ߹��ߤΥС������ 4.1.12 �ޥ����������ɤ����Ѥ���ޤ���
+.Sh 注
+PCA200E アダプタに対しては、コマンドラインでファイルを指定しない場合、
+組み込みのバージョン 4.1.12 マイクロコードが使用されます。
 .Fl 3
-���ץ���������ˤϡ��С������ 3.0.1 �ޥ����������ɤ����Ѥ���ޤ���
+オプション指定時には、バージョン 3.0.1 マイクロコードが使用されます。
 .Pp
-FORE Systems �Ҥˤ�ä����ۤ����ޥ����������ɤϡ�ľ�� SBA �ۥ��� ATM
-�����ץ��˥���������ɤǤ���褦�ˤʤäƤ��ޤ���
-�󶡤��줿�ޥ����������ɤ�
+FORE Systems 社によって配布されるマイクロコードは、直接 SBA ホスト ATM
+アダプタにダウンロードできるようになっていません。
+提供されたマイクロコードを
 .Xr objcopy 1
-���ޥ�ɤǽ������ơ�����������ɤ�Ŭ����
-���᡼������������ɬ�פ�����ޤ���
+コマンドで処理して、ダウンロードに適した
+イメージを生成する必要があります。
 .Xr objcopy 1
-�ΰ����ϡ�
+の引数は、
 .Dq Li "-S -l -Fcoff"
-�Ǥ���
+です。
 .Pp
-PCA �ۥ��� ATM �����ץ��Ѥ� FORE Systems �Ҥ������ۤ����
-�ޥ����������ɤˤĤ��Ƥϡ��Ȥ��˽�������ɬ�פϤ���ޤ���
-.Sh ��Ϣ�ե�����
+PCA ホスト ATM アダプタ用に FORE Systems 社から配布される
+マイクロコードについては、とくに処理する必要はありません。
+.Sh 関連ファイル
 .Bl -tag -width indent
 .It Pa ~fore/etc/objcopy
-FORE Systems �Ҥ����ۤ���ޥ����������ɤ�������륳�ޥ��
+FORE Systems 社が配布するマイクロコードを処理するコマンド
 .It Pa ~fore/etc/sba200*.ucode*
-SBA �����ץ��Ѥ� FORE Systems �Ҥ��󶡤���ޥ�����������
+SBA アダプタ用に FORE Systems 社が提供するマイクロコード
 .It Pa ~fore/i386/pca200e.bin
-PCA �����ץ��Ѥ� FORE Systems �Ҥ��󶡤���ޥ�����������
+PCA アダプタ用に FORE Systems 社が提供するマイクロコード
 .It Pa ~harp/doc/Install
-HARP �Υ��󥹥ȡ���ؼ���
+HARP のインストール指示書
 .El
-.Sh �Х�
-�Τ��Ƥ����ΤϤ���ޤ���
+.Sh バグ
+知られているものはありません。
 .Sh COPYRIGHT
 Copyright (c) 1994-1998, Network Computing Services, Inc.
-.Sh ���
+.Sh 作者
 .An John Cavanaugh ,
 Minnesota Supercomputer Center, Inc.
 .An Mike Spengler ,
 Minnesota Supercomputer Center, Inc.
 .An Joe Thomas ,
 Minnesota Supercomputer Center, Inc.
-.Sh �ռ�
-�ܥ��եȥ������� Defense Advanced Research Projects Agency (DARPA) ��
-���� (�����ֹ� F19628-92-C-0072 �ڤ� F19628-95-C-0215) �ˤ��
-��ȯ����ޤ�����
+.Sh 謝辞
+本ソフトウェアは Defense Advanced Research Projects Agency (DARPA) の
+協力 (契約番号 F19628-92-C-0072 及び F19628-95-C-0215) により
+開発されました。
